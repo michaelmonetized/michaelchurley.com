@@ -333,6 +333,11 @@ const config: Config = {
       ...Catppuccin,
     },
     extend: {
+      backgroundImage: {
+        "gradient-radial":
+          "radial-gradient(closest-side, var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(var(--tw-gradient-stops))",
+      },
       spacing: { ...sizes },
       colors: {
         foreground: "var(--foreground)",

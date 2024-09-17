@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <section className="flex flex-col bg-Latte-Base dark:bg-Mocha-Base py-4xl">
+      <section className="flex flex-col bg-Latte-Base bg-gradient-to-b from-Latte-Base to-Latte-Crust dark:bg-Mocha-Base dark:from-Mocha-Base dark:to-Mocha-Crust  py-4xl">
         <ContainerBoxedCenter
           propsInner={{
             className:
@@ -38,7 +38,7 @@ export default function Home() {
           </div>
         </ContainerBoxedCenter>
       </section>
-      <section className="flex flex-col bg-Latte-Crust dark:bg-Mocha-Crust py-4xl">
+      <section className="flex flex-col bg-Latte-Crust bg-gradient-to-b from-Latte-Crust to-Latte-Mantle dark:bg-Mocha-Crust dark:from-Mocha-Crust dark:to-Mocha-Mantle py-4xl">
         <ContainerBoxedCenter
           props={{
             className:
@@ -100,105 +100,110 @@ export default function Home() {
           </div>
         </ContainerBoxedCenter>
       </section>
-      <section className="flex flex-col bg-Latte-Mantle dark:bg-Mocha-Mantle py-4xl">
-        <ContainerBoxedCenter
-          propsInner={{
-            className:
-              "flex flex-col items-stretch lg:items-center justify-center gap-md grow w-full",
-          }}>
-          <div className="flex flex-col items-stretch justify-start text-xs sm:text-center gap-md grow w-full">
-            <h2 className="font-black">Development</h2>
-            <p>
-              Proficient in C, C derivative languages, Scripting languages, Web
-              technologies, App development and tools associated with these:
-            </p>
+      <section className="bg-Latte-Crust bg-gradient-radial from-Latte-Crust to-Latte-Mantle dark:bg-Mocha-Crust dark:from-Mocha-Crust dark:to-Mocha-Mantle">
+        <section className="flex flex-col py-4xl">
+          <ContainerBoxedCenter
+            propsInner={{
+              className:
+                "flex flex-col items-stretch lg:items-center justify-center gap-md grow w-full",
+            }}>
+            <div className="flex flex-col items-stretch justify-start text-xs sm:text-center gap-md grow w-full">
+              <h2 className="font-black">Development</h2>
+              <p>
+                Proficient in C, C derivative languages, Scripting languages,
+                Web technologies, App development and tools associated with
+                these:
+              </p>
 
-            <div className="flex flex-col md:flex-row items-stretch justify-start gap-md py-md text-xs grow w-full text-left">
-              <div className="flex flex-col items-stretch justify-start grow w-full">
-                <h3 className="text-md font-bold">Languages</h3>
-                <ul className="list-disc ml-md">
-                  <li>
-                    C/C++/Objective-C/Zig/<strong>Swift</strong>
-                  </li>
-                  <li>Python/Perl/Ruby</li>
-                  <li>
-                    <strong>PHP</strong>/SQL/<strong>HTML</strong>/
-                    <strong>CSS</strong>
-                  </li>
-                  <li>
-                    Javascript/<strong>Typescript</strong>
-                  </li>
-                </ul>
-              </div>
+              <div className="flex flex-col md:flex-row items-stretch justify-start gap-md py-md text-xs grow w-full text-left">
+                <div className="flex flex-col items-stretch justify-start grow w-full">
+                  <h3 className="text-md font-bold">Languages</h3>
+                  <ul className="list-disc ml-md">
+                    <li>
+                      C/C++/Objective-C/Zig/<strong>Swift</strong>
+                    </li>
+                    <li>Python/Perl/Ruby</li>
+                    <li>
+                      <strong>PHP</strong>/SQL/<strong>HTML</strong>/
+                      <strong>CSS</strong>
+                    </li>
+                    <li>
+                      Javascript/<strong>Typescript</strong>
+                    </li>
+                  </ul>
+                </div>
 
-              <div className="flex flex-col items-stretch justify-start grow w-full">
-                <h3 className="text-md font-bold">Frameworks</h3>
-                <ul className="list-disc ml-md">
-                  <li>
-                    <strong>React/Next.js</strong>
-                  </li>
-                  <li>
-                    <strong>Wordpress + Elementor</strong>
-                  </li>
-                  <li>Laravel/Symfony</li>
-                  <li>
-                    <i>Drupal/Joomla/Elgg</i>
-                  </li>
-                </ul>
-              </div>
+                <div className="flex flex-col items-stretch justify-start grow w-full">
+                  <h3 className="text-md font-bold">Frameworks</h3>
+                  <ul className="list-disc ml-md">
+                    <li>
+                      <strong>React/Next.js</strong>
+                    </li>
+                    <li>
+                      <strong>Wordpress + Elementor</strong>
+                    </li>
+                    <li>Laravel/Symfony</li>
+                    <li>
+                      <i>Drupal/Joomla/Elgg</i>
+                    </li>
+                  </ul>
+                </div>
 
-              <div className="flex flex-col items-stretch justify-start grow w-full">
-                <h3 className="text-md font-bold">Tools</h3>
-                <ul className="list-disc ml-md">
-                  <li>
-                    <strong>LazyGit</strong>/Git/<i>GitHub</i>
-                  </li>
-                  <li>AWS/GCP</li>
-                  <li>
-                    <strong>Vercel</strong>
-                  </li>
-                  <li>
-                    <strong>
-                      <u>zsh/tmux/neovim</u>
-                    </strong>
-                  </li>
-                </ul>
+                <div className="flex flex-col items-stretch justify-start grow w-full">
+                  <h3 className="text-md font-bold">Tools</h3>
+                  <ul className="list-disc ml-md">
+                    <li>
+                      <strong>LazyGit</strong>/Git/<i>GitHub</i>
+                    </li>
+                    <li>AWS/GCP</li>
+                    <li>
+                      <strong>Vercel</strong>
+                    </li>
+                    <li>
+                      <strong>
+                        <u>zsh/tmux/neovim</u>
+                      </strong>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-        </ContainerBoxedCenter>
-      </section>
-      <section className="flex flex-col bg-Latte-Crust dark:bg-Mocha-Crust py-4xl">
-        <ContainerBoxedCenter
-          props={{
-            className:
-              "flex flex-col items-stretch lg:items-center justify-center gap-md p-md w-full max-w-[1170px] mx-auto p-0",
-          }}
-          propsInner={{
-            className:
-              "flex flex-col items-stretch lg:items-center justify-center gap-md grow w-full",
-          }}>
-          <div className="flex flex-col items-stretch justify-start text-xs sm:text-center gap-md grow w-full">
-            <h2 className="font-black">Education</h2>
-            <div className="flex flex-col flex-wrap wrap sm:flex-row sm:flex-nowrap items-stretch justify-start gap-md sm:p-md text-xs grow w-full">
-              <div className="flex flex-col items-stretch justify-start w-full sm:w-1/2">
-                <h3 className="text-md font-bold">Trident Technical College</h3>
-                <p>
-                  <strong>A.A.</strong> Commercial Graphics, 2003
-                </p>
-              </div>
+          </ContainerBoxedCenter>
+        </section>
+        <section className="flex flex-col py-4xl">
+          <ContainerBoxedCenter
+            props={{
+              className:
+                "flex flex-col items-stretch lg:items-center justify-center gap-md p-md w-full max-w-[1170px] mx-auto p-0",
+            }}
+            propsInner={{
+              className:
+                "flex flex-col items-stretch lg:items-center justify-center gap-md grow w-full",
+            }}>
+            <div className="flex flex-col items-stretch justify-start text-xs sm:text-center gap-md grow w-full">
+              <h2 className="font-black">Education</h2>
+              <div className="flex flex-col flex-wrap wrap sm:flex-row sm:flex-nowrap items-stretch justify-start gap-md sm:p-md text-xs grow w-full">
+                <div className="flex flex-col items-stretch justify-start w-full sm:w-1/2">
+                  <h3 className="text-md font-bold">
+                    Trident Technical College
+                  </h3>
+                  <p>
+                    <strong>A.A.</strong> Commercial Graphics, 2003
+                  </p>
+                </div>
 
-              <div className="flex flex-col items-stretch justify-start w-full sm:w-1/2">
-                <h3 className="text-md font-bold">College of Charleston</h3>
-                <p>
-                  <strong>B.S.</strong> Computer Science, 2005
-                </p>
+                <div className="flex flex-col items-stretch justify-start w-full sm:w-1/2">
+                  <h3 className="text-md font-bold">College of Charleston</h3>
+                  <p>
+                    <strong>B.S.</strong> Computer Science, 2005
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </ContainerBoxedCenter>
+          </ContainerBoxedCenter>
+        </section>
       </section>
-      <section className="flex flex-col bg-Latte-Base dark:bg-Mocha-Base py-4xl">
+      <section className="flex flex-col bg-Latte-Mantle bg-gradient-to-b from-Latte-Mantle to-Latte-Base dark:bg-Mocha-Mantle dark:from-Mocha-Mantle dark:to-Mocha-Base py-4xl">
         <ContainerBoxedCenter
           props={{
             className:
@@ -416,7 +421,7 @@ export default function Home() {
           </div>
         </ContainerBoxedCenter>
       </section>
-      <section className="flex flex-col bg-Latte-Crust dark:bg-Mocha-Crust py-4xl">
+      <section className="flex flex-col bg-Latte-Base dark:bg-Mocha-Base py-4xl">
         <ContainerBoxedCenter
           props={{
             className:
