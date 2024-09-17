@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { colors, Catppuccin } from "@/tailwind.config";
+import { Catppuccin } from "@/tailwind.config";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
