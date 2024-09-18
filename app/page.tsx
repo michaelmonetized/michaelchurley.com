@@ -6,12 +6,13 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <section className="flex flex-col bg-Latte-Base bg-gradient-to-b from-Latte-Base to-Latte-Crust dark:bg-Mocha-Base dark:from-Mocha-Base dark:to-Mocha-Crust  py-4xl">
+      <section className="flex flex-col bg-Latte-Base bg-gradient-to-b from-Latte-Base to-Latte-Crust dark:bg-Mocha-Base dark:from-Mocha-Base dark:to-Mocha-Crust py-4xl">
         <ContainerBoxedCenter
           propsInner={{
             className:
               "flex flex-col items-stretch lg:items-center justify-center gap-md grow w-full",
-          }}>
+          }}
+        >
           <div className="flex flex-col sm:flex-row items-stretch justify-center text-xs gap-md grow w-full relative">
             <div className="flex flex-col items-stretch justify-center grow w-full">
               <h1 className="text-xl font-black">Hire Michael C. Hurley</h1>
@@ -42,59 +43,62 @@ export default function Home() {
         <ContainerBoxedCenter
           props={{
             className:
-              "flex flex-col items-stretch lg:items-center justify-center gap-md p-md w-full max-w-[1170px] mx-auto p-0",
+              "flex flex-col items-stretch lg:items-center justify-center gap-md p-md w-full max-w-[1280px] mx-auto p-0",
           }}
           propsInner={{
             className:
               "flex flex-col items-stretch lg:items-center justify-center gap-md grow w-full",
-          }}>
-          <div className="flex flex-col items-stretch justify-start text-xs sm:text-center gap-md grow w-full">
-            <h2 className="font-black">Skills</h2>
-            <div className="flex flex-col flex-wrap wrap sm:flex-row items-stretch justify-start sm:p-md gap-md sm:gap-0 text-xs grow w-full text-left">
-              <div className="flex flex-col items-stretch justify-start grow w-full sm:w-1/2 md:w-1/4">
-                <h2 className="text-lg font-bold">Management</h2>
-                <ul className="list-disc ml-md">
-                  <li>Leadership</li>
-                  <li>Strategy</li>
-                  <li>Operations</li>
-                  <li>Sales</li>
-                  <li>Marketing</li>
-                  <li>Growth</li>
-                </ul>
-              </div>
+          }}
+        >
+          <div className="border-gradient-animated shadow-2xl">
+            <div className="flex flex-col items-stretch justify-start text-xs sm:text-center gap-md grow w-full bg-gradient-to-b from-background to-Latte-Crust dark:to-Mocha-Crust p-lg border-background rounded-lg">
+              <h2 className="font-black">Skills</h2>
+              <div className="flex flex-col flex-wrap wrap sm:flex-row items-stretch justify-start sm:p-md gap-md sm:gap-0 text-xs grow w-full text-left">
+                <div className="flex flex-col items-stretch justify-start grow w-full sm:w-1/2 md:w-1/4">
+                  <h2 className="text-lg font-bold">Management</h2>
+                  <ul className="list-disc ml-md">
+                    <li>Leadership</li>
+                    <li>Strategy</li>
+                    <li>Operations</li>
+                    <li>Sales</li>
+                    <li>Marketing</li>
+                    <li>Growth</li>
+                  </ul>
+                </div>
 
-              <div className="flex flex-col items-stretch justify-start grow w-full sm:w-1/2 md:w-1/4">
-                <h2 className="text-lg font-bold">Technology</h2>
-                <ul className="list-disc ml-md">
-                  <li>Software Development</li>
-                  <li>Web Development</li>
-                  <li>Graphic Design</li>
-                  <li>UI/UX Design</li>
-                  <li>Content Creation</li>
-                  <li>Video Editing</li>
-                </ul>
-              </div>
+                <div className="flex flex-col items-stretch justify-start grow w-full sm:w-1/2 md:w-1/4">
+                  <h2 className="text-lg font-bold">Technology</h2>
+                  <ul className="list-disc ml-md">
+                    <li>Software Development</li>
+                    <li>Web Development</li>
+                    <li>Graphic Design</li>
+                    <li>UI/UX Design</li>
+                    <li>Content Creation</li>
+                    <li>Video Editing</li>
+                  </ul>
+                </div>
 
-              <div className="flex flex-col items-stretch justify-start grow w-full sm:w-1/2 md:w-1/4">
-                <h2 className="text-lg font-bold">Marketing</h2>
-                <ul className="list-disc ml-md">
-                  <li>Branding</li>
-                  <li>Web Design</li>
-                  <li>Messaging</li>
-                  <li>Strategy</li>
-                  <li>Distribution</li>
-                </ul>
-              </div>
+                <div className="flex flex-col items-stretch justify-start grow w-full sm:w-1/2 md:w-1/4">
+                  <h2 className="text-lg font-bold">Marketing</h2>
+                  <ul className="list-disc ml-md">
+                    <li>Branding</li>
+                    <li>Web Design</li>
+                    <li>Messaging</li>
+                    <li>Strategy</li>
+                    <li>Distribution</li>
+                  </ul>
+                </div>
 
-              <div className="flex flex-col items-stretch justify-start grow w-full sm:w-1/2 md:w-1/4">
-                <h2 className="text-lg font-bold">Sales</h2>
-                <ul className="list-disc ml-md">
-                  <li>Direct to Customer + B2B</li>
-                  <li>Strategy</li>
-                  <li>Closing</li>
-                  <li>Retention</li>
-                  <li>Reputation</li>
-                </ul>
+                <div className="flex flex-col items-stretch justify-start grow w-full sm:w-1/2 md:w-1/4">
+                  <h2 className="text-lg font-bold">Sales</h2>
+                  <ul className="list-disc ml-md">
+                    <li>Direct to Customer + B2B</li>
+                    <li>Strategy</li>
+                    <li>Closing</li>
+                    <li>Retention</li>
+                    <li>Reputation</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -106,7 +110,8 @@ export default function Home() {
             propsInner={{
               className:
                 "flex flex-col items-stretch lg:items-center justify-center gap-md grow w-full",
-            }}>
+            }}
+          >
             <div className="flex flex-col items-stretch justify-start text-xs sm:text-center gap-md grow w-full">
               <h2 className="font-black">Development</h2>
               <p>
@@ -179,7 +184,8 @@ export default function Home() {
             propsInner={{
               className:
                 "flex flex-col items-stretch lg:items-center justify-center gap-md grow w-full",
-            }}>
+            }}
+          >
             <div className="flex flex-col items-stretch justify-start text-xs sm:text-center gap-md grow w-full">
               <h2 className="font-black">Education</h2>
               <div className="flex flex-col flex-wrap wrap sm:flex-row sm:flex-nowrap items-stretch justify-start gap-md sm:p-md text-xs grow w-full">
@@ -212,7 +218,8 @@ export default function Home() {
           propsInner={{
             className:
               "flex flex-col items-stretch lg:items-center justify-center gap-md grow w-full",
-          }}>
+          }}
+        >
           <div className="flex flex-col items-stretch justify-start text-xs sm:text-center gap-md grow w-full">
             <h2 className="font-black">Experience</h2>
             <div className="flex flex-col flex-wrap wrap sm:flex-row items-stretch justify-start text-xs text-left grow w-full">
@@ -430,7 +437,8 @@ export default function Home() {
           propsInner={{
             className:
               "flex flex-col items-stretch lg:items-center justify-center gap-md grow w-full",
-          }}>
+          }}
+        >
           <div className="flex flex-col items-center justify-start text-xs sm:text-center gap-md grow w-full">
             <h2 className="font-black">Ready To Bring Me On Board?</h2>
             <div className="flex flex-col flex-wrap wrap sm:flex-row items-center justify-center p-md text-xs grow w-full gap-md">

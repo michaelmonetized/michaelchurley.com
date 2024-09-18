@@ -374,4 +374,46 @@
   strong {
     @apply font-black;
   }
+
+  @property --i {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes border-gradient-animation {
+    0% {
+      --i: 0deg;
+    }
+    100% {
+      --i: 360deg;
+    }
+  }
+
+  .border-gradient-animated {
+    @apply rounded-lg relative z-10 overflow-visible w-full;
+    &::before,
+    &::after {
+      content: "";
+      @apply absolute rounded-lg from-magenta-200 via-cyan-200 to-magenta-200;
+      background-image: conic-gradient(from var(--i), var(--tw-gradient-stops));
+      width: calc(100% + 3px);
+      height: calc(100% + 3px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      animation-name: border-gradient-animation;
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+    &::before {
+      opacity: 0.3;
+      width: calc(100% + 32px);
+      height: calc(100% + 32px);
+      @apply: rounded-xl;
+      filter: blur(32px);
+    }
+  }
 }
