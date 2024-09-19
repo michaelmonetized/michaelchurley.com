@@ -7,7 +7,7 @@ export default async function Header() {
     <div className="sticky left-0 right-0 w-full top-0 z-[9090]">
       <ContainerBoxed>
         <header className="flex flex-col items-stretch justify-center text-foreground m-xs md:-mx-md rounded-md shadow-2xl bg-Mantle/90 bg-gradient-to-b from-Base/90 to-Crust backdrop-blur-sm">
-          <div className="flex items-center justify-between gap-md p-xs w-full grow">
+          <div className="flex items-center justify-between gap-md p-xs w-full grow bg-Mantle/90 bg-gradient-to-b from-Base/95 to-Crust shadow-inner shadow-white-600/50">
             <Logo multiplier={0.5} />
             <MenuTop />
           </div>
