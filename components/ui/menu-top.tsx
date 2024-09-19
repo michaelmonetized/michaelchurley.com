@@ -11,6 +11,7 @@ import {
   PiInstagramLogoLight,
   PiLinkedinLogoLight,
   PiListLight,
+  PiXLight,
   PiXLogoLight,
 } from "react-icons/pi";
 import Link from "next/link";
@@ -24,9 +25,9 @@ export default function MenuTop() {
           <SheetTrigger>
             <PiListLight />
           </SheetTrigger>
-          <SheetContent className="p-0 bg-Mocha-Crust light:bg-Latte-Crust">
-            <div className="flex flex-col items-stretch justify-start divide-y divide-y-white-400">
-              <div className="flex items-center justify-between gap-md p-md w-full">
+          <SheetContent className="p-0 bg-Base z-50 w-full h-dvh overflow-x-clip overflow-y-auto">
+            <div className="flex flex-col items-stretch justify-start divide-y divide-y-foreground">
+              <div className="flex items-center justify-between gap-md p-md w-full text-md">
                 <Link href="https://github.com/michaelmonetized">
                   <PiGithubLogoLight />
                 </Link>
@@ -42,27 +43,33 @@ export default function MenuTop() {
                 <Link href="https://x.com/MichaelH_rley2">
                   <PiXLogoLight />
                 </Link>
+
+                <SheetTrigger>
+                  <PiXLight />
+                </SheetTrigger>
               </div>
               <div className="flex items-center justify-between gap-md p-md w-full">
-                <Link href="mailto:michaelhurley.pj@gmail.com">
-                  <Button size="sm" variant="outline">
+                <Link
+                  href="mailto:michaelhurley.pj@gmail.com"
+                  className="w-full"
+                >
+                  <Button variant="outline" className="w-full">
                     Email Me
                   </Button>
                 </Link>
-                <Link href="tel:+18283073591">
-                  <Button size="sm" variant="secondary">
+                <Link href="tel:+18283073591" className="w-full">
+                  <Button variant="secondary" className="font-black w-full">
                     Call or Text Me
                   </Button>
                 </Link>
-                <Link
-                  href="https://koalendar.com/e/hire-michael-hurley"
-                  className="block"
-                >
-                  <Button size="icon">
-                    <PiCalendarPlusLight />
-                  </Button>
-                </Link>
               </div>
+
+              <iframe
+                src="https://koalendar.com/e/hire-michael-hurley?embed=true"
+                width="100%"
+                height="800px"
+                frameBorder="0"
+              ></iframe>
             </div>
           </SheetContent>
         </Sheet>
