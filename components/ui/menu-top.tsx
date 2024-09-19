@@ -6,6 +6,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 import {
+  PiCalendarPlusLight,
   PiGithubLogoLight,
   PiInstagramLogoLight,
   PiLinkedinLogoLight,
@@ -53,6 +54,14 @@ export default function MenuTop() {
                     Call or Text Me
                   </Button>
                 </Link>
+                <Link
+                  href="https://koalendar.com/e/hire-michael-hurley"
+                  className="block"
+                >
+                  <Button size="icon">
+                    <PiCalendarPlusLight />
+                  </Button>
+                </Link>
               </div>
             </div>
           </SheetContent>
@@ -82,7 +91,8 @@ export default function MenuTop() {
             <div className="flex items-center justify-between gap-md w-full text-xs">
               <Link
                 href="mailto:michaelhurley.pj@gmail.com"
-                className="text-xs">
+                className="text-xs"
+              >
                 <Button size="sm" variant="outline" className="text-xs">
                   <span className="text-[14px]">Email Me</span>
                 </Button>
@@ -90,6 +100,14 @@ export default function MenuTop() {
               <Link href="tel:+18283073591" className="text-xs">
                 <Button size="sm" variant="secondary" className="text-xs">
                   <span className="text-[14px]">Call or Text Me</span>
+                </Button>
+              </Link>
+              <Link
+                href="https://koalendar.com/e/hire-michael-hurley"
+                className="block"
+              >
+                <Button size="icon">
+                  <PiCalendarPlusLight />
                 </Button>
               </Link>
             </div>

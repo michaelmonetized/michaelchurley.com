@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 import Logo from "@/components/ui/logo";
 import Image from "next/image";
 import Link from "next/link";
+import { PiCalendarPlusLight } from "react-icons/pi";
 
 export default function Home() {
   return (
     <>
-      <section className="flex flex-col bg-Latte-Base bg-gradient-to-b from-Latte-Base to-Latte-Crust dark:bg-Mocha-Base dark:from-Mocha-Base dark:to-Mocha-Crust py-4xl">
+      <section className="flex flex-col bg-gradient-to-b from-Base to-Crust py-4xl">
         <ContainerBoxedCenter
           propsInner={{
             className:
@@ -46,6 +47,14 @@ export default function Home() {
                     className="block absolute left-1/2 top-1/2 coin z-0"
                   />
                 </div>
+                <Link
+                  href="https://koalendar.com/e/hire-michael-hurley"
+                  className="block"
+                >
+                  <Button size="icon">
+                    <PiCalendarPlusLight />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -463,7 +472,21 @@ export default function Home() {
         >
           <div className="flex flex-col items-center justify-start text-xs sm:text-center gap-md grow w-full">
             <h2 className="font-black">Ready To Bring Me On Board?</h2>
+            <iframe
+              src="https://koalendar.com/e/hire-michael-hurley?embed=true"
+              width="100%"
+              height="800px"
+              frameborder="0"
+            ></iframe>
             <div className="flex flex-col flex-wrap wrap sm:flex-row items-center justify-center p-md text-xs grow w-full gap-md">
+              <Link
+                href="https://koalendar.com/e/hire-michael-hurley"
+                className="block"
+              >
+                <Button size="icon">
+                  <PiCalendarPlusLight />
+                </Button>
+              </Link>
               <Link
                 href="tel:+18283073591"
                 className="block border-gradient-animated"
