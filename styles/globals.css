@@ -539,6 +539,7 @@
   .logo-svg-wrapper path {
     --svg-stroke-length: 19719.580774788763;
     stroke-linecap: round;
+    stroke-width: 35;
   }
 
   .logo-svg-wrapper path#logo-svg-trace-cyan,
@@ -559,6 +560,7 @@
     stroke-dasharray: calc(var(--svg-stroke-length) / 8);
     opacity: 0.3;
     animation: draw-svg-fx 10s infinite ease-in-out;
+    stroke-width: 21;
   }
 
   .logo-svg-wrapper path#logo-svg-trace-magenta,
@@ -569,7 +571,9 @@
 
   .logo-svg-wrapper path#logo-svg-glow-magenta,
   .logo-svg-wrapper path#logo-svg-glow-cyan {
-    filter: blur(42px);
+    filter: blur(84px);
+    stroke-width: 84;
+    opacity: 0.23;
   }
 
   .logo-svg-wrapper path#logo-svg {

@@ -8,7 +8,14 @@ import { PiCalendarPlusLight } from "react-icons/pi";
 export default function Home() {
   return (
     <>
-      <section className="flex flex-col bg-gradient-to-b from-Base to-Crust py-4xl">
+      <section className="flex flex-col bg-gradient-to-b from-Base to-Crust static">
+        <Image
+          src="/hero-bg.png"
+          width={3840}
+          height={1864}
+          alt=""
+          className="absolute inset-0 pointer-events-none mix-blend-overlay dark:mix-blend-overlay w-full h-auto"
+        />
         <ContainerBoxedCenter
           propsInner={{
             className:
@@ -64,14 +71,14 @@ export default function Home() {
         <ContainerBoxedCenter
           props={{
             className:
-              "flex flex-col items-stretch lg:items-center justify-center gap-md p-md w-full max-w-[1280px] mx-auto p-0",
+              "flex flex-col items-stretch lg:items-center justify-center gap-md p-md w-full max-w-[1345px] mx-auto p-0",
           }}
           propsInner={{
             className:
               "flex flex-col items-stretch lg:items-center justify-center gap-md grow w-full",
           }}
         >
-          <div className="border-gradient-animated shadow-2xl">
+          <div className="border-gradient-animated shadow-2xl w-full">
             <div className="flex flex-col items-stretch justify-start text-xs sm:text-center gap-md grow w-full bg-gradient-to-b from-background to-Latte-Crust dark:to-Mocha-Crust p-lg border-background rounded-lg">
               <h2 className="font-black">Proven Skills</h2>
               <p>
@@ -240,11 +247,23 @@ export default function Home() {
           </ContainerBoxedCenter>
         </section>
       </section>
-      <section className="flex flex-col bg-Latte-Mantle bg-gradient-to-b from-Latte-Mantle to-Latte-Base dark:bg-Mocha-Mantle dark:from-Mocha-Mantle dark:to-Mocha-Base py-4xl">
+      <section className="flex flex-col bg-Mantle bg-gradient-to-b from-Mantle to-Base">
         <ContainerBoxedCenter
           props={{
             className:
-              "flex flex-col items-stretch lg:items-center justify-center gap-md p-md w-full max-w-[1170px] mx-auto p-0",
+              "flex flex-col items-stretch lg:items-center justify-center gap-md w-full max-w-[1170px] mx-auto p-0 bg-[length:720px_720px] bg-no-repeat bg-gradient-radial bg-center from-white-600/50 to-Mantle/50 h-2 -mt-4 dark:from-Mocha-Surface2/50",
+          }}
+          propsInner={{
+            className:
+              "flex flex-col items-stretch lg:items-center justify-center gap-md grow w-full",
+          }}
+        >
+          &nbsp;
+        </ContainerBoxedCenter>
+        <ContainerBoxedCenter
+          props={{
+            className:
+              "flex flex-col items-stretch lg:items-center justify-center gap-md p-md w-full max-w-[1170px] mx-auto bg-[length:640px_640px] bg-no-repeat bg-gradient-radial from-Base to-Mantle/0 bg-[center_top_-320px] py-4xl dark:from-Surface0",
           }}
           propsInner={{
             className:

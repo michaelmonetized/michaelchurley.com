@@ -336,6 +336,7 @@ const config: Config = {
       backgroundImage: {
         "gradient-radial":
           "radial-gradient(closest-side, var(--tw-gradient-stops))",
+        "gradient-circle": "radial-gradient(circle, var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(var(--tw-gradient-stops))",
       },
       spacing: { ...sizes },
@@ -379,10 +380,12 @@ const config: Config = {
         primary: {
           DEFAULT: "var(--primary)",
           foreground: "var(--primary-foreground)",
+          "primary-hover": "var(--primary-hover)",
         },
         secondary: {
           DEFAULT: "var(--secondary)",
           foreground: "var(--secondary-foreground)",
+          "secondary-hover": "var(--secondary-hover)",
         },
         muted: {
           DEFAULT: "var(--muted)",
@@ -391,10 +394,12 @@ const config: Config = {
         accent: {
           DEFAULT: "var(--accent)",
           foreground: "var(--accent-foreground)",
+          "accent-hover": "var(--accent-hover)",
         },
         destructive: {
           DEFAULT: "var(--destructive)",
           foreground: "var(--destructive-foreground)",
+          "destructive-hover": "var(--destructive-hover)",
         },
         border: "var(--border)",
         input: "var(--input)",
