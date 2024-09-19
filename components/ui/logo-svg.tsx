@@ -36,6 +36,8 @@ const LogoSVG = (props: React.SVGProps<SVGSVGElement>) => {
         fill="none"
         strokeMiterlimit={10}
         strokeWidth={21}
+        strokeDasharray={0}
+        strokeDashoffset={0}
       />
       <path
         d={path}
