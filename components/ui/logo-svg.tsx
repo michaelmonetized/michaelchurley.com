@@ -16,7 +16,6 @@ const LogoSVG = (props: React.SVGProps<SVGSVGElement>) => {
         d={path}
         id="logo-svg-glow-cyan"
         fill="none"
-        stroke="#000"
         strokeMiterlimit={10}
         strokeWidth={21}
         strokeDasharray={length}
@@ -26,7 +25,6 @@ const LogoSVG = (props: React.SVGProps<SVGSVGElement>) => {
         d={path}
         id="logo-svg-glow-magenta"
         fill="none"
-        stroke="#000"
         strokeMiterlimit={10}
         strokeWidth={21}
         strokeDasharray={length}
@@ -36,7 +34,6 @@ const LogoSVG = (props: React.SVGProps<SVGSVGElement>) => {
         d={path}
         id="logo-svg"
         fill="none"
-        stroke="#000"
         strokeMiterlimit={10}
         strokeWidth={21}
       />
@@ -44,7 +41,6 @@ const LogoSVG = (props: React.SVGProps<SVGSVGElement>) => {
         d={path}
         id="logo-svg-trace-cyan"
         fill="none"
-        stroke="#000"
         strokeMiterlimit={10}
         strokeWidth={21}
         strokeDasharray={length}
@@ -54,7 +50,6 @@ const LogoSVG = (props: React.SVGProps<SVGSVGElement>) => {
         d={path}
         id="logo-svg-treace-magenta"
         fill="none"
-        stroke="#000"
         strokeMiterlimit={10}
         strokeWidth={21}
         strokeDasharray={length}

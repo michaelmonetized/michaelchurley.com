@@ -536,13 +536,6 @@
     }
   }
 
-  path#logo-svg {
-    --svg-stroke-length: 19719.580774788763;
-    stroke-dasharray: var(--svg-stroke-length);
-    stroke-dashoffset: var(--svg-stroke-length);
-    animation: draw-svg 10s forwards ease-out;
-  }
-
   .logo-svg-wrapper path {
     --svg-stroke-length: 19719.580774788763;
     stroke-linecap: round;
@@ -558,18 +551,33 @@
   .logo-svg-wrapper path#logo-svg-trace-cyan,
   .logo-svg-wrapper path#logo-svg-trace-magenta {
     stroke-dasharray: calc(var(--svg-stroke-length) / 2);
-    animation: draw-svg-fx 5s infinite ease-in-out;
+    animation: draw-svg-fx 10s infinite ease-in-out;
+  }
+
+  .logo-svg-wrapper path#logo-svg-trace-cyan,
+  .logo-svg-wrapper path#logo-svg-trace-magenta {
+    stroke-dasharray: calc(var(--svg-stroke-length) / 8);
+    opacity: 0.3;
+    animation: draw-svg-fx 10s infinite ease-in-out;
   }
 
   .logo-svg-wrapper path#logo-svg-trace-magenta,
   .logo-svg-wrapper path#logo-svg-glow-magenta {
     stroke: var(--magenta);
-    animation-delay: 0.2s;
+    animation-delay: 3s;
   }
 
   .logo-svg-wrapper path#logo-svg-glow-magenta,
   .logo-svg-wrapper path#logo-svg-glow-cyan {
-    filter: blur(8px);
+    filter: blur(42px);
+  }
+
+  .logo-svg-wrapper path#logo-svg {
+    --svg-stroke-length: 19719.580774788763;
+    stroke: var(--foreground);
+    stroke-dasharray: var(--svg-stroke-length);
+    stroke-dashoffset: var(--svg-stroke-length);
+    animation: draw-svg 10s forwards ease-out;
   }
 
   @keyframes draw-svg {
