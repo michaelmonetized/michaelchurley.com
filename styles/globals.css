@@ -543,6 +543,35 @@
     animation: draw-svg 10s forwards ease-out;
   }
 
+  .logo-svg-wrapper path {
+    --svg-stroke-length: 19719.580774788763;
+    stroke-linecap: round;
+  }
+
+  .logo-svg-wrapper path#logo-svg-trace-cyan,
+  .logo-svg-wrapper path#logo-svg-glow-cyan {
+    stroke: var(--cyan);
+  }
+
+  .logo-svg-wrapper path#logo-svg-glow-magenta,
+  .logo-svg-wrapper path#logo-svg-glow-cyan,
+  .logo-svg-wrapper path#logo-svg-trace-cyan,
+  .logo-svg-wrapper path#logo-svg-trace-magenta {
+    stroke-dasharray: calc(var(--svg-stroke-length) / 2);
+    animation: draw-svg-fx 5s infinite ease-in-out;
+  }
+
+  .logo-svg-wrapper path#logo-svg-trace-magenta,
+  .logo-svg-wrapper path#logo-svg-glow-magenta {
+    stroke: var(--magenta);
+    animation-delay: 0.2s;
+  }
+
+  .logo-svg-wrapper path#logo-svg-glow-magenta,
+  .logo-svg-wrapper path#logo-svg-glow-cyan {
+    filter: blur(8px);
+  }
+
   @keyframes draw-svg {
     from {
       stroke-dasharray: var(--svg-stroke-length);
@@ -556,6 +585,12 @@
 
     to {
       stroke-dasharray: var(--svg-stroke-length);
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes draw-svg-fx {
+    50% {
       stroke-dashoffset: 0;
     }
   }

@@ -476,7 +476,7 @@ export default function Home() {
               src="https://koalendar.com/e/hire-michael-hurley?embed=true"
               width="100%"
               height="800px"
-              frameborder="0"
+              frameBorder="0"
             ></iframe>
             <div className="flex flex-col flex-wrap wrap sm:flex-row items-center justify-center p-md text-xs grow w-full gap-md">
               <Link
