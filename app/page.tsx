@@ -14,7 +14,7 @@ export default function Home() {
           width={3840}
           height={1864}
           alt=""
-          className="absolute inset-0 pointer-events-none mix-blend-overlay dark:mix-blend-overlay w-full h-auto"
+          className="absolute inset-0 pointer-events-none mix-blend-overlay w-full h-auto"
         />
         <ContainerBoxedCenter
           propsInner={{
@@ -136,7 +136,7 @@ export default function Home() {
           </div>
         </ContainerBoxedCenter>
       </section>
-      <section className="bg-Latte-Crust bg-gradient-radial from-Latte-Crust to-Latte-Mantle dark:bg-Mocha-Crust dark:from-Mocha-Crust dark:to-Mocha-Mantle">
+      <section className="bg-Latte-Crust bg-gradient-radial from-Latte-Crust to-Latte-Mantle dark:bg-Mocha-Crust dark:from-Mocha-Crust dark:to-Mocha-Mantle overflow-visible">
         <section className="flex flex-col py-4xl">
           <ContainerBoxedCenter
             propsInner={{
@@ -209,7 +209,14 @@ export default function Home() {
             </div>
           </ContainerBoxedCenter>
         </section>
-        <section className="flex flex-col py-4xl">
+        <section className="flex flex-col py-4xl relative pb-6xl">
+          <Image
+            src="/pop-noodle.svg"
+            width={3840}
+            height={2160}
+            alt=""
+            className="absolute inset-0 pointer-events-none mix-blend-overlay w-full h-auto -z-[0] -translate-y-4xl"
+          />
           <ContainerBoxedCenter
             props={{
               className:
@@ -247,23 +254,14 @@ export default function Home() {
           </ContainerBoxedCenter>
         </section>
       </section>
-      <section className="flex flex-col bg-Mantle bg-gradient-to-b from-Mantle to-Base">
-        <ContainerBoxedCenter
-          props={{
-            className:
-              "flex flex-col items-stretch lg:items-center justify-center gap-md w-full max-w-[1170px] mx-auto p-0 bg-[length:720px_720px] bg-no-repeat bg-gradient-radial bg-center from-white-600/50 to-Mantle/50 h-2 -mt-4 dark:from-Mocha-Surface2/50",
-          }}
-          propsInner={{
-            className:
-              "flex flex-col items-stretch lg:items-center justify-center gap-md grow w-full",
-          }}
-        >
+      <section className="flex flex-col bg-gradient-to-b from-Mantle/50 to-Base/50 z-10 backdrop-opacity-50 backdrop-blur-lg relative">
+        <div className="w-full p-0 bg-[length:720px_720px] bg-no-repeat bg-gradient-radial bg-center from-white-600/50 to-Latte-Mantle/0 h-2 dark:from-Mocha-Surface2/50 dark:to-Mocha-Mantle/0 absolute top-0">
           &nbsp;
-        </ContainerBoxedCenter>
+        </div>
         <ContainerBoxedCenter
           props={{
             className:
-              "flex flex-col items-stretch lg:items-center justify-center gap-md p-md w-full max-w-[1170px] mx-auto bg-[length:640px_640px] bg-no-repeat bg-gradient-radial from-Base to-Mantle/0 bg-[center_top_-320px] py-4xl dark:from-Surface0",
+              "flex flex-col items-stretch lg:items-center justify-center gap-md p-md w-full max-w-[1170px] mx-auto bg-[length:640px_640px] bg-no-repeat bg-gradient-radial from-Latte-Base to-Latte-Mantle/0 bg-[center_top_-320px] py-4xl dark:from-Mocha-Surface0 dark:to-Mocha-Mantle/0",
           }}
           propsInner={{
             className:
