@@ -1,6 +1,7 @@
 import { ContainerBoxedCenter } from "@/components/layout/containers";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/ui/logo";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -31,9 +32,20 @@ export default function Home() {
                 <Link href="mailto:michaelhurley.pj@gmail.com">
                   <Button variant="outline">Email Me</Button>
                 </Link>
-                <Link href="tel:+18283073591">
-                  <Button variant="secondary">Call or Text Me</Button>
-                </Link>
+                <div className="relative coin-bounce">
+                  <Link href="tel:+18283073591" className="relative z-10">
+                    <Button variant="secondary" className="font-black">
+                      Call or Text Me
+                    </Button>
+                  </Link>
+                  <Image
+                    src="/icon.gif"
+                    width={32}
+                    height={32}
+                    alt=""
+                    className="block absolute left-1/2 top-1/2 coin z-0"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -52,7 +64,11 @@ export default function Home() {
         >
           <div className="border-gradient-animated shadow-2xl">
             <div className="flex flex-col items-stretch justify-start text-xs sm:text-center gap-md grow w-full bg-gradient-to-b from-background to-Latte-Crust dark:to-Mocha-Crust p-lg border-background rounded-lg">
-              <h2 className="font-black">Skills</h2>
+              <h2 className="font-black">Proven Skills</h2>
+              <p>
+                I have 10,000 - 52,000 hours of active, professional career
+                experience in management, technology, marketing and sales.
+              </p>
               <div className="flex flex-col flex-wrap wrap sm:flex-row items-stretch justify-start sm:p-md gap-md sm:gap-0 text-xs grow w-full text-left">
                 <div className="flex flex-col items-stretch justify-start grow w-full sm:w-1/2 md:w-1/4">
                   <h2 className="text-lg font-bold">Management</h2>
@@ -113,7 +129,9 @@ export default function Home() {
             }}
           >
             <div className="flex flex-col items-stretch justify-start text-xs sm:text-center gap-md grow w-full">
-              <h2 className="font-black">Development</h2>
+              <h2 className="font-black text-md">
+                Full-Stack Development + Sr. Level Software Engineering
+              </h2>
               <p>
                 Proficient in C, C derivative languages, Scripting languages,
                 Web technologies, App development and tools associated with
@@ -189,20 +207,24 @@ export default function Home() {
             <div className="flex flex-col items-stretch justify-start text-xs sm:text-center gap-md grow w-full">
               <h2 className="font-black">Education</h2>
               <div className="flex flex-col flex-wrap wrap sm:flex-row sm:flex-nowrap items-stretch justify-start gap-md sm:p-md text-xs grow w-full">
-                <div className="flex flex-col items-stretch justify-start w-full sm:w-1/2">
-                  <h3 className="text-md font-bold">
-                    Trident Technical College
-                  </h3>
-                  <p>
-                    <strong>A.A.</strong> Commercial Graphics, 2003
-                  </p>
+                <div className="flex flex-col items-stretch justify-start w-full sm:w-1/2 border-gradient-grayscale hover:border-gradient-animated">
+                  <div className="flex flex-col items-stretch justify-start w-full bg-background rounded-lg p-md">
+                    <h3 className="text-md font-bold">
+                      Trident Technical College
+                    </h3>
+                    <p>
+                      <strong>A.A.</strong> Commercial Graphics, 2003
+                    </p>
+                  </div>
                 </div>
 
-                <div className="flex flex-col items-stretch justify-start w-full sm:w-1/2">
-                  <h3 className="text-md font-bold">College of Charleston</h3>
-                  <p>
-                    <strong>B.S.</strong> Computer Science, 2005
-                  </p>
+                <div className="flex flex-col items-stretch justify-start w-full sm:w-1/2 border-gradient-grayscale hover:border-gradient-animated">
+                  <div className="flex flex-col items-stretch justify-start w-full bg-background rounded-lg p-md">
+                    <h3 className="text-md font-bold">College of Charleston</h3>
+                    <p>
+                      <strong>B.S.</strong> Computer Science, 2005
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -442,7 +464,10 @@ export default function Home() {
           <div className="flex flex-col items-center justify-start text-xs sm:text-center gap-md grow w-full">
             <h2 className="font-black">Ready To Bring Me On Board?</h2>
             <div className="flex flex-col flex-wrap wrap sm:flex-row items-center justify-center p-md text-xs grow w-full gap-md">
-              <Link href="tel:+18283073591" className="block">
+              <Link
+                href="tel:+18283073591"
+                className="block border-gradient-animated"
+              >
                 <Button variant="secondary">Call or Text Me</Button>
               </Link>
               <Link href="mailto:michaelhurley.pj@gmail.com" className="block">
