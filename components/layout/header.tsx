@@ -4,7 +4,7 @@ import { ContainerBoxed } from "./containers";
 
 export default async function Header() {
   return (
-    <div className="w-full">
+    <div className="w-full z-10">
       <ContainerBoxed>
         <header className="flex flex-col items-stretch justify-center text-foreground m-xs md:-mx-md rounded-md shadow-2xl backdrop-blur-sm bg-Latte-Base/25 dark:bg-Mocha-Base/25">
           <div className="flex items-center justify-between gap-md p-xs w-full grow rounded-md bg-gradient-to-b from-Latte-Base/50 dark:from-Mocha-Base/50 to-Latte-Crust/75 dark:to-Mocha-Crust/75 shadow-inner shadow-white-600/30">
