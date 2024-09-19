@@ -15,14 +15,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex h-dvh flex-col items-stretch justify-start relative bg-background overflow-x-clip">
+      <body className="flex min-h-dvh flex-col items-stretch justify-start relative bg-background overflow-x-clip overflow-y-auto">
         <a href="#main" className="sr-only focus:not-sr-only">
           {"Skip to main content"}
         </a>
         <Header />
         <section
           id="top"
-          className="flex grow flex-col items-stretch justify-start overflow-x-clip overflow-y-auto"
+          className="flex grow flex-col items-stretch justify-start"
         >
           {children}
         </section>
