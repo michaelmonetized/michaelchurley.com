@@ -27,7 +27,17 @@ export default async function BlogPage({
   const { tag: selectedTag } = await searchParams;
 
   const staticPosts = getStaticPosts(selectedTag);
-  let remotePosts: typeof staticPosts = [];
+  let remotePosts: {
+    _id: string;
+    slug: string;
+    title: string;
+    excerpt: string;
+    coverImage?: string;
+    tags: string[];
+    featured: boolean;
+    publishedAt?: number;
+    readingTime?: number;
+  }[] = [];
   let remoteTags: string[] = [];
   try {
     const [posts, t] = await Promise.all([
@@ -37,17 +47,26 @@ export default async function BlogPage({
       }),
       fetchQuery(api.blog.getAllTags),
     ]);
-    remotePosts = posts ?? [];
+    remotePosts = (posts ?? []).map((p) => ({
+      _id: String(p._id),
+      slug: p.slug,
+      title: p.title,
+      excerpt: p.excerpt,
+      coverImage: p.coverImage,
+      tags: p.tags,
+      featured: p.featured,
+      publishedAt: p.publishedAt,
+      readingTime: p.readingTime,
+    }));
     remoteTags = t ?? [];
   } catch {
     remotePosts = [];
     remoteTags = [];
   }
   const seen = new Set(staticPosts.map((p) => p.slug));
-  const blogPosts = [
-    ...staticPosts,
-    ...remotePosts.filter((p) => !seen.has(p.slug)),
-  ].sort((a, b) => (b.publishedAt ?? 0) - (a.publishedAt ?? 0));
+  const blogPosts = [...staticPosts, ...remotePosts.filter((p) => !seen.has(p.slug))].sort(
+    (a, b) => (b.publishedAt ?? 0) - (a.publishedAt ?? 0),
+  );
   const tags = Array.from(new Set([...getStaticTags(), ...remoteTags])).sort();
 
   return (
