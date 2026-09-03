@@ -4,6 +4,7 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import { ContainerBoxedCenter } from "@/components/layout/containers";
 import CommentSection from "@/components/comments/comment-section";
+import { getStaticPostBySlug } from "@/lib/static-posts";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -13,7 +14,9 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await fetchQuery(api.blog.getBySlug, { slug }).catch(() => null);
+  const post =
+    getStaticPostBySlug(slug) ??
+    (await fetchQuery(api.blog.getBySlug, { slug }).catch(() => null));
 
   if (!post || !post.published) {
     return { title: "Post Not Found" };
@@ -43,7 +46,9 @@ function formatDate(timestamp: number | undefined) {
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = await fetchQuery(api.blog.getBySlug, { slug }).catch(() => null);
+  const post =
+    getStaticPostBySlug(slug) ??
+    (await fetchQuery(api.blog.getBySlug, { slug }).catch(() => null));
 
   if (!post || !post.published) {
     notFound();
