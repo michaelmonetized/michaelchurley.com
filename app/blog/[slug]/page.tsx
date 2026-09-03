@@ -110,10 +110,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <ReactMarkdown>{post.content}</ReactMarkdown>
         </article>
 
-        {/* Comments */}
-        <div className="border-t pt-8 mt-8">
-          <CommentSection itemType="blog" itemId={post._id} />
-        </div>
+        {!String(post._id).startsWith("static:") && (
+          <div className="border-t pt-8 mt-8">
+            <CommentSection
+              itemType="blog"
+              itemId={post._id as import("@/convex/_generated/dataModel").Id<"blogPosts">}
+            />
+          </div>
+        )}
       </ContainerBoxedCenter>
     </section>
   );
