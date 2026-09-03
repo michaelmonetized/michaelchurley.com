@@ -43,6 +43,8 @@ Every tab accepts files now. Hold a file over the island and a dotted **Drop to 
 
 Collapsed, you get a stacked pile of the latest thumbs and a count. Timer still wins if one is running.
 
+![Collapsed file pile](https://raw.githubusercontent.com/michaelmonetized/naarchy/main/docs/screenshots/v0.3/strip-files.jpg)
+
 ## The rest
 
 Clipboard history with search and pin. Calendar with ICS feeds, Meet/Zoom join, and "leave at 9:23." Volume and brightness HUDs. Omarchy theme follow.
@@ -59,7 +61,7 @@ cargo install --path . --locked
 systemctl --user enable --now naarchy.service
 \`\`\`
 
-Source, screenshots, and an 8-second recording: **[github.com/michaelmonetized/naarchy](https://github.com/michaelmonetized/naarchy)**.
+Source, screenshots, and a 10-second recording: **[github.com/michaelmonetized/naarchy](https://github.com/michaelmonetized/naarchy)**.
 
 If you are still staring at a dead strip of pixels above your display, you already know what to do.
 
