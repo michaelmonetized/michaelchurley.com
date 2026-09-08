@@ -2440,7 +2440,94 @@ If your integration platform README promises n8n power and your repo has zero n8
 Would you fix the pricing page to match \`billing.ts\`, or ship Clerk keys to www before anyone can Start with GitHub?
 `;
 
+const HURLEYMC_COVER =
+  "/blog/hurley-mission-control-human-agent-comms/cover.png";
+
+const HURLEYMC_CONTENT = `## Who
+
+I run agents and humans on the same company. Slack does not know what an agent is. A terminal log does not know what a delivery receipt is. The Go repo named mission-control is a p10k-inspired TUI for deploys and git status. Hustle Launch mission-control-os is a different product. This room is the HurleyUS comms plane.
+
+This piece is for operators who need a human and an agent in the same membership list. For people who want queued/delivered/failed rows next to a message instead of hoping a webhook fired. For anyone who has already confused the three Mission Control names in this portfolio and needs the cut named out loud.
+
+## What
+
+I shipped Hurley Mission Control — a public HurleyUS repo whose README says the quiet part: unified comms plane for agents and humans.
+
+Stack facts: Next.js 16.2.1 App Router, React 19.2, Clerk, Convex, TypeScript, cmdk and framer-motion in the lockfile, package name flattened to \`web\` after the monorepo fight, packageManager bun@latest, local port 3410.
+
+![Dashboard — threads with dm group project ops kinds](/blog/hurley-mission-control-human-agent-comms/screenshots/dashboard-threads.png)
+
+The Convex schema is the product. users.kind is human or agent. Agents can carry agentId and machineId. Threads are dm, group, project, or ops. Messages support replyTo and optional type text|event|system. sendMessage checks clientMessageId before insert so retries do not double-post. Deliveries fan out to other members as queued rows with attempts and lastError. Presence tracks online and lastSeenAt.
+
+The web path is a thread grid with kind icons, a detail route for the feed, optimistic yellow sending states in the sprint writeup, and a quick-stats strip that literally advertises 2s message refresh. getThreads still collects all threads and filters membership in the handler — honest, not cute.
+
+Auth is hybrid. Clerk packages are real. useUser also reads localStorage userId and testUserId and can POST /api/sync-user to mint a Convex user for sprint testing without the full Clerk dance. The live root paints Redirecting... and aims at sign-in when that key is missing. Title in the document: HurleyUS Mission Control.
+
+![Daemon stub and OpenClaw plugin WIP](/blog/hurley-mission-control-human-agent-comms/screenshots/daemon-plugin-wip.png)
+
+Honesty on the edges: apps/daemon/src/index.ts is two console.log lines and a TODO to subscribe to assigned threads and relay into a local OpenClaw session. packages/channel-plugin is a README promising send, reply, and receive mapping — not an implemented adapter. PLAN.md checkboxes still look more empty than the sprint summary claims. That gap is the story, not a cover-up.
+
+![Vercel monorepo thrash](/blog/hurley-mission-control-human-agent-comms/screenshots/vercel-thrash.png)
+
+The secondary plot is deploy theater.
+
+Forty-nine commits on master.
+Most of those commits are deploy config thrash.
+Roughly forty-one are Vercel root/bun/npm config flip-flops.
+
+The fight ends by moving the web app to the repo root.
+
+Also: Next 16.2.1 bump, npmrc legacy-peer-deps, HEAD b3d11ec env cleanup.
+
+## Where
+
+Live: https://hurley-mission-control.vercel.app (HTTP 200, title HurleyUS Mission Control).
+Code: https://github.com/HurleyUS/hurley-mission-control master. HEAD b3d11ec. 49 commits. Public.
+Contrast: michaelmonetized/mission-control is a Go TUI. mission-control-os is a different product. Do not merge the three names.
+Dev port 3410. No fresh coding clone for this pack.
+
+## When
+
+2026-03-19 ET evening: 05f475c Phase 1 complete. Deploy docs same hour.
+2026-03-20: Vercel monorepo storm; 8d9708e getThreads filter fix.
+2026-03-21: sprint status; flatten monorepo; Next 16.2.1; HEAD b3d11ec ~10:52 PM ET.
+2026-08-08: pushed_at bump, no new commit after HEAD.
+2026-09-08: pack drafted; slug hurley-mission-control-human-agent-comms unused.
+
+## Why
+
+Agent work without a shared thread is gossip, not ops. Humans and agents as first-class users. clientMessageId so retries do not double-post. Delivery rows beat hope. Name the thrash. Cut three Mission Control names apart.
+
+Engagement: if your agents and your humans do not share a thread id, what exactly are you operating?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:hurley-mission-control-human-agent-comms",
+    title: "hurley-mission-control: I put humans and agents in the same thread model",
+    slug: "hurley-mission-control-human-agent-comms",
+    excerpt:
+      "Hurley Mission Control is the Convex + Clerk + Next plane where users.kind is human|agent. Deliveries, idempotent sends, 2s poll. Not the Go TUI. Not mission-control-os. Daemon still stubs.",
+    content: HURLEYMC_CONTENT,
+    coverImage: HURLEYMC_COVER,
+    tags: [
+      "hurley-mission-control",
+      "mission-control",
+      "convex",
+      "clerk",
+      "nextjs",
+      "agents",
+      "openclaw",
+      "hurleyus",
+      "realtime",
+      "deliveries",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T03:00:00Z"),
+    readingTime: 3,
+  },
+
   {
     _id: "static:djsidethree-wnc-wedding-dj-funnel-after-clerk-cut",
     title: "DJ Side Three: WNC wedding DJ funnel after cutting Clerk",
