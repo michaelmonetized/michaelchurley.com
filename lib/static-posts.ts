@@ -1021,29 +1021,29 @@ What dashboard or sheet are you still using to remember who owes whom on a refer
 const BESTJEEP_COVER =
   "/blog/best-jeep-decals-convex-stripe-storefront/cover.png";
 
-const BESTJEEP_CONTENT = `![Best Jeep Decals — Upgrade Your Off-Road Identity](/blog/best-jeep-decals-convex-stripe-storefront/screenshots/landing.png)
+const BESTJEEP_CONTENT = `![Best Jeep Decals. Upgrade Your Off-Road Identity](/blog/best-jeep-decals-convex-stripe-storefront/screenshots/landing.png)
 
 ## Who
 
-I kept seeing Jeep owners treat identity like an afterthought — a random sticker from a gas-station rack, peeling after one summer on a Wrangler hood.
+I kept seeing Jeep owners treat identity like an afterthought: a random sticker from a gas-station rack, peeling after one summer on a Wrangler hood.
 
-The people I built for already know their JL from their JK, their Gladiator JT from an XJ Cherokee. They want hood blackouts, “rated” fender badges, side graphics that look like they belong on the trail, not clip art. They want USA vinyl that lasts 5–7 years outdoors, air-release installs, and a checkout that does not feel like 2014 Magento.
+The people I built for already know their JL from their JK, their Gladiator JT from an XJ Cherokee. They want hood blackouts, "rated" fender badges, side graphics that look like they belong on the trail, not clip art. They want USA vinyl that lasts 5–7 years outdoors, air-release installs, and a checkout that does not feel like 2014 Magento.
 
-If you ship MarTech, Convex + Clerk + Stripe stacks, or local-commerce sites that have to take real money, you are in the room. This is a private HurleyUS storefront — Best Jeep Decals — not a theme demo.
+If you ship MarTech, Convex + Clerk + Stripe stacks, or local-commerce sites that have to take real money, this is for you. This is a private HurleyUS storefront (Best Jeep Decals), not a theme demo.
 
 ## What
 
 I shipped a dark-first e-commerce site at [bestjeepdecals.com](https://www.bestjeepdecals.com). Orange accent. Italic wordmark. Hero that says the quiet part: **Upgrade Your Off-Road Identity.** Made in the USA badge. Shop All Decals / Browse Wrangler.
 
-![Shop filters — vehicle fitment and price range](/blog/best-jeep-decals-convex-stripe-storefront/screenshots/shop.png)
+![Shop filters. vehicle fitment and price range](/blog/best-jeep-decals-convex-stripe-storefront/screenshots/shop.png)
 
-Stack facts, not pitch deck: **Next.js 16.2.6** (Turbopack) on Vercel, **React 19**, **Convex** for products/categories/carts/orders/reviews/wishlists/discounts/subscriptions, **Clerk** for auth, **Stripe** for checkout, webhooks, portal, and promo codes, **Resend** from \`orders@bestjeepdecals.com\`, **Sentry** + **PostHog** (+ GA). Tailwind 4, Phosphor icons, Zustand cart with persist + promo, Zod + React Hook Form on checkout/admin/newsletter. Package **0.1.0**. Private repo.
+Stack facts: **Next.js 16.2.6** (Turbopack) on Vercel, **React 19**, **Convex** for products/categories/carts/orders/reviews/wishlists/discounts/subscriptions, **Clerk** for auth, **Stripe** for checkout, webhooks, portal, and promo codes, **Resend** from \`orders@bestjeepdecals.com\`, **Sentry** + **PostHog** (+ GA). Tailwind 4, Phosphor icons, Zustand cart with persist + promo, Zod + React Hook Form on checkout/admin/newsletter. Package **0.1.0**. Private repo.
 
-Seeded catalog: **30** SKUs at **$29.99** across Hood Decals, Fender Decals, Side Graphics — Compass/Tread/Explorer/Star hood blackouts, Beach/Trail/Squatch/Rescue rated badges, Renegade mountain set, Zombie Outbreak Response Team badge, Since 1941 left/right, and the rest under \`public/products/png\`. Shop filters cover category, $0–$200 price range, and fitment checkboxes for Wrangler JL/JK/TJ, Gladiator JT, Cherokee XJ, Grand Cherokee, Renegade, Compass.
+Seeded catalog: **30** SKUs at **$29.99** across Hood Decals, Fender Decals, Side Graphics. Compass/Tread/Explorer/Star hood blackouts, Beach/Trail/Squatch/Rescue rated badges, Renegade mountain set, Zombie Outbreak Response Team badge, Since 1941 left/right, and the rest under \`public/products/png\`. Shop filters cover category, $0–$200 price range, and fitment checkboxes for Wrangler JL/JK/TJ, Gladiator JT, Cherokee XJ, Grand Cherokee, Renegade, Compass.
 
-![Empty cart — trust path still on-brand](/blog/best-jeep-decals-convex-stripe-storefront/screenshots/cart.png)
+![Empty cart. trust path still on-brand](/blog/best-jeep-decals-convex-stripe-storefront/screenshots/cart.png)
 
-Admin lives under \`(private)/admin\` with \`requireAdmin\` — product CRUD (soft delete), orders, CSV export. Wishlist hearts persist in Convex. Reviews attach to products. Related products on PDPs. Billing defs include a **Decal of the Month Club** at **$14.99/mo** plus gift-card and rush-production add-ons. ROADMAP marks the Zod/RHF, Stripe+Resend, and Zustand modernization pass complete.
+Admin lives under \`(private)/admin\` with \`requireAdmin\`. product CRUD (soft delete), orders, CSV export. Wishlist hearts persist in Convex. Reviews attach to products. Related products on PDPs. Billing defs include a **Decal of the Month Club** at **$14.99/mo** plus gift-card and rush-production add-ons. ROADMAP marks the Zod/RHF, Stripe+Resend, and Zustand modernization pass complete.
 
 ![Catalog collage from seeded PNGs](/blog/best-jeep-decals-convex-stripe-storefront/screenshots/catalog-grid.png)
 
@@ -1051,19 +1051,19 @@ Admin lives under \`(private)/admin\` with \`requireAdmin\` — product CRUD (so
 
 The storefront lives on the open web: [www.bestjeepdecals.com](https://www.bestjeepdecals.com) (apex redirects to www). GitHub homepage still lists the Vercel alias \`bestjeepdecalscom.vercel.app\`. Code: private [HurleyUS/bestjeepdecals.com](https://github.com/HurleyUS/bestjeepdecals.com).
 
-Public routes: shop, product, category, cart, checkout, wishlist. Auth under Clerk catch-alls. Robots.txt allows shop/product/category and blocks admin/api/sign-in/sign-up. Aug 8 added \`X-Robots-Tag: index, follow\` on Vercel so the deploy stops whispering “please ignore me.”
+Public routes: shop, product, category, cart, checkout, wishlist. Auth under Clerk catch-alls. Robots.txt allows shop/product/category and blocks admin/api/sign-in/sign-up. Aug 8 added \`X-Robots-Tag: index, follow\` on Vercel so the deploy stops asking crawlers to ignore it.
 
 Audience sits next to Jeep forums, jamborees, and every Instagram wrap account that still cannot take a Stripe payment without a third-party form.
 
 ## When
 
-**2024-12-16.** Create Next App. Next day: shadcn init. Dec 27: a “ghostty released” commit. Three commits. Then silence through 2025.
+**2024-12-16.** Create Next App. Next day: shadcn init. Dec 27: a "ghostty released" commit. Three commits. Then silence through 2025.
 
 **2026-01-08.** The product actually starts. OPPORTUNITIES.md. Homepage pass. Migrate to convex-nextfaster. **Build MVP e-commerce storefront.** Seed script and \`.env.example\` for production readiness.
 
-**2026-02.** Superadmin email gate — then security move to a server component. Stripe webhook signature verification. Admin auth on product mutations. Cart wired with localStorage session and honest success toasts. Checkout rate limiting. Error and loading boundaries. Next.js thrash: bump to 16.1.6 for a CVE, temporary downgrade to 15.5.12 for middleware, Tailwind v3→v4, dark-first production audit.
+**2026-02.** Superadmin email gate. then security move to a server component. Stripe webhook signature verification. Admin auth on product mutations. Cart wired with localStorage session and honest success toasts. Checkout rate limiting. Error and loading boundaries. Next.js thrash: bump to 16.1.6 for a CVE, temporary downgrade to 15.5.12 for middleware, Tailwind v3 to v4, dark-first production audit.
 
-**2026-03-09–17.** Next 15→16 for real. Delete deprecated \`middleware.ts\`. Restore Clerk on \`proxy.ts\`. Trust signals on cart. Sentry 10 for Next 16. Revenue unlock doc. Google Analytics. robots + next-sitemap. Stripe webhook + order payment flow. Admin dashboard for products and orders. Soft delete. Edit product. CSV export. Promo codes. Shop filters with category, price, Jeep model (#26). Reviews. Wishlists. Related products. Missing catalog images filled in.
+**2026-03-09–17.** Next 15 to 16 for real. Delete deprecated \`middleware.ts\`. Restore Clerk on \`proxy.ts\`. Trust signals on cart. Sentry 10 for Next 16. Revenue unlock doc. Google Analytics. robots + next-sitemap. Stripe webhook + order payment flow. Admin dashboard for products and orders. Soft delete. Edit product. CSV export. Promo codes. Shop filters with category, price, Jeep model (#26). Reviews. Wishlists. Related products. Missing catalog images filled in.
 
 **2026-05-14–15.** Blacksmith CI gates on repeat until they stick. Convex URL and Clerk key fallbacks so CI builds do not cry. Deploy health check targets fixed.
 
@@ -1071,19 +1071,17 @@ Audience sits next to Jeep forums, jamborees, and every Instagram wrap account t
 
 **2026-08-08.** Four commits to finish the clock: force \`X-Robots-Tag: index, follow\`, unblock that deploy in \`next.config.ts\`, pin Stripe to package default API version for build compatibility. HEAD \`fd105bd\`. **Ninety-nine commits** from empty Next scaffold to an indexable commerce deploy.
 
-On 2026-09-08 the live \`/\` sometimes hit the error boundary during capture while \`/shop\` and \`/cart\` still painted the dark chrome — Convex/runtime weather, not a rewrite of the journey.
+On 2026-09-08 the live \`/\` sometimes hit the error boundary during capture while \`/shop\` and \`/cart\` still painted the dark chrome. Convex/runtime weather, not a rewrite of the journey.
 
 ## Why
 
-A Jeep without identity graphics is fine. A checkout that cannot take money, moderate reviews, or keep a wishlist is not a store — it is a mood board.
+A Jeep without identity graphics is fine. A checkout that cannot take money, moderate reviews, or keep a wishlist is not a store. it is a mood board.
 
 I wanted the full path: seeded catalog, model fitment filters, Zustand cart with promos, Stripe webhooks that create orders, Resend that tells you it shipped, admin that can soft-delete a SKU and export CSV, CI that builds without secret theater, and a robots header that admits the site wants to be found.
 
 So I kept shipping until the redesign matched the trail aesthetic and the seed matched the PNG drawer. It is still 0.1.0. Decal Club and gift-card add-ons sit in billing defs waiting for the live Stripe dial. That is fine. The document model already holds products, carts, orders, reviews, wishlists, and subscriptions in one Convex project.
 
-If your current Jeep sticker supplier cannot show Wrangler vs Gladiator fitment without a phone call, you already know the hole I was staring at.
-
-What would you put on a Wrangler hood first — a compass blackout, a tread pattern, or a beach-rated badge that starts arguments at the trailhead?
+What would you put on a Wrangler hood first: a compass blackout, a tread pattern, or a beach-rated badge that starts arguments at the trailhead?
 `;
 
 const SONNY_COVER =
@@ -1150,39 +1148,39 @@ Would you lock the Christmas 2026 preorder first, or open the engine folder and 
 const HMS_COVER =
   "/blog/hms-hustle-management-system-live-editor/cover.png";
 
-const HMS_CONTENT = `![HMS public home mock — ship the site, edit the site](/blog/hms-hustle-management-system-live-editor/screenshots/public-home.png)
+const HMS_CONTENT = `![HMS public home mock. ship the site, edit the site](/blog/hms-hustle-management-system-live-editor/screenshots/public-home.png)
 
 ## Who
 
 I kept paying the WordPress tax.
 
-Not the hosting bill. The other tax: Elementor for layout, Dynamic.ooo when Elementor ran out of road, WooCommerce when something had to sell, a pile of PHP templates that only one agency intern understood, and a publish button that still felt like deploying a missile.
+The other tax: Elementor for layout, Dynamic.ooo when Elementor ran out of road, WooCommerce when something had to sell, a pile of PHP templates that only one agency intern understood, and a publish button that still felt like deploying a missile.
 
 HMS is for operators who already know that stack and are done leasing their content model from it. Marketing teams that need a revision trail and a split-test variant without forking a theme. Builders who are happier in Convex + Clerk + Vite+ than in another page-builder SaaS seat.
 
-If you have ever opened a live URL, winced, and opened a totally different admin URL to fix one sentence — you are in the room.
+If you have ever opened a live URL, winced, and opened a totally different admin URL to fix one sentence, this is for you.
 
 ## What
 
-I shipped **HMS — Hustle Management System**. The public site is the product. Pages, posts, products, forms, and templates are **block trees** stored as JSON. Signed-in, you append \`?edit=1\` and edit in place. Visitors keep the same URL. That is the whole thesis.
+I shipped **HMS (Hustle Management System)**. The public site is the product. Pages, posts, products, forms, and templates are **block trees** stored as JSON. Signed-in, you append \`?edit=1\` and edit in place. Visitors keep the same URL. That is the whole thesis.
 
 Stack facts from the lockfile, not the README brochure: **Vite+** (\`vp\` for dev/build/lint/test), **React 19**, **react-router-dom 7**, **Tailwind 4**, shadcn + Base UI, **Zod 4** schemas driving **Convex** tables through \`zodToConvexFields\`, **Clerk** for auth, **Resend** as a Convex email action. Package version **0.0.0**. Public repo under michaelmonetized. Six commits. HEAD \`6f8fa73\`.
 
 ![Live editor three-panel mock](/blog/hms-hustle-management-system-live-editor/screenshots/live-editor.png)
 
-The catalog is blunt: Basics, Media, Layout, Proof, Dynamic. Hero, CTA, features, columns, stats, testimonials, FAQ, pricing, logos, collections, menu, search, add-to-cart, cart, forms, document-body. Collections pull pages, posts, products, or media into grid, table, carousel, gallery, or list — and can paint each row with a **loop item** blueprint.
+The catalog is blunt: Basics, Media, Layout, Proof, Dynamic. Hero, CTA, features, columns, stats, testimonials, FAQ, pricing, logos, collections, menu, search, add-to-cart, cart, forms, document-body. Collections pull pages, posts, products, or media into grid, table, carousel, gallery, or list. and can paint each row with a **loop item** blueprint.
 
-**Blueprints** are one kinded table (ADR 0001): component, form, loop-item, template. Templates carry \`appliesTo\` — header, footer, 404, search, blog archive/single, shop archive, product single. Tokens like \`{{site.name}}\`, \`{{doc.title}}\`, \`{{cart.count}}\` resolve with modifiers. Visibility groups AND/OR on field, schedule, role, referrer, cookie. Revisions snapshot on content update. Variants sit ready for split tests.
+**Blueprints** are one kinded table (ADR 0001): component, form, loop-item, template. Templates carry \`appliesTo\`. header, footer, 404, search, blog archive/single, shop archive, product single. Tokens like \`{{site.name}}\`, \`{{doc.title}}\`, \`{{cart.count}}\` resolve with modifiers. Visibility groups AND/OR on field, schedule, role, referrer, cookie. Revisions snapshot on content update. Variants sit ready for split tests.
 
-Data layer: local store with seed data for offline/dev; Convex when Clerk + Convex env are real (\`isLive\`). Cart lines live in localStorage. Commerce key fields exist on site settings and products — treat full checkout as schema-ready, not a finished money path in this window.
+Data layer: local store with seed data for offline/dev; Convex when Clerk + Convex env are real (\`isLive\`). Cart lines live in localStorage. Commerce key fields exist on site settings and products. treat full checkout as schema-ready, not a finished money path in this window.
 
 ![Manage pages workspace mock](/blog/hms-hustle-management-system-live-editor/screenshots/manage-pages.png)
 
 ## Where
 
-Code lives at [github.com/michaelmonetized/hms](https://github.com/michaelmonetized/hms). No homepage URL is set on the GitHub repo — this pack does not invent a marketing domain. Local path is \`vp install\` then \`vp dev\`. Manage workspace under \`/manage/*\`. Public surfaces: \`/\`, \`/blog\`, \`/shop\`, \`/search\`, plus typed entries and slugs.
+Code lives at [github.com/michaelmonetized/hms](https://github.com/michaelmonetized/hms). No homepage URL is set on the GitHub repo. this pack does not invent a marketing domain. Local path is \`vp install\` then \`vp dev\`. Manage workspace under \`/manage/*\`. Public surfaces: \`/\`, \`/blog\`, \`/shop\`, \`/search\`, plus typed entries and slugs.
 
-Audience sits next to every thread still arguing Elementor vs Webflow while the real cost is “two URLs for one sentence.” Sibling mail default in the Resend action points at the \`uncap.us\` from-address — same operator family.
+Audience sits next to every thread still arguing Elementor vs Webflow while the real cost is "two URLs for one sentence." Sibling mail default in the Resend action points at the \`uncap.us\` from-address. same operator family.
 
 ![Shop archive mock](/blog/hms-hustle-management-system-live-editor/screenshots/shop.png)
 
@@ -1200,13 +1198,11 @@ Audience sits next to every thread still arguing Elementor vs Webflow while the 
 
 ## Why
 
-I did not want another theme marketplace. I wanted the visitor URL to be the edit surface, with block JSON on Convex, revisions you can restore, and variants you can assign — without opening a separate Elementor canvas that lies about the front end.
+I did not want another theme marketplace. I wanted the visitor URL to be the edit surface, with block JSON on Convex, revisions you can restore, and variants you can assign. without opening a separate Elementor canvas that misrepresents the front end.
 
-So I compressed the escape into six commits: scaffold, configure, Convex bones, ship public+editor, deepen the builder, write the changelog. Version 0.0.0 on purpose. The README still talks like tanstack-start and zustand are in the room; the lockfile says Vite+ and react-router-dom. I would rather say that out loud than ship a brochure.
+So I compressed the escape into six commits: scaffold, configure, Convex bones, ship public+editor, deepen the builder, write the changelog. Version 0.0.0 on purpose. The README still talks like tanstack-start and zustand are still named there; the lockfile says Vite+ and react-router-dom. I would rather say that out loud than ship a brochure.
 
-If your publish flow still requires a different hostname than your customers use, you already know the hole I was staring at.
-
-What would you put on the first HMS page — the home hero, the shop archive, or the form that finally emails without a PHP plugin?
+What would you put on the first HMS page: the home hero, the shop archive, or the form that finally emails without a PHP plugin?
 `;
 
 const TWELVEUX_COVER =
@@ -2293,29 +2289,29 @@ If you ship a parody LMS next, what do you fix first — seed Convex so the bit 
 const CRAVEES_COVER =
   "/blog/cravees-catering-martech-agency-site/cover.png";
 
-const CRAVEES_CONTENT = `![Cravees home — Turn hungry searches into booked tables](/blog/cravees-catering-martech-agency-site/screenshots/home.png)
+const CRAVEES_CONTENT = `![Cravees home. Turn hungry searches into booked tables](/blog/cravees-catering-martech-agency-site/screenshots/home.png)
 
 ## Who
 
 I got tired of watching catering businesses buy generic agency retainers that treat a wedding buffet like a SaaS landing page.
 
-Catering is feast-or-famine. Wedding season starts when venues book. Corporate lunch messaging is not private-event messaging. Deposit timing matters. A Google Business profile can become tasting appointments — or a photo graveyard.
+Catering is feast-or-famine. Wedding season starts when venues book. Corporate lunch messaging is not private-event messaging. Deposit timing matters. A Google Business profile can become tasting appointments, or a photo graveyard.
 
-Cravees is for caterers and restaurant catering arms who need demand this month: inquiry lift, reorder lists, review velocity. Operators who want a vertical agency site on a real stack — Next, Convex, Clerk, Stripe — with lead status enums that survive a failed Resend delivery. Builders who will admit the public pricing cards and the Stripe \`planSlug\` ladder are not the same numbers yet.
+Cravees is for caterers and restaurant catering arms who need demand this month: inquiry lift, reorder lists, review velocity. Operators who want a vertical agency site on a real stack (Next, Convex, Clerk, Stripe) with lead status enums that survive a failed Resend delivery. Builders who will admit the public pricing cards and the Stripe \`planSlug\` ladder are not the same numbers yet.
 
-If you have ever explained to a marketing generalist why plated service and buffet are different offers, you are in the room.
+If you have ever explained to a marketing generalist why plated service and buffet are different offers, this is for you.
 
 ## What
 
-I built **Cravees** — package name \`cravees\`, version **0.1.0**, private under **HurleyUS/cravees.com**. Metadata line: *Marketing Agency for the Catering Industry*. Hero line: **Turn hungry searches into booked tables, events, and repeat orders.**
+I built **Cravees**, package name \`cravees\`, version **0.1.0**, private under **HurleyUS/cravees.com**. Metadata line: *Marketing Agency for the Catering Industry*. Hero line: **Turn hungry searches into booked tables, events, and repeat orders.**
 
 Stack facts from the lockfile and tree, not the stale sitrep: **Next.js 16.2.6**, **React 19.2.6**, **Tailwind 4.3**, Bun, **Convex** schema + mutations, **Clerk** auth surfaces, **Stripe** checkout/portal/webhook, Catppuccin Mocha with peach primary, Resend/Sentry/PostHog/GA wired. Seventy-three commits. HEAD \`ab0c4cb\`.
 
-![Pricing — Starter Growth Premium](/blog/cravees-catering-martech-agency-site/screenshots/pricing.png)
+![Pricing. Starter Growth Premium](/blog/cravees-catering-martech-agency-site/screenshots/pricing.png)
 
 Surfaces that exist in \`app/\`: \`/\` marketing with demand cockpit + case studies + testimonials + FAQ + ROI embed, \`/about\`, \`/pricing\` with comparison table, \`/blog\` + three SEO posts, \`/contact\` enhanced form (business type + service interests), \`/book\` Calendly, \`/roi-calculator\`, four \`/services/*\` landings, Clerk catch-alls, private \`/dashboard\` (+ messages, assets), newsletter + Stripe API routes.
 
-Convex tables: \`leads\`, \`subscribers\`, \`clients\`, \`subscriptions\`, \`addOnPurchases\`. Lead pipeline: **new → contacted → qualified → proposal → won | lost**. Public packages: Starter **$299**, Growth **$599**, Premium **$999**. Stripe definitions in \`lib/billing.ts\`: Bronze **$499**, Silver **$999**, Gold **$1,999** (+ annual labels). Add-ons: extra social post $49, rush design $199, additional listing $99.
+Convex tables: \`leads\`, \`subscribers\`, \`clients\`, \`subscriptions\`, \`addOnPurchases\`. Lead pipeline: **new to contacted to qualified to proposal to won | lost**. Public packages: Starter **$299**, Growth **$599**, Premium **$999**. Stripe definitions in \`lib/billing.ts\`: Bronze **$499**, Silver **$999**, Gold **$1,999** (+ annual labels). Add-ons: extra social post $49, rush design $199, additional listing $99.
 
 That dual ladder is not a typo in this write-up. It is the product honesty.
 
@@ -2323,11 +2319,11 @@ That dual ladder is not a typo in this write-up. It is the product honesty.
 
 ## Where
 
-Code lives at [github.com/HurleyUS/cravees.com](https://github.com/HurleyUS/cravees.com) — **private**. GitHub homepage points at [cravees-com.vercel.app](https://cravees-com.vercel.app). Custom domain [www.cravees.com](https://www.cravees.com) also **200** at pack time. Apex redirects to www. Auth-gated \`/dashboard\` and \`/sign-in\` returned **500** without living Clerk keys — marketing stays up because May commits taught the app to tolerate missing auth/env.
+Code lives at [github.com/HurleyUS/cravees.com](https://github.com/HurleyUS/cravees.com). **private**. GitHub homepage points at [cravees-com.vercel.app](https://cravees-com.vercel.app). Custom domain [www.cravees.com](https://www.cravees.com) also **200** at pack time. Apex redirects to www. Auth-gated \`/dashboard\` and \`/sign-in\` returned **500** without living Clerk keys. marketing stays up because May commits taught the app to tolerate missing auth/env.
 
-Audience sits next to restaurant marketing shops, with a catering-only pitch: inquiry funnels, seasonal search pages, winback email for lapsed brunch guests. Sibling operator furniture is present — \`.hustlemc\`, Blacksmith ship workflow, Vitest/Playwright, Stripe type-safe webhooks.
+Audience sits next to restaurant marketing shops, with a catering-only pitch: inquiry funnels, seasonal search pages, winback email for lapsed brunch guests. Sibling operator furniture is present. \`.hustlemc\`, Blacksmith ship workflow, Vitest/Playwright, Stripe type-safe webhooks.
 
-![About — catering-only positioning](/blog/cravees-catering-martech-agency-site/screenshots/about.png)
+![About. catering-only positioning](/blog/cravees-catering-martech-agency-site/screenshots/about.png)
 
 ## When
 
@@ -2335,7 +2331,7 @@ Audience sits next to restaurant marketing shops, with a catering-only pitch: in
 
 **2026-01-31 / 2026-02-05.** Sync. Prod build ready. Tailwind v4 globals \`@import\` fix.
 
-**2026-02-13.** Catppuccin Mocha default. Routes, contact, pricing, about. Four service landing pages. Replace a real business name with fictional **Copper Kettle Catering** — quiet ethics commit.
+**2026-02-13.** Catppuccin Mocha default. Routes, contact, pricing, about. Four service landing pages. Replace a real business name with fictional **Copper Kettle Catering**. quiet ethics commit.
 
 **2026-02-21–24.** The agency week. Zod schemas shared across form + API. XSS sanitize on contact HTML email. Clerk middleware. Convex lead storage. FAQ. Testimonials. Pricing comparison table. Blog section. Calendly booking. PostHog. ROI calculator page. Portfolio/case-study cards. Newsletter + Resend double opt-in. Protected client portal scaffold.
 
@@ -2345,9 +2341,9 @@ Audience sits next to restaurant marketing shops, with a catering-only pitch: in
 
 **2026-08-08, 06:54 ET.** \`ab0c4cb\` set X-Robots-Tag to index, follow on Vercel. HEAD. Seventy-three commits total.
 
-**Pack day 2026-09-08.** Draft and assets only. Live marketing 200 on vercel + www. \`sitrep.md\` still claims purpose unclear and last commit February 5 — treat it as drift, not truth.
+**Pack day 2026-09-08.** Draft and assets only. Live marketing 200 on vercel + www. \`sitrep.md\` still claims purpose unclear and last commit February 5. treat it as drift, not truth.
 
-![Blog index — three catering posts](/blog/cravees-catering-martech-agency-site/screenshots/blog.png)
+![Blog index. three catering posts](/blog/cravees-catering-martech-agency-site/screenshots/blog.png)
 
 ## Why
 
@@ -2356,8 +2352,6 @@ I did not want another hospitality brochure with stock plate photography and a c
 I wanted lead status enums next to subscription sync. I wanted an ROI calculator that routes into the same contact pipeline as the pricing CTA. I wanted newsletter double opt-in and a client portal sidebar even while \`/dashboard\` still 500s without Clerk. I wanted the public $299/$599/$999 story and the Stripe bronze/silver/gold amounts to be visible in the same repo so nobody pretends they already match.
 
 So the February issue board became the agency: close FAQ, social proof, pricing table, blog, book, analytics, ROI, newsletter, portal. March hardened SEO and Stripe. May made the public site survive missing secrets. August flipped robots headers on a site that actually answers.
-
-If your catering marketing pitch promises “full-service growth” and your \`leads\` table cannot say \`qualified\`, you already know the hole I was staring at.
 
 Would you ship the public Starter/Growth/Premium ladder first, or make the Stripe bronze/silver/gold amounts match the pricing page before the next catering discovery call?
 `;
@@ -3012,11 +3006,11 @@ Which tool would you delete first across five restaurants?
 const ITOUR_GOLF_COVER =
   "/blog/itour-golf-tour-lander-ahead-of-deploy/cover.png";
 
-const ITOUR_GOLF_CONTENT = `![iTour.golf HEAD homepage mock — May 12 2027 inaugural, Join iLeague to Qualify](/blog/itour-golf-tour-lander-ahead-of-deploy/screenshots/home.png)
+const ITOUR_GOLF_CONTENT = `![iTour.golf HEAD homepage mock. May 12 2027 inaugural, Join iLeague to Qualify](/blog/itour-golf-tour-lander-ahead-of-deploy/screenshots/home.png)
 
 ## Who
 
-I build ecosystem products that have to stay distinct under one brand family. Golf creators already get a scorecard-and-tips platform on [iLeague.golf](https://ileague.golf). That pack is a different story — Patreon meets 18Birdies, Stripe tiers, fifteen percent fee.
+I build ecosystem products that have to stay distinct under one brand family. Golf creators already get a scorecard-and-tips platform on [iLeague.golf](https://ileague.golf). That pack is a different story. Patreon meets 18Birdies, Stripe tiers, fifteen percent fee.
 
 iTour.golf is for the next layer: creators who need a **season** to aim at, courses that want to **host** a stop, and sponsors who buy **tour inventory** instead of a creator subscription.
 
@@ -3026,30 +3020,30 @@ If you care about monorepo landers that outrun their Vercel deploy, Convex schem
 
 I shipped a national golf **creator tour** under \`HurleyUS/itour.golf\`.
 
-README one-liner: iPro.golf’s national influencer golf tour. Brain note (\`iLeague Golf.md\`): **36-week** tour; **top 54** qualify for iConference. HEAD lander badge: **The National Golf Influencer Tour**. H1: **iTour.golf**. Line: **Where Golf Creators Become Champions**.
+README one-liner: iPro.golf's national influencer golf tour. Brain note (\`iLeague Golf.md\`): **36-week** tour; **top 54** qualify for iConference. HEAD lander badge: **The National Golf Influencer Tour**. H1: **iTour.golf**. Line: **Where Golf Creators Become Champions**.
 
 Stack on the box: **Next.js 15.5.6**, **React 19**, Convex, Clerk (optional when the publishable key is missing), PostHog, Sentry, Resend, Tailwind v4, Bun workspaces (\`web\` + \`mobile\`), Inter + Oswald, Vercel. Package **itour-monorepo** **1.0.0**. Repo private. Site public at [www.itour.golf](https://www.itour.golf) (apex 307s to www).
 
-![Championship path mock — iLeague → iTour → iConference](/blog/itour-golf-tour-lander-ahead-of-deploy/screenshots/championship-path.png)
+![Championship path mock. iLeague to iTour to iConference](/blog/itour-golf-tour-lander-ahead-of-deploy/screenshots/championship-path.png)
 
-This is **not** the creator billing product. There is **no Stripe dependency** in \`web/package.json\`. README monetization is blunt:
+This is separate from the creator billing product. There is **no Stripe dependency** in \`web/package.json\`. README monetization is blunt:
 
 1. Sponsors, ads, vendors, partners, investors  
 2. Courses bid to host stops on the iTour  
 
-HEAD page CTAs: **Join iLeague to Qualify** (outbound to ileague.golf) and **Become a Sponsor** / **Host a Tour Stop** (on-page sections with buttons — not checkout).
+HEAD page CTAs: **Join iLeague to Qualify** (outbound to ileague.golf) and **Become a Sponsor** / **Host a Tour Stop** (on-page sections with buttons, not checkout).
 
 Convex \`web/convex/schema.ts\` is tour-shaped: \`users\` (creator|fan|admin), \`courses\` (optional week), \`tournaments\` (weeks 1–36), \`entries\` (score + videoUrl), \`standings\`. No \`subscriptionTiers\`. No \`tips\`. No content feed. Those tables live on the iLeague sibling.
 
 What is also true on pack day:
 
-- **Live www** still markets **“2026 Season Now Open”**, **18 Stops / 18 Courses / 1 Champion**, a fake **Desert Classic** at Pebble Beach, a fake leaderboard, and a **$3.5M+** prize-pool story aimed at a Sept 9 **2026** Augusta finale.  
-- **Repo HEAD** \`page.tsx\` is the amber rewrite: **36-week** season, **May 12, 2027** inaugural, **Top 54 → iConference**, qualify-via-iLeague funnel.  
+- **Live www** still markets **"2026 Season Now Open"**, **18 Stops / 18 Courses / 1 Champion**, a fake **Desert Classic** at Pebble Beach, a fake leaderboard, and a **$3.5M+** prize-pool story aimed at a Sept 9 **2026** Augusta finale.  
+- **Repo HEAD** \`page.tsx\` is the amber rewrite: **36-week** season, **May 12, 2027** inaugural, **Top 54 to iConference**, qualify-via-iLeague funnel.  
 - \`layout.tsx\` SEO says **36 weeks, 36 courses**; the hero says **18 courses of their choice**. PLAN/OPPORTUNITIES still say top **18**. Brain + footer say top **54**.  
-- CHANGELOG 1.0.0 still claims “golf course discovery and booking.” sitrep.md still says **PROTOTYPE** with last commit stamped **2026-01-31**.  
+- CHANGELOG 1.0.0 still claims "golf course discovery and booking." sitrep.md still says **PROTOTYPE** with last commit stamped **2026-01-31**.  
 - Mobile is an Expo stub that renders the words **Mobile App**.  
 
-That gap is the product story — not a footnote.
+That gap is the product story.
 
 ![Live vs HEAD deploy drift mock](/blog/itour-golf-tour-lander-ahead-of-deploy/screenshots/live-vs-head.png)
 
@@ -3059,24 +3053,24 @@ It is supposed to run on Vercel against Convex with Clerk when keys exist. Provi
 
 Surfaces that matter on HEAD:
 
-- Public amber lander — hero, how-to-qualify (4 steps), championship path, 2027 coming-soon chips, host-a-stop, sponsors, ecosystem footer  
-- \`robots.ts\` / \`sitemap.ts\` / JSON-LD SportsOrganization + SportsEvent (2027-05-12 → 2027-09-09)  
-- Middleware protect list for dashboard/account/settings/api — public marketing routes stay public  
-- Mobile folder — scaffold only  
+- Public amber lander. hero, how-to-qualify (4 steps), championship path, 2027 coming-soon chips, host-a-stop, sponsors, ecosystem footer  
+- \`robots.ts\` / \`sitemap.ts\` / JSON-LD SportsOrganization + SportsEvent (2027-05-12 to 2027-09-09)  
+- Middleware protect list for dashboard/account/settings/api. public marketing routes stay public  
+- Mobile folder. scaffold only  
 
 Live HTML on 2026-09-08 did **not** show Clerk \`pk_test\` / \`pk_live\` strings. The stale marketing shell is prerendered on Vercel (\`x-nextjs-prerender: 1\`).
 
 ![Sponsors + course hosting mock](/blog/itour-golf-tour-lander-ahead-of-deploy/screenshots/sponsors-hosting.png)
 
-Related domains in the footer/copy: **iLeague.golf** (emerald — creator platform), **iTour.golf** (amber — this pack), **iConference.golf** (purple — championship). Do not collapse this post into the iLeague creator-economy pack.
+Related domains in the footer/copy: **iLeague.golf** (emerald. creator platform), **iTour.golf** (amber. this pack), **iConference.golf** (purple. championship). Do not collapse this post into the iLeague creator-economy pack.
 
 ## When
 
 **January 8, 2026.** Initial Next.js + Convex + Tailwind setup. OPPORTUNITIES and homepage docs the same day. This tree starts as a tour concept, not a WNC directory.
 
-**January 31.** Chore sync. sitrep still thinks this is the last meaningful stamp — it is wrong.
+**January 31.** Chore sync. sitrep still thinks this is the last meaningful stamp. it is wrong.
 
-**February 11.** GitHub \`HurleyUS/itour.golf\` exists. Homepage gets ecosystem context. iTour/iCon details corrected from the OG vision. Placeholder season data removed — **TBD until May 12, 2027**.
+**February 11.** GitHub \`HurleyUS/itour.golf\` exists. Homepage gets ecosystem context. iTour/iCon details corrected from the OG vision. Placeholder season data removed. **TBD until May 12, 2027**.
 
 **February 15.** Explicit commit: **replace bestwnc.com boilerplate with iTour content**. Lineage matters so this pack does not retell BestWNC.
 
@@ -3084,31 +3078,31 @@ Related domains in the footer/copy: **iLeague.golf** (emerald — creator platfo
 
 **Late February.** CI build gate, security headers + regression script, SEO/analytics baseline, then GitHub Actions removed because Vercel is CI.
 
-**March 28.** Workspace scripts stop using bun filters — \`cd web && bun run …\`. A Gumroad \`/pricing\` page also appears in history (Golfer Basic/Pro pre-order links) — not the live shell’s center of gravity.
+**March 28.** Workspace scripts stop using bun filters. \`cd web && bun run …\`. A Gumroad \`/pricing\` page also appears in history (Golfer Basic/Pro pre-order links), not the live shell's center of gravity.
 
-**May 14–15.** Blacksmith CI standardize noise, then delete it. **Skip Clerk provider when key is unavailable** — lander must not hard-crash without auth config.
+**May 14–15.** Blacksmith CI standardize noise, then delete it. **Skip Clerk provider when key is unavailable**. lander must not hard-crash without auth config.
 
 **June 22.** Two \`nightly\` commits. HEAD **\`d2a49ef\`**. Last push on the repo.
 
-**September 8, 2026 (pack day).** www returns 200. Content is still the old 18-Stops / fake-season shell. Draft pack only — no publish, no push.
+**September 8, 2026 (pack day).** www returns 200. Content is still the old 18-Stops / fake-season shell. Draft pack only. no publish, no push.
 
-![Convex tour schema mock — users courses tournaments entries standings](/blog/itour-golf-tour-lander-ahead-of-deploy/screenshots/tour-schema.png)
+![Convex tour schema mock. users courses tournaments entries standings](/blog/itour-golf-tour-lander-ahead-of-deploy/screenshots/tour-schema.png)
 
 ## Why
 
 Because the HurleyUS golf stack needs **three honest products**, not one blog post with three domains.
 
-iLeague is where creators publish, subscribe, and tip. iTour is where a **season** and **sponsor/host** economy are supposed to live. iConference is the September championship punchline. If you describe iTour as “another creator SaaS,” you erase the only reason the domain exists.
+iLeague is where creators publish, subscribe, and tip. iTour is where a **season** and **sponsor/host** economy are supposed to live. iConference is the September championship punchline. If you describe iTour as "another creator SaaS," you erase the only reason the domain exists.
 
-Because **schema-before-UI** is an operator move: tournaments 1–36, entries with video URLs, season standings — committed while the live site still invents Jake Matthews and a Desert Classic.
+Because **schema-before-UI** is an operator move: tournaments 1–36, entries with video URLs, season standings. committed while the live site still invents Jake Matthews and a Desert Classic.
 
-Because **deploy drift** is a better lesson than a launch party. Rewriting \`page.tsx\` for May 2027 does nothing for golf fans if Vercel keeps serving the 2026 placeholder season. Same pattern as shipping robots \`index,follow\` while leaving test keys on a sibling domain — different failure mode, same honesty requirement.
+Because **deploy drift** is a better lesson than a launch party. Rewriting \`page.tsx\` for May 2027 does nothing for golf fans if Vercel keeps serving the 2026 placeholder season. Same pattern as shipping robots \`index,follow\` while leaving test keys on a sibling domain. different failure mode, same honesty requirement.
 
-Because the money model is different on purpose. No platform fee constant. No tip presets. Sponsor tiers and course hosting bids are the README — even if the buttons still go nowhere.
+Because the money model is different on purpose. No platform fee constant. No tip presets. Sponsor tiers and course hosting bids are the README, even if the buttons still go nowhere.
 
 ## Engagement
 
-If you run a marketing lander in a monorepo: what do you trust on pack day — \`git show HEAD:app/page.tsx\`, or \`curl\` the production HTML — and which one did you ship last?
+If you run a marketing lander in a monorepo: what do you trust on pack day: \`git show HEAD:app/page.tsx\`, or \`curl\` the production HTML, and which one did you ship last?
 `;
 
 const ASCII_COMMIT_GRAPH_COVER =
@@ -7555,7 +7549,7 @@ export const staticPosts: StaticPost[] = [
     title: "iTour.golf: I rewrote the national creator-tour lander for May 2027 \u2014 production still serves the 2026 fake season",
     slug: "itour-golf-tour-lander-ahead-of-deploy",
     excerpt:
-      "iTour.golf is the HurleyUS national golf creator tour \u2014 not the iLeague creator platform. Repo HEAD: amber 36-week lander, Top 54 \u2192 iConference, May 12 2027, sponsor/host bids, Convex tour schema. Live www still shows 18 Stops / fake leaderboard. 36 commits, HEAD d2a49ef.",
+      "iTour.golf is the HurleyUS national golf creator tour, separate from the iLeague creator platform. Repo HEAD markets a 36-week 2027 season; live www still shows a 2026 story. No Stripe in the web package.",
     content: ITOUR_GOLF_CONTENT,
     coverImage: ITOUR_GOLF_COVER,
     tags: [
@@ -7940,7 +7934,7 @@ export const staticPosts: StaticPost[] = [
     title: "Cravees: I built a catering martech agency site with dual pricing honesty",
     slug: "cravees-catering-martech-agency-site",
     excerpt:
-      "I built Cravees — a Next.js 16 + Convex + Clerk catering marketing agency site — with $299–$999 packages on the pricing page, Stripe bronze/silver/gold plan slugs in code, an ROI calculator lead magnet, lead CRM, newsletter double opt-in, and a client portal before sitrep still claimed purpose unclear.",
+      "I built Cravees, a Next.js 16 + Convex + Clerk catering marketing agency site, with $299-$999 packages on the page and a different Stripe bronze/silver/gold ladder in code. Lead enums, ROI calculator, newsletter double opt-in. Live on www.cravees.com.",
     content: CRAVEES_CONTENT,
     coverImage: CRAVEES_COVER,
     tags: [
@@ -8305,7 +8299,7 @@ export const staticPosts: StaticPost[] = [
     title: "HMS: I replaced WordPress + Elementor with a live site that is the editor",
     slug: "hms-hustle-management-system-live-editor",
     excerpt:
-      "I built HMS — Hustle Management System — so pages, blog, shop, and blueprints are block trees on Vite+ + Convex + Clerk. Append ?edit=1. The public site is the editor.",
+      "I built HMS (Hustle Management System) so pages, blog, shop, and blueprints are block trees on Vite+ / React 19 / Convex / Clerk. Same URL for visitors and ?edit=1 for operators. Six commits. Version 0.0.0.",
     content: HMS_CONTENT,
     coverImage: HMS_COVER,
     tags: [
@@ -8356,7 +8350,7 @@ export const staticPosts: StaticPost[] = [
     title: "Best Jeep Decals: I shipped a dark-first vinyl storefront for Jeep identity",
     slug: "best-jeep-decals-convex-stripe-storefront",
     excerpt:
-      "Private Next.js 16 Jeep vinyl e-commerce \u2014 Convex catalog, Clerk auth, Stripe checkout, wishlist, reviews. Ninety-nine commits from Create Next App to X-Robots-Tag.",
+      "Private Next.js 16 Jeep vinyl e-commerce: Convex catalog, Clerk auth, Stripe checkout, wishlist, reviews. 30 seeded SKUs at $29.99. Live at bestjeepdecals.com.",
     content: BESTJEEP_CONTENT,
     coverImage: BESTJEEP_COVER,
     tags: [
