@@ -71,49 +71,49 @@ If you are still staring at a dead strip of pixels above your display, you alrea
 const OMADESIGN_COVER =
   "/blog/omadesign-native-linux-studio-13-days/cover.png";
 
-const OMADESIGN_CONTENT = `![omadesign welcome screen — Make something, 52 templates, New document presets](https://raw.githubusercontent.com/michaelmonetized/omadesign/master/media/design.jpg)
+const OMADESIGN_CONTENT = `![omadesign welcome screen. Make something, 52 templates, New document presets](https://raw.githubusercontent.com/michaelmonetized/omadesign/master/media/design.jpg)
 
 ## Who
 
 I design on Linux now. Omarchy. Asahi. The camera hole has Naarchy. The creative suite did not make the move.
 
-Adobe stayed on the other OS. Affinity is partial. Browser tools are tabs that die when the laptop sleeps. Electron "studios" burn RAM and still feel like a website with a window chrome.
+Adobe stayed on the other OS. Affinity is partial. Browser tools are tabs that die when the laptop sleeps. Electron "studios" burn RAM and still feel like a website with window chrome.
 
 omadesign is for the operator who already lives in a themed Linux desktop and refuses to open four apps to finish one mark. Designers leaving macOS. Photographers who want LibRaw without leaving the seat. Brand freelancers who carry palettes and type roles as files, not screenshots in Slack.
 
-If you build MarTech, ship local tools, or just want \`cargo\` and a tarball instead of a Creative Cloud invoice — that is the room.
+If you build MarTech, ship local tools, or just want \`cargo\` and a tarball instead of a Creative Cloud invoice, this is for you.
 
 ## What
 
-I built a native Rust studio. \`eframe\` / egui. Not GTK. Not Electron.
+I built a native Rust studio on \`eframe\` / egui. GTK and Electron stayed off the table.
 
-Four personas share one document and one layer stack: **Design** (vector), **Pixel** (paint/retouch), **Photo** (RAW develop), **Motion** (timeline → animated SVG / Lottie). Geometry is defined once. Drawn for the live canvas and for PNG/SVG export. Mutations go through \`Cmd\` + \`History\`.
+Four personas share one document and one layer stack: **Design** (vector), **Pixel** (paint/retouch), **Photo** (RAW develop), **Motion** (timeline to animated SVG / Lottie). Geometry is defined once. Drawn for the live canvas and for PNG/SVG export. Mutations go through \`Cmd\` + \`History\`.
 
-![Design persona — Block Party poster, rotated color block at 19°, Inspect panel](https://michaelmonetized.github.io/omadesign/media/showcase/design.webp)
+![Design persona. Block Party poster, rotated color block at 19°, Inspect panel](https://michaelmonetized.github.io/omadesign/media/showcase/design.webp)
 
-Current version is **0.0.4-alpha** — "The handles got the memo." aarch64 and x86_64 \`*-unknown-linux-gnu\` tarballs on GitHub Releases. Linked against **glibc 2.35**. Phosphor Light icons. Omarchy theme colors and \`fontconfig\` / \`omarchy font current\`. Max as the default face.
+Current version is **0.0.4-alpha**, "The handles got the memo." aarch64 and x86_64 \`*-unknown-linux-gnu\` tarballs on GitHub Releases. Linked against **glibc 2.35**. Phosphor Light icons. Omarchy theme colors and \`fontconfig\` / \`omarchy font current\`. Max as the default face.
 
 Fifty-two editable vector templates. Brand kits travel as \`.omacolors\`, \`.omatype\`, \`.omabrand/\`. Photo side: LibRaw for DNG/CR2/CR3/NEF/ARW/RAF, 16-bit linear source, \`.omaphoto\` sidecars, \`.omapreset\` looks, folder batch. Motion: thirteen presets, Lottie JSON with unsupported-feature reporting.
 
-Interop is boring on purpose — PSD/PSB, PDF, AI-compatible PDF, OpenRaster, SVG/SVGZ, optional Affinity bridge, native \`.oma\`. CLI \`--inspect\` / \`--convert\`. MIT. Copyright 2026 Michael C Hurley.
+Interop is boring on purpose: PSD/PSB, PDF, AI-compatible PDF, OpenRaster, SVG/SVGZ, optional Affinity bridge, native \`.oma\`. CLI \`--inspect\` / \`--convert\`. MIT. Copyright 2026 Michael C Hurley.
 
-![Photo persona — Coast at golden hour, Develop Color panel, Place in Design](https://michaelmonetized.github.io/omadesign/media/showcase/photo.webp)
+![Photo persona. Coast at golden hour, Develop Color panel, Place in Design](https://michaelmonetized.github.io/omadesign/media/showcase/photo.webp)
 
 ## Where
 
-It runs where I run: Asahi Omarchy, Arch-class ARM, anything glibc 2.35 or newer. Same binary story on x86_64 via zig cross-compile — local release builds, uploaded by hand. No GitHub Actions bill.
+It runs where I run: Asahi Omarchy, Arch-class ARM, anything glibc 2.35 or newer. Same binary story on x86_64 via zig cross-compile. local release builds, uploaded by hand. No GitHub Actions bill.
 
 Repo: [michaelmonetized/omadesign](https://github.com/michaelmonetized/omadesign). Studio site on Pages: [michaelmonetized.github.io/omadesign](https://michaelmonetized.github.io/omadesign/). Manual under \`/docs/manual/\`.
 
-![Repo layout — assets, docs, examples, media, remotion, scripts](https://raw.githubusercontent.com/michaelmonetized/omadesign/master/media/mark.png)
+![Repo layout. assets, docs, examples, media, remotion, scripts](https://raw.githubusercontent.com/michaelmonetized/omadesign/master/media/mark.png)
 
-On this machine the binary is \`~/.local/bin/omadesign\` → \`omadesign 0.0.4-alpha\`. Install one-liner lives in \`scripts/install-remote.sh\`. The audience sits next to the Omarchy / Asahi tribe and the indie builders who already read Cargo.toml before they read the landing page.
+On this machine the binary is \`~/.local/bin/omadesign\`, reporting \`omadesign 0.0.4-alpha\`. Install one-liner lives in \`scripts/install-remote.sh\`. The audience sits next to the Omarchy / Asahi tribe and the indie builders who already read Cargo.toml before they read the landing page.
 
-![Motion persona — After Hours listening room, timeline keyframes, Make it move presets](https://michaelmonetized.github.io/omadesign/media/showcase/motion.webp)
+![Motion persona. After Hours listening room, timeline keyframes, Make it move presets](https://michaelmonetized.github.io/omadesign/media/showcase/motion.webp)
 
 ## When
 
-**2026-08-26.** Spike as "Atelier v0.1" — Rust + egui all-in-one. Prove the canvas before naming the product.
+**2026-08-26.** Spike as "Atelier v0.1". Rust + egui all-in-one. Prove the canvas before naming the product.
 
 **2026-08-28.** Rename to omadesign. glibc 2.35 link. Canvas handles, pen, live type, zoom-to-box. Phosphor + desktop theme. First lander and docs.
 
@@ -121,29 +121,27 @@ On this machine the binary is \`~/.local/bin/omadesign\` → \`omadesign 0.0.4-a
 
 **2026-09-02–03.** Motion timeline, Lottie, welcome that fits. QA pass on the early user-test list.
 
-**2026-09-05.** Precision guides, masks, healing. Fifty-two templates. Shortcut HUD. Portable brand libraries. Pen/type/logo film. Website rebuild — Catppuccin, studio tour, real recordings.
+**2026-09-05.** Precision guides, masks, healing. Fifty-two templates. Shortcut HUD. Portable brand libraries. Pen/type/logo film. Website rebuild. Catppuccin, studio tour, real recordings.
 
 **2026-09-06.** v0.0.1-alpha packages verified. Layered interop. Camera RAW. v0.0.2-alpha same day.
 
-**2026-09-07.** Selection and layer QA. Photo batch + presets → v0.0.3-alpha. Rotated node editing and context-menu flips → v0.0.4-alpha.
+**2026-09-07.** Selection and layer QA. Photo batch + presets to v0.0.3-alpha. Rotated node editing and context-menu flips to v0.0.4-alpha.
 
 **2026-09-08.** Sixty-eight commits from init. Four tagged alphas. Same-day docs experiment: a scoped First-File Setup offer went up and came back down; CHANGELOG keeps the record, app and license never changed.
 
 Thirteen days. That is the clock.
 
-![omadesign mark — geometric design wordmark](https://raw.githubusercontent.com/michaelmonetized/omadesign/master/media/mark.png)
+![omadesign mark. geometric design wordmark](https://raw.githubusercontent.com/michaelmonetized/omadesign/master/media/mark.png)
 
 ## Why
 
-Linux got my daily driver. The design suite did not. That gap is the whole reason.
+Linux got my daily driver. The design suite did not. That gap is the reason.
 
-I wanted one seat: vector precision, paint, RAW, light motion — without renting four subscriptions or babysitting an Electron process. I wanted the chrome to follow *my* desktop colors and fonts, not a baked orange skin. I wanted releases I can rebuild on the machine that ships them.
+I needed one seat: vector precision, paint, RAW, light motion, without renting four subscriptions or babysitting an Electron process. I needed the chrome to follow my desktop colors and fonts, not a baked orange skin. I needed releases I can rebuild on the machine that ships them.
 
-So I linked glibc 2.35, zig-cross-compiled x86_64, uploaded tarballs with SHA-256, and kept shipping alphas until the handles behaved on rotated nodes. Operator stack. Own the toolchain. Build in public.
+So I linked glibc 2.35, zig-cross-compiled x86_64, uploaded tarballs with SHA-256, and kept shipping alphas until the handles behaved on rotated nodes. Own the toolchain. Build in public.
 
-omadesign is still alpha — advanced text layout, symbols, collab, PDF/X + CMYK are on the roadmap, not in the tarball. Affinity write is not there. RAW varies by camera. That is fine. The document model works. The personas share a layer stack. The downloads exist for ARM64 and x86_64 today.
-
-If you moved to Linux and your creative suite stayed behind, you already know the hole I was staring at.
+omadesign is still alpha. advanced text layout, symbols, collab, PDF/X + CMYK are on the roadmap, not in the tarball. Affinity write is not there. RAW varies by camera. That is fine. The document model works. The personas share a layer stack. The downloads exist for ARM64 and x86_64 today.
 
 What would you put in the first \`.oma\` file if you sat down on a fresh Omarchy box tonight?
 `;
@@ -472,15 +470,15 @@ That is the tool I reached for when the dashboards started feeling like chores.
 const BESTWNC_COVER =
   "/blog/bestwnc-honest-analytics-local-directory/cover.png";
 
-const BESTWNC_CONTENT = `![BestWNC homepage — Find the places that make Western North Carolina feel local](screenshots/home.png)
+const BESTWNC_CONTENT = `![BestWNC homepage. Find the places that make Western North Carolina feel local](screenshots/home.png)
 
 ## Who
 
 I live in the Blue Ridge ops lane. Locals need a directory that feels like a map, not a lead-gen trap. Owners need a page they can claim without a sales call. Operators need dashboards that do not invent click-through rates.
 
-BestWNC is for people hunting restaurants, coffee, contractors, wellness, and shops from Asheville to Boone — and for the owners of those places who will list free, claim if we already seeded them, and upgrade only when reach matters.
+BestWNC is for people hunting restaurants, coffee, contractors, wellness, and shops from Asheville to Boone, and for the owners of those places who will list free, claim if we already seeded them, and upgrade only when reach matters.
 
-If you build MarTech, local SEO products, or Stripe-backed owner tools: this post is the field notes, not a pitch deck.
+If you build MarTech, local SEO products, or Stripe-backed owner tools, this post is field notes.
 
 ## What
 
@@ -488,23 +486,23 @@ I shipped a local business directory for Western North Carolina.
 
 Stack on the box: **Next.js 16.2.6**, React 19, **Convex**, **Clerk**, **Stripe**, PostHog, Sentry, Resend, Tailwind v4, Bun, Phosphor icons, Vercel. Repo is private under \`HurleyUS/bestwnc.com\`. Site is public at [bestwnc.com](https://www.bestwnc.com/).
 
-![Owners lander — Add or claim your BestWNC page in minutes](screenshots/owners.png)
+![Owners lander. Add or claim your BestWNC page in minutes](screenshots/owners.png)
 
-Listings start free. Paid plans live in code — \`lib/billing.ts\` — not as a fragile Stripe Dashboard catalog:
+Listings start free. Paid plans live in code in \`lib/billing.ts\`, not as a fragile Stripe Dashboard catalog:
 
-- **Unlimited** — $10/mo or $80/yr — photos, video, posts, events, widgets, social links, contact, messaging
-- **Featured** — $50/mo or $480/yr — Unlimited plus priority / pinned placement
-- **Max** — $100/mo or $960/yr — Featured plus ad credits and the top tooling tier
+- **Unlimited**: $10/mo or $80/yr. photos, video, posts, events, widgets, social links, contact, messaging
+- **Featured**: $50/mo or $480/yr. Unlimited plus priority / pinned placement
+- **Max**: $100/mo or $960/yr. Featured plus ad credits and the top tooling tier
 
 Manual add-ons stay manual until fulfilled: Online Presence Analysis $8, Vetted Badge $80, Listing Sync $480. Dynamic checkout builds the price at session time.
 
-Seed data is 101 real WNC businesses — Asheville-heavy, plus Waynesville, Brevard, Hendersonville, Black Mountain, and the rest of the corridor. Claim if we already have you. Add if we do not.
+Seed data is 101 real WNC businesses. Asheville-heavy, plus Waynesville, Brevard, Hendersonville, Black Mountain, and the rest of the corridor. Claim if we already have you. Add if we do not.
 
-The part that matters this week: **analytics honesty**. Owner analytics used to look busier than the measurement layer could defend. On September 8 I changed the API and UI so recorded cumulative views, review count, and average rating stay; period views, clicks, conversion rates, and weekly series return **\`null\`** with an explicit \`availability\` object. README says the same thing out loud. Cumulative views include repeat, owner, and bot traffic — they are not unique visitors. \`null\` is the product.
+The part that matters this week: **analytics honesty**. Owner analytics used to look busier than the measurement layer could defend. On September 8 I changed the API and UI so recorded cumulative views, review count, and average rating stay; period views, clicks, conversion rates, and weekly series return **\`null\`** with an explicit \`availability\` object. README says the same thing out loud. Cumulative views include repeat, owner, and bot traffic. they are not unique visitors. \`null\` is the product.
 
-Same two days: ownership claims and billing hardened, unsupported sales claims stripped from marketing surfaces, Stripe webhooks allowed through session middleware when signed, and honeypot fields on every public contact / newsletter form because spam was flooding Advertising and General Inquiry. Fill the hidden field → silent success, no email, no lead row.
+Same two days: ownership claims and billing hardened, unsupported sales claims stripped from marketing surfaces, Stripe webhooks allowed through session middleware when signed, and honeypot fields on every public contact / newsletter form because spam was flooding Advertising and General Inquiry. Fill the hidden field and you get silent success, no email, no lead row.
 
-![Owner plans — Free, Unlimited, Featured](screenshots/pricing.png)
+![Owner plans. Free, Unlimited, Featured](screenshots/pricing.png)
 
 ## Where
 
@@ -512,13 +510,13 @@ It runs on Vercel against Convex. Auth is Clerk. Money is Stripe. Mail is Resend
 
 Surfaces that matter:
 
-- Public discovery — explore, categories, cities, top-rated, trending, search, business pages
-- Owner funnel — \`/owners\`, \`/claim\`, \`/add-business\`, dashboard edit / photos / reviews / analytics / upgrade
-- Pricing — \`/pricing\` with the plan cards that match \`PLAN_DEFINITIONS\`
+- Public discovery: explore, categories, cities, top-rated, trending, search, business pages
+- Owner funnel: \`/owners\`, \`/claim\`, \`/add-business\`, dashboard edit / photos / reviews / analytics / upgrade
+- Pricing: \`/pricing\` with the plan cards that match \`PLAN_DEFINITIONS\`
 
-Audience sits in Western North Carolina and with builders who ship local directories instead of another generic “AI growth” wrapper.
+Audience sits in Western North Carolina and with builders who ship local directories instead of another generic "AI growth" wrapper.
 
-![Explore — directory discovery surface](screenshots/explore.png)
+![Explore. directory discovery surface](screenshots/explore.png)
 
 ## When
 
@@ -530,25 +528,25 @@ Audience sits in Western North Carolina and with builders who ship local directo
 
 **April–May.** Listing boosts on the owner dashboard. Real PostHog wiring passes. Blacksmith CI gates. Production deploy prep. Robots set to index, follow.
 
-**2026-09-07.** PR #109 — secure ownership claims and billing; remove unsupported sales claims; keep purchased manual services pending until fulfillment.
+**2026-09-07.** PR #109. secure ownership claims and billing; remove unsupported sales claims; keep purchased manual services pending until fulfillment.
 
-**2026-09-08.** PR #110 — report only recorded business analytics (\`null\` where unmeasured). PR #111 — honeypot fields on public contact forms. HEAD \`ae65364\`. Two hundred sixty-one commits on \`main\`.
+**2026-09-08.** PR #110. report only recorded business analytics (\`null\` where unmeasured). PR #111. honeypot fields on public contact forms. HEAD \`ae65364\`. Two hundred sixty-one commits on \`main\`.
 
 That is the clock from empty repo to an honest owner dashboard.
 
-![About — BestWNC product story surface](screenshots/about.png)
+![About. BestWNC product story surface](screenshots/about.png)
 
 ## Why
 
-Directories lie by default. Fake weekly charts. Fake conversion. Fake “impressions” that never existed as rows.
+Directories lie by default. Fake weekly charts. Fake conversion. Fake "impressions" that never existed as rows.
 
-I refused that for BestWNC. If the counter is cumulative and polluted by owners and crawlers, say so. If period CTR is not instrumented, return \`null\` — not zero dressed as insight.
+I refused that for BestWNC. If the counter is cumulative and polluted by owners and crawlers, say so. If period CTR is not instrumented, return \`null\`, not zero dressed as insight.
 
 I also refused a soft claim path and a spam inbox. Claims require verified identity. Billing routes have security tests. Inquiry forms fail closed for bots without giving them a bounce they can learn from.
 
-The product is still a directory: find a place, claim a place, pay for reach when you want it. The operator move is shipping the revenue path and then deleting the metrics theater in the same week.
+The product is still a directory: find a place, claim a place, pay for reach when you want it. Shipping the revenue path and deleting the metrics theater in the same week is the operator move.
 
-If you own a shop between Asheville and Boone, what would you fix first on your BestWNC page — photos, hours, or the claim so nobody else can edit it?
+If you own a shop between Asheville and Boone, what would you fix first on your BestWNC page: photos, hours, or the claim so nobody else can edit it?
 `;
 
 const MACKS_COVER =
@@ -2817,53 +2815,61 @@ Who else stars templates that document routes they never created?
 const MISSION_CONTROL_TUI_COVER =
   "/blog/mission-control-go-tui-p10k-portfolio-ops/cover.png";
 
-const MISSION_CONTROL_TUI_CONTENT = `![p10k-style TUI zones — status, search, project list, chat, totals](/blog/mission-control-go-tui-p10k-portfolio-ops/screenshots/tui-p10k-layout.png)
+const MISSION_CONTROL_TUI_CONTENT = `![p10k-style TUI zones. status, search, project list, chat, totals](/blog/mission-control-go-tui-p10k-portfolio-ops/screenshots/tui-p10k-layout.png)
 
 ## Who
 
 I keep too many projects hot at once. Vercel rows. Swift builds. git dirt. GitHub issues and PRs. Browser tabs do not scale.
 
-Hurley Mission Control is a different product — humans and agents on one Convex thread model with deliveries. mission-control-os is another name. This pack is the local operator strip: a p10k-inspired Go TUI named Mission Control under michaelmonetized.
+Hurley Mission Control is a different product: humans and agents on one Convex thread model with deliveries. mission-control-os is another name. This pack is the local operator strip: a p10k-inspired Go TUI named Mission Control under michaelmonetized.
 
-If you want one \`mc\` binary, a Nerd Font, and a scrollable portfolio instead of five CLIs in five tabs — you are in the room.
+If you want one \`mc\` binary, a Nerd Font, and a scrollable portfolio instead of five CLIs in five tabs, this is for you.
 
 ## What
 
-I built **Mission Control** — public **michaelmonetized/mission-control**. README: a p10k-inspired TUI for managing all your projects. Phase 1 complete badge. 18 tests. Go.
+I built **Mission Control**, public **michaelmonetized/mission-control**. README: a p10k-inspired TUI for managing all your projects. Phase 1 complete badge. 18 tests. Go.
 
-Shipped local stack: **Go 1.25.4**, Charm **Bubble Tea** + Lipgloss, \`cmd/mc\` → \`mc\`, discovery + \`~/.hustlemc/\` cache, OpenClaw client foundation. Shell suite under \`bin/\`: discover, git/gh/vercel/swift status, stats, cache, dev, caddy, chat, deploy, and more — with \`--json\`.
+Shipped local stack: **Go 1.25.4**, Charm **Bubble Tea** + Lipgloss, \`cmd/mc\` builds to \`mc\`, discovery + \`~/.hustlemc/\` cache, OpenClaw client foundation. Shell suite under \`bin/\`: discover, git/gh/vercel/swift status, stats, cache, dev, caddy, chat, deploy, and more, with \`--json\`.
 
 ![Shell suite mc-* with --json](/blog/mission-control-go-tui-p10k-portfolio-ops/screenshots/shell-suite-json.png)
 
-Phase 2 scaffold: \`apps/web\` \`@mission-control/web@2.0.0\` — Next **16.1.0**, React 19, Clerk, Convex on port **3410**. Schema: users (GitHub + BYO Claude key + Stripe customer + free minutes), repos, workspaces (Fly VM lifecycle), usageRecords, threads/messages (**sender user|openclaw**), webhookEvents. \`services/vm-manager\` Go service for Fly Machines, terminal WebSocket relay, $0.02/min, idle kill.
+Phase 2 scaffold: \`apps/web\` \`@mission-control/web@2.0.0\`. Next **16.1.0**, React 19, Clerk, Convex on port **3410**. Schema: users (GitHub + BYO Claude key + Stripe customer + free minutes), repos, workspaces (Fly VM lifecycle), usageRecords, threads/messages (**sender user|openclaw**), webhookEvents. \`services/vm-manager\` Go service for Fly Machines, terminal WebSocket relay, $0.02/min, idle kill.
 
-![Phase 2 cloud — repos workspaces usage Fly VMs](/blog/mission-control-go-tui-p10k-portfolio-ops/screenshots/phase2-cloud-vm.png)
+![Phase 2 cloud. repos workspaces usage Fly VMs](/blog/mission-control-go-tui-p10k-portfolio-ops/screenshots/phase2-cloud-vm.png)
 
-Not the HurleyUS human|agent deliveries plane. PLAN.md still mentions Ink/React — the entrypoint is Bubble Tea. March 21 “Phases 3–7 Complete” is mostly docs + scaffold burst. No dedicated public homepage on this repo; \`vercel.json\` only sets robots index,follow. HEAD **fd25166**. **22** commits.
+Not the HurleyUS human|agent deliveries plane. PLAN.md still mentions Ink/React. the entrypoint is Bubble Tea. March 21 "Phases 3–7 Complete" is mostly docs + scaffold burst. No dedicated public homepage on this repo; \`vercel.json\` only sets robots index,follow. HEAD **fd25166**. **22** commits.
 
 ![Three Mission Control names cut apart](/blog/mission-control-go-tui-p10k-portfolio-ops/screenshots/name-cut.png)
 
 ## Where
 
-Code: [github.com/michaelmonetized/mission-control](https://github.com/michaelmonetized/mission-control) — **public** — **main**.
+Code: [github.com/michaelmonetized/mission-control](https://github.com/michaelmonetized/mission-control) (**public**, **main**).
+
 Contrast: [hurley-mission-control.vercel.app](https://hurley-mission-control.vercel.app) is the other product.
-Install: \`go build -o mc-tui ./cmd/mc\` · symlink \`~/.local/bin/mc\`. Config: \`~/.hustlemc/\`.
+
+Install: \`go build -o mc-tui ./cmd/mc\`, then symlink \`~/.local/bin/mc\`. Config: \`~/.hustlemc/\`.
 
 ## When
 
-**2026-02-16** — initial TUI, tests, Phase 2 plan, OpenClaw foundation.
-**2026-02-21** — TUI redesign matching original spec (#2).
-**2026-02-27–28** — CI gate; Vercel-only; drop GH Actions config.
-**2026-03-20** — LOCATIONS.md; relay/webhook/daemon/E2E.
-**2026-03-21** — Phases 3–7 claim + Phase 2 Convex/docs/go-live stack.
-**2026-08-08** — HEAD fd25166 robots tag.
-**2026-09-08** — draft pack; slug unused.
+**2026-02-16.** initial TUI, tests, Phase 2 plan, OpenClaw foundation.
+
+**2026-02-21.** TUI redesign matching original spec (#2).
+
+**2026-02-27–28.** CI gate; Vercel-only; drop GH Actions config.
+
+**2026-03-20.** LOCATIONS.md; relay/webhook/daemon/E2E.
+
+**2026-03-21.** Phases 3–7 claim + Phase 2 Convex/docs/go-live stack.
+
+**2026-08-08.** HEAD fd25166 robots tag.
+
+**2026-09-08.** draft pack; slug unused.
 
 ## Why
 
-One keyboard surface for deploy + git + issues beats gossip across tabs. \`--json\` scripts keep the TUI accountable. Phase 2’s bet is BYO Claude + metered VMs. Say the three Mission Control names so they stay separate.
+One keyboard surface for deploy + git + issues beats gossip across tabs. \`--json\` scripts keep the TUI accountable. Phase 2's bet is BYO Claude + metered VMs. Say the three Mission Control names so they stay separate.
 
-Engagement: if deploy state and git dirt only live in browser tabs — what are you actually controlling?
+If deploy state and git dirt only live in browser tabs, what are you actually controlling?
 `;
 
 const GLASS_DESIGN_SYSTEM_COVER =
@@ -3866,22 +3872,22 @@ const HUSTLEDESK_CONTENT = `![Home hero](/blog/hustledesk-com-eight-dollar-helpd
 
 I keep a private GitHub org full of product shells. Some are real apps. Some are landers that talk like apps. Some claim a domain that answers something else entirely.
 
-For operators who need the honest split between a **$8/mo flat helpdesk marketing site** and the **WordPress parking page** currently living at hustledesk.com.
+This pack is for operators who need the honest split between a **$8/mo flat helpdesk marketing site** and the **WordPress parking page** currently living at hustledesk.com.
 
 ## What
 
-I built **hustledesk-com** — private \`https://github.com/michaelmonetized/hustledesk-com\`. Next.js marketing shell. HEAD \`d446e97\`. **3** commits. 0 stars. package name \`hustledesk.com@0.1.0\`. README is **stock** create-next-app boilerplate.
+I built **hustledesk-com**, private at [github.com/michaelmonetized/hustledesk-com](https://github.com/michaelmonetized/hustledesk-com). Next.js marketing shell. HEAD \`d446e97\`. **3** commits. 0 stars. package name \`hustledesk.com@0.1.0\`. README is **stock** create-next-app boilerplate.
 
-Stack facts from \`package.json\`: Next **16.2.6**, React **19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there — no Clerk, no Convex, no Stripe package, no IMAP/email inbound library.
+Stack facts from \`package.json\`: Next **16.2.6**, React **19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there. no Clerk, no Convex, no Stripe package, no IMAP/email inbound library.
 
 What the UI claims:
 
-- Hero: “Support tickets, **nothing more**.” Subhead inbox zero. Price line **$8/mo. Really.**
-- CTAs: **Start Free Trial** → \`https://app.hustledesk.com/signup\`, **See Features** → \`/features\`. Header **Sign in** → \`https://app.hustledesk.com/login\`.
-- Home **inbox mock**: Sarah Chen “Can't reset password” (SLA: 28m left), Mike Johnson, Emily Davis — chrome window, not a product screenshot.
+- Hero: "Support tickets, **nothing more**." Subhead inbox zero. Price line **$8/mo. Really.**
+- CTAs: **Start Free Trial** to \`https://app.hustledesk.com/signup\`, **See Features** to \`/features\`. Header **Sign in** to \`https://app.hustledesk.com/login\`.
+- Home **inbox mock**: Sarah Chen "Can't reset password" (SLA: 28m left), Mike Johnson, Emily Davis. chrome window, not a product screenshot.
 - Feature grid: Email Inbound, Ticket Inbox, Canned Responses, SLA Timers, Team Assignment, **HustleChat Integration**.
 - Competitor cards: Zendesk \`$55+\`, Freshdesk \`$18+\`, Help Scout \`$25+\` (per user) vs HustleDesk **\`$8\` flat · Unlimited users**.
-- Pricing: **one** plan — $8/month flat; team-of-5 table ends at Zendesk **$3,300/yr** vs HustleDesk **$96/yr** (“Save $3,204/year…”).
+- Pricing: **one** plan. $8/month flat; team-of-5 table ends at Zendesk **$3,300/yr** vs HustleDesk **$96/yr** ("Save $3,204/year…").
 - Brand sky: Tailwind \`--color-hustle-500 = #0ea5e9\` / \`600 = #0284c7\`.
 
 ![Pricing flat $8](/blog/hustledesk-com-eight-dollar-helpdesk-lander-wordpress-domain/screenshots/pricing-flat.png)
@@ -3896,34 +3902,36 @@ Linked but **missing in-repo**: \`/privacy\`, \`/terms\`, and the docs children 
 
 ![Missing routes + app 301](/blog/hustledesk-com-eight-dollar-helpdesk-lander-wordpress-domain/screenshots/missing-routes.png)
 
-This is **not** \`hustlemail-com\` — that sibling is the **email-marketing** $8 lander (red \`#ef4444\`, Free/$8/$24, in-repo missing \`/signup\`). Different product claim. Different brand. Different honesty bug.
+This is not \`hustlemail-com\`. that sibling is the **email-marketing** $8 lander (red \`#ef4444\`, Free/$8/$24, in-repo missing \`/signup\`). Different product claim. Different brand. Different honesty bug.
 
 ## Where
 
-Code: [github.com/michaelmonetized/hustledesk-com](https://github.com/michaelmonetized/hustledesk-com) — private.
+Code: [github.com/michaelmonetized/hustledesk-com](https://github.com/michaelmonetized/hustledesk-com) (private).
 
 Live probes at pack time:
 
-- \`hustledesk.com\` DNS A → **66.96.162.142**; HTTPS **200** WordPress PHP/7.4.33; title **Hustle Desk – Make extra income from the comfort of your home**; default “This is your front page” copy — **not** this Next helpdesk lander
-- \`www\` / \`app.hustledesk.com\` → same A; \`app\` **301** \`X-Redirect-By: WordPress\` → \`https://hustledesk.com/\`
-- \`hustledesk-com.vercel.app\` → **404** \`DEPLOYMENT_NOT_FOUND\`
-- \`hustledesk.vercel.app\` → unrelated Vite SPA (\`<title>hustledesk</title>\`)
+- \`hustledesk.com\` DNS A to **66.96.162.142**; HTTPS **200** WordPress PHP/7.4.33; title **Hustle Desk – Make extra income from the comfort of your home**; default "This is your front page" copy. **not** this Next helpdesk lander
+- \`www\` / \`app.hustledesk.com\` to same A; \`app\` **301** \`X-Redirect-By: WordPress\` to \`https://hustledesk.com/\`
+- \`hustledesk-com.vercel.app\` to **404** \`DEPLOYMENT_NOT_FOUND\`
+- \`hustledesk.vercel.app\` to unrelated Vite SPA (\`<title>hustledesk</title>\`)
 
 Local inspect clone: \`/tmp/cf-inspect/hustledesk-com\` @ \`d446e97\`.
 
 ## When
 
-**2026-02-18 07:57 ET** — \`4439645\` feat: initial hustledesk.com marketing site (+2206 / 22 files).  
-**2026-06-22 17:23 ET** — \`b45b480\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).  
-**2026-06-22 18:14 ET** — \`d446e97\` nightly empty tip (HEAD).
+**2026-02-18 07:57 ET.** \`4439645\` feat: initial hustledesk.com marketing site (+2206 / 22 files).
+
+**2026-06-22 17:23 ET.** \`b45b480\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).
+
+**2026-06-22 18:14 ET.** \`d446e97\` nightly empty tip (HEAD).
 
 ![Commit arc](/blog/hustledesk-com-eight-dollar-helpdesk-lander-wordpress-domain/screenshots/commit-arc.png)
 
 ## Why
 
-Because a Zendesk-price lander still needs an auth surface that is not a WordPress 301. Because “Save $3,204/year” on a four-page private repo is table copy, not a billed product. Because hustlemail-com already told the $8 lander story for email marketing — this pack is the **helpdesk** twin with a **domain that answers something else**.
+A Zendesk-price lander still needs an auth surface that is not a WordPress 301. "Save $3,204/year" on a four-page private repo is table copy, not a billed product. hustlemail-com already told the $8 lander story for email marketing. this pack is the **helpdesk** twin with a **domain that answers something else**.
 
-**Engagement Q:** How many of your SaaS domains currently serve a default WordPress “Make extra income” front page while the Next lander never shipped?
+How many of your SaaS domains currently serve a default WordPress "Make extra income" front page while the Next lander never shipped?
 `;
 
 const SHIPPREP_COVER =
@@ -7228,7 +7236,7 @@ export const staticPosts: StaticPost[] = [
     title: "hustledesk.com: $8 flat helpdesk lander vs WordPress domain",
     slug: "hustledesk-com-eight-dollar-helpdesk-lander-wordpress-domain",
     excerpt:
-      "Private Next 16 marketing shell for HustleDesk \u2014 Zendesk/Freshdesk/Help Scout comparison, single $8/mo flat unlimited-users plan, inbox mock UI, docs index of dead child links. Auth CTAs point at app.hustledesk.com which redirects to a parked WordPress front page (\u201cMake extra income from the comfort of your home\u201d). Stock create-next-app README. 3 commits. HEAD d446e97. Not a live helpdesk product.",
+      "hustledesk-com is a three-commit Next 16 lander selling $8 flat helpdesk tickets while hustledesk.com still serves a WordPress Make extra income parking page. The app subdomain 301s to that WordPress home; the Vercel project alias is DEPLOYMENT_NOT_FOUND.",
     content: HUSTLEDESK_CONTENT,
     coverImage: HUSTLEDESK_COVER,
     tags: [
@@ -7653,7 +7661,7 @@ export const staticPosts: StaticPost[] = [
     title: "mission-control: I built a p10k Go TUI for the whole portfolio \u2014 not the agent thread plane",
     slug: "mission-control-go-tui-p10k-portfolio-ops",
     excerpt:
-      "michaelmonetized/mission-control is the Go + Bubble Tea p10k-style mc TUI for Vercel/Swift/git/GitHub across ~/Projects, plus a Phase 2 cloud scaffold (Convex repos/workspaces + Fly VM manager + BYO Claude). Not HurleyUS/hurley-mission-control human|agent deliveries. Not mission-control-os.",
+      "Mission Control is the public Go Bubble Tea mc TUI for Vercel, git, Swift, and GitHub across a local portfolio, separate from Hurley Mission Control's Convex human|agent plane. Phase 1 is the local strip; Phase 2 scaffolds metered Fly VMs and BYO Claude without claiming the other product's name.",
     content: MISSION_CONTROL_TUI_CONTENT,
     coverImage: MISSION_CONTROL_TUI_COVER,
     tags: [
@@ -8593,7 +8601,7 @@ export const staticPosts: StaticPost[] = [
     title: "BestWNC: I built a WNC directory that returns null instead of fake analytics",
     slug: "bestwnc-honest-analytics-local-directory",
     excerpt:
-      "BestWNC is my Western North Carolina business directory \u2014 Next.js, Convex, Clerk, Stripe. Free listings, paid reach, secured claims. Owner analytics now return null where the metrics were never measured.",
+      "BestWNC is the WNC directory where listings start free and owner analytics return null when the measurement layer cannot defend a chart. September 8 shipped honest null availability, claim/billing hardening, and honeypots after spam flooded the inbox.",
     content: BESTWNC_CONTENT,
     coverImage: BESTWNC_COVER,
     tags: [
@@ -8669,7 +8677,7 @@ export const staticPosts: StaticPost[] = [
     title: "omadesign: I shipped a native Linux design suite in 13 days",
     slug: "omadesign-native-linux-studio-13-days",
     excerpt:
-      "I built omadesign in Rust + egui — vector, paint, RAW, and motion in one document. glibc 2.35. No Electron. Four alphas. MIT.",
+      "omadesign is a native Rust + egui studio with Design, Pixel, Photo, and Motion personas on one document and layer stack. Four alphas in thirteen days, glibc 2.35 tarballs for aarch64 and x86_64, still alpha and shipping without Electron.",
     content: OMADESIGN_CONTENT,
     coverImage: OMADESIGN_COVER,
     tags: [
