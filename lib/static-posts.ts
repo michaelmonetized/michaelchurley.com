@@ -5425,7 +5425,499 @@ An agent that cannot receive email instructions is half-deaf. Poll Resend yourse
 **Engagement Q:** Keep the 5s poll + seen-ids file, or move the tip to Resend webhooks into the same \`/hooks/agent\` path?
 `;
 
+const FAB_ANALYTICS_COVER =
+  "/blog/fab-analytics-same-day-php-js-ga-drop-in-json-disk/cover.png";
+
+const FAB_ANALYTICS_CONTENT = `## Who
+
+I still get Elementor client sites where the ask is "just put something on the page that tells me who called, who emailed, and whether the form died halfway" — without paying Google for a dashboard I will not open.
+
+For operators who will accept JSON files on a PHP host as the source of truth.
+
+## What
+
+I shipped **fab-analytics** — public https://github.com/michaelmonetized/fab-analytics. HEAD \`8218088\`. **31** commits. Version **0.1.3-rc**.
+
+![Client pipeline](/blog/fab-analytics-same-day-php-js-ga-drop-in-json-disk/client-pipeline.png)
+
+\`fab-analytics.js\` (273 LOC) builds a visit object (domain, session token, viewport, UA, referrer, language, timezone, screen), hits ipify for IP, POSTs to a hardcoded \`hustlelaunch.com/.../api/post/visit/\` endpoint. Tracks pageview start/exit, \`mailto:\` / \`tel:\` clicks as conversions, form submit as conversion, and a noisy set of abandonment/"presave" events. Session lives in localStorage (+20 minutes) plus a cookie.
+
+![PHP JSON ingest](/blog/fab-analytics-same-day-php-js-ga-drop-in-json-disk/php-json-ingest.png)
+
+PHP \`api/post/visit/index.php\` validates \`domain\` + \`session_token\`, writes \`logs/{domain}/{token}-{microtime}.json\`, and if the domain contains \`oxstu\` and the category is form, includes a \`mail()\` lead path to sales@hustlelaunch.com.
+
+![Test harness](/blog/fab-analytics-same-day-php-js-ga-drop-in-json-disk/test-harness.png)
+
+\`test.html\` is a Tailwind CDN harness with tel, mailto, and a required name/phone/email form — script tag still points at \`/fab.js?v=0.1.3-b-36\` while the tracked file is \`fab-analytics.js\`.
+
+![Gaps honesty](/blog/fab-analytics-same-day-php-js-ga-drop-in-json-disk/gaps-honesty.png)
+
+Honest gaps: README/CHANGELOG/LICENCE.md are empty (GPL only in headers). Header @todo claims restore form fields from localStorage on return — **no restore loop in the JS**. \`JSON.stringify(new FormData(form))\` is not a revive path. Abandonment listeners include blur/focus/mouseleave/touchmove. Endpoint echoes file path + payload (debug leftovers). CORS \`*\`.
+
+## Where
+
+Code: [github.com/michaelmonetized/fab-analytics](https://github.com/michaelmonetized/fab-analytics) — public.
+
+\`\`\`bash
+git clone https://github.com/michaelmonetized/fab-analytics.git
+# drop fab-analytics.js on the page; PHP tree expects logs/ writable beside api/
+# client endpoint constant points at hustlelaunch.com — change before self-host
+\`\`\`
+
+## When
+
+**2024-07-09 07:14 ET** — empty init. Midday — base JS + endpoints + test. Evening — Tailwind thrash, trailing-slash facepalm, cache-busting, PHP error handling. **22:30 ET** — \`tests passed - first production run\`. **2024-07-10 09:07 ET** — cleanup → HEAD 8218088. Queue \`pushed_at\` **2026-01-31T10:35:32Z** (no newer commits).
+
+![Commit arc](/blog/fab-analytics-same-day-php-js-ga-drop-in-json-disk/commit-arc.png)
+
+## Why
+
+A GA drop-in only earns its keep if conversions and abandonments land somewhere you own — even if that somewhere is a folder of JSON files.
+
+**Engagement Q:** Fix the empty docs + fab.js rename + FormData revive path first, or rip the abandonment spam down to submit + intentional blur only?
+`;
+
+const BOILERPLATE_COVER =
+  "/blog/boilerplate-clerk-drizzle-stripe-next16-cve/cover.png";
+
+const BOILERPLATE_CONTENT = `## Who
+
+I needed a reusable Next shell that already had Clerk protect, a subscriptions table, and a Stripe webhook — not another empty create-next-app and not a Convex payment library.
+
+For operators cloning a private Hustle Launch starter onto Vercel, not buyers of a polished marketing site.
+
+## What
+
+I shipped **boilerplate** — private https://github.com/michaelmonetized/boilerplate. HEAD \`6f2dd2f\`. **63** commits. package **0.1.0**.
+
+![Auth + billing](/blog/boilerplate-clerk-drizzle-stripe-next16-cve/screenshots/auth-billing.png)
+
+Stack that actually exists in tree: Next App Router, Clerk (SignIn/SignUp/UserProfile hash routing + clerkMiddleware public-route matcher), Drizzle on @vercel/postgres (subscriptions + error tables), createStripeUrl server action (Checkout or Billing Portal), Stripe webhook writing userId / customer / price / period end, Resend + react-email deps, Catppuccin latte/mocha CSS vars, custom max webfonts, filled privacy/terms/refunds.
+
+![Stub pages](/blog/boilerplate-clerk-drizzle-stripe-next16-cve/screenshots/stub-pages.png)
+
+Honest day-one residue that is still at HEAD: about / blog / contact / docs / faq / features / pricing and protected billing / settings / support are each a ten-line <h1>Page</h1> stub. /pricing does not call createStripeUrl. No tracked .env.example despite README. PLAN.md (Jan 2026) still lists Convex, PostHog, CLI scaffolding. .cursor/rules/STRIPE.md is Theo KV-sync essay pasted beside a Postgres webhook implementation.
+
+![CVE bump](/blog/boilerplate-clerk-drizzle-stripe-next16-cve/screenshots/cve-bump.png)
+
+Feb 22 2026: fix(security) upgrade Next.js 14.2.8 to 16.1.6 for CVE-2025-55184 — package.json + bun.lockb only. Live: https://boilerplate-fawn-gamma.vercel.app and https://boilerplate.hustlelaunch.com both 200 with <title>Boilerplate</title>.
+
+## Where
+
+Code: [github.com/michaelmonetized/boilerplate](https://github.com/michaelmonetized/boilerplate) — private MIT.
+
+Clone requires michaelmonetized auth. README still expects mv .env.example .env (file not tracked). Edit data/app.ts, install deps, deploy Vercel.
+
+Live shells: [boilerplate-fawn-gamma.vercel.app](https://boilerplate-fawn-gamma.vercel.app) · [boilerplate.hustlelaunch.com](https://boilerplate.hustlelaunch.com)
+
+## When
+
+**2024-09-07 to 09-11 ET** — Create Next App, then Clerk middleware/redirect/color fights, then Stripe ready (~50 commits in four days). **2024-09-17** — shrug. **2026-01-08** — PLAN.md. **2026-01-31** — STRIPE.md sync. **2026-02-22 07:42 ET** — Next 16 CVE bump to HEAD \`6f2dd2f\`. Queue push **2026-02-22T12:42:54Z**.
+
+![Commit arc](/blog/boilerplate-clerk-drizzle-stripe-next16-cve/screenshots/commit-arc.png)
+
+## Why
+
+A SaaS starter is only honest if the auth boundary, the subscriptions row, and the webhook exist — and if you admit the marketing routes are still stubs when you CVE-bump sixteen months later.
+
+**Engagement Q:** Wire /pricing + /billing to createStripeUrl next, or replace the Postgres webhook with Theo single KV sync before cloning this into the next hustle*?
+`;
+
+const ILEAGUE_APP_COVER =
+  "/blog/ileague-app-influencer-monorepo-before-golf-rebrand/cover.png";
+
+const ILEAGUE_APP_CONTENT = `![Landing hero — violet influencer/fan unite](/blog/ileague-app-influencer-monorepo-before-golf-rebrand/screenshots/landing-hero.png)
+
+## Who
+
+I needed a creator/fan product that was still honest about being a scaffold — leagues, posts, Stripe Connect — before I verticalized it into golf.
+
+For operators comparing the public influencer monorepo to the later emerald golf stack, not for people looking for scorecards or Top-54 iTour lore.
+
+## What
+
+I shipped **iLeague-app** — public https://github.com/HurleyUS/ileague-app. HEAD \`7af9d80\`. **7** commits. Package **1.0.0**. Bun workspaces: \`@ileague/web\` (Next 15), \`@ileague/mobile\` (Expo 52), \`@ileague/convex\`.
+
+![Schema map](/blog/ileague-app-influencer-monorepo-before-golf-rebrand/screenshots/schema-map.png)
+
+The schema still says **influencer**: \`users.isInfluencer\`, \`influencerProfiles\`, posts (text/image/video/poll/announcement), leagues with score+rank, follows, monthly/yearly \`subscriptions\`, Stripe Connect fields, tips in \`transactions\`. Twelve categories from gaming to lifestyle. Primary brand is violet (\`#7c3aed\` splash) — not the golf emerald lander.
+
+![Mobile leagues](/blog/ileague-app-influencer-monorepo-before-golf-rebrand/screenshots/mobile-leagues.png)
+
+Web: lander (“Where Influencers and Fans Unite”), Clerk auth, onboarding, dashboard, explore, leagues, notifications. Mobile tabs match. HEAD (Feb 4) wires mobile leagues to \`getFeaturedLeagues\` / \`getUserLeagues\` / paginated \`getLeagues\` + \`joinLeague\`, and adds \`eas.json\`.
+
+![Gaps](/blog/ileague-app-influencer-monorepo-before-golf-rebrand/screenshots/honest-gaps.png)
+
+Honest gaps: create-league button pushes \`/create-league\` with **no screen**; EAS submit + Apple IDs + Sentry org are placeholders; mobile icon/splash paths declared with **empty assets**; README claims MIT with **no LICENSE file**; lander vanity stats (50K+/2M+) are placeholders; commit message says “Add mobile .env” but the diff does not. \`www.ileague.app\` is a **Coming Soon** static page — the Jan Vercel preview URL now 308s there. The live golf product is a **different** repo and pack.
+
+## Where
+
+Code: [github.com/HurleyUS/ileague-app](https://github.com/HurleyUS/ileague-app) — public.
+
+\`\`\`bash
+git clone https://github.com/HurleyUS/ileague-app.git
+cd ileague-app
+bun install
+# cp .env.example .env.local — fill Clerk/Convex/Stripe/Resend/PostHog/Sentry
+cd packages/convex && bunx convex dev
+bun run dev:web    # or bun run dev:mobile
+\`\`\`
+
+Domain: [www.ileague.app](https://www.ileague.app) — Coming Soon (not this Next app). Golf sibling: [ileague.golf](https://ileague.golf) — do not conflate.
+
+## When
+
+**2026-01-09** — five commits: init monorepo → Convex stubs/Sentry → CHANGELOG (notes \`kindred-gnu-699\` + early Vercel URL) → React 18 for Clerk/Convex → root \`vercel.json\` monorepo build.
+
+**2026-01-31** — \`7b889f4\` adds \`.cursor/rules/STRIPE.md\` only.
+
+**2026-02-04 12:04 ET** — HEAD \`7af9d80\` mobile leagues + \`eas.json\` + ROADMAP/PLAN. Queue push **2026-02-05T18:08:47Z**.
+
+![Commit arc](/blog/ileague-app-influencer-monorepo-before-golf-rebrand/screenshots/commit-arc.png)
+
+## Why
+
+If you only read the golf pack, you miss the **pre-rebrand** vocabulary — the same Bun/Next/Expo/Convex bones still wearing \`isInfluencer\` and vanity lander stats.
+
+**Engagement Q:** Keep shipping the generic influencer scaffold, or treat this repo as archive and push all energy into ileague.golf?
+`;
+
+const AGENT_OS_COVER =
+  "/blog/agent-os-bun-ink-websocket-zsh-orchestrator/cover.png";
+
+const AGENT_OS_CONTENT = `## Who
+
+I still run multi-agent days where the bottleneck is not the model — it is the shell context, the task queue, and whether each agent can see my real \`~/.zshrc\` aliases instead of a sandboxed stub.
+
+For operators wiring local agent pools against a Mission Control ship list, not a hosted SaaS dashboard.
+
+## What
+
+I shipped **HurleyUS Agent OS** — public https://github.com/michaelmonetized/agent-os. HEAD \`f66fffa\`. **2** commits. package **hurleyus-agent-os@1.0.0**.
+
+![Ink UI](/blog/agent-os-bun-ink-websocket-zsh-orchestrator/screenshots/ink-ui.png)
+
+\`orchestrator.ts\` is an Ink React terminal UI plus a \`WebSocketServer\` on **ws://localhost:9999**. Agents connect with \`?agent=<name>\`, pull \`task_dispatch\`, and stream \`task_output\` / complete / fail. State lives in \`~/.hurleyus/agent-os/state.json\`; every session transcript lands in \`~/.hurleyus/agent-os/sessions/<sessionId>.log\`.
+
+![Zsh agent](/blog/agent-os-bun-ink-websocket-zsh-orchestrator/screenshots/zsh-agent.png)
+
+\`agent-client.ts\` spawns **interactive zsh** (\`zsh -i -c …\`), sources \`~/.zshrc\`, optionally loads \`~/.hurleyus/GOALS\` and \`~/.hurleyus/TASKS\`, then evals the task description. If the cwd is a git repo it auto-commits \`[agent-name] <taskId>\` and pushes \`origin HEAD\`.
+
+![Mission Control seed](/blog/agent-os-bun-ink-websocket-zsh-orchestrator/screenshots/mc-seed.png)
+
+\`mission-control-tasks.ts\` seeds **seven Phase 1 tasks** aimed at \`hurley-mission-control\` — Convex backend, web layout, architecture review, message wiring, polling, Vercel deploy, QA smoke. \`cli.ts load-mission-control\` / \`start.sh\` load that list.
+
+![Dual path gaps](/blog/agent-os-bun-ink-websocket-zsh-orchestrator/screenshots/dual-path-gaps.png)
+
+Same tree also has \`core.ts\`: four personas (Codex Dev, SR Designer, SR Architect, QA Auditor) on \`claude-opus-4-6\` via Anthropic Messages API, with dependency-aware priority queue. Honest gaps: \`@anthropic-ai/sdk\` is imported but **not** in \`package.json\`; \`.env\` with \`ANTHROPIC_API_KEY\` is **still tracked** after the \`.gitignore\` commit (gitignore only covers \`node_modules/\`, \`*.log\`, \`.DS_Store\`). OpenClaw relay to \`ws://192.168.1.134:18789\` is stubbed. \`agent-runner.sh\` is a file inbox/outbox fallback, not live WS.
+
+## Where
+
+Code: [github.com/michaelmonetized/agent-os](https://github.com/michaelmonetized/agent-os) — public, no LICENSE file (README: internal HurleyUS).
+
+\`\`\`bash
+git clone https://github.com/michaelmonetized/agent-os.git
+cd agent-os
+bun install
+# Terminal 1
+bun cli.ts run-orchestrator
+# Terminal 2+
+bun cli.ts spawn-agent codex-dev
+bun cli.ts spawn-agent sr-designer
+# Load Phase 1
+bun cli.ts load-mission-control
+bun cli.ts status
+\`\`\`
+
+Local only: orchestrator \`ws://localhost:9999\`. Optional env \`OPENCLAW_GATEWAY\`. Runtime state under \`~/.hurleyus/agent-os/\`.
+
+## When
+
+Created on GitHub **2026-03-20**. First commit **11:13 AM ET** same day — full v2 surface (Ink + WS + zsh + CLI + Mission Control seed). Second commit **10:25 PM ET** — \`.gitignore\` only. GitHub \`pushed_at\` **2026-03-21T02:25:13Z**. Pack prepared **2026-09-08 ~5:17 PM ET**. Draft + assets only.
+
+## Why
+
+I needed a shell-native control plane that treats agents like terminals with jobs — not another chat UI. Ink for the operator view, WebSocket for fan-out, real zsh so aliases and git muscle memory stay intact, and a Mission Control Phase 1 seed so the queue is not empty on day one. The Anthropic \`core.ts\` path is the API-side twin when you want model output without a shell; the gaps (missing SDK dep, tracked \`.env\`) are the honest day-one scars.
+
+This is not orclawstrator's OpenClaw \`:3377\` gateway, not the Go p10k \`mission-control\` portfolio TUI, not the Convex human|agent \`hurley-mission-control\` web plane, and not \`shagent\`'s MCP/OpenRouter loop.
+
+How would you unify the Ink/WS/zsh path and the Anthropic \`core.ts\` path — one CLI surface, or keep them as two intentional modes?
+`;
+
+const LAUNCHPAD_COVER =
+  "/blog/launchpad-nye2024-boilerplate-providers-unwired/cover.png";
+
+const LAUNCHPAD_CONTENT = `![README vs tree](/blog/launchpad-nye2024-boilerplate-providers-unwired/screenshots/readme-vs-tree.png)
+
+## Who
+
+I wanted one Next repo I could clone for every Hustle Launch lander — auth, leads DB, email, payments, analytics — instead of re-wiring Clerk and Resend on each client site.
+
+## What
+
+Public **michaelmonetized/launchpad** · v0.1.0 · HEAD \`5447591\` · **8** commits. README sells "LaunchPad by Hustle Launch" as the premier boilerplate for websites / apps / sales landers. Tree at HEAD actually has:
+
+1. Stock **Create Next App** \`app/page.tsx\` + layout metadata still titled Create Next App
+2. shadcn new-york kit — **16** UI primitives (~1487 LOC) with **no** lead form page
+3. \`providers/{clerk,convex,posthog}.tsx\` — written, **never imported** into \`layout.tsx\`
+4. \`middleware.ts\` = bare \`clerkMiddleware()\` (edge without mounted provider tree)
+5. \`app/api/send\` Resend route → \`delivered@resend.dev\`, \`from\` = env \\|\\| **notify@uncap.us**
+6. \`stripe\` + \`@sentry/nextjs\` in package.json — **zero** app imports; Stripe "implementation" is a dumped Theo \`STRIPE.md\` cursor rule
+7. **No** \`convex/\` schema folder — ConvexReactClient wrapper only
+
+![Stack deps vs usage](/blog/launchpad-nye2024-boilerplate-providers-unwired/screenshots/stack-deps.png)
+
+![Providers unwired](/blog/launchpad-nye2024-boilerplate-providers-unwired/screenshots/providers-unwired.png)
+
+## Where
+
+github.com/michaelmonetized/launchpad (**public**, MIT © 2024 Hustle Launch). README points at launchpad.hustlelaunch.com and \`/pro\`. Pack-time DNS: **NXDOMAIN** for \`launchpad.hustlelaunch.com\`. Sibling contrast: **hustlestack-starter/template** are empty mkproject husks (SKIPPED); **convex-nextfaster** actually ships Convex ecommerce schema; **uncap.us** is the live product — LaunchPad is the unfinished public starter claim.
+
+![Domain NXDOMAIN](/blog/launchpad-nye2024-boilerplate-providers-unwired/screenshots/domain-nxdomain.png)
+
+## When
+
+**2024-12-31** (~03:15–04:13 ET) — Create Next App → empty \`init\` → shadcn+README → providers+Resend+LICENSE. **2026-01-08** — \`PLAN.md\` pivots identity to a **client portal** checklist (none of it built). **2026-01-31** — sync Theo Stripe cursor rule. **2026-02-06** — HEAD Resend \`from\` env fallback to notify@uncap.us. No further commits.
+
+![Commit arc](/blog/launchpad-nye2024-boilerplate-providers-unwired/screenshots/commit-arc.png)
+
+![PLAN drift](/blog/launchpad-nye2024-boilerplate-providers-unwired/screenshots/plan-drift.png)
+
+## Why
+
+A README that lists the whole MarTech stack is not a framework. Mounting providers, owning a Convex schema, and resolving the product domain are the difference between a clone-ready LaunchPad and a New Year's Eve aspiration with a nice UI kit. The Resend notify@uncap.us fallback is the only line that still points at how I actually ship mail.
+
+**Engagement Q:** Would you publish a starter whose README lists Stripe/Sentry/Convex before the providers are mounted — or keep it private until \`layout.tsx\` and DNS match the marketing?
+`;
+
+const SIMPLE_COVER =
+  "/blog/simple-nextjs-firebase-auth-social-keep-decision/cover.png";
+
+const SIMPLE_CONTENT = `
+## Who
+
+I wanted a thin auth starter that did email + social without dragging Clerk or a Convex migration into launch week.
+
+For anyone spinning a Next App Router app that needs Firebase Auth + a users doc and can live with honest leftovers.
+
+## What
+
+I built **simple** - public https://github.com/michaelmonetized/simple. HEAD da7e0b0. 10 commits. 0 stars. Default main. Version 0.1.0 (private: true). Claimed live URL https://simple-ivory.vercel.app is DEPLOYMENT_NOT_FOUND.
+
+**Shipped (~1k LOC app/firebase/components):** Next 16 + React 19 + Firebase 12 Auth/Firestore. /, /login, /register. Email/password SignUpForm + LoginForm. Google / Facebook / Twitter Connect buttons (signInWithPopup / linkWithPopup). AuthProvider -> Firestore users. Generic CRUD in firebase/crud.js. Clamp spacing + Catppuccin color tokens. Security headers in next.config.mjs. Documented keep-Firebase decision.
+
+![Auth surface](/blog/simple-nextjs-firebase-auth-social-keep-decision/screenshots/auth-surface.png)
+
+![Keep Firebase decision](/blog/simple-nextjs-firebase-auth-social-keep-decision/screenshots/keep-firebase-decision.png)
+
+**Launch arc:** four Sept 2024 init commits -> Dec 2025 / Feb 2026 CVE bumps -> console strip + HSTS/X-Frame headers -> architecture doc -> final console cleanup (#5).
+
+![Security headers](/blog/simple-nextjs-firebase-auth-social-keep-decision/screenshots/security-headers.png)
+
+**Gaps:** create-next-app README still; login/page.tsx exports RegisterPage; coerceeUserCredntial typo; console.warn left; hardcoded firebaseConfig; Hustle Launch branding; Tailwind pkg vs classic config; kitchen-sink env example; no middleware; Vercel deploy gone.
+
+![Residue gaps](/blog/simple-nextjs-firebase-auth-social-keep-decision/screenshots/residue-gaps.png)
+
+## Where
+
+Code: https://github.com/michaelmonetized/simple - public.
+
+Run: install deps then next dev.
+
+Live: simple-ivory host is down (404).
+
+## When
+
+**2024-09-05** - fec428f to 1c2d5f5 four init commits.
+
+**2025-12-29** - 7c5e849 cve vulnerabilities.
+
+**2026-02-21 to 2026-03-23** - 03addd3 CVE; e0b5dee+407450f headers; 9b33e46 keep-Firebase; da7e0b0 HEAD.
+
+## Why
+
+![Commit arc](/blog/simple-nextjs-firebase-auth-social-keep-decision/screenshots/commit-arc.png)
+
+Because launch week needed auth that already worked, with a written keep-Firebase decision.
+
+**Engagement Q:** Redeploy simple-ivory and finish middleware, or keep as Firebase keep-decision reference until Convex revisit?
+
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:fab-analytics-same-day-php-js-ga-drop-in-json-disk",
+    title: "fab-analytics: same-day PHP+JS GA drop-in that writes JSON to disk",
+    slug: "fab-analytics-same-day-php-js-ga-drop-in-json-disk",
+    excerpt:
+      "Public michaelmonetized/fab-analytics is a 0.1.3-rc first-party Google Analytics drop-in: fab-analytics.js posts pageviews, mailto/tel clicks, and form submit/abandonment to a PHP endpoint that writes logs/{domain}/*.json under hustlelaunch.com. 31 commits in one July 2024 day to first production run; HEAD 8218088 cleanup. Empty README/LICENCE. Not BestWNC's 2026 null-honesty directory analytics.",
+    content: FAB_ANALYTICS_CONTENT,
+    coverImage: FAB_ANALYTICS_COVER,
+    tags: [
+      "fab-analytics",
+      "first-party-analytics",
+      "google-analytics-drop-in",
+      "php",
+      "javascript",
+      "json-logs",
+      "elementor",
+      "hustlelaunch",
+      "form-abandonment",
+      "martech",
+      "michaelmonetized",
+      "hurleyus",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T21:50:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:boilerplate-clerk-drizzle-stripe-next16-cve",
+    title: "Boilerplate: Clerk + Drizzle + Stripe Next shell, CVE-bumped to 16",
+    slug: "boilerplate-clerk-drizzle-stripe-next16-cve",
+    excerpt:
+      "Private michaelmonetized/boilerplate is the Sep 2024 Hustle Launch Next.js SaaS app template \u2014 Clerk hash auth, Vercel Postgres/Drizzle subscriptions, Stripe Checkout/Portal webhook, Catppuccin + max fonts \u2014 live on Vercel and boilerplate.hustlelaunch.com. 63 commits. HEAD 6f2dd2f Next 14\u219216 CVE bump. Marketing/protected pages still stub <h1>Page</h1>; no .env.example.",
+    content: BOILERPLATE_CONTENT,
+    coverImage: BOILERPLATE_COVER,
+    tags: [
+      "boilerplate",
+      "nextjs",
+      "clerk",
+      "drizzle",
+      "vercel-postgres",
+      "stripe",
+      "catppuccin",
+      "hustlelaunch",
+      "saas-starter",
+      "cve",
+      "resend",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T21:40:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:ileague-app-influencer-monorepo-before-golf-rebrand",
+    title: "iLeague-app: the generic influencer monorepo before the golf rebrand",
+    slug: "ileague-app-influencer-monorepo-before-golf-rebrand",
+    excerpt:
+      "Public HurleyUS/ileague-app is the Jan 9 2026 Bun monorepo \u2014 Next.js 15 + Expo 52 + Convex + Clerk + Stripe Connect \u2014 for a generic influencer/fan league platform (violet #7c3aed, isInfluencer schema, gaming\u2192lifestyle categories). HEAD 7af9d80 (Feb 4) wires mobile leagues to Convex and adds eas.json. Not ileague.golf, not itour.golf, not the iPro brand vault. www.ileague.app is a Coming Soon static, not this Next app.",
+    content: ILEAGUE_APP_CONTENT,
+    coverImage: ILEAGUE_APP_COVER,
+    tags: [
+      "ileague-app",
+      "ileague",
+      "influencer",
+      "creator-economy",
+      "monorepo",
+      "bun",
+      "nextjs",
+      "expo",
+      "convex",
+      "clerk",
+      "stripe-connect",
+      "scaffold",
+      "before-golf",
+      "hurleyus",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T21:30:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:agent-os-bun-ink-websocket-zsh-orchestrator",
+    title: "Agent OS: Bun + Ink + WebSocket shell-native orchestrator",
+    slug: "agent-os-bun-ink-websocket-zsh-orchestrator",
+    excerpt:
+      "Public michaelmonetized/agent-os is HurleyUS Agent OS v2 \u2014 Bun TypeScript orchestrator with Ink terminal UI, WebSocket agents on ws://localhost:9999, interactive zsh execution (~/.zshrc + ~/.hurleyus/GOALS|TASKS), session transcripts under ~/.hurleyus/agent-os/sessions/, and a Mission Control Phase 1 task seed (7 tasks). Dual path: orchestrator.ts WS/zsh vs core.ts Anthropic Messages API (SDK imported but missing from package.json). Tracked .env with ANTHROPIC_API_KEY. 2 commits. HEAD f66fffa. Not orclawstrator, not mission-control, not hurley-mission-control, not shagent.",
+    content: AGENT_OS_CONTENT,
+    coverImage: AGENT_OS_COVER,
+    tags: [
+      "agent-os",
+      "hurleyus",
+      "bun",
+      "ink",
+      "websocket",
+      "zsh",
+      "orchestrator",
+      "mission-control",
+      "openclaw",
+      "anthropic",
+      "terminal-ui",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T21:20:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:launchpad-nye2024-boilerplate-providers-unwired",
+    title: "launchpad: NYE 2024 Hustle Launch boilerplate \u2014 README stack, unwired providers",
+    slug: "launchpad-nye2024-boilerplate-providers-unwired",
+    excerpt:
+      "Public michaelmonetized/launchpad is the NYE 2024 Hustle Launch \"premier framework\": Next 15 + shadcn + Clerk/Convex/PostHog providers + Resend /api/send \u2014 while app/page.tsx is still Create Next App, providers never mount in layout, no convex/ folder, Stripe unused except Theo STRIPE.md, and launchpad.hustlelaunch.com is NXDOMAIN. 8 commits. HEAD 5447591.",
+    content: LAUNCHPAD_CONTENT,
+    coverImage: LAUNCHPAD_COVER,
+    tags: [
+      "launchpad",
+      "hustlelaunch",
+      "nextjs",
+      "boilerplate",
+      "clerk",
+      "convex",
+      "resend",
+      "posthog",
+      "stripe",
+      "shadcn",
+      "starter",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T21:10:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:simple-nextjs-firebase-auth-social-keep-decision",
+    title: "simple: Next.js 16 Firebase auth starter \u2014 social login, keep-Firebase decision",
+    slug: "simple-nextjs-firebase-auth-social-keep-decision",
+    excerpt:
+      "Public michaelmonetized/simple: Next 16 + React 19 Firebase Auth/Firestore starter \u2014 email+password, Twitter/Facebook/Google connect, AuthProvider, CRUD helpers, clamp spacing + Catppuccin tokens. Launch-week: CVE bumps, security headers, console strip, docs keep-Firebase vs Convex. HEAD da7e0b0 \u00b7 10 commits. Vercel homepage DEPLOYMENT_NOT_FOUND; create-next-app README; login page still named RegisterPage.",
+    content: SIMPLE_CONTENT,
+    coverImage: SIMPLE_COVER,
+    tags: [
+      "simple",
+      "nextjs",
+      "react",
+      "firebase",
+      "firestore",
+      "auth",
+      "social-login",
+      "typescript",
+      "tailwind",
+      "vercel",
+      "security-headers",
+      "convex",
+      "starter",
+      "boilerplate",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T21:00:00Z"),
+    readingTime: 1,
+  },
+
   {
     _id: "static:resend-listening-daemon-openclaw-poll-hooks-agent-caddy",
     title: "resendld: OpenClaw Resend inbound daemon \u2014 poll, hooks/agent, Caddy UI",
