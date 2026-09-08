@@ -3215,7 +3215,306 @@ I also wanted the honesty layer. Shipping AUTOPSY.md next to a polished README i
 Would you rather run scrollable tiling as **native Swift + Accessibility + skhd**, or stay on **PaperWM.spoon** and keep the Lua runtime — and what would make you trust a 0.1.0 WM with four commits and 112 tests?
 `;
 
+const CODEFOLIO_COVER =
+  "/blog/codefolio-spec-first-github-portfolio-saas/cover.png";
+
+const CODEFOLIO_CONTENT = `![Codefolio marketing hero — Public Beta + Get started free](/blog/codefolio-spec-first-github-portfolio-saas/screenshots/marketing-hero.png)
+
+## Who
+
+I wanted a **developer portfolio platform** — not another personal homepage. Multi-tenant. GitHub sync. Pin six projects on free. Custom domain on Pro. Analytics that tell you whether recruiters came from Twitter or a blog referral.
+
+Who this is for: operators who will read \`DESIGN.md\` and \`CONTRACTS.md\` before they trust a launch tweet, and people who have watched a SaaS invent “10K+ developers” before the Vercel project exists.
+
+If you have ever claimed a \`.dev\` domain in \`openGraph.url\` and then discovered the hostname already belongs to someone else's portfolio — stay in the room.
+
+## What
+
+I built **Codefolio** — package \`codefolio\` **0.1.0**, **private** under **michaelmonetized/codefolio**. Layout title: **Codefolio - Developer Portfolio Platform**. Description: **Showcase your code. Build your reputation. The modern portfolio platform for developers.**
+
+Stack from package.json: **Next.js 16.2.6**, **React 19.2.6**, Tailwind **4.3**, Bun, **Clerk** (\`@clerk/nextjs\` ^7.3.3), **Convex** ^1.38.0, \`stripe\` + \`@stripe/stripe-js\`, \`resend\`, \`posthog-js\`, \`@sentry/nextjs\`, radix-ui, next-themes (dark default). Three commits. HEAD \`c499a72\`.
+
+![Free / Pro $9 / Team $29 pricing grid](/blog/codefolio-spec-first-github-portfolio-saas/screenshots/pricing-tiers.png)
+
+Surfaces that exist in the tree:
+
+- Marketing: \`/\`, \`/features\`, \`/pricing\`, \`/about\`, \`/blog\`, \`/careers\`, \`/examples\`, \`/privacy\`, \`/terms\`, \`/login\`, \`/signup\`
+- Public portfolio: \`/:username\`, \`/:username/:project\`, \`/:username/resume\`
+- Dashboard (Clerk-protected via \`proxy.ts\`): \`/dashboard\`, \`/dashboard/projects\`, \`/dashboard/projects/[id]\`, \`/dashboard/analytics\`, \`/dashboard/settings\`
+
+Convex schema is five tables — \`profiles\`, \`projects\`, \`analytics\`, \`subscriptions\`, \`githubSyncs\`. GitHub sync action pulls \`api.github.com/users/{username}/repos?per_page=100&sort=updated&type=owner\` and upserts. Plan limits in \`lib/types.ts\`: Free 6 pins / 7-day analytics; Pro unlimited + custom domain + 90 days + case studies + remove branding; Team 5 members + 365-day analytics.
+
+Pricing cards match: **Free**, **Pro $9/mo**, **Team $29/mo**.
+
+What does **not** exist: \`app/api/**\` (no Stripe webhook route handlers), a \`/demo\` page (Hero still links there), a live deploy on the probed Vercel hostnames, or ownership of **codefolio.dev**.
+
+Docs are not an afterthought. \`DESIGN.md\` (~1083 lines), \`CONTRACTS.md\` (~466), \`COMPLIANCE.md\` (~1171 WCAG 2.1 AA), \`TECH-REQ.md\` (~429), plus Fallow \`REVIEW.md\` (~9.2k LOC, 6 unused deps including stripe/resend/posthog, dashboard pages marked critical complexity).
+
+Hero badge: **Now in Public Beta**. Social proof strip: **10K+ Developers / 50K+ Projects Showcased / 1M+ Portfolio Views**. Those numbers are marketing copy with no telemetry backing in the private tree.
+
+## Where
+
+Code: [github.com/michaelmonetized/codefolio](https://github.com/michaelmonetized/codefolio) — **private**. Live app URL: **none** at pack time (\`codefolio.vercel.app\` → 404).
+
+![Five Convex tables vs Stripe/Resend unused deps](/blog/codefolio-spec-first-github-portfolio-saas/screenshots/schema-five-tables.png)
+
+Layout \`openGraph.url\` and feature copy talk about **codefolio.dev**. Probe on 2026-09-08: \`https://www.codefolio.dev\` returns **HTTP 200** for **Abdel Ahzab, Full-Stack Engineer shipping Applied AI** — unrelated personal site on Cloudflare/Vercel. That is a **name collision**, not my deploy.
+
+![codefolio.dev claimed in OG vs live third-party portfolio](/blog/codefolio-spec-first-github-portfolio-saas/screenshots/domain-collision.png)
+
+Audience sits next to every “portfolio SaaS” that ships specs + dashboard chrome before billing webhooks and a domain you actually control.
+
+## When
+
+**2026-02-07** — \`531f712\` Create Next App. Bootstrap wrap-up in \`.work/\` claims Convex project \`codefolio\`, schema complete (5 tables / 16 indexes), CONTRACTS.md, shadcn button/card/input, build passes.
+
+**2026-06-22 ~5:44 PM ET** — \`01aa6cc\` **nightly**. The product and the essay-length docs land together: marketing, dashboard, public portfolio/resume, Fallow gate hooks, DESIGN/COMPLIANCE/TECH-REQ/REVIEW.
+
+**2026-06-22 ~6:19 PM ET** — \`c499a72\` **nightly** HEAD.
+
+GitHub \`created_at\` / \`pushed_at\` both sit on **2026-06-22** even though the first commit is February — private repo timing vs local history.
+
+![Three-commit arc Feb → June nightlies](/blog/codefolio-spec-first-github-portfolio-saas/screenshots/commit-arc.png)
+
+## Why
+
+Because a portfolio platform is a different product from a personal site, and I wanted the contracts written before the launch thread.
+
+Because Clerk + Convex + a real \`/:username\` surface is useful even when Stripe checkout is still schema fiction.
+
+Because claiming \`codefolio.dev\` in metadata while the hostname serves another engineer is the kind of fact you put in the brief **before** you buy ads.
+
+Because three commits can still carry nine thousand lines — and Fallow will still tell you stripe and resend never got imported.
+
+**Engagement Q:** When your OG URL names a \`.dev\` you do not control and your Hero invents 10K users — do you fix the domain story first, or the fake social proof?
+`;
+
+const STRIPE_CONVEX_COVER =
+  "/blog/stripe-convex-email-payments-theo-unpublished/cover.png";
+
+const STRIPE_CONVEX_CONTENT = `![stripe-convex API surface — Pay, Cart, Checkout, Has, Convex exports](/blog/stripe-convex-email-payments-theo-unpublished/screenshots/api-surface.png)
+
+## Who
+
+I wanted one payment module I could drop into getat.me, hustlelaunch, and every other Convex SaaS instead of rewriting Stripe checkout + webhooks per repo.
+
+Who it is for now: operators who bill by **email** before they finish auth binding; builders who want Convex \`sc_*\` tables and idempotent webhook logs without starting from Theo KV snippets; anyone who will check the registry before they trust a README badge.
+
+## What
+
+I built **stripe-convex** — public under **michaelmonetized/stripe-convex**, package **0.1.0**, MIT on paper. Peer deps: Convex ≥1, Stripe ≥14, React ≥18. Built with tsup + Bun. Exports: root types/components, \`stripe-convex/convex\`, \`stripe-convex/components\`.
+
+React surface: \`StripeConvexProvider\`, \`Pay\`, compound \`AddToCart\` (with \`CartItemPlan\`), \`Cart\`, \`Checkout\`, \`Has\`. Hooks: \`useStripeConvex\`, \`useCart\`, \`useCoupon\`, \`useCheckout\`, \`useHasAccess\`.
+
+![sc_* Convex schema tables](/blog/stripe-convex-email-payments-theo-unpublished/screenshots/schema-sc-tables.png)
+
+Convex schema spreads six tables: \`sc_customers\`, \`sc_payments\`, \`sc_subscriptions\`, \`sc_orders\`, \`sc_coupon_usage\`, \`sc_webhook_events\`. Customers are indexed by **email**. \`TRACKED_EVENTS\` lists **19** Stripe types — checkout.session.completed through charge.refunded.
+
+Theo lane (t3dotgg/stripe-recommendations): \`getOrCreateStripeCustomer\`, \`syncCustomerData\`, \`createPortalSession\`, brand/last4 on subscription payment method fields. Commit \`77812a0\` on 2026-02-06 is \`feat: implement Theo's Stripe recommendations\`. The compliance report file still opens with a summary table that marks several of those items Missing — stale header, live code.
+
+![Theo helpers vs stale report header](/blog/stripe-convex-email-payments-theo-unpublished/screenshots/theo-compliance.png)
+
+HEAD \`22e099e\` is PR **#13**: \`AddToCart\` gains \`isSubscription\` + \`planId\`; subscriptions default to direct checkout unless \`addToCart\` forces the cart path.
+
+![AddToCart subscription compound API](/blog/stripe-convex-email-payments-theo-unpublished/screenshots/addtocart-subscription.png)
+
+sitrep.md says **SHIPPED**. ROADMAP still has package publication unchecked. \`.github/workflows/publish.yml\` waits for a GitHub Release. Releases: **zero**. Public registry package stripe-convex: **404**. README still shows the version badge. LICENSE and README footer: **© Michael Shilman**. package.json author: Michael Hurley.
+
+PENDING_ISSUES.md parks twelve real notes: Pay clearCart/addToCart race, unused onSuccess, Has returns null while loading, email checks only for \`@\`, duplicated formatPrice, cart not persisted, \`as any\` in syncCustomerData, and more.
+
+## Where
+
+Code: [github.com/michaelmonetized/stripe-convex](https://github.com/michaelmonetized/stripe-convex) — **public**. No homepage / demo URL. Intended consumers named in ROADMAP: getat.me, hustlelaunch, other SaaS products. Revenue note in ROADMAP: **INDIRECT**.
+
+![Badge vs registry 404](/blog/stripe-convex-email-payments-theo-unpublished/screenshots/registry-gap.png)
+
+Local clone used for the pack: \`/home/michael/Projects/_site-map/stripe-convex\` on m1pro16. GitHub API shows **11** commits; that clone git log is squash-shaped to the single HEAD commit while the tree matches the library.
+
+## When
+
+**2026-02-04** — \`1a3d250\` Initial commit: stripe-convex payment package. Same day \`0f5b81c\` comprehensive docs.
+
+**2026-02-06** — \`c38c209\` full type system + Convex functions. \`f608a74\` roadmap + license year. \`77812a0\` Theo recommendations.
+
+**2026-02-11** — \`635c61c\` repo URLs + document all 19 webhook events.
+
+**2026-02-21** — PR **#8** \`cd172db\`: dep conflicts, processRefund index, replace \`v.any()\`.
+
+**2026-02-28** — PR **#11** CI/CD testing + publishing. Eight minutes later \`c1e4a39\`: remove GitHub Actions workflows — Vercel is our CI. \`publish.yml\` is still in the tree at HEAD.
+
+**2026-03-01** — PR **#12** prep for registry publish.
+
+**2026-03-20** — PR **#13** AddToCart subscription support → HEAD \`22e099e\`.
+
+**2026-06-22** — GitHub \`pushed_at\` 22:20:53Z with no newer main commit beyond HEAD.
+
+![Commit arc Feb to Mar 2026](/blog/stripe-convex-email-payments-theo-unpublished/screenshots/commit-arc.png)
+
+## Why
+
+Because every monetized Convex app was going to need the same Stripe spine, and copying webhook handlers is how you get drift.
+
+Because email-first customers match the products that take payment before they finish auth.
+
+Because Theo recommendations are a checklist I wanted encoded as exports, not a blog tab I reopen under pressure.
+
+Because the honest scar is the unpublished registry: badge, workflow, prep PR, sitrep SHIPPED — and a 404.
+
+**Engagement Q:** When sitrep says SHIPPED and the registry returns Not found — which status do you put in the blog title?
+`;
+
+const BUNDX_INIT_COVER =
+  "/blog/bundx-init-nextjs-unique-localhost-https-caddy/cover.png";
+
+const BUNDX_INIT_CONTENT = `![Install flow](/blog/bundx-init-nextjs-unique-localhost-https-caddy/screenshots/install-flow.png)
+
+## Who
+
+I run a lot of Next.js apps side by side. Shared \`http://localhost:3000\` fights Clerk cookies, callback URLs, and \`allowedDevOrigins\` the second a second app boots.
+
+For operators who need **stable HTTPS origins per repo** on a laptop — without hand-writing a Caddyfile every time.
+
+## What
+
+I built **bundx-init** — public \`https://github.com/michaelmonetized/bundx-init\`. Shell CLI. HEAD \`c8b59ad\`. **3** commits. 0 stars. No tagged release.
+
+\`bin/bundx-init\` is **379** lines. \`install.sh\` curls it into \`~/.local/bin\` (\`BUNDX_INIT_RAW_URL\` override). Target must be a Next project (\`package.json\` with \`next\`).
+
+What it does (README + script):
+
+- installs Caddy when possible (brew / apt Cloudsmith / dnf COPR / pacman)
+- configures \`~/.local/etc/Caddyfile\` to import \`~/.local/etc/caddy/dev-sites/*.caddy\`
+- writes a repo-scoped Caddy snippet
+- adds \`scripts/dev-localhost.mjs\` + \`dev-localhost-info.mjs\`
+- rewires \`package.json\` so \`dev\` runs the HTTPS flow (\`dev:raw\` keeps the old script; \`dev:info\` dumps JSON)
+- patches \`next.config.*\` with \`allowedDevOrigins: ["<host>", "*.localhost"]\` when it can
+
+Slug = basename lowercased. Host = \`<slug>.localhost\`. Port = \`3300 + (hash(slug) % 5000)\`. Fixture \`basic-next\` → port **6422**; README \`my-next-app\` → **6996**.
+
+![Hostname / port map](/blog/bundx-init-nextjs-unique-localhost-https-caddy/screenshots/hostname-port-map.png)
+
+Next still binds an internal high port. Caddy owns \`:443\` and reverse-proxies. Env: \`DEV_HOST\`, \`DEV_URL\`, \`PORT\`.
+
+![Architecture](/blog/bundx-init-nextjs-unique-localhost-https-caddy/screenshots/architecture.png)
+
+Fixture after init shows the patch contract: Next **16.2.1** / React **19.2.0**, \`dev\` → localhost script, \`allowedDevOrigins\` for \`basic-next.localhost\` + \`*.localhost\`.
+
+![Repo patches](/blog/bundx-init-nextjs-unique-localhost-https-caddy/screenshots/repo-patches.png)
+
+## Where
+
+Code: [github.com/michaelmonetized/bundx-init](https://github.com/michaelmonetized/bundx-init) — public. No live web app.
+
+\`\`\`bash
+curl -fsSL https://raw.githubusercontent.com/michaelmonetized/bundx-init/main/install.sh | bash
+bundx-init ~/Projects/my-next-app
+cd ~/Projects/my-next-app && bun install && bun run dev
+# → https://my-next-app.localhost
+\`\`\`
+
+## When
+
+**2026-03-30** — \`3d4b752\` Initialize bundx-init (589 insertions: CLI, install, README, fixture).  
+**2026-06-22** — \`f356360\` nightly adds \`.uncap/config.json\`.  
+**2026-06-22** — \`c8b59ad\` nightly empty tip (HEAD).
+
+![Commit arc](/blog/bundx-init-nextjs-unique-localhost-https-caddy/screenshots/commit-arc.png)
+
+## Why
+
+Because parallel Next apps on one port are a lie. Because Clerk and friends want real HTTPS origins in local. Because a hashed port + a Caddy snippet + \`allowedDevOrigins\` is the boring fix — and shipping it as a curl-install CLI beats copy-pasting the same five files forever.
+
+**Engagement Q:** How many Next apps do you run locally before \`localhost:3000\` starts lying to your auth provider?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:codefolio-spec-first-github-portfolio-saas",
+    title: "Codefolio: I shipped a GitHub-sync portfolio SaaS with 4k lines of specs \u2014 and claimed a domain that isn't mine",
+    slug: "codefolio-spec-first-github-portfolio-saas",
+    excerpt:
+      "michaelmonetized/codefolio is a private Next.js 16 + Clerk + Convex developer portfolio platform: /:username public pages, resume, dashboard analytics, Free/$9 Pro/$29 Team. Three commits. Marketing OG points at codefolio.dev \u2014 which currently serves someone else's portfolio.",
+    content: CODEFOLIO_CONTENT,
+    coverImage: CODEFOLIO_COVER,
+    tags: [
+      "codefolio",
+      "developer-portfolio",
+      "github-sync",
+      "nextjs",
+      "convex",
+      "clerk",
+      "stripe",
+      "saas",
+      "proxy-ts",
+      "resume",
+      "analytics",
+      "michaelmonetized",
+      "spec-first",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T06:10:00Z"),
+    readingTime: 3,
+  },
+
+  {
+    _id: "static:stripe-convex-email-payments-theo-unpublished",
+    title: "stripe-convex: I shipped a Theo-compliant Stripe+Convex library \u2014 and never published the package",
+    slug: "stripe-convex-email-payments-theo-unpublished",
+    excerpt:
+      "michaelmonetized/stripe-convex is a TypeScript Stripe + Convex payment library (email tracking, cart, coupons, Pay/AddToCart/Checkout/Has, 19 webhook events, Theo sync/portal helpers). package.json 0.1.0, release workflow ready, README version badge on \u2014 registry 404, zero releases, LICENSE still says Michael Shilman.",
+    content: STRIPE_CONVEX_CONTENT,
+    coverImage: STRIPE_CONVEX_COVER,
+    tags: [
+      "stripe-convex",
+      "stripe",
+      "convex",
+      "payments",
+      "subscriptions",
+      "cart",
+      "coupons",
+      "typescript",
+      "webhooks",
+      "theo",
+      "t3",
+      "saas",
+      "billing",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T06:00:00Z"),
+    readingTime: 3,
+  },
+
+  {
+    _id: "static:bundx-init-nextjs-unique-localhost-https-caddy",
+    title: "bundx-init: every Next.js repo gets https://<repo>.localhost via Caddy",
+    slug: "bundx-init-nextjs-unique-localhost-https-caddy",
+    excerpt:
+      "A 379-line bash CLI that installs Caddy, writes per-repo .localhost HTTPS snippets, patches package.json + next.config allowedDevOrigins, and routes bun run dev through a hashed high port. Built for Clerk-friendly multi-repo local work. 3 commits. HEAD c8b59ad.",
+    content: BUNDX_INIT_CONTENT,
+    coverImage: BUNDX_INIT_COVER,
+    tags: [
+      "bundx-init",
+      "nextjs",
+      "caddy",
+      "localhost",
+      "https",
+      "clerk",
+      "allowedDevOrigins",
+      "bash",
+      "cli",
+      "dev-tooling",
+      "local-dev",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T05:50:00Z"),
+    readingTime: 2,
+  },
+
   {
     _id: "static:itour-golf-tour-lander-ahead-of-deploy",
     title: "iTour.golf: I rewrote the national creator-tour lander for May 2027 \u2014 production still serves the 2026 fake season",
