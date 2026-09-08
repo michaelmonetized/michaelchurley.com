@@ -4256,7 +4256,210 @@ Because a lander that prices against OptinMonster still needs a resolvable produ
 **Engagement Q:** How many of your “$8/mo SaaS” repos are four marketing pages pointing at an NXDOMAIN \`app.\` subdomain?
 `;
 
+const HUSTLECRM_COVER =
+  "/blog/hustlecrm-com-eight-per-user-crm-lander-legacy-php-domain/cover.png";
+
+const HUSTLECRM_CONTENT = `![Home hero](/blog/hustlecrm-com-eight-per-user-crm-lander-legacy-php-domain/screenshots/home-hero.png)
+
+## Who
+
+I keep a private GitHub org full of product shells. Some are real apps. Some are landers that talk like apps. Some claim a domain that answers something else entirely.
+
+For operators who need the honest split between a **$8/user CRM marketing site** and the **legacy PHP Bootstrap login** currently living at hustlecrm.com.
+
+## What
+
+I built **hustlecrm-com** — private \`https://github.com/michaelmonetized/hustlecrm-com\`. Next.js marketing shell. HEAD \`2c50bbb\`. **3** commits. 0 stars. package name \`hustlecrm.com@0.1.0\`. README is **stock** create-next-app boilerplate.
+
+Stack facts from \`package.json\`: Next **16.2.6**, React **19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there — no Clerk, no Convex, no Stripe package, no CRM/database library.
+
+What the UI claims:
+
+- Hero: “CRM for People Who **Hate CRMs**.” Subhead close deals. Price line **Simple. Fast. $8/mo.**
+- CTAs: **Start Free Trial** → \`href="#"\`, **See Features** → \`/features\`. Header **Sign in** → \`href="#"\`.
+- Home **KanbanDemo**: Lead → Contacted → Proposal → Negotiation → Won — Sarah Chen / Emma Wilson / David Kim deal cards with drag-drop — chrome UI, not a product screenshot.
+- Feature grid: Contact & Company Management, Deal Pipeline (Kanban), Activity Timeline, Custom Fields, Import & Export, Integrations (HustleChat / HustleForms).
+- Competitor cards: HubSpot \`$45+/mo\`, Pipedrive \`$14+/mo\` vs HustleCRM **\`$8/mo\`** — **per user**, cancel anytime.
+- Pricing: **Free Trial** $0 / 14 days + **Pro** **$8 /user/month**; table adds Salesforce \`$25+/mo\`.
+- Brand blue: CSS \`--primary = #2563eb\` / \`--primary-dark = #1d4ed8\`.
+
+![Kanban demo](/blog/hustlecrm-com-eight-per-user-crm-lander-legacy-php-domain/screenshots/kanban-demo.png)
+
+![Pricing Pro $8/user](/blog/hustlecrm-com-eight-per-user-crm-lander-legacy-php-domain/screenshots/pricing-pro.png)
+
+![Competitor table](/blog/hustlecrm-com-eight-per-user-crm-lander-legacy-php-domain/screenshots/competitor-table.png)
+
+Real \`page.tsx\` routes: \`/\`, \`/features\`, \`/pricing\`, \`/docs\`.
+
+Linked but **dead in-repo**: **25** \`href="#"\` hits across header, footer, home, pricing, features, docs (Sign in, trial, Changelog, Privacy, Terms, every docs child, API docs, support). No \`/privacy\` or \`/terms\` pages. Docs shows REST endpoint cards (\`/api/v1/contacts\`, \`/api/v1/deals\`, …) with no backend.
+
+![Docs dead hash links](/blog/hustlecrm-com-eight-per-user-crm-lander-legacy-php-domain/screenshots/docs-dead-links.png)
+
+![Missing routes + PHP domain](/blog/hustlecrm-com-eight-per-user-crm-lander-legacy-php-domain/screenshots/missing-routes.png)
+
+This is **not** \`hustledesk-com\` — that sibling is the **helpdesk** $8 **flat** lander (sky \`#0ea5e9\`, Zendesk comparison, auth → \`app.*\` → WordPress parking). Different product claim. Different brand. Different domain failure mode.
+
+This is **not** \`hustlemail-com\` — that sibling is the **email-marketing** $8 lander (red \`#ef4444\`, Free/$8/$24).
+
+## Where
+
+Code: [github.com/michaelmonetized/hustlecrm-com](https://github.com/michaelmonetized/hustlecrm-com) — private.
+
+Live probes at pack time:
+
+- \`hustlecrm.com\` DNS A → **162.144.3.43**; HTTPS **200** Apache + \`PHPSESSID\`; title **Hustle CRM!**; Bootstrap **5.3** form \`POST scripts/login.php\` → **302** \`index.php?error=no\`; \`assets/cover.jpg\` Last-Modified **2023-04-17** — **not** this Next CRM lander
+- \`www.hustlecrm.com\` → same A / same PHP login
+- \`app.hustlecrm.com\` → **NXDOMAIN**
+- \`hustlecrm-com.vercel.app\` / \`hustlecrm.vercel.app\` → **404** \`DEPLOYMENT_NOT_FOUND\`
+
+Local inspect clone: \`/tmp/cf-inspect/hustlecrm-com\` @ \`2c50bbb\`.
+
+## When
+
+**2026-02-18 07:53 ET** — \`f4494f2\` feat: initial hustlecrm.com marketing site (+2566 / 23 files).  
+**2026-06-22 17:12 ET** — \`208c547\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).  
+**2026-06-22 18:11 ET** — \`2c50bbb\` nightly empty tip (HEAD).
+
+![Commit arc](/blog/hustlecrm-com-eight-per-user-crm-lander-legacy-php-domain/screenshots/commit-arc.png)
+
+## Why
+
+Because a HubSpot-price lander still needs an auth surface that is not \`href="#"\` while the public domain serves a 2023 PHP login. Because “$8 per user, all features included” on a four-page private repo is table copy, not a billed product. Because hustledesk-com already told the $8 lander story for **helpdesk + WordPress parking** — this pack is the **CRM** twin with **per-user** pricing and a **legacy PHP** domain.
+
+**Engagement Q:** How many of your SaaS domains currently serve a Bootstrap PHP login from 2023 while the Next marketing shell never shipped and every “Start Free Trial” button is a hash?
+`;
+
+const HUSTLEFORMS_COVER =
+  "/blog/hustleforms-com-eight-dollar-crm-form-lander-nxdomain/cover.png";
+
+const HUSTLEFORMS_CONTENT = `![Home hero](/blog/hustleforms-com-eight-dollar-crm-form-lander-nxdomain/screenshots/home-hero.png)
+
+## Who
+
+I keep a private GitHub org full of product shells. Some are real apps. Some are landers that talk like apps.
+
+For operators who need the honest split between a **$8/mo form-builder marketing site** and a claimed CRM/embed product that is not in this repo — and who should not mix this up with the popup, email, or helpdesk \`$8\` landers in the same org.
+
+## What
+
+I built **hustleforms-com** — private \`https://github.com/michaelmonetized/hustleforms-com\`. Next.js marketing shell. HEAD \`80c54f4\`. **3** commits. 0 stars. package name \`hustleforms.com@0.1.0\`. README is stock create-next-app.
+
+Stack facts from \`package.json\`: Next **16.2.6**, React **19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there — no Clerk, no Convex, no Stripe package, no form runtime SDK, no HubSpot/Salesforce client.
+
+What the UI claims:
+
+- Hero: “Forms that feed **your CRM**.” Badge: **Now with AI-powered form suggestions.** CTAs to \`/signup\` and \`/templates\`.
+- Strip: **No credit card required • Free plan available**.
+- Features: drag-and-drop builder, conditional logic, file uploads, embed anywhere, webhooks, **Direct CRM Sync** (HubSpot / Salesforce / Pipedrive).
+- Home competitor cards: Typeform \`$29+\`, Jotform \`$34+\`, Wufoo \`$19+\`, HustleForms **\`$8\`** “BEST VALUE”.
+- Pricing table: Unlimited forms / 10,000 submissions / CRM / remove branding at **$8/mo** vs Typeform \`$29\` / Jotform \`$34\`.
+- Pricing plans: **Free** (3 forms / 100 submissions), **Pro $8/mo**, **Business $24/mo** (SSO/SAML, API, custom domains). Annual FAQ: **20% off** → \`$6.40\` / \`$19.20\`.
+- FAQ text claims HubSpot/Salesforce/Pipedrive/Zoho + webhooks + 14-day trial — still no CRM or Stripe packages.
+- Brand: Tailwind \`brand.500 = #0ea5e9\`, \`accent.500 = #8b5cf6\` (same sky+violet tokens as hustleconvert-com).
+- Docs embed snippet: \`\` <script src="https://hustleforms.com/embed/YOUR_FORM_ID.js"></script> \`\`.
+
+![Pricing plans](/blog/hustleforms-com-eight-dollar-crm-form-lander-nxdomain/screenshots/pricing-plans.png)
+
+![Competitor table](/blog/hustleforms-com-eight-dollar-crm-form-lander-nxdomain/screenshots/competitor-table.png)
+
+Real \`page.tsx\` routes: \`/\`, \`/pricing\`, \`/templates\`, \`/docs\`.
+
+Linked but **missing**: \`/signup\`, \`/login\`, \`/contact\`, and footer \`#\` stubs (Integrations, Blog, Changelog, About, Privacy, Terms, API Reference). \`/docs\` is a single page of **hash-anchor** cards — not separate child routes — plus resource links that are literally \`href="#"\`. Auth is **not** externalized to \`app.hustleforms.com\` (that subdomain is also NXDOMAIN); it is simply a local route that was never added.
+
+![Docs hash anchors](/blog/hustleforms-com-eight-dollar-crm-form-lander-nxdomain/screenshots/docs-hash-anchors.png)
+
+![Missing routes](/blog/hustleforms-com-eight-dollar-crm-form-lander-nxdomain/screenshots/missing-routes.png)
+
+This is **not** \`hustleconvert-com\` (popups vs OptinMonster), **not** \`hustlemail-com\` (email), and **not** \`hustledesk-com\` (helpdesk). Same \`$8\` lander family. Different category.
+
+## Where
+
+Code: [github.com/michaelmonetized/hustleforms-com](https://github.com/michaelmonetized/hustleforms-com) — private.
+
+Live probes at pack time:
+
+- \`hustleforms-com.vercel.app\` / \`hustleforms.vercel.app\` → **404** \`DEPLOYMENT_NOT_FOUND\`
+- \`hustleforms.com\` → **NXDOMAIN** (no A/AAAA)
+- \`www.hustleforms.com\` / \`app.hustleforms.com\` / \`cdn.hustleforms.com\` → **NXDOMAIN**
+
+Local inspect clone: \`/tmp/cf-inspect/hustleforms-com\` @ \`80c54f4\`.
+
+## When
+
+**2026-02-18 07:53 ET** — \`a516ca1\` feat: initial hustleforms.com marketing site (+2486 / 24 files).  
+**2026-06-22 17:11 ET** — \`7b5aeb9\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).  
+**2026-06-22 18:10 ET** — \`80c54f4\` nightly empty tip (HEAD).
+
+![Commit arc](/blog/hustleforms-com-eight-dollar-crm-form-lander-nxdomain/screenshots/commit-arc.png)
+
+## Why
+
+Because a lander that prices against Typeform still needs a resolvable product surface before it is a product story. Because HubSpot/Salesforce strings in JSX and an embed script on an NXDOMAIN apex are not a shipped runtime. Because relative \`/signup\` with no \`page.tsx\` is a quieter failure mode than an \`app.\` subdomain — and still not a launch.
+
+**Engagement Q:** How many of your “forms that feed your CRM” repos are four marketing pages where Start Free points at a route that does not exist?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:hustlecrm-com-eight-per-user-crm-lander-legacy-php-domain",
+    title: "hustlecrm.com: $8/user CRM lander vs legacy PHP login domain",
+    slug: "hustlecrm-com-eight-per-user-crm-lander-legacy-php-domain",
+    excerpt:
+      "Private Next 16 marketing shell for HustleCRM \u2014 HubSpot/Pipedrive/Salesforce comparison, $8/user/mo Pro + 14-day free trial, interactive Kanban pipeline demo, docs/API cards with href=\"#\". Auth CTAs are dead anchors. Live hustlecrm.com is a Bootstrap+PHPSESSID login form posting to scripts/login.php (title \u201cHustle CRM!\u201d), not this Next lander. Stock create-next-app README. 3 commits. HEAD 2c50bbb. Not a live CRM product.",
+    content: HUSTLECRM_CONTENT,
+    coverImage: HUSTLECRM_COVER,
+    tags: [
+      "hustlecrm-com",
+      "hustlecrm",
+      "crm",
+      "pipeline",
+      "kanban",
+      "hubspot-alternative",
+      "salesforce-alternative",
+      "marketing-site",
+      "nextjs",
+      "tailwind",
+      "pricing",
+      "php",
+      "lander",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T08:20:00Z"),
+    readingTime: 3,
+  },
+
+  {
+    _id: "static:hustleforms-com-eight-dollar-crm-form-lander-nxdomain",
+    title: "hustleforms.com: $8/mo CRM form lander, Typeform table, NXDOMAIN",
+    slug: "hustleforms-com-eight-dollar-crm-form-lander-nxdomain",
+    excerpt:
+      "Private Next 16 marketing shell for HustleForms \u2014 Free / $8 Pro / $24 Business, Typeform/Jotform/Wufoo comparison, FormBuilderPreview mock, templates gallery, docs hash-anchor index. CTAs to local /signup|/login|/contact (no pages). Claimed domain NXDOMAIN; vercel.app DEPLOYMENT_NOT_FOUND. Stock create-next-app README. 3 commits. HEAD 80c54f4. Not a live form product.",
+    content: HUSTLEFORMS_CONTENT,
+    coverImage: HUSTLEFORMS_COVER,
+    tags: [
+      "hustleforms-com",
+      "hustleforms",
+      "forms",
+      "form-builder",
+      "crm",
+      "typeform",
+      "jotform",
+      "wufoo",
+      "marketing-site",
+      "nextjs",
+      "tailwind",
+      "pricing",
+      "lander",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T08:10:00Z"),
+    readingTime: 3,
+  },
+
   {
     _id: "static:ipro-golf-agency-lander-ecosystem-hub",
     title: "iPro.golf: the golf course & resort marketing agency lander \u2014 not iLeague, not iTour",
