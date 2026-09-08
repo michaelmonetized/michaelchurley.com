@@ -3427,7 +3427,170 @@ Because parallel Next apps on one port are a lie. Because Clerk and friends want
 **Engagement Q:** How many Next apps do you run locally before \`localhost:3000\` starts lying to your auth provider?
 `;
 
+const ORCLAWSTRATOR_COVER =
+  "/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/cover.png";
+
+const ORCLAWSTRATOR_CONTENT = `![Orclawstrator TUI dashboard — projects, agents, branches, stacks](/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/screenshots/tui-dashboard.png)
+
+## Who
+
+I wanted one keyboard surface for every AI coding agent I had running across \`~/Projects\` — not another Slack, not another browser tab of Vercel logs.
+
+Who this is for: operators with an OpenClaw Gateway on localhost who need sessions, tokens, and dirty git state in one place. Builders who will open both \`swift-appkit/\` and \`tui/\` and ask which runtime is the product. Readers who already know I have three differently named “mission / command center” repos and need the OpenClaw-specific one named aloud.
+
+If you have ever shipped a native Mac prototype in a weekend, then quietly made the terminal the recommended install path four months later — you are in the room.
+
+## What
+
+I built **Orclawstrator** — public **michaelmonetized/orclawstrator**, bundle **0.1.0**, **8** commits, HEAD \`01d9a20\`. README one-liner: *Command center for orchestrating AI coding agents across your entire project portfolio.* Lobster branding. “Built with 🦞 by the OpenClaw ecosystem.” GitHub description field: empty.
+
+![Dual runtime — swift-appkit archived, tui recommended, shared cache.db](/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/screenshots/dual-runtime.png)
+
+**Two UIs. One SQLite file.**
+
+1. **Swift AppKit** (path \`swift-appkit/\`, README: archived) — macOS 14+, Swift 5.9, Catppuccin chromeless window, dashboard table (agent, branches, stacks, untracked/staged, Vercel build), sidebar chat + inbox, project detail with **SwiftTerm** embedding nvim for README/PLAN/ROADMAP/CHANGELOG tabs, PR stack popover, branch checkout popup, Cmd+K quick switcher, menu-bar \`NSStatusItem\`, ErrorBanner. Services: \`ShellExecutor\`, \`GitService\`, \`GitHubService\` (\`gh … --json\`), \`GraphiteService\` (\`gt log short --stack\`), \`VercelService\` (\`vercel ls --yes\`), \`OpenClawService\` (REST + \`ws://host:port/ws\`), \`ProjectScanner\`, \`DatabaseManager\`.
+
+2. **Go TUI** (path \`tui/\`, README: recommended) — Go **1.21**, Charm **Bubble Tea** / Bubbles / Lipgloss, \`go-sqlite3\`, vim j/k/h/l, Nerd Font icons, dashboard + project detail + inbox views, \`make run\` / \`make install\` → binary \`orclawstrator\`. Module path still \`github.com/michaelcolletti/orclawstrator\`. Committed binary ~8.3MB in tree.
+
+Shared schema at \`~/.orclawstrator/cache.db\`: \`projects\`, \`sessions\`, \`messages\`, \`settings\`, \`recent_chats\`. Gateway host/port from settings (defaults **localhost:3377**).
+
+![OpenClaw Gateway REST + WebSocket session/token path](/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/screenshots/openclaw-gateway.png)
+
+Tree irony: Swift is still ~210KB of source vs ~39KB Go — linguist says Swift; README says use the TUI. \`sitrep.md\` last updated 2026-02-09 still calls the AppKit stack Active Development ~85%. \`AUTOPSY.md\` calls the Feb patient RESUSCITATED / ship-worthy. PLAN.md still has open Phase 4–6 checkboxes that the Feb code partially answered.
+
+**Not** \`michaelmonetized/mission-control\` (p10k-style \`mc\` TUI, \`~/.hustlemc/\`, Phase 2 Fly/Claude SaaS scaffold). **Not** \`HurleyUS/hurley-mission-control\` (Clerk + Convex \`users.kind\` human|agent deliveries web).
+
+## Where
+
+Code: [github.com/michaelmonetized/orclawstrator](https://github.com/michaelmonetized/orclawstrator) — **public**, branch **main**. No dedicated homepage / Vercel lander.
+
+![AppKit chromeless Catppuccin dashboard (archived path)](/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/screenshots/appkit-dashboard.png)
+
+Local surfaces: \`cd tui && make run\` · \`cd swift-appkit && swift build\` · cache \`~/.orclawstrator/cache.db\` · Gateway \`http://localhost:3377\` + \`ws://…/ws\`. Optional CLIs: \`gh\`, \`gt\`, \`vercel\`, Nerd Font.
+
+Audience sits next to every multi-repo agent fleet that outgrew a single IDE chat panel — and next to my other two Mission Control names so the OpenClaw gateway story does not get stolen by the p10k TUI or the Convex comms plane.
+
+## When
+
+**2026-02-06** — Initial README + PLAN mockup. Same afternoon: AppKit prototype with dashboard + git. Same evening: MVP split view sidebar + dashboard.
+
+**2026-02-08** — Core services wired, project detail, SQLite persistence. Later: chromeless semi-transparent window, full-width status bars.
+
+**2026-02-09** — SwiftTerm for proper nvim terminal emulation in markdown tabs. AUTOPSY / inbox / shortcuts / PR stack / menu bar wave lands in the patient chart.
+
+**2026-06-22** — \`nightly\`: move AppKit under \`swift-appkit/\`, add complete Go TUI + committed binary, flip README to TUI-recommended. Second \`nightly\` becomes HEAD \`01d9a20\` (18:15 ET). GitHub \`pushed_at\` 2026-06-22T22:15:42Z.
+
+![Commit arc Feb sprint → Jun dual-runtime nightly](/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/screenshots/commit-arc.png)
+
+Eight commits. No post-June product commits in the log.
+
+## Why
+
+Because OpenClaw needed a portfolio command surface that spoke Gateway sessions and tokens — not just git dirty counts.
+
+Because I could prove the AppKit path in four days (SwiftTerm nvim tabs included) and still decide the install story operators would actually run was \`make install\` in a terminal.
+
+Because sharing \`~/.orclawstrator/cache.db\` across runtimes is the real monorepo bet; renaming folders under a \`nightly\` commit is how the bet got honest.
+
+Because saying “mission control” three times in my GitHub org without naming which one talks to \`ws://localhost:3377/ws\` is how readers get the wrong pack.
+
+**Engagement Q:** When README recommends the Go TUI but linguist still reports Swift — which runtime owns the product title?
+`;
+
+const HUSTLEPAY_COVER =
+  "/blog/hustlepay-guest-claim-tokens-auth-agnostic-stripe/cover.png";
+
+const HUSTLEPAY_CONTENT = `![Guest claim flow](/blog/hustlepay-guest-claim-tokens-auth-agnostic-stripe/screenshots/guest-claim-flow.png)
+
+## Who
+
+I needed auth-agnostic Stripe+Convex glue so a guest can buy first and claim after signup — without marrying Clerk into the schema.
+
+## What
+
+Private **michaelmonetized/hustlepay** · hustlepay@0.0.0 · @hustlepay/core@0.0.1 · HEAD \`d2877fb\` · 1 commit nightly (+6957). Seven hp_* tables including hp_guest_sessions (gs_ + claim_ tokens). UI in core: Pay, Cart, Checkout, Has, ClaimAccount. @hustlepay/react still exports VERSION only; other adapters are stubs. Theo stripe-recommendations cited in stripe.ts.
+
+![Schema tables](/blog/hustlepay-guest-claim-tokens-auth-agnostic-stripe/screenshots/schema-tables.png)
+
+![Pay + ClaimAccount in core](/blog/hustlepay-guest-claim-tokens-auth-agnostic-stripe/screenshots/pay-claim-components.png)
+
+## Where
+
+github.com/michaelmonetized/hustlepay (private). No demo host for this tree. hustlepay.com → /lander. hustlepay.vercel.app = unrelated Nigeria micro-pension app. Sibling stripe-convex = email-tracking lineage; publish-stack names hustlepay for guest claim / Pay(199).
+
+![Core vs adapters](/blog/hustlepay-guest-claim-tokens-auth-agnostic-stripe/screenshots/core-vs-adapters.png)
+
+## When
+
+2026-06-22 repo created; sole commit d2877fb nightly same day. No follow-ups.
+
+![Domain irony](/blog/hustlepay-guest-claim-tokens-auth-agnostic-stripe/screenshots/domain-deploy-irony.png)
+
+## Why
+
+Guest rows without a claim bridge orphan purchases at signup. Auth-agnostic means userId is your Convex auth string. Core shipped the spine; the adapter billboard did not.
+
+**Engagement Q:** When @hustlepay/react only exports VERSION, do you import Pay from @core — or wait for the TODOs?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:orclawstrator-swift-appkit-to-go-tui-openclaw-gateway",
+    title: "orclawstrator: I built the OpenClaw command center in Swift, then archived it for a Go TUI",
+    slug: "orclawstrator-swift-appkit-to-go-tui-openclaw-gateway",
+    excerpt:
+      "Orclawstrator is the dual-runtime OpenClaw agent command center: Feb 2026 Swift AppKit + SQLite + Gateway WS on :3377, then a Jun nightly that archived AppKit under swift-appkit/ and made the Bubble Tea TUI the recommended surface \u2014 same ~/.orclawstrator/cache.db. Not mission-control. Not hurley-mission-control. 8 commits. HEAD 01d9a20.",
+    content: ORCLAWSTRATOR_CONTENT,
+    coverImage: ORCLAWSTRATOR_COVER,
+    tags: [
+      "orclawstrator",
+      "openclaw",
+      "swift",
+      "appkit",
+      "go",
+      "bubbletea",
+      "tui",
+      "sqlite",
+      "graphite",
+      "vercel",
+      "github-cli",
+      "macos",
+      "agent-orchestration",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T06:30:00Z"),
+    readingTime: 4,
+  },
+
+  {
+    _id: "static:hustlepay-guest-claim-tokens-auth-agnostic-stripe",
+    title: "HustlePay: guest claim tokens before the framework adapters stopped being TODOs",
+    slug: "hustlepay-guest-claim-tokens-auth-agnostic-stripe",
+    excerpt:
+      "Private michaelmonetized/hustlepay is auth-agnostic Stripe + Convex payments glue. One nightly commit shipped hp_guest_sessions claim tokens, Pay/ClaimAccount in @core, and seven hp_* tables \u2014 while @hustlepay/react still exports VERSION only.",
+    content: HUSTLEPAY_CONTENT,
+    coverImage: HUSTLEPAY_COVER,
+    tags: [
+      "hustlepay",
+      "stripe",
+      "convex",
+      "guest-checkout",
+      "claim-tokens",
+      "auth-agnostic",
+      "payments",
+      "turbo",
+      "bun",
+      "michaelmonetized",
+      "theo-stripe-recommendations",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T06:20:00Z"),
+    readingTime: 1,
+  },
+
   {
     _id: "static:codefolio-spec-first-github-portfolio-saas",
     title: "Codefolio: I shipped a GitHub-sync portfolio SaaS with 4k lines of specs \u2014 and claimed a domain that isn't mine",
