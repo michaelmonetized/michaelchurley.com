@@ -5375,7 +5375,89 @@ Port roulette does not scale past three apps. A marker-bounded hosts block + one
 **Engagement Q:** Do you want a TUI that owns \`/etc/hosts\` + Caddy :80 — or a one-shot installer that patches each Next repo for HTTPS \`.localhost\`?
 `;
 
+const RESEND_LISTENING_DAEMON_COVER =
+  "/blog/resend-listening-daemon-openclaw-poll-hooks-agent-caddy/cover.png";
+
+const RESEND_LISTENING_DAEMON_CONTENT = `## Who
+
+I needed inbound Resend mail to wake an OpenClaw agent on my machines — not another SaaS inbox, not a marketing lander.
+
+For operators wiring Resend receiving boxes into a local agent gateway with a readable UI.
+
+## What
+
+I built **resendld** — public https://github.com/michaelmonetized/resend-listening-daemon. HEAD \`4fbec17\`. **46** commits. Version **0.0.0-rc.0**.
+
+![Architecture](/blog/resend-listening-daemon-openclaw-poll-hooks-agent-caddy/screenshots/architecture-stack.png)
+
+\`src/daemon/listen.ts\` polls \`https://api.resend.com/emails/receiving\` every **5 seconds** with pure \`fetch()\` (no Resend CLI). List has no body — each new id hits \`/emails/receiving/{id}\`, strips HTML if text empty, writes markdown under \`~/.openclaw/workspace/mail/\`, mirrors to Convex, then \`POST\`s OpenClaw \`https://localhost:18789/hooks/agent\` (TLS self-signed allowed). 404/401 → \`openclaw cron add --system-event\` fallback.
+
+![Hooks dispatch](/blog/resend-listening-daemon-openclaw-poll-hooks-agent-caddy/screenshots/hooks-dispatch.png)
+
+Web: TanStack Start **1.82.1** + Convex inbox/detail/boxes/reply at **https://resendld.localhost** behind Caddy. \`install.sh\` (640 LOC) targets macOS launchd + Arch systemd.
+
+Afternoon of Mar 23 is mostly PATH hell against \`resend-cli\` across machines — try API, revert to CLI, then land pure fetch at \`28041eac\`. Tip #9 resolves \`openclaw\` cross-platform; ack path in \`gateway.ts\` still hardcodes \`/Users/michael/.bun/bin/openclaw\`.
+
+![Web inbox](/blog/resend-listening-daemon-openclaw-poll-hooks-agent-caddy/screenshots/web-inbox.png)
+
+## Where
+
+Code: [github.com/michaelmonetized/resend-listening-daemon](https://github.com/michaelmonetized/resend-listening-daemon) — public. No public deploy.
+
+\`\`\`bash
+cd ~/Projects/resend-listening-daemon
+bash install.sh          # or --dry-run / --force / --uninstall
+# edit ~/.config/resendld/boxes.json
+resendld start           # daemon + Convex + web :3000 + Caddy
+# → https://resendld.localhost
+\`\`\`
+
+## When
+
+**2026-03-23** — Phase 0 → Telegram/Convex → ~20 PATH/CLI commits → \`/hooks/agent\` → pure fetch \`28041eac\`. **2026-03-24** — install/docs macOS+Arch (#3). **2026-03-25** — HTML body fallback + web startup. **2026-03-26** — TanStack Start pin to 1.82.1 (#8). **2026-03-27** — openclaw path (#9) → HEAD \`4fbec17\`. Queue pushed_at 2026-03-27T23:11:34Z.
+
+![Commit arc](/blog/resend-listening-daemon-openclaw-poll-hooks-agent-caddy/screenshots/commit-arc.png)
+
+## Why
+
+An agent that cannot receive email instructions is half-deaf. Poll Resend yourself, store locally, wake the gateway — do not wait on a webhook you do not control.
+
+**Engagement Q:** Keep the 5s poll + seen-ids file, or move the tip to Resend webhooks into the same \`/hooks/agent\` path?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:resend-listening-daemon-openclaw-poll-hooks-agent-caddy",
+    title: "resendld: OpenClaw Resend inbound daemon \u2014 poll, hooks/agent, Caddy UI",
+    slug: "resend-listening-daemon-openclaw-poll-hooks-agent-caddy",
+    excerpt:
+      "Public michaelmonetized/resend-listening-daemon (resendld): Bun daemon polls Resend /emails/receiving every 5s via pure fetch, stores markdown under ~/.openclaw/workspace/mail/, dispatches to OpenClaw /hooks/agent (cron fallback), Convex + TanStack Start web at https://resendld.localhost via Caddy. install.sh macOS+Arch. Afternoon of resend-cli PATH hell before zero-CLI. 0.0.0-rc.0. 46 commits. HEAD 4fbec17. Not hustlemail lander, not codemail.",
+    content: RESEND_LISTENING_DAEMON_CONTENT,
+    coverImage: RESEND_LISTENING_DAEMON_COVER,
+    tags: [
+      "resend-listening-daemon",
+      "resendld",
+      "resend",
+      "openclaw",
+      "daemon",
+      "email",
+      "bun",
+      "typescript",
+      "convex",
+      "tanstack-start",
+      "caddy",
+      "hooks",
+      "telegram",
+      "macos",
+      "arch-linux",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T11:00:00Z"),
+    readingTime: 2,
+  },
+
   {
     _id: "static:connectedin-mv3-linkedin-auto-connect-chrome-extension",
     title: "ConnectedIn: MV3 LinkedIn auto-connect Chrome extension",
