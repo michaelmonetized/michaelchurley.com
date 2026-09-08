@@ -149,39 +149,39 @@ What would you put in the first \`.oma\` file if you sat down on a fresh Omarchy
 const NAARCHY_04_COVER =
   "/blog/naarchy-0-4-preferences-privacy/cover.png";
 
-const NAARCHY_04_CONTENT = `After the [Sep 3 island post](https://www.michaelchurley.com/blog/naarchy-linux-dynamic-island), I hardened Naarchy locally to **0.4.0** — native Preferences, \`naarchy doctor\`, atomic stores, travel opt-in, IPC cleanup. Validated on three machines. **Not pushed / not tagged yet.** GitHub tip remains **v0.3.3**.
+const NAARCHY_04_CONTENT = `After the [Sep 3 island post](https://www.michaelchurley.com/blog/naarchy-linux-dynamic-island), I hardened Naarchy locally to **0.4.0**: native Preferences, \`naarchy doctor\`, atomic stores, travel opt-in, IPC cleanup. Validated on three machines. **Not pushed / not tagged yet.** GitHub tip remains **v0.3.3**.
 
-![Naarchy 0.4 Home — Focus Timer and Now Playing, gear for Preferences](/blog/naarchy-0-4-preferences-privacy/screenshots/home.png)
+![Naarchy 0.4 Home: Focus Timer and Now Playing, gear for Preferences](/blog/naarchy-0-4-preferences-privacy/screenshots/home.png)
 
 ## Who
 
-This one is for people already living in the island — Omarchy / Hyprland operators who installed Naarchy after the Sep 3 post and started trusting it with clipboard history, file drops, and calendar feeds.
+This one is for people already living in the island: Omarchy / Hyprland operators who installed Naarchy after the Sep 3 post and started trusting it with clipboard history, file drops, and calendar feeds.
 
-If you care whether state files are written atomically, whether the socket is mode 0600, whether travel estimates ask before they phone Nominatim, and whether \`doctor\` can tell you the session is sane without opening a GUI — you are the audience.
+If you care whether state files are written atomically, whether the socket is mode 0600, whether travel estimates ask before they phone Nominatim, and whether \`doctor\` can tell you the session is sane without opening a GUI, you are the audience.
 
-Builders who ship local-first GTK tools. Multi-machine QA types who refuse to call a release “done” until it runs on more than the laptop that authored it.
+Builders who ship local-first GTK tools. Multi-machine QA types who refuse to call a release done until it runs on more than the laptop that authored it.
 
-Not for anyone still deciding whether Linux needs a notch overlay. That story is already live. This post assumes you know what Naarchy is.
+The origin story is already live. This post assumes you know what Naarchy is.
 
 ## What
 
 Local tip is **0.4.0**. GitHub tip is still **v0.3.3**. Say that out loud before anything else.
 
-0.4 is the overhaul I validated on September 5 and have been running since — Preferences window, reduced motion, \`naarchy --version\`, read-only \`naarchy doctor\`, stricter CLI rejection, atomic clipboard/Inbox/Home state, feature-gated services, travel estimates behind an explicit opt-in, IPC/CLI cleanup, CI that drafts releases with checksums. Roughly fifty-one files, +4937/−4096 against \`origin/main\` @ \`ef9cf87\`. Uncommitted. Unpushed. No \`v0.4.0\` tag.
+0.4 is the overhaul I validated on September 5 and have been running since: Preferences window, reduced motion, \`naarchy --version\`, read-only \`naarchy doctor\`, stricter CLI rejection, atomic clipboard/Inbox/Home state, feature-gated services, travel estimates behind an explicit opt-in, IPC/CLI cleanup, CI that drafts releases with checksums. Roughly fifty-one files, +4937/−4096 against \`origin/main\` @ \`ef9cf87\`. Uncommitted. Unpushed. No \`v0.4.0\` tag.
 
-![Clipboard 0.4 — newest-first history, pin, Clear history, gear for Preferences](/blog/naarchy-0-4-preferences-privacy/screenshots/clipboard.png)
+![Clipboard 0.4: newest-first history, pin, Clear history, gear for Preferences](/blog/naarchy-0-4-preferences-privacy/screenshots/clipboard.png)
 
 Concrete deltas that matter day-to-day:
 
 - **Native Preferences.** Gear opens a bounded floating window for appearance, motion, behavior, and feature controls. Advanced bits stay in \`~/.config/naarchy/config.toml\`. Appearance reloads live; feature flags and calendar feeds still want a restart.
-- **\`naarchy doctor\`.** Read-only desktop check — Wayland, Hyprland, session bus, daemon, config, timer sound, volume/brightness HUD detection. On this box it prints nine OKs and points at the config path.
-- **IPC honesty.** Second process talks JSON over \`$XDG_RUNTIME_DIR/naarchy.sock\` (mode 0600), waits for a bounded ack that the command entered the queue — not that the UI finished. Single-instance lock. Malformed durations exit 2.
-- **Privacy pass.** No telemetry (unchanged). Clipboard + shelf stay owner-only on disk; history is still **not encrypted** while capture is on — disabling Clipboard stops the watcher. Travel estimates (Nominatim / IPinfo|ipapi / OSRM) require opt-in. Clear Inbox does not delete originals. Duplicate drops rejected. Corrupt JSON gets a backup instead of a silent wipe.
+- **\`naarchy doctor\`.** Read-only desktop check: Wayland, Hyprland, session bus, daemon, config, timer sound, volume/brightness HUD detection. On this box it prints nine OKs and points at the config path.
+- **IPC honesty.** Second process talks JSON over \`$XDG_RUNTIME_DIR/naarchy.sock\` (mode 0600), waits for a bounded ack that the command entered the queue, not that the UI finished. Single-instance lock. Malformed durations exit 2.
+- **Privacy pass.** No telemetry (unchanged). Clipboard + shelf stay owner-only on disk; history is still **not encrypted** while capture is on (disabling Clipboard stops the watcher). Travel estimates (Nominatim / IPinfo|ipapi / OSRM) require opt-in. Clear Inbox does not delete originals. Duplicate drops rejected. Corrupt JSON gets a backup instead of a silent wipe.
 - **Atomic stores.** Clipboard, Inbox, and Home preferences write privately and atomically. Failed write keeps previous state.
-- **Perf sample (directional, 8s):** collapsed CPU 0.125% → below sample; expanded 0.625% → 0.375%; RSS roughly flat (~82→84 MiB collapsed, ~102→101 MiB expanded) vs installed 0.3.3.
+- **Perf sample (directional, 8s):** collapsed CPU 0.125% then below sample; expanded 0.625% then 0.375%; RSS roughly flat (~82 to 84 MiB collapsed, ~102 to 101 MiB expanded) vs installed 0.3.3.
 - **86 Rust tests.** fmt, Clippy \`-D warnings\`, debug + opt builds, smoke. Fixed a GTK 4.22.4 crash disposing a never-realized hidden window during monitor hotplug / prefs rebuild.
 
-Battery widget is already gone as of 0.3.3 — bar shows %, \`hud battery\` remains. 0.4 does not bring it back.
+Battery widget is already gone as of 0.3.3 (bar shows %, \`hud battery\` remains). 0.4 does not bring it back.
 
 ![Inbox 0.4](/blog/naarchy-0-4-preferences-privacy/screenshots/inbox.png)
 
@@ -217,19 +217,20 @@ OK    Brightness HUD detection
 
 **2026-09-05 (local).** 0.4.0 overhaul + \`docs/VALIDATION.md\`. Native prefs, doctor, atomic state, travel opt-in, IPC/CLI refactor. Desktop checks: calendar nav, 48h timer, prefs rebuild, 3× monitor hotplug, fullscreen hide/restore, notification queue. Three-machine QA: m1pro16, hpeliteclient, intelpro.
 
-**2026-09-08.** Still running 0.4.0 locally. Still dirty vs \`origin/main\`. Still no public release. This EXTEND draft is the trail for when that push lands — or for saying “RC on my boxes” if the story publishes first.
+**2026-09-08.** Still running 0.4.0 locally. Still dirty vs \`origin/main\`. Still no public release. This EXTEND draft is the trail for when that push lands, or for saying "RC on my boxes" if the story publishes first.
 
 ## Why
 
 The Sep 3 post proved the island. 0.4 is about trusting it with operator data.
 
-I did not want Preferences buried in a TOML file only. I did not want a second process that could hang forever waiting for UI. I did not want travel estimates quietly enriching a calendar event. I did not want a crash when a hidden GTK window got disposed during hotplug. I wanted \`doctor\` to answer “is this session actually wired?” without expanding the panel.
+Preferences belong in a window, not only in TOML. A second process should not hang forever waiting for UI. Travel estimates should not quietly enrich a calendar event. A hidden GTK window should not crash on hotplug dispose. \`doctor\` should answer "is this session actually wired?" without expanding the panel.
 
 So I hardened the stores, gated the network, measured CPU against 0.3.3, ran eighty-six tests, and installed the same binary on three machines before calling the overhaul validated. Release gates that remain: push, remote GHA with Rust 1.92 pin, sustained everyday use, physical multi-monitor on the targets that matter.
 
-0.4.0 is real on my desktops. It is not on GitHub until I push it. That gap is the whole reason this post exists as an EXTEND, not a rewrite.
+0.4.0 is real on my desktops. It is not on GitHub until I push it. That gap is why this post exists as an EXTEND, not a rewrite.
 
-If your island already sits in the camera hole — what should \`naarchy doctor\` check next that it does not check today?`;
+**Engagement Q:** If your island already sits in the camera notch, what should \`naarchy doctor\` check next that it does not check today?
+`;
 
 const GETAT_COVER =
   "/blog/getat-me-relationship-first-link-in-bio/cover.png";
@@ -388,7 +389,7 @@ The truth table is for people who bought the Mac for the metal and stayed for th
 const SLOPOPS_COVER =
   "/blog/slopops-omarchy-ops-bar-panel/cover.png";
 
-const SLOPOPS_CONTENT = `![slopops hero — fleet tab in the ops popup beside the one-icon five-tabs card](screenshots/app.png)
+const SLOPOPS_CONTENT = `![slopops hero: fleet tab in the ops popup beside the one-icon five-tabs card](/blog/slopops-omarchy-ops-bar-panel/screenshots/app.png)
 
 ## Who
 
@@ -398,7 +399,7 @@ That used to mean five browser tabs I leave open like a superstition. Refresh. S
 
 slopops is for the Omarchy operator who already lives in the bar and refuses another Electron tray for the same five APIs. Solo builders. MarTech people who ship on Vercel and still SSH into boxes. Anyone who already typed \`gh auth login\` once and does not want a sixth personal access token living in a random JSON file under \`~/Library\`.
 
-If your morning starts with “is the fleet up, did prod deploy, what is screaming in Sentry” — that is the room.
+If your morning starts with "is the fleet up, did prod deploy, what is screaming in Sentry," this is the glance surface.
 
 ## What
 
@@ -406,65 +407,67 @@ I built an Omarchy **bar-widget**. QML. Quickshell. Id \`slopops\`. Display name
 
 One icon. Nerd Font server glyph. Tiny badge dot in the corner.
 
-![Fleet tab — peers, online count, ts / 22 / 5900 / t3 status lights](screenshots/fleet.png)
+![Fleet tab: peers, online count, ts / 22 / 5900 / t3 status lights](/blog/slopops-omarchy-ops-bar-panel/screenshots/fleet.png)
 
 Five tabs in a 620×450 popup:
 
-**Fleet** — every device on the tailnet. Online count. TCP probes for whatever ports you configure (default \`22,5900\`). Optional \`t3Port\` (default 3773) lights green when t3 serve is reachable on that peer’s tailnet IP.
+**Fleet**: every device on the tailnet. Online count. TCP probes for whatever ports you configure (default \`22,5900\`). Optional \`t3Port\` (default 3773) lights green when t3 serve is reachable on that peer's tailnet IP.
 
-**Deploys** — Vercel projects sorted by most recent production deploy. Anything with an ERROR since the last good deploy gets pinned to the top in pink. You see the fire before you open the dashboard.
+**Deploys**: Vercel projects sorted by most recent production deploy. Anything with an ERROR since the last good deploy gets pinned to the top in pink. You see the fire before you open the dashboard.
 
-![Deploys tab — failing projects pinned above READY rows](screenshots/deploys.png)
+![Deploys tab: failing projects pinned above READY rows](/blog/slopops-omarchy-ops-bar-panel/screenshots/deploys.png)
 
-**Sentry** — unresolved issues, last 24 hours, grouped by project, loudest first. A \`+ issue\` button runs \`promote.sh\`: open a GitHub issue in \`issueRepo\` with event count, level, culprit, and the Sentry URL, then \`notify-send\`.
+**Sentry**: unresolved issues, last 24 hours, grouped by project, loudest first. A \`+ issue\` button runs \`promote.sh\`: open a GitHub issue in \`issueRepo\` with event count, level, culprit, and the Sentry URL, then \`notify-send\`.
 
-**Traffic** — PostHog all-time event total, a 30-day daily series, per-project totals down the side.
+**Traffic**: PostHog all-time event total, a 30-day daily series, per-project totals down the side.
 
-**Issues** — \`gh search\` for open issues and PRs for you (or a configured \`ghOwner\`).
+**Issues**: \`gh search\` for open issues and PRs for you (or a configured \`ghOwner\`).
 
-![Sentry tab — unresolved 24h groups with + issue promote](screenshots/sentry.png)
+![Sentry tab: unresolved 24h groups with + issue promote](/blog/slopops-omarchy-ops-bar-panel/screenshots/sentry.png)
 
 The badge is the whole point when the popup is closed. Red if deploy errors or Sentry events. Yellow if tokens are missing or peers are offline. Green if nominal. \`status.sh\` rolls that up. Timer defaults to 90 seconds. Right-click the icon to refresh everything.
 
-Data plane is boring on purpose: bash scripts print JSON; QML \`Process\` parses a line. Tokens sit in \`secrets.env\` (gitignored, chmod 600). Missing a token does not crash the tab — it shows a hint and moves on. GitHub never needed a token in that file; it uses your existing \`gh\` login.
+Data plane is boring on purpose: bash scripts print JSON; QML \`Process\` parses a line. Tokens sit in \`secrets.env\` (gitignored, chmod 600). Missing a token does not crash the tab; it shows a hint and moves on. GitHub never needed a token in that file; it uses your existing \`gh\` login.
 
 Settings are widget keys, not forks: \`omarchy bar set slopops fleetPorts "22,5900,3389"\`, \`sentryOrg\`, \`sentryUrl\` for self-hosted, \`posthogUrl\` for EU, \`vercelTeamId\`, \`issueRepo\`, \`t3Port 0\` to hide the t3 light.
 
-![PostHog traffic tab — all-time total, 30-day bars, per-project counts](screenshots/traffic.png)
+![PostHog traffic tab: all-time total, 30-day bars, per-project counts](/blog/slopops-omarchy-ops-bar-panel/screenshots/traffic.png)
 
 ## Where
 
-It runs where Omarchy’s bar runs — Quickshell on the desktop I already stare at. Plugin path on this machine: \`~/.config/omarchy/plugins/slopops\`. Same tree mirrored under the dotfiles-omarchy project copy.
+It runs where Omarchy's bar runs: Quickshell on the desktop I already stare at. Plugin path on this machine: \`~/.config/omarchy/plugins/slopops\`. Same tree mirrored under the dotfiles-omarchy project copy.
 
 Repo: [michaelmonetized/slopops](https://github.com/michaelmonetized/slopops). Public. Branch \`master\`. No Pages homepage. No GitHub Release tag. Linguist says mostly QML, then Shell, a little JavaScript helper for \`ago\` / \`fmt\` / \`levelColor\`.
 
-![Repo layout — Ops.qml, tabs, scripts, secrets example](screenshots/repo-structure.png)
+![Repo layout: Ops.qml, tabs, scripts, secrets example](/blog/slopops-omarchy-ops-bar-panel/screenshots/repo-structure.png)
 
-The audience sits next to Omarchy, Tailscale, Vercel, Sentry, and PostHog — the people who already have those CLIs and tokens, not the people who need a demo video of what a deploy is.
+The audience already has Omarchy, Tailscale, Vercel, Sentry, and PostHog CLIs and tokens. This is not a demo of what a deploy is.
 
-![Issues tab — open issues and PRs via gh search](screenshots/issues.png)
+![Issues tab: open issues and PRs via gh search](/blog/slopops-omarchy-ops-bar-panel/screenshots/issues.png)
 
 ## When
 
-**2026-08-26, 9:23 AM Eastern.** First commit. Message: \`michael.ops 0.1.0: multi-service ops bar panel for Omarchy\`. Twenty files. 1,780 lines. The whole panel lands in one shot — \`Ops.qml\`, five tabs, seven scripts, manifest, README, \`secrets.env.example\`.
+**2026-08-26, 9:23 AM Eastern.** First commit. Message: \`michael.ops 0.1.0: multi-service ops bar panel for Omarchy\`. Twenty files. 1,780 lines. The whole panel lands in one shot: \`Ops.qml\`, five tabs, seven scripts, manifest, README, \`secrets.env.example\`.
 
 **Same morning, 9:55 AM Eastern.** Second commit. \`rename plugin id to slopops\`. Manifest id and name, README, moduleName/ipcTarget. \`michael.ops\` becomes the public name that matches the repo.
 
 **2026-08-26, 1:55 PM UTC.** Last push on GitHub. Still \`0.1.0\`. Still two commits. No LICENSE file in the tree. One star.
 
-**2026-09-08.** Pack day. Plugin still on disk. \`omarchy bar put slopops\` puts it on the bar. \`secrets.env\` is still not created on this machine — the degrade path is the live path until tokens land.
+**2026-09-08.** Pack day. Plugin still on disk. \`omarchy bar put slopops\` puts it on the bar. \`secrets.env\` is still not created on this machine; the degrade path is the live path until tokens land.
 
 Thirty-two minutes from first commit to rename. That is the clock.
 
 ## Why
 
-I was paying the context-switch tax every day. Fleet health in one place. Deploys in another. Sentry in a third. PostHog for “is anyone even using this.” GitHub for the work the errors become.
+I was paying the context-switch tax every day. Fleet health in one place. Deploys in another. Sentry in a third. PostHog for "is anyone even using this." GitHub for the work the errors become.
 
 The bar was already the glance surface. Omarchy already had a widget schema. So I put the stack behind one icon and made the badge tell the truth when I am too busy to open the popup.
 
 Shell fetchers. JSON out. Tokens optional. Promote from Sentry to GitHub without leaving the seat. Ports as settings, not a new plugin fork.
 
 That is the tool I reached for when the dashboards started feeling like chores.
+
+**Engagement Q:** Which of the five tabs would earn the badge on your bar first: Fleet, Deploys, Sentry, Traffic, or Issues?
 `;
 
 const BESTWNC_COVER =
@@ -4127,26 +4130,26 @@ const FREVIEW_CONTENT = `![Five marketed reviews vs six REVIEW.md sections](/blo
 
 ## Who
 
-I got tired of “we’ll catch it in CI” turning into a Slack autopsy after \`main\` already moved. Pre-push should hurt a little when the tree is sketchy and stay quiet when it is clean.
+I got tired of "we'll catch it in CI" turning into a Slack autopsy after \`main\` already moved. Pre-push should hurt a little when the tree is sketchy and stay quiet when it is clean.
 
 For JS/TS teams (and anyone whose public symbols need docstrings across TS/Swift/Rust/Python/shell) who want one command, one durable \`REVIEW.md\`, and the same gate locally and on Blacksmith.
 
 ## What
 
-I built **freview** — public [\`HurleyUS/freview\`](https://github.com/HurleyUS/freview). Package \`@hurleyus/freview\` **0.1.0**. MIT. zsh. \`bin/freview\` is **404** lines; bundled \`bin/scribe\` is **555**. HEAD \`23237d9\`. **22** commits. 0 stars. CLI / package only.
+I built **freview**, public [\`HurleyUS/freview\`](https://github.com/HurleyUS/freview). Package \`@hurleyus/freview\` **0.1.0**. MIT. zsh. \`bin/freview\` is **404** lines; bundled \`bin/scribe\` is **555**. HEAD \`23237d9\`. **22** commits. 0 stars. CLI / package only.
 
 ![CLI / section pipeline](/blog/freview-five-reviews-six-sections-observability-gate/screenshots/six-sections.png)
 
-The README and \`TWITTER-RELEASE-THREAD.md\` still sell **“One command. Five reviews.”** The orchestrator always appends **six** sections into root \`REVIEW.md\`:
+The README and \`TWITTER-RELEASE-THREAD.md\` still sell **"One command. Five reviews."** The orchestrator always appends **six** sections into root \`REVIEW.md\`:
 
-1. **OBSERVABILITY** — embedded Python: detect Next / React Native-Expo / Electron / Swift; require Sentry + PostHog deps, init, and env-signal strings; if \`.vercel/project.json\` exists, \`vercel env ls production\` must show the DSN/key/host set. Library/tooling repos with no platform → pass.
-2. **HEALTH** — \`bunx --bun fallow … health --complexity\` (soft-pass when exit≠0 but no fail glyphs)
-3. **AUDIT** — \`fallow audit\`
-4. **DEAD** — \`fallow dead-code\`
-5. **DUPLICATION** — \`fallow dupes\`
-6. **DOCSTRINGS** — bundled \`scribe\` (not Michael’s old \`~/bin/scribe\`)
+1. **OBSERVABILITY**: embedded Python detects Next / React Native-Expo / Electron / Swift; requires Sentry + PostHog deps, init, and env-signal strings; if \`.vercel/project.json\` exists, \`vercel env ls production\` must show the DSN/key/host set. Library/tooling repos with no platform pass.
+2. **HEALTH**: \`bunx --bun fallow … health --complexity\` (soft-pass when exit≠0 but no fail glyphs)
+3. **AUDIT**: \`fallow audit\`
+4. **DEAD**: \`fallow dead-code\`
+5. **DUPLICATION**: \`fallow dupes\`
+6. **DOCSTRINGS**: bundled \`scribe\` (not Michael's old \`~/bin/scribe\`)
 
-Before any of that: \`fallow init\` + \`fallow setup-hooks\`, then freview rewrites the Claude \`fallow-gate.sh\` matcher from \`git commit|push\` → **\`git push\` only** so local commits stay unblocked.
+Before any of that: \`fallow init\` + \`fallow setup-hooks\`, then freview rewrites the Claude \`fallow-gate.sh\` matcher from \`git commit|push\` to **\`git push\` only** so local commits stay unblocked.
 
 Flags you actually use: \`--root\`, \`--format\`, \`--quiet\`, \`--explain\`, \`--summary\`, \`--ci\` (SARIF + quiet + fail-on-issues), \`--fail-on-issues\`. Clean runs write the file and shut up. Dirty runs print the report and exit 1. Empty SARIF result sets do not fail CI mode.
 
@@ -4154,35 +4157,35 @@ Flags you actually use: \`--root\`, \`--format\`, \`--quiet\`, \`--explain\`, \`
 
 Install paths: curl both bins into \`~/bin\`, clone + symlink, or \`bunx github:HurleyUS/freview\` / \`bun link\`. Pre-push snippet in the README only fires on protected \`main\`/\`master\` refs.
 
-Residue / irony: shell-only package — \`scripts.lint\` and \`scripts.check\` are literally \`true\` — yet \`.github/workflows/ci.yml\` still installs zsh and runs \`bunx --bun github:HurleyUS/freview --ci\` on \`blacksmith-4vcpu-ubuntu-2404\`. May 14 is seven commits all titled **“Standardize Blacksmith CI gates.”** May 14 also briefly committed generated Claude hooks, deleted them seventeen minutes later, then re-tracked them a week later. Second June 22 nightly (\`23237d9\`) shares the exact tree with the \`.uncap\` nightly — empty HEAD.
+Residue / irony: shell-only package (\`scripts.lint\` and \`scripts.check\` are literally \`true\`), yet \`.github/workflows/ci.yml\` still installs zsh and runs \`bunx --bun github:HurleyUS/freview --ci\` on \`blacksmith-4vcpu-ubuntu-2404\`. May 14 is seven commits all titled **"Standardize Blacksmith CI gates."** May 14 also briefly committed generated Claude hooks, deleted them seventeen minutes later, then re-tracked them a week later. Second June 22 nightly (\`23237d9\`) shares the exact tree with the \`.uncap\` nightly: empty HEAD.
 
 ![Blacksmith CI self-review](/blog/freview-five-reviews-six-sections-observability-gate/screenshots/ci-blacksmith.png)
 
 ## Where
 
-Code: [github.com/HurleyUS/freview](https://github.com/HurleyUS/freview) — public, branch \`main\`. No homepage. No live web demo. Sibling tooling surface: Fallow + Claude Code hooks + Blacksmith runners.
+Code: [github.com/HurleyUS/freview](https://github.com/HurleyUS/freview), public, branch \`main\`. No homepage. No live web demo. Sibling tooling surface: Fallow + Claude Code hooks + Blacksmith runners.
 
 ## When
 
-**2026-05-13, 1:41–1:51 PM Eastern.** Init (150-line freview) → Twitter thread → bundle scribe + package.json.
+**2026-05-13, 1:41–1:51 PM Eastern.** Init (150-line freview), Twitter thread, bundle scribe + package.json.
 
-**2026-05-13, 7:23–8:06 PM Eastern.** Observability gate → platform-aware rewrite (Next/RN/Electron/Swift + Vercel env).
+**2026-05-13, 7:23–8:06 PM Eastern.** Observability gate, then platform-aware rewrite (Next/RN/Electron/Swift + Vercel env).
 
-**2026-05-14 afternoon Eastern.** Blacksmith CI standardization spam → empty SARIF handling → avoid oxlint on shell-only → hook churn → prettier CI commit.
+**2026-05-14 afternoon Eastern.** Blacksmith CI standardization spam, empty SARIF handling, avoid oxlint on shell-only, hook churn, prettier CI commit.
 
-**2026-05-21 morning Eastern.** Empty health soft-pass (PR #1) → track fallow Claude hook → push-only gate + freview rewriter.
+**2026-05-21 morning Eastern.** Empty health soft-pass (PR #1), track fallow Claude hook, push-only gate + freview rewriter.
 
-**2026-06-22, 5:20 PM Eastern.** \`8fd392a\` nightly — \`.uncap/config.json\`.
+**2026-06-22, 5:20 PM Eastern.** \`8fd392a\` nightly: \`.uncap/config.json\`.
 
-**2026-06-22, 6:12 PM Eastern.** \`23237d9\` nightly — empty tree. HEAD.
+**2026-06-22, 6:12 PM Eastern.** \`23237d9\` nightly: empty tree. HEAD.
 
 ![Commit arc](/blog/freview-five-reviews-six-sections-observability-gate/screenshots/commit-arc.png)
 
 ## Why
 
-Because terminal scrollback is a graveyard and \`REVIEW.md\` is not. Because “five reviews” was the pitch and observability became the sixth section the docs never renumbered. Because a pre-push hook that also rewrites your Claude gate to push-only is the kind of boring guardrail I actually leave installed.
+Terminal scrollback is a graveyard. \`REVIEW.md\` survives. "Five reviews" was the pitch; observability became the sixth section the docs never renumbered. A pre-push hook that also rewrites your Claude gate to push-only is the boring guardrail I actually leave installed.
 
-**Engagement Q:** If your pre-push suite marketed five checks, which sixth gate would you sneak in first — observability, license, or “did CI prettier already fight you”?
+**Engagement Q:** If your pre-push suite marketed five checks, which sixth gate would you sneak in first: observability, license, or "did CI prettier already fight you"?
 `;
 
 const HUSTLECONVERT_COVER =
@@ -5168,39 +5171,29 @@ A Connect clicker is only useful if the delay and the weekly ceiling are first-c
 const HURLEYUS_SOP_COVER =
   "/blog/hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack/cover.png";
 
-const HURLEYUS_SOP_CONTENT = `# HurleyUS Agent SOP: Ship or shut up, OpenClaw memory layers, DHH gstack mandate
-
-**Slug:** \`hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack\`
-
-**Excerpt:** Public single-file AGENT_SOP.md (548 lines, v1.0) for HurleyUS agents — Ship or shut up philosophy, ~/.openclaw/workspace memory layers, hard rules (no GitHub paid services, Next.js 16+, no CSS filter hacks, Clerk copy-button keys), Graphite stacked PRs, send-agent protocol, 9 lessons from production incidents. PR #2 adds DHH research-first + gstack-default + deployment discipline. 2 commits. HEAD c418e5e. Docs-only; language null. Not hurley-mission-control.
-
-**Tags:** hurleyus-sop, agent-sop, openclaw, gstack, dhh, graphite, nextjs-16, convex, operations, hurleyus, agent-ops, standard-operating-procedure
-
----
-
-![OG / Ship or shut up](/blog/hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack/screenshots/toc-map.png)
+const HURLEYUS_SOP_CONTENT = `![OG / Ship or shut up](/blog/hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack/screenshots/toc-map.png)
 
 ## Who
 
 I write operating doctrine when agents keep rediscovering their own commits as found treasure.
 
-For operators running **multi-agent HurleyUS sessions** who need a **single public SOP file** — not a Convex control plane, not a landing page — covering philosophy, OpenClaw memory layers, hard rules earned from incidents, Graphite/\`send-agent\` team ops, and the **DHH** research-first / **gstack** mandate.
+For operators running **multi-agent HurleyUS sessions** who need a **single public SOP file**: philosophy, OpenClaw memory layers, hard rules earned from incidents, Graphite/\`send-agent\` team ops, and the **DHH** research-first / **gstack** mandate. This is doctrine on disk, separate from the Convex mission-control app and from empty scaffold SKIP class.
 
 ## What
 
-I published **hurleyus-sop** — public \`https://github.com/HurleyUS/hurleyus-sop\`. One tracked file: **\`AGENT_SOP.md\`**. HEAD \`c418e5e\`. **2** commits. 0 stars. GitHub Linguist **language: null**. Version **1.0**. Header maintainers: Rusty P. Shackelford, Theo Browne, DHH.
+I published **hurleyus-sop** at [\`HurleyUS/hurleyus-sop\`](https://github.com/HurleyUS/hurleyus-sop). One tracked file: **\`AGENT_SOP.md\`**. HEAD \`c418e5e\`. **2** commits. 0 stars. GitHub Linguist **language: null**. Version **1.0**. Header maintainers: Rusty P. Shackelford, Theo Browne, DHH. **548** lines of intentional doctrine. No README, no CI, no package.json. The product is the SOP.
 
 Facts from the file at HEAD:
 
-- Lead philosophy: **“Ship or shut up.”** Revenue over polish cycles.
-- Role: partner with equity stake · senior engineer · Michael's right hand
-- Stack named: TypeScript, **Next.js 16+**, Convex, React · RN/Expo/NativeWind · Swift supporting · \`sr-*\` skills
+- Lead philosophy: **"Ship or shut up."** Revenue over polish cycles.
+- Role: partner with equity stake, senior engineer, Michael's right hand
+- Stack named: TypeScript, **Next.js 16+**, Convex, React, RN/Expo/NativeWind, Swift supporting, \`sr-*\` skills
 - Workspace root documented: **\`~/.openclaw/workspace/\`** with \`SOUL.md\`, \`AGENTS.md\`, \`MEMORY.md\`, \`USER.md\`, \`TEAM.md\`, \`TOOLS.md\`, \`HEARTBEAT.md\`, \`TODO.md\`, daily \`memory/YYYY-MM-DD.md\`, \`current-workload.md\` compaction dump
-- Memory model: long-term MEMORY.md · daily raw logs · compaction checkpoint at ~**80%** context (“goldfish brain”)
-- Hard rules: **no CSS filter hacks** · **Next.js 16+ only** · **never type Clerk keys by eye** · **no GitHub paid services** (Vercel is CI; strip \`.github/workflows/\`) · **do the hard work** (all 25 files)
+- Memory model: long-term MEMORY.md, daily raw logs, compaction checkpoint at ~**80%** context ("goldfish brain")
+- Hard rules: **no CSS filter hacks**, **Next.js 16+ only**, **never type Clerk keys by eye**, **no GitHub paid services** (Vercel is CI; strip \`.github/workflows/\`), **do the hard work** (all 25 files)
 - Git: Conventional Commits + **Graphite** stacked PRs (\`gt submit -p --ai\`, \`~/bin/stack\`)
-- Comms: \`send-agent rusty|theo|dhh\` · standups **4×/day** EST · ~30 min heartbeat (cron, Telegram, email/bird/moltbook, SITREP)
-- Lessons: removed Actions from **12** repos · 29 parallel agents → 50K non-compiling lines → single agent Convex rewrite in **11 minutes** · AVPlayerLooper leak (RustyP) · reaferral invite persistence
+- Comms: \`send-agent rusty|theo|dhh\`, standups **4×/day** EST, ~30 min heartbeat (cron, Telegram, email/bird/moltbook, SITREP)
+- Lessons: removed Actions from **12** repos; 29 parallel agents produced 50K non-compiling lines, then a single agent Convex rewrite in **11 minutes**; AVPlayerLooper leak (RustyP); reaferral invite persistence
 - Anti-pattern table + Closing partner mandate
 
 ![OpenClaw memory layers](/blog/hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack/screenshots/memory-layers.png)
@@ -5209,34 +5202,34 @@ Facts from the file at HEAD:
 
 **PR #2** (merged 2026-03-31, closes #1) appends **DHH Learnings & Operating Principles** (+46 lines):
 
-- Research-first — questions are failures; delivered solutions are wins
+- Research-first: questions are failures; delivered solutions are wins
 - **gstack is default** for major workflows
-- Deployment discipline: local \`bun run build\` → lint → preview → env synced → PR reviewed → merge · **no blind deployments**
-- No \`any\` / \`@ts-ignore\` · document self-review · spawn via gstack/\`sessions_spawn\` with explicit scope
+- Deployment discipline: local \`bun run build\`, lint, preview, env synced, PR reviewed, then merge. **No blind deployments.**
+- No \`any\` / \`@ts-ignore\`. Document self-review. Spawn via gstack/\`sessions_spawn\` with explicit scope.
 
 ![DHH gstack mandate](/blog/hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack/screenshots/dhh-mandate.png)
 
 ![Commit arc](/blog/hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack/screenshots/commit-arc.png)
 
-This is **not** \`HurleyUS/hurley-mission-control\` (Next/Clerk/Convex **comms app**). **Not** empty mkproject scaffold SKIP class — **548** lines of intentional doctrine. No README, no CI, no package.json — the product *is* the SOP.
+Sibling distinction: [\`HurleyUS/hurley-mission-control\`](https://github.com/HurleyUS/hurley-mission-control) is the Next/Clerk/Convex **comms app**. This repo is the public SOP only.
 
 ## Where
 
-Code/docs: [github.com/HurleyUS/hurleyus-sop](https://github.com/HurleyUS/hurleyus-sop) — public.
+Code/docs: [github.com/HurleyUS/hurleyus-sop](https://github.com/HurleyUS/hurleyus-sop), public.
 
 No product domain. No Vercel app for this repo. OpenClaw paths are local (\`~/.openclaw/workspace/…\`). Clone used for pack: m1Pro13 \`~/Projects/HurleyUS/hurleyus-sop\` @ \`c418e5e\`.
 
 ## When
 
-- **2026-03-25** — repo created; \`f5fdc4a\` adds \`AGENT_SOP.md\` (+502) — v1.0 body through Closing
-- **2026-03-31** — PR #2 merge \`c418e5e\` — DHH section (+46); \`pushed_at\` 2026-03-31T23:28:55Z
-- Pack prepared **2026-09-08 ~5:15 PM ET** — draft + assets only
+- **2026-03-25**: repo created; \`f5fdc4a\` adds \`AGENT_SOP.md\` (+502), v1.0 body through Closing
+- **2026-03-31**: PR #2 merge \`c418e5e\`, DHH section (+46); \`pushed_at\` 2026-03-31T23:28:55Z
+- Pack prepared **2026-09-08 ~5:15 PM ET**: draft + assets only
 
 ## Why
 
-Agents without a written operating contract repeat the same expensive mistakes: filter-hack dark mode, Actions that bill, parallel agent thrash, typed Clerk secrets, goldfish-brain after compaction. This file is the HurleyUS answer in one Markdown path — philosophy, workspace layout, hard rules, lessons, then DHH's research-first / gstack / deploy checklist so “contrib” is doctrine, not vibes.
+Agents without a written operating contract repeat the same expensive mistakes: filter-hack dark mode, Actions that bill, parallel agent thrash, typed Clerk secrets, goldfish-brain after compaction. This file is the HurleyUS answer in one Markdown path: philosophy, workspace layout, hard rules, lessons, then DHH's research-first / gstack / deploy checklist so contrib is doctrine, not vibes.
 
-What would you put in your agents' single public SOP that you refuse to negotiate — and which incident finally forced it onto disk?
+**Engagement Q:** What would you put in your agents' single public SOP that you refuse to negotiate, and which incident finally forced it onto disk?
 `;
 
 const CODEMAIL_COVER =
@@ -6577,7 +6570,7 @@ export const staticPosts: StaticPost[] = [
     title: "HurleyUS Agent SOP: Ship or shut up, OpenClaw memory layers, DHH gstack mandate",
     slug: "hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack",
     excerpt:
-      "Public single-file AGENT_SOP.md (548 lines, v1.0) for HurleyUS agents \u2014 Ship or shut up philosophy, ~/.openclaw/workspace memory layers, hard rules (no GitHub paid services, Next.js 16+, no CSS filter hacks, Clerk copy-button keys), Graphite stacked PRs, send-agent protocol, 9 lessons from production incidents. PR #2 adds DHH research-first + gstack-default + deployment discipline. 2 commits. HEAD c418e5e. Docs-only; language null. Not hurley-mission-control.",
+      "Public single-file AGENT_SOP.md (548 lines, v1.0, HEAD c418e5e, 2 commits) for HurleyUS agents: Ship or shut up, ~/.openclaw/workspace memory layers, hard rules, Graphite/send-agent, plus PR #2 DHH research-first + gstack + deploy discipline. Docs-only; distinct from hurley-mission-control.",
     content: HURLEYUS_SOP_CONTENT,
     coverImage: HURLEYUS_SOP_COVER,
     tags: [
@@ -7153,7 +7146,7 @@ export const staticPosts: StaticPost[] = [
     title: "freview: README says five reviews \u2014 REVIEW.md actually stitches six",
     slug: "freview-five-reviews-six-sections-observability-gate",
     excerpt:
-      "Public HurleyUS/freview is a zsh pre-push harness: Fallow health/audit/dead/dupes + bundled Scribe into REVIEW.md, plus a platform-aware Sentry/PostHog observability gate the marketing still calls five reviews. @hurleyus/freview 0.1.0. 22 commits. HEAD 23237d9 empty nightly after .uncap. Blacksmith CI runs freview --ci on a shell-only package whose lint/check are true.",
+      "freview (@hurleyus/freview 0.1.0, HEAD 23237d9, 22 commits) is a public zsh pre-push gate that always writes six REVIEW.md sections even though README still sells Five reviews, with observability as the undocumented sixth plus a Claude fallow-gate rewrite to push-only.",
     content: FREVIEW_CONTENT,
     coverImage: FREVIEW_COVER,
     tags: [
@@ -8604,7 +8597,7 @@ export const staticPosts: StaticPost[] = [
     title: "slopops: I put my whole ops stack in one Omarchy bar popup",
     slug: "slopops-omarchy-ops-bar-panel",
     excerpt:
-      "I built slopops \u2014 a QML Omarchy bar widget with Fleet, Vercel, Sentry, PostHog, and GitHub Issues in one tabbed popup. Badge goes red when something is on fire.",
+      "slopops is a public Omarchy Quickshell bar widget (0.1.0, HEAD after two 2026-08-26 commits) with one icon and five tabs (Fleet / Deploys / Sentry / Traffic / Issues), bash JSON fetchers, optional secrets.env, and a badge that goes red/yellow/green without opening another Electron tray.",
     content: SLOPOPS_CONTENT,
     coverImage: SLOPOPS_COVER,
     tags: [
@@ -8681,7 +8674,7 @@ export const staticPosts: StaticPost[] = [
     title: "Naarchy 0.4.0: Preferences, doctor, and the privacy pass",
     slug: "naarchy-0-4-preferences-privacy",
     excerpt:
-      "After the Sep 3 island post, I hardened Naarchy locally to 0.4.0 — native Preferences, naarchy doctor, atomic stores, travel opt-in, IPC cleanup. Validated on three machines. Not pushed yet.",
+      "Naarchy local tip is 0.4.0 (Preferences, naarchy doctor, atomic stores, travel opt-in, IPC cleanup, 86 tests) validated on three machines; GitHub tip remains v0.3.3 / ef9cf87 until push + tag. EXTEND after the Sep 3 island post.",
     content: NAARCHY_04_CONTENT,
     coverImage: NAARCHY_04_COVER,
     tags: [
