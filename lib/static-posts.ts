@@ -1414,58 +1414,58 @@ const OMNUX_REPORT_COVER =
 
 const OMNUX_REPORT_CONTENT = `<!-- Cover: upload og.png to Convex storage; embed storage URLs below after upload. Local refs for draft review. -->
 
-![OMNUX-REPORT OG — one-command diagnostics with consent + redaction](/blog/omnux-report-one-command-diagnostics-redaction/cover.png)
+![OMNUX-REPORT OG: one-command diagnostics with consent + redaction](/blog/omnux-report-one-command-diagnostics-redaction/cover.png)
 
-![Honest state — shipped, validated, unfinished named](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/honest-state.png)
+![Honest state: shipped, validated, unfinished named](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/honest-state.png)
 
 ## Who
 
-I am the person who already published the Omnux truth table and the omnux-gpu siege wall. Those posts are live. This one is a different room.
+I already published the Omnux truth table and the omnux-gpu siege wall. Those posts are live. This piece is the attachable evidence lane.
 
-This piece is for owners who will file a bug with receipts and refuse to paste a 400 MB journal that still contains a MAC address. For operators who need backlight, WiFi, DRM, speakersafetyd, and sleep lines before the archaeology starts. For SEP/TouchID researchers who need device-tree names and module hints without biometric material. For agent operators who are supposed to produce owner telemetry under the Omnux mandate without turning consent into theater.
+This is for owners who will file a bug with receipts and refuse to paste a 400 MB journal that still contains a MAC address. For operators who need backlight, WiFi, DRM, speakersafetyd, and sleep lines before the archaeology starts. For SEP/TouchID researchers who need device-tree names and module hints without biometric material. For agent operators who are supposed to produce owner telemetry under the Omnux mandate with real consent, not theater.
 
-If you need a curl install or a truth table, that is the umbrella post. If you need M3 AGX pixels named as a project with acceptance criteria, that is the GPU post. If you need an attachable evidence bundle the owner controls, that is this room.
+Curl install and the truth table live in the umbrella post. M3 AGX pixels with acceptance criteria live in the GPU post. An attachable evidence bundle the owner controls lives here.
 
 ## What
 
-I shipped **omnux-report** — a MIT Shell tool whose entire job is to make Apple Silicon Omnux machines comparable in an issue tracker without scooping secrets by default.
+I shipped **omnux-report**, a MIT Shell tool whose entire job is to make Apple Silicon Omnux machines comparable in an issue tracker without scooping secrets by default.
 
 One command. Offline. Installed system or live USB. Consent summary prints exactly what will be gathered. Redaction is on unless you opt out. The output is a single \`.tar.zst\` (gzip fallback if zstd is missing) plus a SHA256 sidecar. Attach both.
 
-![Collection pipeline — Consent Collect Cap Triage Redact Archive](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/pipeline.png)
+![Collection pipeline: Consent Collect Cap Triage Redact Archive](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/pipeline.png)
 
 The pipeline is boring on purpose:
 
-1. **Consent** — list journal/sysinfo/SEP structure, optional benches, optional ADT helper; show redaction state; wait for \`y\` unless \`--yes\`.
-2. **Collect** — sysinfo, severity-scoped logs, SEP structure, optional benchmarks, optional ADT instructions.
-3. **Cap** — any single file over 50 MiB keeps its last 50 MiB with a TRUNCATED header so a pathological journal cannot produce an unattachable blob.
-4. **Triage** — \`summary.txt\` with PASS / INFO / WARN / FAIL / SKIP per subsystem.
-5. **Redact** — MACs to \`XX:XX:XX:XX:XX:XX\`; key=value secret backstops; count written to \`redaction-count.txt\`.
-6. **Archive** — deterministic tar (\`--sort=name\`, fixed mtime) compressed; checksum sidecar.
+1. **Consent** list journal/sysinfo/SEP structure, optional benches, optional ADT helper; show redaction state; wait for \`y\` unless \`--yes\`.
+2. **Collect** sysinfo, severity-scoped logs, SEP structure, optional benchmarks, optional ADT instructions.
+3. **Cap** any single file over 50 MiB keeps its last 50 MiB with a TRUNCATED header so a pathological journal cannot produce an unattachable blob.
+4. **Triage** \`summary.txt\` with PASS / INFO / WARN / FAIL / SKIP per subsystem.
+5. **Redact** MACs to \`XX:XX:XX:XX:XX:XX\`; key=value secret backstops; count written to \`redaction-count.txt\`.
+6. **Archive** deterministic tar (\`--sort=name\`, fixed mtime) compressed; checksum sidecar.
 
-![Bundle schema v1 — logs sysinfo sep benches adt skipped](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/bundle-schema.png)
+![Bundle schema v1: logs sysinfo sep benches adt skipped](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/bundle-schema.png)
 
-The schema is documented in \`docs/SCHEMA.md\`. Logs arrive as current boot, previous boot, error, warning — full history is opt-in because long-lived installs turn “helpful” into hundreds of megabytes. Sysinfo covers identity (model, compatible, chip ids), CPU/memory/kernel, package versions and Omarchy markers, device-tree \`/chosen\` **property names only**, block devices without serials, NVMe model+firmware, displays, Type-C roles, scrubbed network, audio/speaker-safety, GPU DRM/EGL state. Benchmarks default to CPU openssl + portable dd probes; glmark2 and vulkaninfo stay opt-in and always sit next to \`benchmarks/context.txt\` so a number without a model/kernel/mesa line is treated as noise.
+The schema is documented in \`docs/SCHEMA.md\`. Logs arrive as current boot, previous boot, error, warning. Full history is opt-in because long-lived installs turn "helpful" into hundreds of megabytes. Sysinfo covers identity (model, compatible, chip ids), CPU/memory/kernel, package versions and Omarchy markers, device-tree \`/chosen\` **property names only**, block devices without serials, NVMe model+firmware, displays, Type-C roles, scrubbed network, audio/speaker-safety, GPU DRM/EGL state. Benchmarks default to CPU openssl + portable dd probes; glmark2 and vulkaninfo stay opt-in and always sit next to \`benchmarks/context.txt\` so a number without a model/kernel/mesa line is treated as noise.
 
-![Redaction rules — scrubbed, never collected, kept deliberately](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/redaction-rules.png)
+![Redaction rules: scrubbed, never collected, kept deliberately](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/redaction-rules.png)
 
-Redaction is the product feature, not the apology. Serial numbers, WiFi/Bluetooth keys, NetworkManager secrets, and \`/etc/machine-id\` are never collected. Interface addresses and SSIDs are scrubbed at collection time so a global regex cannot corrupt timestamps. Secret scrubbing matches only \`key=value\` / \`key:value\` forms — journal prose like “Forward Password Requests to Wall” survives. Filesystem UUIDs stay because boot debugging needs them; hostnames stay because owners can edit a bundle before attaching if they care.
+Redaction is the product feature, not the apology. Serial numbers, WiFi/Bluetooth keys, NetworkManager secrets, and \`/etc/machine-id\` are never collected. Interface addresses and SSIDs are scrubbed at collection time so a global regex cannot corrupt timestamps. Secret scrubbing matches only \`key=value\` / \`key:value\` forms. Journal prose like "Forward Password Requests to Wall" survives. Filesystem UUIDs stay because boot debugging needs them; hostnames stay because owners can edit a bundle before attaching if they care.
 
-The SEP section exists for the TouchID-on-Apple-Silicon research program tracked on omnux-gpu issues #10 and #13. It captures device-tree node names and \`reg\` bytes, \`/dev\` and \`/sys\` bus matches, module and modprobe hints, and firmware identifiers. It does **not** collect enrollment data, biometric templates, keys, tickets, nonces, TSS responses, or FDR dictionaries. Structure that helps match hardware. Nothing that reproduces security state.
+The SEP section exists for the TouchID-on-Apple-Silicon research program tracked on omnux-gpu issues #10 and #13. It captures device-tree node names and \`reg\` bytes, \`/dev\` and \`/sys\` bus matches, module and modprobe hints, and firmware identifiers. It skips enrollment data, biometric templates, keys, tickets, nonces, TSS responses, and FDR dictionaries. Structure that helps match hardware. Nothing that reproduces security state.
 
-\`--adt\` does not dump an Apple Device Tree on the reporting machine. It writes guided instructions for a second host running m1n1’s proxyclient, pre-filled with this machine’s model, plus a scrub checklist before attach to omnux#4.
+\`--adt\` does not dump an Apple Device Tree on the reporting machine. It writes guided instructions for a second host running m1n1's proxyclient, pre-filled with this machine's model, plus a scrub checklist before attach to omnux#4.
 
-![Triage vocabulary — PASS INFO WARN FAIL SKIP](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/triage-vocab.png)
+![Triage vocabulary: PASS INFO WARN FAIL SKIP](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/triage-vocab.png)
 
 Triage is the first screen a bug reader should see: machine Apple-or-fail, DRM render node presence, backlight class, WiFi interface/soft-block, Omarchy release marker, mem_sleep states, speakersafetyd, SEP-named DT nodes. Honest and boring.
 
-On 2026-08-26 this produced a complete redacted 3.5 MB bundle on a real MacBook Pro 16-inch M1 Pro running Omarchy. The same day, \`test/fixture-test.sh\` ran ten checks against a synthetic Apple Silicon sysroot on ordinary Linux — model identity, compatible string, journal skip in fixture mode, triage PASS, ADT helper text, size cap, MAC scrub, secret scrub, prose survival, SHA256 verify. That is the receipt that the pipeline is not “works on my journal.”
+On 2026-08-26 this produced a complete redacted 3.5 MB bundle on a real MacBook Pro 16-inch M1 Pro running Omarchy. The same day, \`test/fixture-test.sh\` ran ten checks against a synthetic Apple Silicon sysroot on ordinary Linux: model identity, compatible string, journal skip in fixture mode, triage PASS, ADT helper text, size cap, MAC scrub, secret scrub, prose survival, SHA256 verify. That is the receipt that the pipeline is more than "works on my journal."
 
-What is not done is also named: packaging into the mx-mac live image, glmark2/vulkaninfo validation on machines that actually have them installed, and an owner-facing release. Working tool. Validated. Not finished product marketing.
+Still open: packaging into the mx-mac live image, glmark2/vulkaninfo validation on machines that actually have them installed, and an owner-facing release. Working tool. Validated. Unfinished product marketing.
 
 ## Where
 
-It lives where an Omnux or Omarchy Apple Silicon machine — or the live USB — can run a bash script without a network. Fixture mode lives anywhere Linux so CI cosplay is unnecessary for the collectors themselves.
+It lives where an Omnux or Omarchy Apple Silicon machine, or the live USB, can run a bash script without a network. Fixture mode lives anywhere Linux so CI cosplay is unnecessary for the collectors themselves.
 
 Repo: [michaelmonetized/omnux-report](https://github.com/michaelmonetized/omnux-report). Normative feature spec still points at [omnux#2](https://github.com/michaelmonetized/omnux/issues/2). ADT collection issue: [omnux#4](https://github.com/michaelmonetized/omnux/issues/4). SEP research adjacency: omnux-gpu #10/#13. Parent ship lane: [omnux](https://github.com/michaelmonetized/omnux). GPU siege: [omnux-gpu](https://github.com/michaelmonetized/omnux-gpu).
 
@@ -1473,9 +1473,9 @@ Local clone used for this pack: \`/home/michael/Projects/omnux-report\` on m1pro
 
 ## When
 
-**2026-08-26.** Scaffold commit \`1019bda\` — honest state, omnux#2 pointer, layout, offline/consent/evidence principles. Same day: \`aac9244\` lands v0.1.0 — working collectors, triage, redaction, archive. Same day validation: real M1 Pro Omarchy redacted bundle at 3.5 MB; fixture harness ten checks green.
+**2026-08-26.** Scaffold commit \`1019bda\`: honest state, omnux#2 pointer, layout, offline/consent/evidence principles. Same day: \`aac9244\` lands v0.1.0, working collectors, triage, redaction, archive. Same day validation: real M1 Pro Omarchy redacted bundle at 3.5 MB; fixture harness ten checks green.
 
-**2026-08-27.** Commit \`f9729a6\` adds the SEP/TouchID evidence collector wired to the omnux-gpu research issues — structure only, secrets excluded by design. Last push \`2026-08-27T18:34:44Z\`.
+**2026-08-27.** Commit \`f9729a6\` adds the SEP/TouchID evidence collector wired to the omnux-gpu research issues: structure only, secrets excluded by design. Last push \`2026-08-27T18:34:44Z\`.
 
 **2026-09-08.** Content pack drafted. Live omnux and omnux-gpu posts already cover install truth and the AGX wall. This draft stays unique: diagnostics consent and redaction. Still no mx-mac packaging. Still no owner-facing release ceremony.
 
@@ -1483,7 +1483,9 @@ Local clone used for this pack: \`/home/michael/Projects/omnux-report\` on m1pro
 
 Owner telemetry without owner control is just surveillance with a README. I wanted a command that tells you what it will gather before it gathers it. I wanted redaction as the default path so attaching a bug is not a privacy coin-flip. I wanted numbers that only mean something next to model, kernel, and Mesa lines. I wanted SEP research to have evidence without becoming a biometric vacuum. I wanted a fixture that proves the pipeline on machines that are not Apple silicon so the tool does not only exist in folklore.
 
-The Omnux story splits cleanly across three repos: the umbrella ships the install lane and the truth table; omnux-gpu names the driver wall without claiming pixels; omnux-report turns “please attach logs” into a consenting, redacted, checksummed artifact. That is the ask — run the command, read the triage, attach the two files.
+The Omnux story splits cleanly across three repos: the umbrella ships the install lane and the truth table; omnux-gpu names the driver wall without claiming pixels; omnux-report turns "please attach logs" into a consenting, redacted, checksummed artifact. That is the ask: run the command, read the triage, attach the two files.
+
+**Engagement Q:** When an owner files an Omnux bug, do you want a consenting redacted \`.tar.zst\` + SHA256 by default, or a raw journal dump they have to scrub by hand first?
 `;
 
 const WNC_TOURS_COVER =
@@ -3630,23 +3632,23 @@ Because a lander that prices against ConvertKit still needs a \`/signup\` route 
 const NVIBE_COVER =
   "/blog/nvibe-neovim-cursor-coderabbit-layout-until-it-works/cover.png";
 
-const NVIBE_CONTENT = `![nvibe layout — left AI panel, editor, bottom tools](/blog/nvibe-neovim-cursor-coderabbit-layout-until-it-works/screenshots/layout-concept.png)
+const NVIBE_CONTENT = `![nvibe layout: left AI panel, editor, bottom tools](/blog/nvibe-neovim-cursor-coderabbit-layout-until-it-works/screenshots/layout-concept.png)
 
 ## Who
 
-I wanted Cursor Agent and CodeRabbit **already open** when Neovim started — not behind another tmux pane, not in a separate Electron window, not one \`<leader>\` chord away from forgetting which split I was in.
+I wanted Cursor Agent and CodeRabbit **already open** when Neovim started: same frame as the buffer, no alt-tab to an Electron window, no extra tmux pane, no \`<leader>\` chord that makes me lose which split I was in.
 
-If you run NvChad and keep AI CLIs on PATH, you already know the friction: alt-tab to the agent, lose the buffer context, come back, rebalance windows by hand. I wanted the layout to be the product.
+If you run NvChad and keep AI CLIs on PATH, you already know the friction: leave for the agent, lose buffer context, come back, rebalance windows by hand. I wanted the layout to be the product.
 
 ## What
 
-I built **nvibe** — a Lua Neovim plugin at [michaelmonetized/nvibe](https://github.com/michaelmonetized/nvibe). Version badge says **0.1.0**. Module lives at \`lua/nvibe/init.lua\` (~354 lines). Public. Stars: 0.
+I built **nvibe**, a Lua Neovim plugin at [michaelmonetized/nvibe](https://github.com/michaelmonetized/nvibe). Version badge says **0.1.0**. Module lives at \`lua/nvibe/init.lua\` (~354 lines). Public. Stars: 0.
 
 On \`VimEnter\`, if you are not already in a terminal buffer, \`setup()\` calls \`create_terminal_split()\`:
 
 1. Hard-requires \`nvchad.term\` (ERROR notify + abort if missing).
 2. Checks \`vim.fn.executable\` for \`cursor_agent_cmd\` / \`coderabbit_cmd\` (defaults \`cursor-agent\`, \`coderabbit\`).
-3. Left panel width = \`width_percent\` × \`$COLS\` (or \`vim.o.columns\` fallback).
+3. Left panel width = \`width_percent\` x \`$COLS\` (or \`vim.o.columns\` fallback).
 4. \`nvchad.term.new\` for Cursor Agent (top) and CodeRabbit (bottom) on that panel.
 5. Bottom strip: LazyGit + two shells (\`vim.o.shell\`), with a pile of \`wincmd\` / \`close\` cleanup so empty buffers do not stick around.
 6. \`stopinsert\` so the editor is not left in insert mode.
@@ -3661,23 +3663,23 @@ require('nvibe').setup({
 })
 \`\`\`
 
-Honesty check against the tree: the **code default** for \`width_percent\` is **20**, while README / \`docs/API.md\` / busted expectations still talk like **30**. LazyGit and the dual shells are **hardcoded** — not setup opts. ROADMAP still has "make bottom panel commands and sizes configurable" open.
+Honesty check against the tree: the **code default** for \`width_percent\` is **20**, while README / \`docs/API.md\` / busted expectations still talk like **30**. LazyGit and the dual shells are **hardcoded**, not setup opts. ROADMAP still has "make bottom panel commands and sizes configurable" open.
 
-![NvimTree #4/#5 — height constrain + rebalance](/blog/nvibe-neovim-cursor-coderabbit-layout-until-it-works/screenshots/nvimtree-fix.png)
+![NvimTree #4/#5: height constrain + rebalance](/blog/nvibe-neovim-cursor-coderabbit-layout-until-it-works/screenshots/nvimtree-fix.png)
 
 February fix (\`6a931f6\`, closes #4 and #5): opening NvimTree used to equalize windows and grow full height over the terminal panes. Plugin now caches editor-row height after layout, constrains \`FileType NvimTree\` windows to that height, and \`rebalance_panels()\` restores left-column terminal widths on open/close. README documents \`preserve_window_proportions = true\` as the paired NvimTree setting.
 
-Tests: busted (\`tests/test_nvibe.lua\`, **18** \`it(\` cases) with mocked \`vim\` + \`nvchad.term\`. Makefile: \`make test\` / \`lint\` / \`check\` via busted + luacheck. CHANGELOG documents the early interactivity bug — raw \`vim.cmd("terminal …")\` vs NvChad's interactive \`term.new\`.
+Tests: busted (\`tests/test_nvibe.lua\`, **18** \`it(\` cases) with mocked \`vim\` + \`nvchad.term\`. Makefile: \`make test\` / \`lint\` / \`check\` via busted + luacheck. CHANGELOG documents the early interactivity bug: raw \`vim.cmd("terminal …")\` vs NvChad's interactive \`term.new\`.
 
 ![CI added, then deleted for Vercel](/blog/nvibe-neovim-cursor-coderabbit-layout-until-it-works/screenshots/ci-vercel-irony.png)
 
-CI subplot: \`3ee0092\` added \`.github/workflows/build.yml\` ("keep prod build green"). \`5ab79db\` corrected it for a Lua project. Next morning \`365a17e\` deleted **all** GitHub config with message **“Vercel is our only CI/CD”** — on a Neovim Lua plugin with no web app in the tree. HEAD has no \`.github/\`. Local \`make test\` is the gate that remains.
+CI subplot: \`3ee0092\` added \`.github/workflows/build.yml\` ("keep prod build green"). \`5ab79db\` corrected it for a Lua project. Next morning \`365a17e\` deleted **all** GitHub config with message **"Vercel is our only CI/CD"** on a Neovim Lua plugin with no web app in the tree. HEAD has no \`.github/\`. Local \`make test\` is the gate that remains.
 
 Also true: MIT badge in README, **no LICENSE file**. Product Hunt badges link to producthunt.com root. PLAN.md still has Phase 3 "Product Hunt launch preparation." CHANGELOG dates 0.1.0 as 2025-01-17; git history starts **2025-10-17**.
 
 ## Where
 
-Code: [github.com/michaelmonetized/nvibe](https://github.com/michaelmonetized/nvibe) — **public**. No hosted demo.
+Code: [github.com/michaelmonetized/nvibe](https://github.com/michaelmonetized/nvibe), **public**. No hosted demo.
 
 Install path in README: Lazy.nvim or Packer snippets calling \`require('nvibe').setup()\`, after NvChad. Runtime needs Neovim 0.7+, NvChad (\`nvchad.term\`), and the CLIs you configured (plus \`lazygit\` for the bottom middle pane as written).
 
@@ -3685,23 +3687,23 @@ Checked-in \`screenshot.png\` (~948KB) from the Oct 18 roadmap commit is the vis
 
 ## When
 
-- **2025-10-17 morning** — \`a65bb50\` init → \`e0766a4\` initial plugin release → Product Hunt marketing README (\`be96f88\`) → docs, tests, NvChad error handling, CodeRabbit PR cleanup → merge #2.
-- **2025-10-17 evening – 2025-10-18** — bottom panel / 3-column layout fight: auto-launch, separate creation paths, sizing context bugs, manual vim-cmd walking (\`i've been using 1 not l but needed h\`) → **\`903e4d6\` "it works!"** → merge #3 from \`stage\` → \`5a790f2\` roadmap + screenshot.
-- **2026-02-21** — \`6a931f6\` NvimTree height + panel width restore (closes #4, #5).
-- **2026-02-27–28** — Actions build gate → Lua workflow fix → delete GitHub config for Vercel; PLAN.md + \`.hustlemc\` land.
-- **2026-06-22** — \`e7833a1\` / HEAD \`56d0152\` nightlies. Last push \`2026-06-22T22:17:08Z\`. **35** commits total.
+- **2025-10-17 morning** \`a65bb50\` init, \`e0766a4\` initial plugin release, Product Hunt marketing README (\`be96f88\`), docs, tests, NvChad error handling, CodeRabbit PR cleanup, merge #2.
+- **2025-10-17 evening to 2025-10-18** bottom panel / 3-column layout fight: auto-launch, separate creation paths, sizing context bugs, manual vim-cmd walking (\`i've been using 1 not l but needed h\`), then **\`903e4d6\` "it works!"**, merge #3 from \`stage\`, \`5a790f2\` roadmap + screenshot.
+- **2026-02-21** \`6a931f6\` NvimTree height + panel width restore (closes #4, #5).
+- **2026-02-27 to 28** Actions build gate, Lua workflow fix, delete GitHub config for Vercel; PLAN.md + \`.hustlemc\` land.
+- **2026-06-22** \`e7833a1\` / HEAD \`56d0152\` nightlies. Last push \`2026-06-22T22:17:08Z\`. **35** commits total.
 
 ![35-commit arc highlights](/blog/nvibe-neovim-cursor-coderabbit-layout-until-it-works/screenshots/commit-arc.png)
 
 ## Why
 
-Because "vibe coding" for me is not another chat sidebar — it is **terminals I already pay for**, laid out so the agent and the reviewer never leave the frame while I edit.
+"Vibe coding" for me means **terminals I already pay for**, laid out so the agent and the reviewer never leave the frame while I edit.
 
-I also wanted the diary of actually making Neovim splits behave. The commit messages from Oct 18 are the product as much as the README ASCII: simplify, comment out close, walk the steps, use \`h\` not \`1\`, then ship **"it works!"** Same energy as deleting a brand-new Actions workflow because the org mantra said Vercel — leave that commit in history instead of rewriting it.
+I also wanted the diary of actually making Neovim splits behave. The commit messages from Oct 18 are the product as much as the README ASCII: simplify, comment out close, walk the steps, use \`h\` not \`1\`, then ship **"it works!"** Same energy as deleting a brand-new Actions workflow because the org mantra said Vercel. Leave that commit in history instead of rewriting it.
 
 ## Engagement Q
 
-Would you hard-depend on **NvChad's terminal module** to glue Cursor Agent + CodeRabbit into Neovim — or keep AI in separate panes forever — and does a commit titled **"it works!"** after a day of \`wincmd\` hell earn more trust than a polished 0.1.0 badge?
+Would you hard-depend on **NvChad's terminal module** to glue Cursor Agent + CodeRabbit into Neovim, or keep AI in separate panes forever? And does a commit titled **"it works!"** after a day of \`wincmd\` hell earn more trust than a polished 0.1.0 badge?
 `;
 
 const COMPARE_COVER =
@@ -3991,15 +3993,15 @@ Because audit-only tools leave you copy-pasting. Because Blacksmith prebuilt + V
 const IPRO_COVER =
   "/blog/ipro-golf-agency-lander-ecosystem-hub/cover.png";
 
-const IPRO_CONTENT = `![iPro.golf agency homepage mock — hero, ecosystem chips, services](/blog/ipro-golf-agency-lander-ecosystem-hub/screenshots/home.png)
+const IPRO_CONTENT = `![iPro.golf agency homepage mock: hero, ecosystem chips, services](/blog/ipro-golf-agency-lander-ecosystem-hub/screenshots/home.png)
 
 ## Who
 
-I ship golf products that look like one brand family and are three different businesses. [iLeague.golf](https://ileague.golf) is the creator platform — scorecards, subscriptions, tips, fifteen percent fee. That pack already exists: \`ileague-golf-patreon-meets-18birdies\`. [iTour.golf](https://www.itour.golf) is the national creator-tour lander — sponsors, host bids, season schema — packed as \`itour-golf-tour-lander-ahead-of-deploy\`.
+I ship golf products that look like one brand family and are three different businesses. [iLeague.golf](https://ileague.golf) is the creator platform: scorecards, subscriptions, tips, fifteen percent fee. That pack already exists: \`ileague-golf-patreon-meets-18birdies\`. [iTour.golf](https://www.itour.golf) is the national creator-tour lander: sponsors, host bids, season schema, packed as \`itour-golf-tour-lander-ahead-of-deploy\`.
 
 iPro.golf is the **agency**. Country clubs, courses, resorts. Retainers. Case-study theater. A brochure that also hubs the ecosystem.
 
-If you care about multi-domain Vercel rewrites, agency landers that declare Stripe/Clerk/Convex and never wire them, or how not to steal the creator-SaaS story when the URL says “Pro”: this is the field notes.
+If you care about multi-domain Vercel rewrites, agency landers that declare Stripe/Clerk/Convex and never wire them, or how to keep the creator-SaaS story off a URL that says "Pro": this is the field notes.
 
 ## What
 
@@ -4009,30 +4011,28 @@ README one-liner: connective tissue between influencers and golf courses, countr
 
 Stack on the box: **Next.js 16.2**, **React 19**, Tailwind v4, Geist, a full shadcn/Radix tree, Bun lockfile, Vercel. Package name **web**, version **0.1.0**. Repo private. Site public at [www.ipro.golf](https://www.ipro.golf) (apex 308s to www). Ten commits. HEAD \`b8dfdba\`.
 
-![Retainer pricing mock — Starter / Growth / Premium](/blog/ipro-golf-agency-lander-ecosystem-hub/screenshots/services-pricing.png)
+![Retainer pricing mock: Starter / Growth / Premium](/blog/ipro-golf-agency-lander-ecosystem-hub/screenshots/services-pricing.png)
 
-This is **not** the creator billing product and **not** the tour season product.
+Agency retainers on the home page (this is the services brochure, separate from the creator billing product and the tour season product):
 
-Money on the home page is blunt agency retainers:
-
-1. **Starter** — $1,997/mo (refresh, social setup, GBP, reporting)  
-2. **Growth** — $4,997/mo (most popular — full social, email, content, paid, strategy)  
-3. **Premium** — $9,997+/mo (video, influencer campaigns, events, member acquisition, dedicated team)
+1. **Starter** $1,997/mo (refresh, social setup, GBP, reporting)
+2. **Growth** $4,997/mo (most popular: full social, email, content, paid, strategy)
+3. **Premium** $9,997+/mo (video, influencer campaigns, events, member acquisition, dedicated team)
 
 Services grid: Brand Design, Web Development, Social Media, Local SEO, Email Marketing, Video Production. CTAs go to \`/contact\` and \`/case-studies\`.
 
 What is also true on pack day:
 
-- **Live www title matches HEAD** — unlike the iTour pack where production still serves a fake 2026 season shell.  
-- \`layout.tsx\` points Open Graph at \`/og-image.png\`. That file is **not** in \`public/\`. curl → **404**.  
-- Contact \`handleSubmit\` is a one-second \`setTimeout\` with a TODO for Resend. Phone is **(555) GOLF-PRO**. Email \`hello@ipro.golf\`.  
-- Case studies (Highland Links, Coastal Resort & Spa, Valley Municipal) are fiction. Feb 9 AUTOPSY said the quiet part out loud; home metrics later sit at 50+ / 35% / 2.5x / $1.8M instead of the autopsy’s 120+ / 47% / $2.4M.  
-- \`package.json\` still lists Clerk, Stripe, Convex, PostHog, Resend, react-email. Fallow REVIEW: unused. No \`convex/\` tree. No \`app/api\`. Layout has no Clerk provider.  
-- \`/ileague\`, \`/itour\`, \`/iconf\` on this repo are **Coming Soon / waitlist shells**. The real products are separate repos and separate packs.  
-- Agency \`/itour\` copy still says **National Amateur Golf Tour** and a 2026 regional event grid — that fights the packed iTour creator-tour / May 2027 story. Call the conflict; do not merge the posts.  
-- Private vault \`michaelmonetized/iPro\` is already **SKIP** — logos, planning markdown, gitlink into this app. Do not retell it here.
+- **Live www title matches HEAD**, unlike the iTour pack where production still serves a fake 2026 season shell.
+- \`layout.tsx\` points Open Graph at \`/og-image.png\`. That file is missing from \`public/\`. curl returns **404**.
+- Contact \`handleSubmit\` is a one-second \`setTimeout\` with a TODO for Resend. Phone is **(555) GOLF-PRO**. Email \`hello@ipro.golf\`.
+- Case studies (Highland Links, Coastal Resort & Spa, Valley Municipal) are fiction. Feb 9 AUTOPSY said the quiet part out loud; home metrics later sit at 50+ / 35% / 2.5x / $1.8M instead of the autopsy's 120+ / 47% / $2.4M.
+- \`package.json\` still lists Clerk, Stripe, Convex, PostHog, Resend, react-email. Fallow REVIEW: unused. No \`convex/\` tree. No \`app/api\`. Layout has no Clerk provider.
+- \`/ileague\`, \`/itour\`, \`/iconf\` on this repo are **Coming Soon / waitlist shells**. The real products are separate repos and separate packs.
+- Agency \`/itour\` copy still says **National Amateur Golf Tour** and a 2026 regional event grid. That fights the packed iTour creator-tour / May 2027 story. Call the conflict; do not merge the posts.
+- Private vault \`michaelmonetized/iPro\` is already **SKIP**: logos, planning markdown, gitlink into this app. Do not retell it here.
 
-![Ecosystem differentiation — agency vs creator SaaS vs tour vs summit](/blog/ipro-golf-agency-lander-ecosystem-hub/screenshots/ecosystem-diff.png)
+![Ecosystem differentiation: agency vs creator SaaS vs tour vs summit](/blog/ipro-golf-agency-lander-ecosystem-hub/screenshots/ecosystem-diff.png)
 
 ## Where
 
@@ -4040,44 +4040,40 @@ It runs on Vercel as a prerendered marketing site (\`x-nextjs-prerender: 1\` on 
 
 Surfaces that matter:
 
-- Public agency pages — home, about, services, case studies, contact, blog listing, privacy, terms  
-- Ecosystem brochure pages — \`/ileague\` Coming Soon, \`/itour\` Coming 2026, \`/iconf\` Fall 2026  
-- \`proxy.ts\` — if host is \`iconference.golf\` or \`www.iconference.golf\` and path is \`/\`, rewrite to \`/iconf\`. Live iconference.golf returns **200** with \`x-matched-path: /iconf\`  
-- shadcn kit under \`components/ui/*\` — mostly unused; used pieces are Button, Sheet, form controls on contact  
+- Public agency pages: home, about, services, case studies, contact, blog listing, privacy, terms
+- Ecosystem brochure pages: \`/ileague\` Coming Soon, \`/itour\` Coming 2026, \`/iconf\` Fall 2026
+- \`proxy.ts\`: if host is \`iconference.golf\` or \`www.iconference.golf\` and path is \`/\`, rewrite to \`/iconf\`. Live iconference.golf returns **200** with \`x-matched-path: /iconf\`
+- shadcn kit under \`components/ui/*\`: mostly unused; used pieces are Button, Sheet, form controls on contact
 
-Live HTML on pack day did **not** need Clerk keys to render. There is no auth wall on the agency brochure.
+Live HTML on pack day did not need Clerk keys to render. There is no auth wall on the agency brochure.
 
-![Honesty board — live wins vs remaining gaps](/blog/ipro-golf-agency-lander-ecosystem-hub/screenshots/honesty-board.png)
+![Honesty board: live wins vs remaining gaps](/blog/ipro-golf-agency-lander-ecosystem-hub/screenshots/honesty-board.png)
 
-Related domains: **iPro.golf** (emerald agency — this pack), **iLeague.golf** (creator platform — packed), **iTour.golf** (tour — packed), **iConference.golf** (summit shell rewritten onto this project). Vault sibling SKIPPED.
+Related domains: **iPro.golf** (emerald agency, this pack), **iLeague.golf** (creator platform, packed), **iTour.golf** (tour, packed), **iConference.golf** (summit shell rewritten onto this project). Vault sibling SKIPPED.
 
 ## When
 
 **November 24, 2025.** Create Next App. Init thrash. Empty license. Another init. The repo exists before the golf pitch is real.
 
-**February 5, 2026.** \`chore: prod deploy\` — first push toward something live.
+**February 5, 2026.** \`chore: prod deploy\`: first push toward something live.
 
-**February 9.** The meaningful day. \`feat: Complete site rebuild with pages, navigation, and proper structure\` — the App Router surface that still matches www. Same day: AUTOPSY updated with GoDaddy DNS instructions and a brutal inventory of placeholders. DNS later got fixed; the autopsy file did not get a matching rewrite.
+**February 9.** The meaningful day. \`feat: Complete site rebuild with pages, navigation, and proper structure\`: the App Router surface that still matches www. Same day: AUTOPSY updated with GoDaddy DNS instructions and a brutal inventory of placeholders. DNS later got fixed; the autopsy file did not get a matching rewrite.
 
-**May 21.** \`Fix iConference domain deployment\` — CHANGELOG: production routing for iconference.golf onto the iPro Vercel project + UI compatibility so the Next production build passes. \`proxy.ts\` is the host rewrite.
+**May 21.** \`Fix iConference domain deployment\`. CHANGELOG: production routing for iconference.golf onto the iPro Vercel project + UI compatibility so the Next production build passes. \`proxy.ts\` is the host rewrite.
 
 **June 22.** Two \`nightly\` commits. HEAD \`b8dfdba\`. Package deps float forward; the brochure story does not.
 
 ## Why
 
-Because the ecosystem needs a front door that sells **services to properties** without pretending it is the creator SaaS or the tour.
+The ecosystem needs a front door that sells **services to properties** without pretending it is the creator SaaS or the tour.
 
-Because operators reading three golf posts in a row deserve a clean split: agency retainers here, Patreon×18Birdies there, sponsor/host season over there.
+Operators reading three golf posts in a row deserve a clean split: agency retainers here, Patreon x 18Birdies there, sponsor/host season over there.
 
-Because a domain rewrite for iconference.golf onto \`/iconf\` is a real ops story — and a Coming Soon waitlist is not the same as shipping iConference.
+A domain rewrite for iconference.golf onto \`/iconf\` is a real ops story. A Coming Soon waitlist is still not shipping iConference.
 
-Because the vault repo will keep tempting people to package logos as a product. It is not. This app is.
+The vault repo will keep tempting people to package logos as a product. Ship the app; leave the logo vault alone.
 
-**Engagement question:** When the agency lander links to Coming Soon ecosystem shells that already have live product domains elsewhere — do you keep the hub honest as a brochure, or do you outbound-link straight to the real products and delete the shells?
-
----
-
-*Draft + assets only. Do not publish from this pack.*
+**Engagement Q:** When the agency lander links to Coming Soon ecosystem shells that already have live product domains elsewhere, do you keep the hub honest as a brochure, or do you outbound-link straight to the real products and delete the shells?
 `;
 
 const ASSESSMENT_TOOLBAR_COVER =
@@ -4271,17 +4267,17 @@ For operators who need the honest split between a **$8/user CRM marketing site**
 
 ## What
 
-I built **hustlecrm-com** — private \`https://github.com/michaelmonetized/hustlecrm-com\`. Next.js marketing shell. HEAD \`2c50bbb\`. **3** commits. 0 stars. package name \`hustlecrm.com@0.1.0\`. README is **stock** create-next-app boilerplate.
+I built **hustlecrm-com**, private \`https://github.com/michaelmonetized/hustlecrm-com\`. Next.js marketing shell. HEAD \`2c50bbb\`. **3** commits. 0 stars. package name \`hustlecrm.com@0.1.0\`. README is **stock** create-next-app boilerplate.
 
-Stack facts from \`package.json\`: Next **16.2.6**, React **19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there — no Clerk, no Convex, no Stripe package, no CRM/database library.
+Stack facts from \`package.json\`: Next **16.2.6**, React **19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there: no Clerk, no Convex, no Stripe package, no CRM/database library.
 
 What the UI claims:
 
-- Hero: “CRM for People Who **Hate CRMs**.” Subhead close deals. Price line **Simple. Fast. $8/mo.**
-- CTAs: **Start Free Trial** → \`href="#"\`, **See Features** → \`/features\`. Header **Sign in** → \`href="#"\`.
-- Home **KanbanDemo**: Lead → Contacted → Proposal → Negotiation → Won — Sarah Chen / Emma Wilson / David Kim deal cards with drag-drop — chrome UI, not a product screenshot.
+- Hero: "CRM for People Who **Hate CRMs**." Subhead close deals. Price line **Simple. Fast. $8/mo.**
+- CTAs: **Start Free Trial** \`href="#"\`, **See Features** \`/features\`. Header **Sign in** \`href="#"\`.
+- Home **KanbanDemo**: Lead, Contacted, Proposal, Negotiation, Won. Sarah Chen / Emma Wilson / David Kim deal cards with drag-drop. Chrome UI, not a product screenshot.
 - Feature grid: Contact & Company Management, Deal Pipeline (Kanban), Activity Timeline, Custom Fields, Import & Export, Integrations (HustleChat / HustleForms).
-- Competitor cards: HubSpot \`$45+/mo\`, Pipedrive \`$14+/mo\` vs HustleCRM **\`$8/mo\`** — **per user**, cancel anytime.
+- Competitor cards: HubSpot \`$45+/mo\`, Pipedrive \`$14+/mo\` vs HustleCRM **\`$8/mo\`**, **per user**, cancel anytime.
 - Pricing: **Free Trial** $0 / 14 days + **Pro** **$8 /user/month**; table adds Salesforce \`$25+/mo\`.
 - Brand blue: CSS \`--primary = #2563eb\` / \`--primary-dark = #1d4ed8\`.
 
@@ -4299,36 +4295,36 @@ Linked but **dead in-repo**: **25** \`href="#"\` hits across header, footer, hom
 
 ![Missing routes + PHP domain](/blog/hustlecrm-com-eight-per-user-crm-lander-legacy-php-domain/screenshots/missing-routes.png)
 
-This is **not** \`hustledesk-com\` — that sibling is the **helpdesk** $8 **flat** lander (sky \`#0ea5e9\`, Zendesk comparison, auth → \`app.*\` → WordPress parking). Different product claim. Different brand. Different domain failure mode.
-
-This is **not** \`hustlemail-com\` — that sibling is the **email-marketing** $8 lander (red \`#ef4444\`, Free/$8/$24).
+Sibling landers stay separate stories: \`hustledesk-com\` is the **helpdesk** $8 **flat** lander (sky \`#0ea5e9\`, Zendesk comparison, auth to \`app.*\` to WordPress parking). \`hustlemail-com\` is the **email-marketing** $8 lander (red \`#ef4444\`, Free/$8/$24). Different product claim. Different brand. Different domain failure mode.
 
 ## Where
 
-Code: [github.com/michaelmonetized/hustlecrm-com](https://github.com/michaelmonetized/hustlecrm-com) — private.
+Code: [github.com/michaelmonetized/hustlecrm-com](https://github.com/michaelmonetized/hustlecrm-com), private.
 
 Live probes at pack time:
 
-- \`hustlecrm.com\` DNS A → **162.144.3.43**; HTTPS **200** Apache + \`PHPSESSID\`; title **Hustle CRM!**; Bootstrap **5.3** form \`POST scripts/login.php\` → **302** \`index.php?error=no\`; \`assets/cover.jpg\` Last-Modified **2023-04-17** — **not** this Next CRM lander
-- \`www.hustlecrm.com\` → same A / same PHP login
-- \`app.hustlecrm.com\` → **NXDOMAIN**
-- \`hustlecrm-com.vercel.app\` / \`hustlecrm.vercel.app\` → **404** \`DEPLOYMENT_NOT_FOUND\`
+- \`hustlecrm.com\` DNS A **162.144.3.43**; HTTPS **200** Apache + \`PHPSESSID\`; title **Hustle CRM!**; Bootstrap **5.3** form \`POST scripts/login.php\` returns **302** \`index.php?error=no\`; \`assets/cover.jpg\` Last-Modified **2023-04-17**. That host serves the legacy PHP login, while this Next CRM lander never shipped there.
+- \`www.hustlecrm.com\` same A / same PHP login
+- \`app.hustlecrm.com\` **NXDOMAIN**
+- \`hustlecrm-com.vercel.app\` / \`hustlecrm.vercel.app\` **404** \`DEPLOYMENT_NOT_FOUND\`
 
 Local inspect clone: \`/tmp/cf-inspect/hustlecrm-com\` @ \`2c50bbb\`.
 
 ## When
 
-**2026-02-18 07:53 ET** — \`f4494f2\` feat: initial hustlecrm.com marketing site (+2566 / 23 files).  
-**2026-06-22 17:12 ET** — \`208c547\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).  
-**2026-06-22 18:11 ET** — \`2c50bbb\` nightly empty tip (HEAD).
+**2026-02-18 07:53 ET** \`f4494f2\` feat: initial hustlecrm.com marketing site (+2566 / 23 files).
+
+**2026-06-22 17:12 ET** \`208c547\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).
+
+**2026-06-22 18:11 ET** \`2c50bbb\` nightly empty tip (HEAD).
 
 ![Commit arc](/blog/hustlecrm-com-eight-per-user-crm-lander-legacy-php-domain/screenshots/commit-arc.png)
 
 ## Why
 
-Because a HubSpot-price lander still needs an auth surface that is not \`href="#"\` while the public domain serves a 2023 PHP login. Because “$8 per user, all features included” on a four-page private repo is table copy, not a billed product. Because hustledesk-com already told the $8 lander story for **helpdesk + WordPress parking** — this pack is the **CRM** twin with **per-user** pricing and a **legacy PHP** domain.
+A HubSpot-price lander still needs an auth surface that is more than \`href="#"\` while the public domain serves a 2023 PHP login. "$8 per user, all features included" on a four-page private repo is table copy, not a billed product. hustledesk-com already told the $8 lander story for **helpdesk + WordPress parking**. This pack is the **CRM** twin with **per-user** pricing and a **legacy PHP** domain.
 
-**Engagement Q:** How many of your SaaS domains currently serve a Bootstrap PHP login from 2023 while the Next marketing shell never shipped and every “Start Free Trial” button is a hash?
+**Engagement Q:** How many of your SaaS domains currently serve a Bootstrap PHP login from 2023 while the Next marketing shell never shipped and every "Start Free Trial" button is a hash?
 `;
 
 const HUSTLEFORMS_COVER =
@@ -7039,7 +7035,7 @@ export const staticPosts: StaticPost[] = [
     title: "hustlecrm.com: $8/user CRM lander vs legacy PHP login domain",
     slug: "hustlecrm-com-eight-per-user-crm-lander-legacy-php-domain",
     excerpt:
-      "Private Next 16 marketing shell for HustleCRM \u2014 HubSpot/Pipedrive/Salesforce comparison, $8/user/mo Pro + 14-day free trial, interactive Kanban pipeline demo, docs/API cards with href=\"#\". Auth CTAs are dead anchors. Live hustlecrm.com is a Bootstrap+PHPSESSID login form posting to scripts/login.php (title \u201cHustle CRM!\u201d), not this Next lander. Stock create-next-app README. 3 commits. HEAD 2c50bbb. Not a live CRM product.",
+      "Private Next 16 marketing shell for HustleCRM (HEAD 2c50bbb, 3 commits): HubSpot/Pipedrive/Salesforce comparison, $8/user/mo Pro + 14-day free trial, Kanban demo chrome, docs/API cards with href=#. Live hustlecrm.com still serves a 2023 Bootstrap PHP login; Vercel aliases 404."#\". Auth CTAs are dead anchors. Live hustlecrm.com is a Bootstrap+PHPSESSID login form posting to scripts/login.php (title \u201cHustle CRM!\u201d), not this Next lander. Stock create-next-app README. 3 commits. HEAD 2c50bbb. Not a live CRM product.",
     content: HUSTLECRM_CONTENT,
     coverImage: HUSTLECRM_COVER,
     tags: [
@@ -7099,7 +7095,7 @@ export const staticPosts: StaticPost[] = [
     title: "iPro.golf: the golf course & resort marketing agency lander \u2014 not iLeague, not iTour",
     slug: "ipro-golf-agency-lander-ecosystem-hub",
     excerpt:
-      "HurleyUS/iPro-main-web is the live agency site for courses and resorts (ipro.golf): Next 16 pages, retainers $1,997\u2013$9,997+, ecosystem Coming Soon shells, iconference.golf \u2192 /iconf. Sibling vault michaelmonetized/iPro was SKIP. Distinct from ileague creator SaaS and itour season lander. 10 commits, HEAD b8dfdba.",
+      "HurleyUS/iPro-main-web is the live agency site for courses and resorts (ipro.golf): Next 16 pages, retainers $1,997 to $9,997+, ecosystem Coming Soon shells, iconference.golf rewritten to /iconf. Sibling vault michaelmonetized/iPro was SKIP. Distinct from ileague creator SaaS and itour season lander. 10 commits, HEAD b8dfdba.",
     content: IPRO_CONTENT,
     coverImage: IPRO_COVER,
     tags: [
@@ -7352,7 +7348,7 @@ export const staticPosts: StaticPost[] = [
     title: "nvibe: I wired Cursor Agent + CodeRabbit into Neovim, then fought the window manager until \"it works!\"",
     slug: "nvibe-neovim-cursor-coderabbit-layout-until-it-works",
     excerpt:
-      "Lua Neovim plugin that auto-lays out Cursor Agent + CodeRabbit on the left and LazyGit/shells on the bottom (hard NvChad dependency) \u2014 35 commits from Product Hunt README through \"it works!\" window-management hell, NvimTree #4/#5 fixes, a GitHub Actions gate that got deleted for \"Vercel is our only CI/CD,\" and June 22 nightlies. HEAD 56d0152.",
+      "nvibe is a public Lua Neovim plugin (HEAD 56d0152, 35 commits) that auto-lays out Cursor Agent + CodeRabbit on the left and LazyGit/shells on the bottom with a hard NvChad dependency. Arc runs from Product Hunt README through it works window hell, NvimTree #4/#5 fixes, and a GitHub Actions gate deleted for Vercel is our only CI/CD."it works!\" window-management hell, NvimTree #4/#5 fixes, a GitHub Actions gate that got deleted for \"Vercel is our only CI/CD,\" and June 22 nightlies. HEAD 56d0152.",
     content: NVIBE_CONTENT,
     coverImage: NVIBE_COVER,
     tags: [
@@ -8278,7 +8274,7 @@ export const staticPosts: StaticPost[] = [
     title: "omnux-report: I shipped one-command diagnostics that refuse to scoop your secrets",
     slug: "omnux-report-one-command-diagnostics-redaction",
     excerpt:
-      "omnux-report is the offline diagnostics .tar.zst + SHA256 for Omnux on Apple Silicon — consent first, redaction default, SEP structure only. Validated on a real M1 Pro Omarchy box. Not install. Not GPU pixels.",
+      "omnux-report is an offline MIT Shell diagnostics tool (HEAD f9729a6) that ships a consenting redacted .tar.zst + SHA256 for Omnux on Apple Silicon, with SEP structure only. Validated on a real M1 Pro Omarchy box plus a ten-check fixture harness; mx-mac packaging and owner release still open.",
     content: OMNUX_REPORT_CONTENT,
     coverImage: OMNUX_REPORT_COVER,
     tags: [
