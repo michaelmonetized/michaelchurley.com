@@ -4680,7 +4680,272 @@ Convex in the hero without convex in package.json. Fake SDKs. Parkweb domain. No
 - app + cdn NXDOMAIN; vercel DEPLOYMENT_NOT_FOUND
 `;
 
+const ANIMATED_GRADIENT_BORDER_COVER =
+  "/blog/animated-gradient-border-transparent-mask-composite/cover.png";
+
+const ANIMATED_GRADIENT_BORDER_CONTENT = `![Native demo frame](/blog/animated-gradient-border-transparent-mask-composite/screenshots/hero-native.png)
+
+## Who
+
+I wanted the usual glass card with a rotating gradient border — and I wanted to see the video plate *through* the middle of the ring, not a filled conic disk sitting on top of the glass.
+
+For front-end operators who already know \`conic-gradient\` and still lose an afternoon when the border paints the whole card. Especially anyone comparing this lab to my Next.js glass-design-system \`AnimatedBorder\` and needing the bare CSS cut.
+
+## What
+
+I built **animated-gradient-border-on-transparent-background** — public [\`michaelmonetized/animated-gradient-border-on-transparent-background\`](https://github.com/michaelmonetized/animated-gradient-border-on-transparent-background). HEAD \`5e9b611\`. **5** commits. **0** stars. Language **CSS**. License **GPL-3**. README is **empty** (0 bytes). No version tag. No GitHub Pages. No homepage.
+
+![Card anatomy](/blog/animated-gradient-border-transparent-mask-composite/screenshots/glass-card-anatomy.png)
+
+Product is a static lab:
+
+- \`index.html\` — 31 lines. Title: Glass Animated Gradient Border. Card classes: \`glass rounded border-gradient border-glow animate-rotate-angle\`.
+- \`style.css\` — 448 lines (~8.9KB). The technique lives here.
+- Plate: \`#hero\` + \`.video-bg\` pointing at a remote HustleLaunch webm (\`attraction-silent-backdrop.webm\`). Repo also carries local \`video.webm\` (~47MB) and \`bg.png\`.
+- Toggle: fixed darklight checkbox flips ☀️/🌙 via \`--scheme\` and \`:has()\`.
+
+The border trick:
+
+1. \`::after\` paints a full-box \`conic-gradient(from var(--conic-gradient-angle), …)\`.
+2. Dual masks — outer \`linear-gradient(#fff 0 0)\` + inner \`content-box\` — with \`padding: var(--border-width)\`.
+3. \`mask-composite: exclude\` / \`-webkit-mask-composite: xor\` keeps **only the ring**.
+
+![mask-composite exclude](/blog/animated-gradient-border-transparent-mask-composite/screenshots/mask-xor-diagram.png)
+
+Spin comes from CSS \`@property --conic-gradient-angle\` (syntax \`<angle>\`) and \`@keyframes background-spin\` 0→360deg, applied to both \`::before\` (glow) and \`::after\` (ring) at 3s linear infinite. Glow uses a larger inset, \`filter: blur\`, and \`--intensity-glow\` (0.4 light / 0.2 dark).
+
+Same file also ships experimental CSS \`@function --transparency\` / \`--light-dark\` wrapping \`color-mix\` and scheme branching.
+
+![ @property spin + layers ](/blog/animated-gradient-border-transparent-mask-composite/screenshots/css-property-spin.png)
+
+**Sibling fence:** [glass-design-system](https://github.com/michaelmonetized/glass-design-system) reuses the \`@property\` + mask border idea as \`AnimatedBorder\` inside a Next.js 16 Apple-SVG glass showcase. This repo is the bare static HTML/CSS lab — not that product spine, not twelveux WebGL glass.
+
+![Sibling vs glass-design-system](/blog/animated-gradient-border-transparent-mask-composite/screenshots/sibling-vs-glass-design.png)
+
+Residue I am not papering over:
+
+- Empty README.
+- Native screenshot from 2026-01-29 still shows "Fork on GitHub" / "Download" and a "How it works?" skip link that current \`index.html\` no longer has.
+- Two empty commits: second \`simplified\` shares tree with first; second \`nightly\` shares tree with first.
+- \`video.webm\` in-tree while the page loads the remote URL.
+
+## Where
+
+Code: [github.com/michaelmonetized/animated-gradient-border-on-transparent-background](https://github.com/michaelmonetized/animated-gradient-border-on-transparent-background) — public. Open \`index.html\` locally (needs network for the remote webm plate).
+
+\`\`\`bash
+git clone git@github.com:michaelmonetized/animated-gradient-border-on-transparent-background.git
+open index.html   # or any static server
+\`\`\`
+
+## When
+
+**2024-08-24** — \`8eeb210\` mkproject scaffold (editorconfig, prettier, GPL-3 LICENSE, empty README).
+**2026-01-30** — \`95a48ad\` / \`de23de9\` "simplified": demo HTML/CSS + screenshot + bg + video; second commit empty.
+**2026-06-22** — \`d087699\` / \`5e9b611\` nightly: \`.hustlemc\` + \`.uncap\`; second nightly empty · HEAD.
+
+Repo GitHub \`created_at\` is 2026-01-30; the mkproject commit timestamp is 2024-08-24 (history carried in).
+
+![Commit arc](/blog/animated-gradient-border-transparent-mask-composite/screenshots/commit-arc.png)
+
+## Why
+
+Because a gradient border that fills the card is a different product than a ring you can see through. Because \`mask-composite: exclude\` is the honest sentence. Because the static lab should stay distinct from the Next.js glass design system that absorbed the same border pattern.
+
+**Engagement Q:** Fill the empty README with the mask-xor recipe and retire the stale Fork/Download screenshot — or leave the repo as a raw lab and point operators at glass-design-system for the polished story?
+`;
+
+const SHAGENT_COVER =
+  "/blog/shagent-bun-mcp-openrouter-after-zsh-harness-delete/cover.png";
+
+const SHAGENT_CONTENT = `![OG / zsh to bun](/blog/shagent-bun-mcp-openrouter-after-zsh-harness-delete/screenshots/zsh-to-bun.png)
+
+## Who
+
+I wanted a shell-native agent that already knew my Zsh profile — then I tore that harness out and put a Bun MCP controller in its place.
+
+For operators who care about the honest split between a **deleted Zsh THOUGHT/COMMAND loop** and the **HEAD Bun + OpenRouter + filesystem MCP** stack under the same public repo name.
+
+## What
+
+I built **shagent** — public \`https://github.com/michaelmonetized/shagent\`. HEAD \`61ecd7d\`. **3** commits. **0** stars. Default **main**. \`package.json\` **1.0.0**. README is **0 bytes**.
+
+**At HEAD (Bun / TypeScript):**
+
+- Entry \`./shagent\` (\`#!/usr/bin/env bun\`) — requires \`OPENROUTER_API_KEY\`; model \`SHAGENT_MODEL\` or **\`openrouter/free\`**
+- \`Shagent\` in \`src/controller/shagent.ts\` (~79 LOC): MCP \`Client\` + \`StdioClientTransport\` → \`npx -y @modelcontextprotocol/server-filesystem\` on \`process.cwd()\`
+- OpenRouter \`https://openrouter.ai/api/v1/chat/completions\` loop, **max 15** turns
+- System prompt forces JSON: \`{"action":"tool_name","args":{...}}\` or \`{"message":"..."}\`; regex scrape \`/\\{.*?\\}/gs\`; \`client.callTool\`
+- Sibling probe \`src/controller/index.ts\` lists tools from \`npx -y chrome-devtools-mcp\` — **not** what the CLI entry wires
+
+![Agent loop](/blog/shagent-bun-mcp-openrouter-after-zsh-harness-delete/screenshots/agent-loop.png)
+
+**Deleted on the Jun 22 rewrite (\`2ecb32f\`):** \`src/shagent.sh\` — **258** lines of Zsh.
+
+What that harness did (still recoverable from \`0729083\`):
+
+- Source \`~/.zshenv\` / \`.zprofile\` / \`.zshrc\` + optional \`.env\`
+- Session \`-s/--session\` (default \`default\`)
+- Deps: \`rg fd eza bat git jq curl … qmd mcp-cli\`
+- Response contract: \`THOUGHT:\` / \`COMMAND:\` then \`eval\`
+- Optional async \`qmd update\` / \`qmd embed\`
+- Same OpenRouter free default
+
+![Deleted Zsh harness](/blog/shagent-bun-mcp-openrouter-after-zsh-harness-delete/screenshots/zsh-harness.png)
+
+**Fiction still in-tree:** \`index.html\` sells “Launch, scale, and monitor autonomous AI agents” with CTA to \`github.com/shagent/getting-started\` and footer **Rusty P. Shackelford**. Not a deploy. Not wired to \`./shagent\`.
+
+![Fiction lander](/blog/shagent-bun-mcp-openrouter-after-zsh-harness-delete/screenshots/fiction-lander.png)
+
+**Residue:** \`stdout-test.txt\` (~116KB) is a shell-era OpenRouter request dump that still narrates Zsh + mcp-cli + qmd. Second nightly \`61ecd7d\` is an **empty** commit (message only).
+
+This is **not** \`orclawstrator\` (OpenClaw Swift→Go command center). **Not** \`mission-control\` / \`hurley-mission-control\`. Local Bun + npx MCP or it does not run.
+
+## Where
+
+Code: [github.com/michaelmonetized/shagent](https://github.com/michaelmonetized/shagent) — public.
+
+Run (facts from entry): set \`OPENROUTER_API_KEY\`, optional \`SHAGENT_MODEL\`, then \`./shagent 'task description'\` with Bun available. \`bun.lock\` present; no scripts block in \`package.json\`.
+
+No live product URL. No claimed domain.
+
+## When
+
+- **2026-05-26** — \`0729083\` init: empty README + Zsh harness
+- **2026-06-22 16:50 ET** — \`2ecb32f\` nightly: delete \`src/shagent.sh\`; add Bun controller, fiction HTML, stdout dump, uncap
+- **2026-06-22 17:56 ET** — \`61ecd7d\` nightly: empty tree diff; HEAD
+- Pack prepared **2026-09-08 ~4:55 PM ET** — draft + assets only
+
+## Why
+
+I needed a minimal OpenRouter agent that could call tools. The Zsh version lived inside my shell profile. The Bun version talks MCP over stdio to a filesystem server and keeps the model choice on OpenRouter free by default. The marketing HTML and the empty README are the honesty tax sitting next to that loop.
+
+**Engagement:** how many public agent repos still ship a fiction lander and a 0-byte README after deleting the shell harness that \`stdout-test.txt\` still describes?
+
+---
+`;
+
+const MKPROJECT_COVER =
+  "/blog/mkproject-bash-scaffold-template-git-init-runafter/cover.png";
+
+const MKPROJECT_CONTENT = `![Scaffold flow](/blog/mkproject-bash-scaffold-template-git-init-runafter/screenshots/scaffold-flow.png)
+
+## Who
+
+I kept hand-rolling new folders and occasionally pushing a dotenv. The fix is a small bash scaffolder with .env in the template ignore list.
+
+## What
+
+**mkproject** — public michaelmonetized/mkproject. HEAD \`321012c\`. 9 commits. 76-line \`mkproject.sh\`. User template under ~/.config/mkproject. Dotenv knobs: PROJECT_DIR, BRANCH, COMMIT_MESSAGE, RUNAFTER, DISABLE_GIT. Default RUNAFTER is \`code .\`.
+
+![Config env](/blog/mkproject-bash-scaffold-template-git-init-runafter/screenshots/config-env.png)
+
+![Template tree](/blog/mkproject-bash-scaffold-template-git-init-runafter/screenshots/template-tree.png)
+
+Template now ships package.json + index.js; README file list still says six hygiene files. Root MIT vs template GPL-3. No releases despite README v0.1.0 zip.
+
+![License mismatch](/blog/mkproject-bash-scaffold-template-git-init-runafter/screenshots/license-mismatch.png)
+
+Empty scaffolds mkproject-1 / 49 are SKIP — outputs of this tool, not products.
+
+## Where
+
+https://github.com/michaelmonetized/mkproject — public CLI. No site.
+
+## When
+
+Aug 2024 birth. Jan 2026 sync. Mar 2026 Node stub in template. Jun 2026 PLAN/uncap + empty HEAD tip.
+
+![Commit arc](/blog/mkproject-bash-scaffold-template-git-init-runafter/screenshots/commit-arc.png)
+
+## Why
+
+The factory story belongs on the scaffolder, not the empty children. Dotenv-safe init is the boring win.
+
+**Engagement Q:** Align template LICENSE with MIT, or document the GPL default as intentional?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:animated-gradient-border-transparent-mask-composite",
+    title: "animated-gradient-border: transparent glass with a spinning conic ring",
+    slug: "animated-gradient-border-transparent-mask-composite",
+    excerpt:
+      "Public michaelmonetized/animated-gradient-border-on-transparent-background is a static HTML/CSS lab: glassmorphism card, rotating conic border, interior punched transparent with mask-composite exclude/xor. CSS @property angle spin + @function helpers. 5 commits. HEAD 5e9b611. Empty README. Distinct from glass-design-system Next.js AnimatedBorder.",
+    content: ANIMATED_GRADIENT_BORDER_CONTENT,
+    coverImage: ANIMATED_GRADIENT_BORDER_COVER,
+    tags: [
+      "animated-gradient-border",
+      "css",
+      "glassmorphism",
+      "conic-gradient",
+      "mask-composite",
+      "css-property",
+      "transparent-border",
+      "hustlelaunch",
+      "static-html",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T09:40:00Z"),
+    readingTime: 3,
+  },
+
+  {
+    _id: "static:shagent-bun-mcp-openrouter-after-zsh-harness-delete",
+    title: "shagent: Bun MCP + OpenRouter free loop \u2014 after I deleted the Zsh shell harness",
+    slug: "shagent-bun-mcp-openrouter-after-zsh-harness-delete",
+    excerpt:
+      "Public michaelmonetized/shagent: May init was a 258-line Zsh THOUGHT/COMMAND OpenRouter harness (rg/fd/eza/bat, mcp-cli, qmd). Jun 22 nightly deleted src/shagent.sh and shipped Bun CLI + MCP filesystem client + OpenRouter JSON tool loop (max 15 turns, default openrouter/free). Empty README. Marketing index.html is fiction (Rusty P. Shackelford). 3 commits. HEAD 61ecd7d. Not orclawstrator.",
+    content: SHAGENT_CONTENT,
+    coverImage: SHAGENT_COVER,
+    tags: [
+      "shagent",
+      "bun",
+      "typescript",
+      "mcp",
+      "model-context-protocol",
+      "openrouter",
+      "cli",
+      "agent",
+      "zsh",
+      "filesystem-mcp",
+      "chrome-devtools-mcp",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T09:30:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:mkproject-bash-scaffold-template-git-init-runafter",
+    title: "mkproject: bash scaffold that ships .env-safe git init + RUNAFTER",
+    slug: "mkproject-bash-scaffold-template-git-init-runafter",
+    excerpt:
+      "Public 76-line Shell CLI that copies ~/.config/mkproject/template, git inits with branch+commit message from .env, and runs RUNAFTER (default code .). The tool that created empty-junk siblings mkproject-1 and 49. 9 commits. HEAD 321012c.",
+    content: MKPROJECT_CONTENT,
+    coverImage: MKPROJECT_COVER,
+    tags: [
+      "mkproject",
+      "bash",
+      "cli",
+      "scaffold",
+      "git-init",
+      "template",
+      "dotenv",
+      "dev-tooling",
+      "project-bootstrap",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T09:20:00Z"),
+    readingTime: 1,
+  },
+
   {
     _id: "static:neovim-ide-tmux-gigachad-layout-cursor-agent",
     title: "neovim-ide: the GIGACHAD of NvChad is a tmux layout (ollama ASCII, cursor-agent reality)",
