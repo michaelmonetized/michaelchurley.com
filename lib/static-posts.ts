@@ -4533,22 +4533,22 @@ const WHISPERCPP_CONTENT = `![OG / menubar streaming](/blog/whispercpponeverythi
 
 I build local tooling when cloud dictation is the wrong trust boundary.
 
-For operators who want **Ctrl+W anywhere → text typed into the focused field** with **whisper.cpp on the machine**, and who need the honest split between the **streaming HEAD** and the **batch/orange README** still sitting in the same private repo.
+For operators who want **Ctrl+W anywhere** to type into the focused field with **whisper.cpp on the machine**, and who need the honest split between the **streaming HEAD** and the **batch/orange README** still sitting in the same private repo.
 
 ## What
 
-I built **WhisperCPPonEverything** — private \`https://github.com/michaelmonetized/WhisperCPPonEverything\`. Native macOS **menubar** (\`LSUIElement\`) Swift Package executable. HEAD \`d33e5e2\`. **11** commits. 0 stars. Bundle \`com.whispercpponeverything.app\` **2.0.0**. Renamed from **VoiceType**.
+I built **WhisperCPPonEverything**, private [\`michaelmonetized/WhisperCPPonEverything\`](https://github.com/michaelmonetized/WhisperCPPonEverything). Native macOS **menubar** (\`LSUIElement\`) Swift Package executable. HEAD \`d33e5e2\`. **11** commits. 0 stars. Bundle \`com.whispercpponeverything.app\` **2.0.0**. Renamed from **VoiceType**.
 
 Stack facts from \`Package.swift\` + sources:
 
 - Platforms: **macOS 14+**
-- Frameworks only: AppKit, CoreGraphics, ApplicationServices — **zero SPM dependencies**
-- Hotkey: **Ctrl+W** via \`CGEvent\` tap (active session → listenOnly → HID listenOnly fallback)
+- Frameworks only: AppKit, CoreGraphics, ApplicationServices. **Zero SPM dependencies.**
+- Hotkey: **Ctrl+W** via \`CGEvent\` tap (active session, then listenOnly, then HID listenOnly fallback)
 - macOS **15+**: \`CGPreflightListenEventAccess\` / \`CGPreflightPostEventAccess\` + request APIs before tap create
 - Transcription: subprocess \`/opt/homebrew/bin/whisper-stream\` with model \`/opt/homebrew/share/whisper-cpp/models/ggml-medium.bin\`, args \`-l en --step 3000 --length 5000 --keep 200\`
 - Incremental inject: strip ANSI + \`[timestamp]\` prefixes, **suffix-prefix overlap dedupe**, then \`TextInjector\` Unicode \`CGEvent\` keystrokes (5ms between chars)
 - Visual: fullscreen \`.screenSaver\` overlay, **cyan** 20-layer soft glow, 1.5Hz pulse, \`ignoresMouseEvents\`
-- State machine: **\`idle ↔ streaming\`** only (\`State.swift\`)
+- State machine: **\`idle\` / \`streaming\` only** (\`State.swift\`)
 - Logging: \`~/Library/Logs/WhisperCPPonEverything.log\`
 - Checked-in \`WhisperCPPonEverything.app\` with **arm64 Mach-O** binary
 
@@ -4558,39 +4558,39 @@ Stack facts from \`Package.swift\` + sources:
 
 What the README still claims (stale vs HEAD):
 
-- 🟠 **Orange** screen glow while listening
+- Orange screen glow while listening
 - **Silence detection** ends recording after 5 seconds
-- Batch-style “speak → stop → transcribed text is typed”
+- Batch-style speak, stop, then transcribed text is typed
 
-What CLAUDE.md + Swift say at HEAD: cyan soft glow, toggle stop, **streaming** text as whisper-stream prints lines. PLAN.md still names \`AudioRecorder.swift\` / \`Transcriber.swift\` — those files are not in the tree. TODO.md phases are all unchecked. StatusItem streaming mic is still **\`.systemOrange\`** next to a cyan overlay.
+What CLAUDE.md + Swift say at HEAD: cyan soft glow, toggle stop, **streaming** text as whisper-stream prints lines. PLAN.md still names \`AudioRecorder.swift\` / \`Transcriber.swift\`. Those files are not in the tree. TODO.md phases are all unchecked. StatusItem streaming mic is still **\`.systemOrange\`** next to a cyan overlay.
 
 ![Stale docs gap](/blog/whispercpponeverything-ctrl-w-streaming-stt-cyan-glow/screenshots/stale-docs-gap.png)
 
 ![Permissions triad](/blog/whispercpponeverything-ctrl-w-streaming-stt-cyan-glow/screenshots/permissions-triad.png)
 
-This is **not** \`niri-macos\` (Swift AX tiling). **Not** a SaaS dictation lander. Local Homebrew whisper-stream or the app alerts “whisper-cpp Not Found”.
+Distinct from \`niri-macos\` (Swift AX tiling) and from SaaS dictation landers. Local Homebrew whisper-stream or the app alerts that whisper-cpp is missing.
 
 ## Where
 
-Code: [github.com/michaelmonetized/WhisperCPPonEverything](https://github.com/michaelmonetized/WhisperCPPonEverything) — private.
+Code: [github.com/michaelmonetized/WhisperCPPonEverything](https://github.com/michaelmonetized/WhisperCPPonEverything), private.
 
-Runtime probes at pack time: no public web product. Install path documented as \`swift build -c release\` then copy into \`/Applications/WhisperCPPonEverything.app/Contents/MacOS/\` + ad-hoc \`codesign\`. CLAUDE note: **each new binary invalidates TCC** — remove/re-add Accessibility.
+Runtime probes at pack time: no public web product. Install path documented as \`swift build -c release\` then copy into \`/Applications/WhisperCPPonEverything.app/Contents/MacOS/\` + ad-hoc \`codesign\`. CLAUDE note: **each new binary invalidates TCC**. Remove and re-add Accessibility.
 
 Required on disk: \`whisper-stream\` + \`ggml-medium.bin\` under Homebrew paths above.
 
 ## When
 
-- **2026-02-15** — PLAN/README/TODO → rename → sources build → VoiceType rename → whisper-cli path fixes → app bundle → **cyan instead of orange**
-- **2026-02-16** — \`92bb411\` streaming STT + soft glow + macOS 15+ permission support
-- **2026-06-22** — two \`nightly\` commits; HEAD \`d33e5e2\` (also last GitHub push)
+- **2026-02-15.** PLAN/README/TODO, rename, sources build, VoiceType rename, whisper-cli path fixes, app bundle, **cyan instead of orange**.
+- **2026-02-16.** \`92bb411\` streaming STT + soft glow + macOS 15+ permission support.
+- **2026-06-22.** Two \`nightly\` commits; HEAD \`d33e5e2\` (also last GitHub push).
 
 ![Commit arc](/blog/whispercpponeverything-ctrl-w-streaming-stt-cyan-glow/screenshots/commit-arc.png)
 
 ## Why
 
-I wanted dictation that stays on-box and types into whatever already has focus — Slack, terminal, browser — without a cloud STT round-trip. Ctrl+W was the whole UX. Streaming beat “record a WAV then wait.” Cyan beat “ugly orange.” Sequoia event-access APIs were the tax for keeping the tap alive.
+I wanted dictation that stays on-box and types into whatever already has focus (Slack, terminal, browser) without a cloud STT round-trip. Ctrl+W was the whole UX. Streaming beat record-a-WAV-then-wait. Cyan beat ugly orange. Sequoia event-access APIs were the tax for keeping the tap alive.
 
-Engagement: how many private STT menubar apps still advertise orange silence-batch in README while HEAD streams cyan into the focused field?
+**Engagement Q:** How many private STT menubar apps still advertise orange silence-batch in README while HEAD streams cyan into the focused field?
 
 Draft + assets only until Michael publishes.
 `;
@@ -5387,47 +5387,55 @@ const RESEND_LISTENING_DAEMON_COVER =
 
 const RESEND_LISTENING_DAEMON_CONTENT = `## Who
 
-I needed inbound Resend mail to wake an OpenClaw agent on my machines — not another SaaS inbox, not a marketing lander.
+I needed inbound Resend mail to wake an OpenClaw agent on my machines. Local gateway path, readable UI, no SaaS inbox product.
 
 For operators wiring Resend receiving boxes into a local agent gateway with a readable UI.
 
 ## What
 
-I built **resendld** — public https://github.com/michaelmonetized/resend-listening-daemon. HEAD \`4fbec17\`. **46** commits. Version **0.0.0-rc.0**.
+I built **resendld**, public [\`michaelmonetized/resend-listening-daemon\`](https://github.com/michaelmonetized/resend-listening-daemon). HEAD \`4fbec17\`. **46** commits. Version **0.0.0-rc.0**.
 
 ![Architecture](/blog/resend-listening-daemon-openclaw-poll-hooks-agent-caddy/screenshots/architecture-stack.png)
 
-\`src/daemon/listen.ts\` polls \`https://api.resend.com/emails/receiving\` every **5 seconds** with pure \`fetch()\` (no Resend CLI). List has no body — each new id hits \`/emails/receiving/{id}\`, strips HTML if text empty, writes markdown under \`~/.openclaw/workspace/mail/\`, mirrors to Convex, then \`POST\`s OpenClaw \`https://localhost:18789/hooks/agent\` (TLS self-signed allowed). 404/401 → \`openclaw cron add --system-event\` fallback.
+\`src/daemon/listen.ts\` polls \`https://api.resend.com/emails/receiving\` every **5 seconds** with pure \`fetch()\` (no Resend CLI). List has no body. Each new id hits \`/emails/receiving/{id}\`, strips HTML if text empty, writes markdown under \`~/.openclaw/workspace/mail/\`, mirrors to Convex, then \`POST\`s OpenClaw \`https://localhost:18789/hooks/agent\` (TLS self-signed allowed). 404/401 falls back to \`openclaw cron add --system-event\`.
 
 ![Hooks dispatch](/blog/resend-listening-daemon-openclaw-poll-hooks-agent-caddy/screenshots/hooks-dispatch.png)
 
 Web: TanStack Start **1.82.1** + Convex inbox/detail/boxes/reply at **https://resendld.localhost** behind Caddy. \`install.sh\` (640 LOC) targets macOS launchd + Arch systemd.
 
-Afternoon of Mar 23 is mostly PATH hell against \`resend-cli\` across machines — try API, revert to CLI, then land pure fetch at \`28041eac\`. Tip #9 resolves \`openclaw\` cross-platform; ack path in \`gateway.ts\` still hardcodes \`/Users/michael/.bun/bin/openclaw\`.
+Afternoon of Mar 23 is mostly PATH hell against \`resend-cli\` across machines: try API, revert to CLI, then land pure fetch at \`28041eac\`. Tip #9 resolves \`openclaw\` cross-platform; ack path in \`gateway.ts\` still hardcodes \`/Users/michael/.bun/bin/openclaw\`.
 
 ![Web inbox](/blog/resend-listening-daemon-openclaw-poll-hooks-agent-caddy/screenshots/web-inbox.png)
 
 ## Where
 
-Code: [github.com/michaelmonetized/resend-listening-daemon](https://github.com/michaelmonetized/resend-listening-daemon) — public. No public deploy.
+Code: [github.com/michaelmonetized/resend-listening-daemon](https://github.com/michaelmonetized/resend-listening-daemon), public. No public deploy.
 
 \`\`\`bash
 cd ~/Projects/resend-listening-daemon
 bash install.sh          # or --dry-run / --force / --uninstall
 # edit ~/.config/resendld/boxes.json
 resendld start           # daemon + Convex + web :3000 + Caddy
-# → https://resendld.localhost
+# opens https://resendld.localhost
 \`\`\`
 
 ## When
 
-**2026-03-23** — Phase 0 → Telegram/Convex → ~20 PATH/CLI commits → \`/hooks/agent\` → pure fetch \`28041eac\`. **2026-03-24** — install/docs macOS+Arch (#3). **2026-03-25** — HTML body fallback + web startup. **2026-03-26** — TanStack Start pin to 1.82.1 (#8). **2026-03-27** — openclaw path (#9) → HEAD \`4fbec17\`. Queue pushed_at 2026-03-27T23:11:34Z.
+**2026-03-23.** Phase 0, Telegram/Convex, ~20 PATH/CLI commits, \`/hooks/agent\`, pure fetch \`28041eac\`.
+
+**2026-03-24.** Install/docs macOS+Arch (#3).
+
+**2026-03-25.** HTML body fallback + web startup.
+
+**2026-03-26.** TanStack Start pin to 1.82.1 (#8).
+
+**2026-03-27.** Openclaw path (#9), HEAD \`4fbec17\`. Queue pushed_at 2026-03-27T23:11:34Z.
 
 ![Commit arc](/blog/resend-listening-daemon-openclaw-poll-hooks-agent-caddy/screenshots/commit-arc.png)
 
 ## Why
 
-An agent that cannot receive email instructions is half-deaf. Poll Resend yourself, store locally, wake the gateway — do not wait on a webhook you do not control.
+An agent that cannot receive email instructions is half-deaf. Poll Resend yourself, store locally, wake the gateway. Skip waiting on a webhook you do not control.
 
 **Engagement Q:** Keep the 5s poll + seen-ids file, or move the tip to Resend webhooks into the same \`/hooks/agent\` path?
 `;
@@ -5541,58 +5549,58 @@ A SaaS starter is only honest if the auth boundary, the subscriptions row, and t
 const ILEAGUE_APP_COVER =
   "/blog/ileague-app-influencer-monorepo-before-golf-rebrand/cover.png";
 
-const ILEAGUE_APP_CONTENT = `![Landing hero — violet influencer/fan unite](/blog/ileague-app-influencer-monorepo-before-golf-rebrand/screenshots/landing-hero.png)
+const ILEAGUE_APP_CONTENT = `![Landing hero, violet influencer/fan unite](/blog/ileague-app-influencer-monorepo-before-golf-rebrand/screenshots/landing-hero.png)
 
 ## Who
 
-I needed a creator/fan product that was still honest about being a scaffold — leagues, posts, Stripe Connect — before I verticalized it into golf.
+I needed a creator/fan product that was still honest about being a scaffold: leagues, posts, Stripe Connect, before I verticalized it into golf.
 
-For operators comparing the public influencer monorepo to the later emerald golf stack, not for people looking for scorecards or Top-54 iTour lore.
+For operators comparing the public influencer monorepo to the later emerald golf stack. Skip if you only want scorecards or Top-54 iTour lore.
 
 ## What
 
-I shipped **iLeague-app** — public https://github.com/HurleyUS/ileague-app. HEAD \`7af9d80\`. **7** commits. Package **1.0.0**. Bun workspaces: \`@ileague/web\` (Next 15), \`@ileague/mobile\` (Expo 52), \`@ileague/convex\`.
+I shipped **iLeague-app**, public [\`HurleyUS/ileague-app\`](https://github.com/HurleyUS/ileague-app). HEAD \`7af9d80\`. **7** commits. Package **1.0.0**. Bun workspaces: \`@ileague/web\` (Next 15), \`@ileague/mobile\` (Expo 52), \`@ileague/convex\`.
 
 ![Schema map](/blog/ileague-app-influencer-monorepo-before-golf-rebrand/screenshots/schema-map.png)
 
-The schema still says **influencer**: \`users.isInfluencer\`, \`influencerProfiles\`, posts (text/image/video/poll/announcement), leagues with score+rank, follows, monthly/yearly \`subscriptions\`, Stripe Connect fields, tips in \`transactions\`. Twelve categories from gaming to lifestyle. Primary brand is violet (\`#7c3aed\` splash) — not the golf emerald lander.
+The schema still says **influencer**: \`users.isInfluencer\`, \`influencerProfiles\`, posts (text/image/video/poll/announcement), leagues with score+rank, follows, monthly/yearly \`subscriptions\`, Stripe Connect fields, tips in \`transactions\`. Twelve categories from gaming to lifestyle. Primary brand is violet (\`#7c3aed\` splash). The golf lander is emerald elsewhere.
 
 ![Mobile leagues](/blog/ileague-app-influencer-monorepo-before-golf-rebrand/screenshots/mobile-leagues.png)
 
-Web: lander (“Where Influencers and Fans Unite”), Clerk auth, onboarding, dashboard, explore, leagues, notifications. Mobile tabs match. HEAD (Feb 4) wires mobile leagues to \`getFeaturedLeagues\` / \`getUserLeagues\` / paginated \`getLeagues\` + \`joinLeague\`, and adds \`eas.json\`.
+Web: lander (Where Influencers and Fans Unite), Clerk auth, onboarding, dashboard, explore, leagues, notifications. Mobile tabs match. HEAD (Feb 4) wires mobile leagues to \`getFeaturedLeagues\` / \`getUserLeagues\` / paginated \`getLeagues\` + \`joinLeague\`, and adds \`eas.json\`.
 
 ![Gaps](/blog/ileague-app-influencer-monorepo-before-golf-rebrand/screenshots/honest-gaps.png)
 
-Honest gaps: create-league button pushes \`/create-league\` with **no screen**; EAS submit + Apple IDs + Sentry org are placeholders; mobile icon/splash paths declared with **empty assets**; README claims MIT with **no LICENSE file**; lander vanity stats (50K+/2M+) are placeholders; commit message says “Add mobile .env” but the diff does not. \`www.ileague.app\` is a **Coming Soon** static page — the Jan Vercel preview URL now 308s there. The live golf product is a **different** repo and pack.
+Honest gaps: create-league button pushes \`/create-league\` with **no screen**; EAS submit + Apple IDs + Sentry org are placeholders; mobile icon/splash paths declared with **empty assets**; README claims MIT with **no LICENSE file**; lander vanity stats (50K+/2M+) are placeholders; commit message says Add mobile .env but the diff does not. \`www.ileague.app\` is a **Coming Soon** static page. The Jan Vercel preview URL now 308s there. The live golf product is a **different** repo and pack.
 
 ## Where
 
-Code: [github.com/HurleyUS/ileague-app](https://github.com/HurleyUS/ileague-app) — public.
+Code: [github.com/HurleyUS/ileague-app](https://github.com/HurleyUS/ileague-app), public.
 
 \`\`\`bash
 git clone https://github.com/HurleyUS/ileague-app.git
 cd ileague-app
 bun install
-# cp .env.example .env.local — fill Clerk/Convex/Stripe/Resend/PostHog/Sentry
+# cp .env.example .env.local  # fill Clerk/Convex/Stripe/Resend/PostHog/Sentry
 cd packages/convex && bunx convex dev
 bun run dev:web    # or bun run dev:mobile
 \`\`\`
 
-Domain: [www.ileague.app](https://www.ileague.app) — Coming Soon (not this Next app). Golf sibling: [ileague.golf](https://ileague.golf) — do not conflate.
+Domain: [www.ileague.app](https://www.ileague.app), Coming Soon (this Next app is not what serves that hostname). Golf sibling: [ileague.golf](https://ileague.golf). Keep the two repos separate in your head.
 
 ## When
 
-**2026-01-09** — five commits: init monorepo → Convex stubs/Sentry → CHANGELOG (notes \`kindred-gnu-699\` + early Vercel URL) → React 18 for Clerk/Convex → root \`vercel.json\` monorepo build.
+**2026-01-09.** Five commits: init monorepo, Convex stubs/Sentry, CHANGELOG (notes \`kindred-gnu-699\` + early Vercel URL), React 18 for Clerk/Convex, root \`vercel.json\` monorepo build.
 
-**2026-01-31** — \`7b889f4\` adds \`.cursor/rules/STRIPE.md\` only.
+**2026-01-31.** \`7b889f4\` adds \`.cursor/rules/STRIPE.md\` only.
 
-**2026-02-04 12:04 ET** — HEAD \`7af9d80\` mobile leagues + \`eas.json\` + ROADMAP/PLAN. Queue push **2026-02-05T18:08:47Z**.
+**2026-02-04 12:04 ET.** HEAD \`7af9d80\` mobile leagues + \`eas.json\` + ROADMAP/PLAN. Queue push **2026-02-05T18:08:47Z**.
 
 ![Commit arc](/blog/ileague-app-influencer-monorepo-before-golf-rebrand/screenshots/commit-arc.png)
 
 ## Why
 
-If you only read the golf pack, you miss the **pre-rebrand** vocabulary — the same Bun/Next/Expo/Convex bones still wearing \`isInfluencer\` and vanity lander stats.
+If you only read the golf pack, you miss the **pre-rebrand** vocabulary: the same Bun/Next/Expo/Convex bones still wearing \`isInfluencer\` and vanity lander stats.
 
 **Engagement Q:** Keep shipping the generic influencer scaffold, or treat this repo as archive and push all energy into ileague.golf?
 `;
@@ -5666,19 +5674,19 @@ const LAUNCHPAD_CONTENT = `![README vs tree](/blog/launchpad-nye2024-boilerplate
 
 ## Who
 
-I wanted one Next repo I could clone for every Hustle Launch lander — auth, leads DB, email, payments, analytics — instead of re-wiring Clerk and Resend on each client site.
+I wanted one Next repo I could clone for every Hustle Launch lander (auth, leads DB, email, payments, analytics) instead of re-wiring Clerk and Resend on each client site.
 
 ## What
 
-Public **michaelmonetized/launchpad** · v0.1.0 · HEAD \`5447591\` · **8** commits. README sells "LaunchPad by Hustle Launch" as the premier boilerplate for websites / apps / sales landers. Tree at HEAD actually has:
+Public **michaelmonetized/launchpad**. v0.1.0. HEAD \`5447591\`. **8** commits. README sells LaunchPad by Hustle Launch as the premier boilerplate for websites / apps / sales landers. Tree at HEAD actually has:
 
 1. Stock **Create Next App** \`app/page.tsx\` + layout metadata still titled Create Next App
-2. shadcn new-york kit — **16** UI primitives (~1487 LOC) with **no** lead form page
-3. \`providers/{clerk,convex,posthog}.tsx\` — written, **never imported** into \`layout.tsx\`
+2. shadcn new-york kit: **16** UI primitives (~1487 LOC) with **no** lead form page
+3. \`providers/{clerk,convex,posthog}.tsx\` written, **never imported** into \`layout.tsx\`
 4. \`middleware.ts\` = bare \`clerkMiddleware()\` (edge without mounted provider tree)
-5. \`app/api/send\` Resend route → \`delivered@resend.dev\`, \`from\` = env \\|\\| **notify@uncap.us**
-6. \`stripe\` + \`@sentry/nextjs\` in package.json — **zero** app imports; Stripe "implementation" is a dumped Theo \`STRIPE.md\` cursor rule
-7. **No** \`convex/\` schema folder — ConvexReactClient wrapper only
+5. \`app/api/send\` Resend route to \`delivered@resend.dev\`, \`from\` = env or **notify@uncap.us**
+6. \`stripe\` + \`@sentry/nextjs\` in package.json: **zero** app imports; Stripe implementation is a dumped Theo \`STRIPE.md\` cursor rule
+7. **No** \`convex/\` schema folder. ConvexReactClient wrapper only.
 
 ![Stack deps vs usage](/blog/launchpad-nye2024-boilerplate-providers-unwired/screenshots/stack-deps.png)
 
@@ -5686,13 +5694,19 @@ Public **michaelmonetized/launchpad** · v0.1.0 · HEAD \`5447591\` · **8** com
 
 ## Where
 
-github.com/michaelmonetized/launchpad (**public**, MIT © 2024 Hustle Launch). README points at launchpad.hustlelaunch.com and \`/pro\`. Pack-time DNS: **NXDOMAIN** for \`launchpad.hustlelaunch.com\`. Sibling contrast: **hustlestack-starter/template** are empty mkproject husks (SKIPPED); **convex-nextfaster** actually ships Convex ecommerce schema; **uncap.us** is the live product — LaunchPad is the unfinished public starter claim.
+[github.com/michaelmonetized/launchpad](https://github.com/michaelmonetized/launchpad) (public, MIT (c) 2024 Hustle Launch). README points at launchpad.hustlelaunch.com and \`/pro\`. Pack-time DNS: **NXDOMAIN** for \`launchpad.hustlelaunch.com\`. Sibling contrast: **hustlestack-starter/template** are empty mkproject husks (SKIPPED); **convex-nextfaster** actually ships Convex ecommerce schema; **uncap.us** is the live product. LaunchPad is the unfinished public starter claim.
 
 ![Domain NXDOMAIN](/blog/launchpad-nye2024-boilerplate-providers-unwired/screenshots/domain-nxdomain.png)
 
 ## When
 
-**2024-12-31** (~03:15–04:13 ET) — Create Next App → empty \`init\` → shadcn+README → providers+Resend+LICENSE. **2026-01-08** — \`PLAN.md\` pivots identity to a **client portal** checklist (none of it built). **2026-01-31** — sync Theo Stripe cursor rule. **2026-02-06** — HEAD Resend \`from\` env fallback to notify@uncap.us. No further commits.
+**2024-12-31** (~03:15–04:13 ET). Create Next App, empty \`init\`, shadcn+README, providers+Resend+LICENSE.
+
+**2026-01-08.** \`PLAN.md\` pivots identity to a **client portal** checklist (none of it built).
+
+**2026-01-31.** Sync Theo Stripe cursor rule.
+
+**2026-02-06.** HEAD Resend \`from\` env fallback to notify@uncap.us. No further commits.
 
 ![Commit arc](/blog/launchpad-nye2024-boilerplate-providers-unwired/screenshots/commit-arc.png)
 
@@ -5700,9 +5714,9 @@ github.com/michaelmonetized/launchpad (**public**, MIT © 2024 Hustle Launch). R
 
 ## Why
 
-A README that lists the whole MarTech stack is not a framework. Mounting providers, owning a Convex schema, and resolving the product domain are the difference between a clone-ready LaunchPad and a New Year's Eve aspiration with a nice UI kit. The Resend notify@uncap.us fallback is the only line that still points at how I actually ship mail.
+A README that lists the whole MarTech stack is not a framework. Mounting providers, owning a Convex schema, and resolving the product domain are what separate a clone-ready LaunchPad from a New Year's Eve aspiration with a nice UI kit. The Resend notify@uncap.us fallback is the only line that still points at how I actually ship mail.
 
-**Engagement Q:** Would you publish a starter whose README lists Stripe/Sentry/Convex before the providers are mounted — or keep it private until \`layout.tsx\` and DNS match the marketing?
+**Engagement Q:** Would you publish a starter whose README lists Stripe/Sentry/Convex before the providers are mounted, or keep it private until \`layout.tsx\` and DNS match the marketing?
 `;
 
 const SIMPLE_COVER =
@@ -6394,7 +6408,7 @@ export const staticPosts: StaticPost[] = [
     title: "iLeague-app: the generic influencer monorepo before the golf rebrand",
     slug: "ileague-app-influencer-monorepo-before-golf-rebrand",
     excerpt:
-      "Public HurleyUS/ileague-app is the Jan 9 2026 Bun monorepo \u2014 Next.js 15 + Expo 52 + Convex + Clerk + Stripe Connect \u2014 for a generic influencer/fan league platform (violet #7c3aed, isInfluencer schema, gaming\u2192lifestyle categories). HEAD 7af9d80 (Feb 4) wires mobile leagues to Convex and adds eas.json. Not ileague.golf, not itour.golf, not the iPro brand vault. www.ileague.app is a Coming Soon static, not this Next app.",
+      "Public HurleyUS/ileague-app is the Jan 9 2026 Bun monorepo (Next.js 15 + Expo 52 + Convex + Clerk + Stripe Connect) for a generic influencer/fan league platform (violet #7c3aed, isInfluencer schema, gaming-to-lifestyle categories). HEAD 7af9d80 (Feb 4) wires mobile leagues to Convex and adds eas.json; www.ileague.app is Coming Soon static, distinct from ileague.golf.",
     content: ILEAGUE_APP_CONTENT,
     coverImage: ILEAGUE_APP_COVER,
     tags: [
@@ -6452,7 +6466,7 @@ export const staticPosts: StaticPost[] = [
     title: "launchpad: NYE 2024 Hustle Launch boilerplate \u2014 README stack, unwired providers",
     slug: "launchpad-nye2024-boilerplate-providers-unwired",
     excerpt:
-      "Public michaelmonetized/launchpad is the NYE 2024 Hustle Launch \"premier framework\": Next 15 + shadcn + Clerk/Convex/PostHog providers + Resend /api/send \u2014 while app/page.tsx is still Create Next App, providers never mount in layout, no convex/ folder, Stripe unused except Theo STRIPE.md, and launchpad.hustlelaunch.com is NXDOMAIN. 8 commits. HEAD 5447591.",
+      "Public michaelmonetized/launchpad is the NYE 2024 Hustle Launch premier-framework claim (Next 15 + shadcn + Clerk/Convex/PostHog providers + Resend /api/send) while app/page.tsx is still Create Next App, providers never mount in layout, no convex/ folder, Stripe unused except Theo STRIPE.md, and launchpad.hustlelaunch.com is NXDOMAIN. 8 commits. HEAD 5447591.",
     content: LAUNCHPAD_CONTENT,
     coverImage: LAUNCHPAD_COVER,
     tags: [
@@ -6511,7 +6525,7 @@ export const staticPosts: StaticPost[] = [
     title: "resendld: OpenClaw Resend inbound daemon \u2014 poll, hooks/agent, Caddy UI",
     slug: "resend-listening-daemon-openclaw-poll-hooks-agent-caddy",
     excerpt:
-      "Public michaelmonetized/resend-listening-daemon (resendld): Bun daemon polls Resend /emails/receiving every 5s via pure fetch, stores markdown under ~/.openclaw/workspace/mail/, dispatches to OpenClaw /hooks/agent (cron fallback), Convex + TanStack Start web at https://resendld.localhost via Caddy. install.sh macOS+Arch. Afternoon of resend-cli PATH hell before zero-CLI. 0.0.0-rc.0. 46 commits. HEAD 4fbec17. Not hustlemail lander, not codemail.",
+      "Public michaelmonetized/resend-listening-daemon (resendld 0.0.0-rc.0, HEAD 4fbec17, 46 commits): Bun daemon polls Resend /emails/receiving every 5s via pure fetch, stores markdown under ~/.openclaw/workspace/mail/, dispatches to OpenClaw /hooks/agent (cron fallback), with Convex + TanStack Start web at https://resendld.localhost via Caddy. install.sh covers macOS+Arch; afternoon of resend-cli PATH hell before zero-CLI.",
     content: RESEND_LISTENING_DAEMON_CONTENT,
     coverImage: RESEND_LISTENING_DAEMON_COVER,
     tags: [
@@ -6944,7 +6958,7 @@ export const staticPosts: StaticPost[] = [
     title: "WhisperCPPonEverything: Ctrl+W streaming STT menubar, cyan glow, whisper-stream",
     slug: "whispercpponeverything-ctrl-w-streaming-stt-cyan-glow",
     excerpt:
-      "Private Swift Package macOS menubar dictation app \u2014 Ctrl+W toggles idle\u2194streaming, spawns Homebrew whisper-stream + ggml-medium, injects text via CGEvent with suffix-prefix dedupe, soft cyan 20-layer screen glow, macOS 15+ listen/post event access. Renamed from VoiceType. README still describes batch orange/silence path. Version 2.0.0. 11 commits. HEAD d33e5e2. Not cloud STT.",
+      "Private Swift Package macOS menubar dictation (WhisperCPPonEverything 2.0.0, HEAD d33e5e2, 11 commits): Ctrl+W toggles idle/streaming, spawns Homebrew whisper-stream + ggml-medium, injects via CGEvent with suffix-prefix dedupe and a soft cyan 20-layer glow, plus macOS 15+ listen/post event access. README still describes the batch orange/silence path; renamed from VoiceType.",
     content: WHISPERCPP_CONTENT,
     coverImage: WHISPERCPP_COVER,
     tags: [
