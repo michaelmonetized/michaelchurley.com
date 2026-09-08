@@ -1692,31 +1692,31 @@ What industry tab would you send first?
 const S12IN_COVER =
   "/blog/s12-in-url-shortener-file-hosting/cover.png";
 
-const S12IN_CONTENT = `![s12.in landing — Short links, powerful results](/blog/s12-in-url-shortener-file-hosting/screenshots/landing.png)
+const S12IN_CONTENT = `![s12.in landing. Short links, powerful results](/blog/s12-in-url-shortener-file-hosting/screenshots/landing.png)
 
 ## Who
 
 I got tired of leasing short links from tools that treat a redirect like a subscription upsell.
 
-Operators — marketers, founders, agencies, anyone pasting campaign URLs into SMS and decks — need a domain they own, a dashboard that lists what they created, and click facts that survive the redirect. Developers already on Convex and Clerk do not need a fifth SaaS login for “paste URL, get code.”
+Operators (marketers, founders, agencies, anyone pasting campaign URLs into SMS and decks) need a domain they own, a dashboard that lists what they created, and click facts that survive the redirect. Developers already on Convex and Clerk do not need a fifth SaaS login for "paste URL, get code."
 
-s12.in is for that seat. If you live in MarTech, ship Next.js on Vercel, or just want \`s12.in/abc\` instead of a twenty-character tracking URL, you are in the room.
+s12.in is for that seat: MarTech folks, Next.js-on-Vercel shippers, and anyone who wants \`s12.in/abc\` instead of a twenty-character tracking URL.
 
 ## What
 
 I shipped a URL shortener and file host at [s12.in](https://s12.in).
 
-Stack facts, not pitch deck: **Next.js 16.1.6** (App Router, Turbopack) on Vercel, **React 19.2**, **Convex** for links/files/clicks/users plus \`_storage\` uploads, **Clerk** for auth, **Tailwind CSS v4**, Radix primitives, Resend in the lockfile, Biome + oxlint + tsgo. Package name \`s12\`, version **0.1.0**, packageManager **bun@1.3.1**. Repo is **private** under HurleyUS.
+Stack facts: **Next.js 16.1.6** (App Router, Turbopack) on Vercel, **React 19.2**, **Convex** for links/files/clicks/users plus \`_storage\` uploads, **Clerk** for auth, **Tailwind CSS v4**, Radix primitives, Resend in the lockfile, Biome + oxlint + tsgo. Package name \`s12\`, version **0.1.0**, packageManager **bun@1.3.1**. Repo is **private** under HurleyUS.
 
-![Dashboard — shorten, upload, manage](/blog/s12-in-url-shortener-file-hosting/screenshots/dashboard.png)
+![Dashboard. Shorten, upload, manage](/blog/s12-in-url-shortener-file-hosting/screenshots/dashboard.png)
 
 Paste a long URL on the homepage or dashboard. Convex \`links.create\` issues a short code (optional \`customCode\` / \`password\` / \`expiresAt\` exist on the schema; the public form only sends \`url\` + optional \`userId\`). \`app/[code]/route.ts\` resolves the code, parses user-agent, reads Vercel geo headers, hashes the IP with SHA-256 + a salt (16 hex chars), fires \`recordClick\` without blocking, then **302**s. Files take the same path: viewable MIME types redirect to the Convex storage URL; others return an attachment stream.
 
-Dashboard tabs list your links and files with copy/delete. Click and download counters are denormalized on the row. \`getAnalytics\` can roll up by day/country/browser/device/referrer — charts are not on the dashboard yet.
+Dashboard tabs list your links and files with copy/delete. Click and download counters are denormalized on the row. \`getAnalytics\` can roll up by day/country/browser/device/referrer. Charts are not on the dashboard yet.
 
 A Manifest V3 Chrome extension scaffold lives under \`extension/\` and posts to \`/api/shorten\` with CORS. Icon PNGs are still marked \`ICONS_NEEDED.md\` (SVG only in tree).
 
-Honesty, because operators smell it: the hero still prints **10M+ / 50K+ / 99.9%** as static JSX. The live Clerk publishable key I hit was **pk_test** on \`*.clerk.accounts.dev\`. README still names PostHog and Sentry; those packages were removed Feb 21. Footer GitHub still points at \`michaelmonetized/s12.in\` while the working private remote is **HurleyUS/s12.in**. Schema \`users.plan\` free|pro|team is ahead of any billing UI.
+Honesty operators can smell: the hero still prints **10M+ / 50K+ / 99.9%** as static JSX. The live Clerk publishable key I hit was **pk_test** on \`*.clerk.accounts.dev\`. README still names PostHog and Sentry; those packages were removed Feb 21. Footer GitHub still points at \`michaelmonetized/s12.in\` while the working private remote is **HurleyUS/s12.in**. Schema \`users.plan\` free|pro|team is ahead of any billing UI.
 
 ![Redirect pipeline](/blog/s12-in-url-shortener-file-hosting/screenshots/redirect-pipeline.png)
 
@@ -1724,21 +1724,21 @@ Honesty, because operators smell it: the hero still prints **10M+ / 50K+ / 99.9%
 
 Product: [s12.in](https://s12.in) (apex redirects toward www). Vercel project alias on the GitHub homepage field: [s12-in.vercel.app](https://s12-in.vercel.app). Routes that matter: \`/\`, \`/dashboard\`, \`/sign-in\`, \`/sign-up\`, \`/privacy\`, \`/terms\`, \`/refunds\`, \`/api/shorten\`, \`/[code]\`.
 
-Code: [github.com/HurleyUS/s12.in](https://github.com/HurleyUS/s12.in) — private, no topics, no license file, no tagged releases. Deploy path is Vercel continuous with a Blacksmith \`ship.yml\` gate. Local path: \`bun install\`, \`bunx convex dev\`, \`bun dev\`.
+Code: [github.com/HurleyUS/s12.in](https://github.com/HurleyUS/s12.in). Private, no topics, no license file, no tagged releases. Deploy path is Vercel continuous with a Blacksmith \`ship.yml\` gate. Local path: \`bun install\`, \`bunx convex dev\`, \`bun dev\`.
 
-Audience sits next to every “just use Bitly” thread and every Convex starter that never grew a redirect route.
+Audience sits next to every "just use Bitly" thread and every Convex starter that never grew a redirect route.
 
 ![Chrome extension scaffold](/blog/s12-in-url-shortener-file-hosting/screenshots/extension.png)
 
 ## When
 
-**2026-01-08.** Initial commit: Next.js, Convex, Tailwind. Same day: OPPORTUNITIES.md and homepage improvements; PLAN.md improvement list. Early docs still daydream about a CDN — the product that shipped is the shortener + files.
+**2026-01-08.** Initial commit: Next.js, Convex, Tailwind. Same day: OPPORTUNITIES.md and homepage improvements; PLAN.md improvement list. Early docs still daydream about a CDN. The product that shipped is the shortener + files.
 
-**2026-01-31 → 02-05.** Sync. Tailwind v4 \`@import\`. Prod build ready.
+**2026-01-31 to 02-05.** Sync. Tailwind v4 \`@import\`. Prod build ready.
 
-**2026-02-06.** The spine. Core URL shortening. Upgrade to Next.js 16 and React 19; middleware renamed toward \`proxy.ts\` (and briefly back — Next’s naming war). Convex backend configured and deployed. Clerk auth keys landed.
+**2026-02-06.** The spine. Core URL shortening. Upgrade to Next.js 16 and React 19; middleware renamed toward \`proxy.ts\` (and briefly back during Next's naming war). Convex backend configured and deployed. Clerk auth keys landed.
 
-**2026-02-11.** Dashboard UI improvements — links/files mental model.
+**2026-02-11.** Dashboard UI improvements: links/files mental model.
 
 **2026-02-15–21.** Docs say \`proxy.ts\`. Footer gets real social URLs. Unused \`posthog-js\` and \`@sentry/nextjs\` leave the lockfile.
 
@@ -1748,19 +1748,17 @@ Audience sits next to every “just use Bitly” thread and every Convex starter
 
 **2026-05-14–15.** Blacksmith CI standardized. Providers tolerate missing Clerk keys so builds do not die. Deploy URL / health-check fixes.
 
-**2026-08-08.** HEAD \`d6c074f\` — \`vercel.json\` sets \`X-Robots-Tag: index, follow\`. Thirty-eight commits on the clock.
+**2026-08-08.** HEAD \`d6c074f\`. \`vercel.json\` sets \`X-Robots-Tag: index, follow\`. Thirty-eight commits on the clock.
 
 ## Why
 
-A short link you do not control is a tax with a dashboard skin. I wanted the domain, the Convex tables, and the redirect that writes analytics before the visitor leaves — on the same Clerk identity I already use everywhere else.
+A short link you do not control is a tax with a dashboard skin. I wanted the domain, the Convex tables, and the redirect that writes analytics before the visitor leaves, on the same Clerk identity I already use everywhere else.
 
-So I put shortening and file hosting on \`s12.in\`, recorded clicks with geo and device fields, and kept shipping until CI and robots headers stopped being the embarrassment.
+Shortening and file hosting landed on \`s12.in\`. Clicks record geo and device fields. Shipping continued until CI and robots headers stopped being the embarrassment.
 
 It is still 0.1.0. Custom codes, password gates, plan limits, and analytics charts sit in schema or queries waiting for UI. Clerk on the observed deploy is still test-mode. That is fine to say out loud. The redirect path and the dashboard list already do the job a rented shortener charges monthly for.
 
-If your current short links cannot show you country and device without opening another product, you already know the hole I was staring at.
-
-What would you put on \`s12.in/yourcode\` first — the campaign URL, the PDF, or the deck you keep resending as a thirty-line Google Drive link?
+What would you put on \`s12.in/yourcode\` first: the campaign URL, the PDF, or the deck you keep resending as a thirty-line Google Drive link?
 `;
 
 const THENATIONALNC_COVER =
@@ -2561,13 +2559,13 @@ If you run citations for clients: would you trust a 958-row registry with honest
 const BARBQUEWAGON_COVER =
   "/blog/barbquewagon-bryson-city-hickory-smokehouse-site/cover.png";
 
-const BARBQUEWAGON_CONTENT = `![Bar-B-Que Wagon homepage — Slow Smoked / Hand Pulled / Soul Fed over the Main Street sign](/blog/barbquewagon-bryson-city-hickory-smokehouse-site/screenshots/home.png)
+const BARBQUEWAGON_CONTENT = `![Bar-B-Que Wagon homepage. Slow Smoked / Hand Pulled / Soul Fed over the Main Street sign](/blog/barbquewagon-bryson-city-hickory-smokehouse-site/screenshots/home.png)
 
 ## Who
 
 I build for operators. Sometimes that operator is me. Sometimes it is a pitmaster on Main Street in Bryson City, North Carolina.
 
-Bar-B-Que Wagon needed a site that smelled like hickory — not a beige restaurant theme with a stock smoke PNG — and a catering path that did not die in a “we will call you back” void. Guests needed hours, address, phone, and a board that matched what Pat Monteith actually smokes. Planners needed guest count and event type without playing phone tag first.
+Bar-B-Que Wagon needed a site that smelled like hickory, not a beige restaurant theme with a stock smoke PNG, and a catering path that did not die in a "we will call you back" void. Guests needed hours, address, phone, and a board that matched what Pat Monteith actually smokes. Planners needed guest count and event type without playing phone tag first.
 
 I am the builder. The food is theirs. The repo is public under HurleyUS. The stack is mine to keep honest.
 
@@ -2575,11 +2573,11 @@ I am the builder. The food is theirs. The repo is public under HurleyUS. The sta
 
 I shipped a Next.js 16 App Router site. React 19. Bun. Tailwind 4. Biome and oxlint. Phosphor icons. Playfair Display for the smokehouse voice. DM Sans for the rest. Dark tokens: deep-smoke background, amber accents, cream type.
 
-The homepage hero stacks three lines — Slow Smoked. Hand Pulled. Soul Fed. — over the exterior sign photo with a charcoal gradient. Nav is sticky and blurred. Logo mark on warm-white tile. Tagline Smoke • Soul • Flavor. Amber Order Now button that routes to \`/contact\` because there is no DoorDash integration pretending to be hospitality.
+The homepage hero stacks three lines. Slow Smoked. Hand Pulled. Soul Fed. Over the exterior sign photo with a charcoal gradient. Nav is sticky and blurred. Logo mark on warm-white tile. Tagline Smoke · Soul · Flavor. Amber Order Now button that routes to \`/contact\` because there is no DoorDash integration pretending to be hospitality.
 
-![Brisket plate — Yelp-sourced food photography in the repo](/blog/barbquewagon-bryson-city-hickory-smokehouse-site/screenshots/brisket-plate.jpg)
+![Brisket plate. Yelp-sourced food photography in the repo](/blog/barbquewagon-bryson-city-hickory-smokehouse-site/screenshots/brisket-plate.jpg)
 
-The menu is a real board in the page: smoked meat plates with two sides and cornbread, sandwiches including The Wagon Burger, sides made from scratch. Featured cards and a gallery pull Yelp food and exterior shots that landed in the repo on February 15. About is Pat’s story — twenty-plus years, 610 Main Street, no franchise fiction.
+The menu is a real board in the page: smoked meat plates with two sides and cornbread, sandwiches including The Wagon Burger, sides made from scratch. Featured cards and a gallery pull Yelp food and exterior shots that landed in the repo on February 15. About is Pat's story: twenty-plus years, 610 Main Street, no franchise fiction.
 
 Catering is a real form: name, email, phone, event date, guest-count select, event-type select, optional message. The API validates with Zod, writes a Convex \`leads\` row when Convex is configured, and fires Resend to the owner inbox. Contact does the same twin path. Sentry on the edges. PostHog on the pageviews. Restaurant, Menu, and FoodService JSON-LD from one business-info object.
 
@@ -2589,23 +2587,23 @@ Catering is a real form: name, email, phone, event date, guest-count select, eve
 
 610 Main St. Bryson City, NC 28713. Phone 828-488-9521. Hours Tue–Sat 11–8, Sunday 11–6, closed Monday.
 
-The URL that answers today is [barbquewagoncom.vercel.app](https://barbquewagoncom.vercel.app) — that is what GitHub lists as the homepage. Schema and copy still say \`barbquewagon.com\`. At pack time that apex has no DNS. Facebook is wired in the footer. Instagram is still a dead pound-sign href. Repo is public: [HurleyUS/barbquewagon.com](https://github.com/HurleyUS/barbquewagon.com).
+The URL that answers today is [barbquewagoncom.vercel.app](https://barbquewagoncom.vercel.app). That is what GitHub lists as the homepage. Schema and copy still say \`barbquewagon.com\`. At pack time that apex has no DNS. Facebook is wired in the footer. Instagram is still a dead pound-sign href. Repo is public: [HurleyUS/barbquewagon.com](https://github.com/HurleyUS/barbquewagon.com).
 
-The audience for *this* write-up is builders who care how a local BBQ site actually captures a wedding headcount — and anyone in the Smokies who already knows the wagon on Main.
+The audience for *this* write-up is builders who care how a local BBQ site actually captures a wedding headcount, and anyone in the Smokies who already knows the wagon on Main.
 
-![Exterior — building hero source](/blog/barbquewagon-bryson-city-hickory-smokehouse-site/screenshots/building-1.jpg)
+![Exterior. Building hero source](/blog/barbquewagon-bryson-city-hickory-smokehouse-site/screenshots/building-1.jpg)
 
 ## When
 
 **2026-02-13.** Create Next App. Same night: full restaurant website. Same night again: throw out the placeholder details for real Bar-B-Que Wagon facts.
 
-**2026-02-15.** Zod on the contact form. Yelp photos across the homepage — food gallery, menu cards, exterior. Hero background with gradient overlay.
+**2026-02-15.** Zod on the contact form. Yelp photos across the homepage: food gallery, menu cards, exterior. Hero background with gradient overlay.
 
 **2026-02-21.** Lexington was wrong. Bryson City is right. That correction shipped across metadata and catering copy. Then full try/catch and Zod on both forms.
 
 **2026-02-22.** next.config. Drop unused ThemeProvider. PLAN and CHANGELOG. Wire contact and catering to Resend. JSON-LD for Google rich results.
 
-**2026-03-01.** TODO.md. It still lists “wire Convex/Resend” as unchecked. The commits disagree.
+**2026-03-01.** TODO.md. It still lists "wire Convex/Resend" as unchecked. The commits disagree.
 
 **2026-05-13 through 15.** Shipprep. Logo assets. Bun on Vercel. Form refactor and Fallow cleanup. Roadmap. A string of Blacksmith CI gate commits. Observability scaffolding. Deploy URL verification until Blacksmith stopped lying.
 
@@ -2615,11 +2613,11 @@ The audience for *this* write-up is builders who care how a local BBQ site actua
 
 ## Why
 
-A Main Street BBQ does not need a SaaS lander. It needs the board, the hours, the phone, and a catering form that still works when the dining room is loud.
+A Main Street BBQ needs the board, the hours, the phone, and a catering form that still works when the dining room is loud.
 
-I wanted the hero to feel like the sign on Main — not a stock smoke stock photo. I wanted leads in Convex *and* in the inbox, from Zod-validated routes, not a mailto cosplay. I wanted Schema.org to carry the same brisket and pulled pork the menu page shows. I wanted the city name to be Bryson City everywhere a crawler looks.
+I wanted the hero to feel like the sign on Main, not a stock smoke photo. I wanted leads in Convex and in the inbox, from Zod-validated routes, not a mailto cosplay. I wanted Schema.org to carry the same brisket and pulled pork the menu page shows. I wanted the city name to be Bryson City everywhere a crawler looks.
 
-So I pulled the Yelp plates into the public folder, wired Resend, added JSON-LD, fixed the geography, ran the May ops gauntlet, and locked the robots header in August. Operator stack. Local business. Public repo.
+Yelp plates went into \`public/\`. Resend and JSON-LD shipped. Geography got fixed. May ops gauntlet ran. Robots header locked in August. Operator stack. Local business. Public repo.
 
 The custom domain is still dark. The Vercel alias is live. The Instagram link is still a pound sign. PLAN.md still thinks the forms are unwired.
 
@@ -5854,15 +5852,15 @@ Would you rotate the hardcoded SalesPromis API key first, or uninstall WP File M
 const MONARCHMOUNTAINFOUNDATIONS_COVER =
   "/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/cover.png";
 
-const MONARCHMOUNTAINFOUNDATIONS_CONTENT = `![Monarch Mountain Foundations Next rebuild hero — Structural Concrete](/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/screenshots/home.png)
+const MONARCHMOUNTAINFOUNDATIONS_CONTENT = `![Monarch Mountain Foundations Next rebuild hero. Structural Concrete](/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/screenshots/home.png)
 
 ## Who
 
-I build for operators in the mountains. Monarch Mountain Foundations pours structural concrete in Highlands, Cashiers, and the surrounding Western North Carolina ridge lines — footings, foundation walls, slabs, driveways, sidewalks, surveying and job-site prep.
+I build for operators in the mountains. Monarch Mountain Foundations pours structural concrete in Highlands, Cashiers, and the surrounding Western North Carolina ridge lines: footings, foundation walls, slabs, driveways, sidewalks, surveying and job-site prep.
 
 The contractor needed a lead surface that matched the job sites: Angi / Chamber / BBB trust, a phone that actually rings, a quote form that lands in email. Homeowners and builders needed to see real pours, not a stock theme.
 
-I am the builder under Hustle-Launch. The concrete is theirs. The stack is mine to keep honest — including when DNS and git disagree.
+I am the builder under Hustle-Launch. The concrete is theirs. The stack is mine to keep honest, including when DNS and git disagree.
 
 If you ship local-business sites, MarTech lead paths, or WordPress exits: this is the field notes on a migration that finished in the repo and not at the nameserver.
 
@@ -5872,12 +5870,12 @@ I rebuilt monarchmountainfoundations.com as a private Next.js App Router site.
 
 Stack on the box: **Next.js ^16.1.6**, React 19, Tailwind v4, Bun, Resend, Sentry, PostHog provider, Radix, Zod/RHF on forms. README still says Next 15.5.6. Package **0.1.0**. Repo: \`Hustle-Launch/monarchmountainfoundations.com\`.
 
-![WordPress www vs Next Vercel — dual hosts](/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/screenshots/dual-hosts.png)
+![WordPress www vs Next Vercel. Dual hosts](/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/screenshots/dual-hosts.png)
 
 What exists in code:
 
 - Full page set: home, about, foundations, driveways + sidewalks, surveying + job site prep, gallery, contact
-- Resend contact API (\`notify@uncap.us\` → \`monarchmountainfoundationsinc@gmail.com\` + customer thank-you)
+- Resend contact API (\`notify@uncap.us\` to \`monarchmountainfoundationsinc@gmail.com\` + customer thank-you)
 - Schema.org LocalBusiness JSON-LD (phone 828-508-3602, Highlands geo, service offers)
 - SEO files (\`sitemap.ts\`, \`robots.ts\`, \`manifest.ts\`), CSP / HSTS / Permissions-Policy, Sentry configs
 - Job-site gallery categories with real \`public/images\` pours and slabs
@@ -5885,8 +5883,8 @@ What exists in code:
 
 What is declared but empty or unused:
 
-- **Convex** in package.json — \`convex/\` is a \`.gitkeep\`
-- **Clerk** in package.json — no Clerk routes or wrappers in \`app/\` / \`components/\`
+- **Convex** in package.json. \`convex/\` is a \`.gitkeep\`
+- **Clerk** in package.json. No Clerk routes or wrappers in \`app/\` / \`components/\`
 - Gallery page exists; **not listed in \`sitemap.ts\`**
 - Google Search Console verification string is still the placeholder
 
@@ -5902,9 +5900,9 @@ Customer DNS today: [www.monarchmountainfoundations.com](https://www.monarchmoun
 
 Next rebuild: [monarchmountainfoundations-com.vercel.app](https://monarchmountainfoundations-com.vercel.app). Headers: Vercel, CSP, HSTS preload, **X-Robots-Tag: index, follow**. \`vercel.json\` has \`deploymentEnabled\` for \`main\`/\`master\` set to **false**.
 
-Canonical metadata, sitemap, and LocalBusiness \`@id\` all name \`https://monarchmountainfoundations.com\` — the host that still serves PHP.
+Canonical metadata, sitemap, and LocalBusiness \`@id\` all name \`https://monarchmountainfoundations.com\`, the host that still serves PHP.
 
-Audience sits with Highlands–Cashiers construction buyers and with builders watching WNC client cutovers next to Mack’s / Barbque-style apex-live sites.
+Audience sits with Highlands–Cashiers construction buyers and with builders watching WNC client cutovers next to Mack's / Barbque-style apex-live sites.
 
 ![Foundations service page on the Next rebuild](/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/screenshots/foundations.png)
 
@@ -5914,15 +5912,15 @@ Audience sits with Highlands–Cashiers construction buyers and with builders wa
 
 **2026-01-31.** Chore sync.
 
-**2026-02-06.** Upgrade to Next 16 / React 19. Tailwind v4 \`@import\` fix. Then the load-bearing commit: \`ba2a761\` — full WordPress to Next.js migration, all pages, images, content.
+**2026-02-06.** Upgrade to Next 16 / React 19. Tailwind v4 \`@import\` fix. Then the load-bearing commit: \`ba2a761\`, full WordPress to Next.js migration, all pages, images, content.
 
 **2026-02-09–11.** Resend contact form. Compressed video backgrounds. Foundations page 1:1 polish, white navbar, fixed bottom bar. SEO and production polish. TypeScript \`manifest\` / \`sitemap\` / \`robots\`.
 
-**2026-02-21–28.** LocalBusiness structured data. Tailwind-first CSS. Sentry. Gallery with categorized photos. Kebab-case components. \`lib/constants.ts\`. Hero email fix. Strict tsconfig / next.config / Sentry PR. Build gate. Launch-week TypeScript fixes. Remove GitHub Actions — Vercel called out as CI. Security headers PR (HSTS, CSP, Permissions-Policy). Densest month: **24 commits**.
+**2026-02-21–28.** LocalBusiness structured data. Tailwind-first CSS. Sentry. Gallery with categorized photos. Kebab-case components. \`lib/constants.ts\`. Hero email fix. Strict tsconfig / next.config / Sentry PR. Build gate. Launch-week TypeScript fixes. Remove GitHub Actions. Vercel called out as CI. Security headers PR (HSTS, CSP, Permissions-Policy). Densest month: **24 commits**.
 
 **2026-05.** shipprep install, revert, ignore local M4V drops, then shipprep observability + Blacksmith deploys. Main Git auto-deploy stays off.
 
-**2026-08-08 6:55 AM ET.** \`c7e4e30\` — set \`X-Robots-Tag\` to \`index, follow\` on Vercel. HEAD. Thirty-three commits on \`main\`.
+**2026-08-08 6:55 AM ET.** \`c7e4e30\`, set \`X-Robots-Tag\` to \`index, follow\` on Vercel. HEAD. Thirty-three commits on \`main\`.
 
 That is the clock from empty client repo to a hardened Next rebuild that is not what www serves.
 
@@ -5930,45 +5928,45 @@ That is the clock from empty client repo to a hardened Next rebuild that is not 
 
 ## Why
 
-WordPress exits fail two ways: a pretty Vercel URL nobody’s DNS points at, or a DNS flip with a half-ported theme. I did the hard content port — page parity, Resend leads, Schema, gallery, security headers — then left the apex on LiteSpeed PHP while the rebuild sat on a project alias with main auto-deploy disabled.
+WordPress exits fail two ways: a pretty Vercel URL nobody's DNS points at, or a DNS flip with a half-ported theme. I did the hard content port (page parity, Resend leads, Schema, gallery, security headers), then left the apex on LiteSpeed PHP while the rebuild sat on a project alias with main auto-deploy disabled.
 
-sitrep.md still says PROTOTYPE and “last commit January 31.” ROADMAP says Production. PLAN still has homepage unchecked. The tree and the Aug HEAD are the tie-breaker: the product pages exist; the cutover does not.
+sitrep.md still says PROTOTYPE and "last commit January 31." ROADMAP says Production. PLAN still has homepage unchecked. The tree and the Aug HEAD are the tie-breaker: the product pages exist; the cutover does not.
 
-Sibling context: Mack’s Shack and Barbque Wagon are WNC food clients whose apex already speaks Next. This one is the concrete contractor where git moved and DNS did not.
+Sibling context: Mack's Shack and Barbque Wagon are WNC food clients whose apex already speaks Next. This one is the concrete contractor where git moved and DNS did not.
 
-If you run a WordPress local-business site in the mountains — would you flip DNS the week the Next rebuild matches content 1:1, or keep WordPress live until every \`wp-content\` hotlink is gone?
+If you run a WordPress local-business site in the mountains, would you flip DNS the week the Next rebuild matches content 1:1, or keep WordPress live until every \`wp-content\` hotlink is gone?
 `;
 
 const KINGSROOFINGNC_COVER =
   "/blog/kingsroofingnc-pixel-perfect-wp-to-next-lift/cover.png";
 
-const KINGSROOFINGNC_CONTENT = `![Kings Roofing homepage hero — green metal roof, Free Quote CTA](/blog/kingsroofingnc-pixel-perfect-wp-to-next-lift/screenshots/home.png)
+const KINGSROOFINGNC_CONTENT = `![Kings Roofing homepage hero. Green metal roof, Free Quote CTA](/blog/kingsroofingnc-pixel-perfect-wp-to-next-lift/screenshots/home.png)
 
 ## Who
 
-I get hired when a contractor’s site still works for referrals and dies for everyone else — plugins rotting, forms flaky, hosting bill arguing with the phone.
+I get hired when a contractor's site still works for referrals and dies for everyone else: plugins rotting, forms flaky, hosting bill arguing with the phone.
 
-Kings Roofing already had a personality: orange \`#FF7620\`, leaping lion, metal-roof hero, color pickers, carport kits, Waynesville-to-Highlands location pages. Redesigning that into a generic “modern roofing” template would have trained half of Haywood County that the company changed crews.
+Kings Roofing already had a personality: orange \`#FF7620\`, leaping lion, metal-roof hero, color pickers, carport kits, Waynesville-to-Highlands location pages. Redesigning that into a generic "modern roofing" template would have trained half of Haywood County that the company changed crews.
 
-This write-up is for operators who will keep the weird brand orange on purpose — and for WNC folks who just need the site to load when they search the truck wrap.
+This write-up is for operators who will keep the weird brand orange on purpose, and for WNC folks who just need the site to load when they search the truck wrap.
 
 ## What
 
 Public repo [Hustle-Launch/kingsroofingnc.com](https://github.com/Hustle-Launch/kingsroofingnc.com). Package **0.1.0**, Bun, Next.js **16.1.6**, React 19, Tailwind 4.
 
-Stack on HEAD: Resend for quote mail, PostHog, Sentry (\`withSentryConfig\` + CSP/HSTS/frame DENY), Phosphor via react-icons, Biome/Oxlint/tsgo local gates. No Stripe on \`main\` — a local branch has quote-fee experiments that never reached HEAD, so I’m not narrating them as shipped.
+Stack on HEAD: Resend for quote mail, PostHog, Sentry (\`withSentryConfig\` + CSP/HSTS/frame DENY), Phosphor via react-icons, Biome/Oxlint/tsgo local gates. No Stripe on \`main\`. A local branch has quote-fee experiments that never reached HEAD, so I am not narrating them as shipped.
 
 ![Residential services page](/blog/kingsroofingnc-pixel-perfect-wp-to-next-lift/screenshots/residential.png)
 
 What actually shipped:
 
-- Pixel-faithful homepage: Residential & Commercial hero, Free Quote / Call box, New Roof Installation with YouTube embed, Re-Roofing orange band, Roof Repair checklist, four location photo cards, “Roofers in Asheville NC” closer.
-- App Router pages matching the old WordPress menu — About, Residential, Commercial, Contact, Roofing Color Pickers (metal + shingles), Metal Structures (carport kits + pole truss kits + style detail pages).
-- Location SEO under \`/residential/[location]\` for Asheville, Cashiers, Highlands, Waynesville — constants consolidated so phone numbers don’t drift.
+- Pixel-faithful homepage: Residential & Commercial hero, Free Quote / Call box, New Roof Installation with YouTube embed, Re-Roofing orange band, Roof Repair checklist, four location photo cards, "Roofers in Asheville NC" closer.
+- App Router pages matching the old WordPress menu: About, Residential, Commercial, Contact, Roofing Color Pickers (metal + shingles), Metal Structures (carport kits + pole truss kits + style detail pages).
+- Location SEO under \`/residential/[location]\` for Asheville, Cashiers, Highlands, Waynesville. Constants consolidated so phone numbers do not drift.
 - Contact + feedback flows: Resend from \`notify@uncap.us\` to \`kingshaywood@gmail.com\`, HTML escaped in templates, interactive star rating + loading skeleton from launch week.
 - Ops: Vercel prebuilt / Blacksmith path, git auto-deploy off on main, Aug 8 \`X-Robots-Tag: index, follow\`.
 
-Honesty: sitemap still lists legacy \`/waynesville\` style URLs while the app moved under \`/residential/...\`. Custom domain \`kingsroofingnc.com\` returns Cloudflare **526** from pack hosts — the working surface is the Vercel alias.
+Honesty: sitemap still lists legacy \`/waynesville\` style URLs while the app moved under \`/residential/...\`. Custom domain \`kingsroofingnc.com\` returns Cloudflare **526** from pack hosts. The working surface is the Vercel alias.
 
 ![Roofing color pickers](/blog/kingsroofingnc-pixel-perfect-wp-to-next-lift/screenshots/color-pickers.png)
 
@@ -5982,25 +5980,25 @@ Code: Hustle-Launch (public; michaelmonetized mirror shares HEAD \`984746b\`). H
 
 ## When
 
-**2026-02-12.** One long day. Create Next App → WP migration scaffold → Layout/Providers → exact copy → full sitemap pages → move locations under \`/residential/[location]\` → dropdowns for locations / metal structures / color pickers → white/orange restyle → lion + dark footer → lock Roboto/Poppins/#FF7620 → YouTube → “match WordPress exactly” commits. That afternoon is the product.
+**2026-02-12.** One long day. Create Next App to WP migration scaffold to Layout/Providers to exact copy to full sitemap pages to move locations under \`/residential/[location]\` to dropdowns for locations / metal structures / color pickers to white/orange restyle to lion + dark footer to lock Roboto/Poppins/#FF7620 to YouTube to "match WordPress exactly" commits. That afternoon is the product.
 
-**2026-02-15.** Escape user input in Resend HTML so quote mail isn’t an XSS souvenir.
+**2026-02-15.** Escape user input in Resend HTML so quote mail is not an XSS souvenir.
 
-**2026-02-21.** Launch-week hygiene: README that isn’t boilerplate, LOCATIONS single source, star rating + skeleton, Phosphor icons, ContactCTA extract, carport/pole-truss content fleshed out, phone consolidation + \`rel=noopener\`.
+**2026-02-21.** Launch-week hygiene: README that is not boilerplate, LOCATIONS single source, star rating + skeleton, Phosphor icons, ContactCTA extract, carport/pole-truss content fleshed out, phone consolidation + \`rel=noopener\`.
 
 **2026-02-27–28.** Build gate, drop GitHub Actions (Vercel is CI), P1 fixes, security headers folded into \`next.config.ts\`.
 
-**2026-05.** shipprep / Blacksmith observability dance — install, revert, re-apply.
+**2026-05.** shipprep / Blacksmith observability dance: install, revert, re-apply.
 
-**2026-08-08.** HEAD \`984746b\` — robots index/follow on Vercel. Thirty-two commits on the clock.
+**2026-08-08.** HEAD \`984746b\`. Robots index/follow on Vercel. Thirty-two commits on the clock.
 
 ## Why
 
-Referral businesses don’t buy your taste. They buy continuity.
+Referral businesses do not buy your taste. They buy continuity.
 
-I kept the orange, the lion, the color pickers, and the metal-structure tree because those were already the marketing system. Next.js, Resend, Sentry, and CSP are the parts that were rotting under WordPress — not the brand.
+I kept the orange, the lion, the color pickers, and the metal-structure tree because those were already the marketing system. Next.js, Resend, Sentry, and CSP are the parts that were rotting under WordPress, not the brand.
 
-When you migrate a referral-driven local business off WordPress, do you keep the weird brand orange — or do you “modernize” it until nobody recognizes the truck wrap?
+When you migrate a referral-driven local business off WordPress, do you keep the weird brand orange, or do you "modernize" it until nobody recognizes the truck wrap?
 `;
 
 const APPESTATESALES_COVER =
@@ -6148,7 +6146,7 @@ export const staticPosts: StaticPost[] = [
     title: "Monarch Mountain Foundations: I migrated WordPress to Next — DNS still serves PHP",
     slug: "monarch-mountain-foundations-wordpress-to-next-dns-still-php",
     excerpt:
-      "Private Hustle-Launch client rebuild for Highlands–Cashiers structural concrete. Next.js 16 + Resend + Schema LocalBusiness live on Vercel; www still answers WordPress on LiteSpeed/PHP. Video heroes hotlink wp-content. HEAD c7e4e30 · 33 commits · draft+assets only.",
+      "Monarch Mountain Foundations is a full Next rebuild (Resend, Schema, gallery, CSP) whose www still serves PHP/8.3.33 on LiteSpeed while the Vercel alias sits with main auto-deploy off. HEAD c7e4e30; homepage motion still hotlinks wp-content.",
     content: MONARCHMOUNTAINFOUNDATIONS_CONTENT,
     coverImage: MONARCHMOUNTAINFOUNDATIONS_COVER,
     tags: [
@@ -6176,7 +6174,7 @@ export const staticPosts: StaticPost[] = [
     title: "Kings Roofing NC: I didn't redesign the WordPress site — I lifted it to Next.js",
     slug: "kingsroofingnc-pixel-perfect-wp-to-next-lift",
     excerpt:
-      "I moved Kings Roofing (WNC) from WordPress to Next.js 16 without inventing a new brand — kept #FF7620, lion, color pickers, metal carports, Resend quotes. Live on the Vercel alias; custom domain still Cloudflare 526.",
+      "Kings Roofing NC is a pixel-faithful WordPress-to-Next lift that kept #FF7620, the lion, color pickers, and metal-structure tree under Hustle-Launch/kingsroofingnc.com. Working surface is kingsroofingnccom.vercel.app (apex Cloudflare 526); HEAD 984746b.",
     content: KINGSROOFINGNC_CONTENT,
     coverImage: KINGSROOFINGNC_COVER,
     tags: [
@@ -7823,7 +7821,7 @@ export const staticPosts: StaticPost[] = [
     title: "Bar-B-Que Wagon: I built a Bryson City Main Street smokehouse site",
     slug: "barbquewagon-bryson-city-hickory-smokehouse-site",
     excerpt:
-      "Public Next.js 16 build for Bar-B-Que Wagon on 610 Main St, Bryson City — amber smokehouse theme, Yelp food gallery, Convex + Resend catering/contact leads, Restaurant JSON-LD. Thirty-eight commits. Live on the Vercel alias; custom domain still dark.",
+      "Bar-B-Que Wagon is a Next 16 / Bun / Convex / Resend smokehouse site for 610 Main St, Bryson City, with Zod catering leads and Yelp plates in the repo. Live on barbquewagoncom.vercel.app; apex DNS still dark; thirty-eight commits through the Aug 8 robots header.",
     content: BARBQUEWAGON_CONTENT,
     coverImage: BARBQUEWAGON_COVER,
     tags: [
@@ -8108,7 +8106,7 @@ export const staticPosts: StaticPost[] = [
     title: "s12.in: I shipped a short domain that tracks clicks and hosts files",
     slug: "s12-in-url-shortener-file-hosting",
     excerpt:
-      "I built s12.in — Next.js 16 + Convex + Clerk — so a four-character domain can shorten URLs, host files, and record click analytics without renting another Bitly seat.",
+      "s12.in is a private HurleyUS shortener + file host on Next 16.1.6, Convex, and Clerk with geo/device click recording and a 302 redirect spine. HEAD d6c074f; hero stats are still static JSX; Clerk on the observed deploy is pk_test.",
     content: S12IN_CONTENT,
     coverImage: S12IN_COVER,
     tags: [
