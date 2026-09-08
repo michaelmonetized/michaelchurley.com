@@ -2971,7 +2971,72 @@ If you already run twelveux Glass, what breaks first when you try SVG displaceme
 ![About page on Glass Design System](/blog/glass-design-system-apple-svg-refraction-showcase/screenshots/about.png)
 `;
 
+const BREAZYAPP_COVER =
+  "/blog/breazyapp-pocket-peo-aes-before-stripe/cover.png";
+
+const BREAZYAPP_CONTENT = `# BreazyApp pocket PEO
+
+**Slug:** breazyapp-pocket-peo-aes-before-stripe
+
+**Excerpt:** Next.js 16 + Convex + Clerk pocket PEO for chain restaurants. Four portals. Waitlist live. Billing UI 49/location + 4/employee. No stripe package. HEAD 2402b35.
+
+**Tags:** breazyapp, peo, hr, payroll, restaurants, nextjs, convex, clerk, hurleyus
+
+---
+
+![home](/blog/breazyapp-pocket-peo-aes-before-stripe/screenshots/home.png)
+
+## Who
+
+Multi-unit restaurant and franchise operators who need HR, payroll, accounting, and benefits in one pocket PEO.
+
+## What
+
+breazyapp 0.1.0 private HurleyUS. Live www.breazyapp.com. Portals: employee, manager, HR, admin. Commit 062ade1 at-rest field protection. Feb 6 smoke-shop lander reverted in 15 minutes.
+
+![waitlist](/blog/breazyapp-pocket-peo-aes-before-stripe/screenshots/waitlist.png)
+
+## Where
+
+github.com/HurleyUS/breazyapp.com · www.breazyapp.com (200) · apex 307 · robots index,follow
+
+## When
+
+2026-01-08 init. 2026-02 PEO + Clerk + Catppuccin. 2026-08-08 HEAD robots. Pack 2026-09-08 draft only.
+
+## Why
+
+Portal shells and field protection before pretending checkout shipped.
+
+Which tool would you delete first across five restaurants?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:breazyapp-pocket-peo-aes-before-stripe",
+    title: "BreazyApp pocket PEO draft pack",
+    slug: "breazyapp-pocket-peo-aes-before-stripe",
+    excerpt:
+      "Next.js 16 + Convex + Clerk pocket PEO for chain restaurants. Four portals, live waitlist, field protection, billing UI without stripe package. HEAD 2402b35.",
+    content: BREAZYAPP_CONTENT,
+    coverImage: BREAZYAPP_COVER,
+    tags: [
+      "breazyapp",
+      "peo",
+      "hr",
+      "payroll",
+      "restaurants",
+      "nextjs",
+      "convex",
+      "clerk",
+      "hurleyus",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T05:10:00Z"),
+    readingTime: 1,
+  },
+
   {
     _id: "static:mission-control-go-tui-p10k-portfolio-ops",
     title: "mission-control: I built a p10k Go TUI for the whole portfolio \u2014 not the agent thread plane",
