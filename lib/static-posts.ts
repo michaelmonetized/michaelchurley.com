@@ -1275,7 +1275,405 @@ I also still have the 2012 chrome in my head. studioTWELVE. twelve.ux. Putting /
 So the registry is the portable form. The playground is the proof. The archive is the scar that stayed.
 `;
 
+
+const GETFARMIN_COVER =
+  "/blog/getfarmin-farm-equipment-marketplace-scaffold/cover.png";
+
+const GETFARMIN_CONTENT = `![GetFarmin home mock — Find. Buy. Farm.](/blog/getfarmin-farm-equipment-marketplace-scaffold/screenshots/home.png)
+
+## Who
+
+I got tired of watching six-figure iron move on hope and a Facebook comment thread.
+
+Farm equipment is not a $49 SaaS seat. A 2022 John Deere 8R 370 placeholder in this repo lists at **$385,000**. A Case IH 9250 combine sits at **$425,000**. That is not "add to cart and pray." That is escrow, hours, condition enums, oversize permits, and a seller who might be a dealer with a storefront slug.
+
+GetFarmin is for operators who want that marketplace shape on a real stack — Next, Convex, Clerk, Stripe Connect — before they pretend they have 10,000 live listings. Ag buyers and dealers who are done leasing trust from a local classifieds culture. Builders who would rather ship fee constants in a Convex mutation than wait for the perfect deploy key.
+
+If you have ever tried to move a center pivot across state lines with a spreadsheet and a handshake, you are in the room.
+
+## What
+
+I built **GetFarmin** — package name \`getfarmin\`, version **0.1.0**, private under **HurleyUS/getfarmin.com**. Metadata line: *Global Farm Equipment Marketplace*. Hero line: **Find. Buy. Farm.**
+
+Stack facts from the lockfile and tree, not the stale sitrep: **Next.js 16.2.6**, **React 19.2.6**, **Tailwind 4.3**, Bun, **Convex** schema + queries/mutations, **Clerk** auth surfaces, **Stripe** webhook route + Connect escrow scaffolding, Catppuccin Mocha default with green primary, Resend/Sentry/PostHog wired in \`.env.example\`. Thirty-six commits. HEAD \`4b5df30\`.
+
+![Browse mock with placeholder iron](/blog/getfarmin-farm-equipment-marketplace-scaffold/screenshots/browse.png)
+
+Surfaces that exist in \`app/\`: \`/\` marketing, \`/browse\` with URL \`searchParams\` filters and placeholder cards from \`lib/placeholder-data.ts\`, \`/about\`, \`/dashboard\`, \`/listing/new\` multi-step form, \`/dealers/[slug]\`, Clerk sign-in/up catch-alls, \`POST /api/shipping/estimate\`, Stripe webhook route.
+
+Convex tables: \`listings\`, \`categories\`, \`users\`, \`dealerProfiles\`, \`messages\`, \`savedListings\`, \`payments\`. Listing tiers: basic / enhanced / dealer. Conditions: new through salvage. Escrow math in \`convex/payments.ts\`: platform **2.9% + $0.30**, escrow **1.5%**, optional buyer protection **+2%**. Comments say PaymentIntent creation is deferred — schema-ready money path, not a finished Connect onboarding wizard.
+
+Shipping estimator in \`lib/shipping-estimate.ts\`: base **$250**, **$2.10**/mile, **$38**/1000 lb, oversize and expedite flags, honest notes about permits and long-haul variance.
+
+![Dashboard mock — inbox + escrow](/blog/getfarmin-farm-equipment-marketplace-scaffold/screenshots/dashboard.png)
+
+## Where
+
+Code lives at [github.com/HurleyUS/getfarmin.com](https://github.com/HurleyUS/getfarmin.com) — **private**. GitHub homepage points at [getfarmin-com.vercel.app](https://getfarmin-com.vercel.app). At pack time that URL returned **HTTP 500** with \`X-Robots-Tag: index, follow\` (the Aug 8 header fix). This pack does not invent a healthy production story.
+
+Audience sits next to MachineryTrader / TractorHouse energy, with a builder twist: Catppuccin dark-first UI, compound Convex indexes, issue-driven February feature closeout. Sibling operator furniture is present — \`.hustlemc\`, Blacksmith ship workflow, fallow REVIEW, Stripe sanity rule file.
+
+![New listing multi-step mock](/blog/getfarmin-farm-equipment-marketplace-scaffold/screenshots/listing-new.png)
+
+## When
+
+**2026-01-08.** \`8107c34\` Initial commit: Next.js, Convex, Tailwind. Same morning \`f717dcf\` OPPORTUNITIES + homepage. Afternoon \`381035b\` PLAN improvement list. The market thesis lands day one: global farm equipment, used market, listing tiers, escrow, shipping.
+
+**2026-01-31 / 2026-02-05.** Sync. Prod build ready.
+
+**2026-02-06.** \`6f764f9\` upgrade to Next.js 16, React 19. Tailwind v4 globals \`@import\` fix follows.
+
+**2026-02-13.** \`0afe002\` dark mode, Catppuccin theme system, browse/about pages, Convex schema.
+
+**2026-02-21–22.** Standards debt burned down — error/loading/not-found, env validation, Zod validations, providers, schema foreign keys as \`v.id("users")\`, merged fix PRs.
+
+**2026-02-23–24.** The marketplace week. Search and filtering. Clerk buyer/seller dashboard. Listing creation flow. In-app messaging. Stripe Connect + escrow scaffolding. Dealer storefronts + tiers. Convex bootstrap scripts. Heavy-equipment shipping estimate API. Issues **#1–#8** closed with matching PRs.
+
+**2026-05-14–15.** Eleven commits of Blacksmith CI gates, Biome, preflight, deploy URL verification.
+
+**2026-08-08, 06:54 ET.** \`4b5df30\` set X-Robots-Tag to index, follow on Vercel. HEAD. Thirty-six commits total.
+
+**Pack day 2026-09-08.** Draft and assets only. Live preview still 500s. \`sitrep.md\` still claims purpose unclear and last commit February 5 — treat it as drift, not truth.
+
+![Shipping estimate mock](/blog/getfarmin-farm-equipment-marketplace-scaffold/screenshots/shipping-estimate.png)
+
+## Why
+
+I did not want another "agriculture somehow" landing page with emoji tractors.
+
+I wanted fee constants next to listing status enums. I wanted a shipping function that admits a 22-foot load needs permits. I wanted dealer slugs and message threads on the same Convex deployment shape as the browse grid — even while the browse grid still reads placeholder data and the Vercel deployment throws 500s.
+
+So the February issue board became the product: close search, auth, listing form, chat, escrow, dealers, shipping, bootstrap. May hardened the gates. August flipped robots headers on a site that still needs a living Convex URL.
+
+If your marketplace README promises 10,000 listings and your \`payments\` table cannot say \`in_escrow\`, you already know the hole I was staring at.
+
+Would you price a six-figure tractor listing as free basic inventory, or charge the $49 enhanced tier before the first escrow release clears?
+`;
+
+const MERCHWINNER_COVER =
+  "/blog/merchwinner-pod-course-marketplace/cover.png";
+
+const MERCHWINNER_CONTENT = `![MerchWinner live home — Start Learning / Become an Instructor](/blog/merchwinner-pod-course-marketplace/screenshots/home.png)
+
+## Who
+
+I kept meeting people who wanted Amazon Merch, Etsy POD, and Shopify print-on-demand to pay rent — and who were buying theory courses from people who had not shipped a design in years.
+
+MerchWinner is for aspiring merch sellers who want practitioners. It is for active sellers who will teach if the split and the platform are not a second job. It is for operators who want to see a full Clerk + Convex + Stripe course-marketplace shape on Next.js 16 without pretending the catalog is full.
+
+If you have ever built the checkout before the first SKU, you are in the room.
+
+## What
+
+I shipped **MerchWinner.com** — a user-contributed course marketplace for learning how to sell merch online. Public surfaces: home, \`/courses\` with search/category/sort, course detail + lesson player, \`/instructors\`, \`/about\`. Instructor workspace for create/edit/publish, lesson reorder, earnings, analytics, profile. Student enrollment dashboard. Money path on Stripe: one-time course and bundle checkout, Pro/Unlimited memberships, webhook → Convex purchases/subscriptions, Resend mail for enrollment, invoice, renewal, review reminders.
+
+Stack from the lockfile, not the stale README line: **Next.js ^16.2.6**, **React ^19.2.6**, **Convex ^1.38.0**, **Clerk**, **Stripe ^22.1.1**, **Resend**, PostHog, Sentry, Tailwind v4, Radix, Catppuccin Mocha default. Package **0.1.0**, private under HurleyUS. **86** commits. HEAD \`65c4413\`.
+
+![Live courses page — search UI with empty catalog](/blog/merchwinner-pod-course-marketplace/screenshots/courses-live.png)
+
+Billing facts in \`lib/billing.ts\`: \`PLATFORM_FEE_PERCENT = 20\` (creator net 80%). Plans: Pro **$29/mo** / **$278/yr** (3 courses/month) and Unlimited **$49/mo** / **$470/yr**. Homepage marketing still says “Earn 70% of every course sale.” I would rather name the mismatch than paper it over.
+
+Convex schema covers users (student/instructor/admin), instructorProfiles, courses, lessons, enrollments with progress, subscriptions, coursePurchases, bundlePurchases, payoutRequests, reviews. Eighteen App Router pages. Fourteen API routes. Bun + Biome + ship script.
+
+![About page — practitioner POD curriculum](/blog/merchwinner-pod-course-marketplace/screenshots/about.png)
+
+## Where
+
+Code lives at [github.com/HurleyUS/merchwinner.com](https://github.com/HurleyUS/merchwinner.com) (private). Live site: [www.merchwinner.com](https://www.merchwinner.com). Vercel project URL on the repo homepage field: [merchwinner-com.vercel.app](https://merchwinner-com.vercel.app). Apex redirects to www.
+
+Audience sits next to every POD Discord still arguing Redbubble vs Merch while nobody ships curriculum. Contact in README: michael@hustlelaunch.com. Same operator family as the other HurleyUS Next/Convex products.
+
+![Instructors page — shell loaded, no profiles yet](/blog/merchwinner-pod-course-marketplace/screenshots/instructors-live.png)
+
+## When
+
+**2026-01-08.** \`91c1e8e\` Initial commit: Next.js, Convex, Tailwind. Same day: opportunities doc and homepage pass.
+
+**February.** Next 16 + React 19. Catppuccin dark mode, layout variants, stub \`/courses\` and \`/about\`. Feb 21 standards mega-fix closes a pile of issues — middleware, providers, schema, icons, fonts, email docs.
+
+**March 20–22.** Stripe checkout patterns, instructor profile and earnings, webhook typing. Money enters the building.
+
+**March 25.** Fourteen commits. Resend templates. Phase 2 webhook→email. Phase 3a–3c: instructor course creation, lesson manage UI, student enrollment and lesson player.
+
+**March 26.** Nineteen commits. Phase 4 search/filters/SEO/schema markup. Phase 5 reviews UI + reminders. Phase 6a/6b earnings and analytics merges. Production-ready checklist docs.
+
+**March 27.** Catppuccin unify across the site. Instructor and enrollment CTAs.
+
+**May 13–15.** shipprep standards and a Blacksmith CI/deploy verification flurry.
+
+**2026-08-08, 06:55 ET.** \`65c4413\` set X-Robots-Tag to index, follow on Vercel. HEAD. Eighty-six commits total.
+
+On September 8, 2026 the live \`/courses\` page still reads **“No courses available yet.”** The marketplace shipped. The catalog did not.
+
+![Illustrative instructor earnings mock — 20% platform fee math](/blog/merchwinner-pod-course-marketplace/screenshots/instructor-earnings-mock.png)
+
+## Why
+
+I did not want another “courses coming soon” landing page with a Mailchimp box. I wanted the boring spine: auth roles, course/lesson tables, Stripe sessions, webhooks that enroll, email that confirms, instructor earnings that know the fee, student progress that is not a Google Sheet.
+
+So I compressed the spine across six phases and left the honesty visible: empty catalog, empty instructors grid, README still claiming Next 15.5.6 and Payments N/A while Stripe and Next 16 are in the lockfile. Version 0.1.0. Private on purpose until the first real courses earn the public launch.
+
+If your marketplace admin is prettier than your course list, you already know the hole I was staring at.
+
+What would you publish first on MerchWinner — Amazon Merch niche research, Etsy POD ops, or TikTok ads that actually sell shirts?
+`;
+
+const OMNUX_REPORT_COVER =
+  "/blog/omnux-report-one-command-diagnostics-redaction/cover.png";
+
+const OMNUX_REPORT_CONTENT = `<!-- Cover: upload og.png to Convex storage; embed storage URLs below after upload. Local refs for draft review. -->
+
+![OMNUX-REPORT OG — one-command diagnostics with consent + redaction](/blog/omnux-report-one-command-diagnostics-redaction/cover.png)
+
+![Honest state — shipped, validated, unfinished named](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/honest-state.png)
+
+## Who
+
+I am the person who already published the Omnux truth table and the omnux-gpu siege wall. Those posts are live. This one is a different room.
+
+This piece is for owners who will file a bug with receipts and refuse to paste a 400 MB journal that still contains a MAC address. For operators who need backlight, WiFi, DRM, speakersafetyd, and sleep lines before the archaeology starts. For SEP/TouchID researchers who need device-tree names and module hints without biometric material. For agent operators who are supposed to produce owner telemetry under the Omnux mandate without turning consent into theater.
+
+If you need a curl install or a truth table, that is the umbrella post. If you need M3 AGX pixels named as a project with acceptance criteria, that is the GPU post. If you need an attachable evidence bundle the owner controls, that is this room.
+
+## What
+
+I shipped **omnux-report** — a MIT Shell tool whose entire job is to make Apple Silicon Omnux machines comparable in an issue tracker without scooping secrets by default.
+
+One command. Offline. Installed system or live USB. Consent summary prints exactly what will be gathered. Redaction is on unless you opt out. The output is a single \`.tar.zst\` (gzip fallback if zstd is missing) plus a SHA256 sidecar. Attach both.
+
+![Collection pipeline — Consent Collect Cap Triage Redact Archive](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/pipeline.png)
+
+The pipeline is boring on purpose:
+
+1. **Consent** — list journal/sysinfo/SEP structure, optional benches, optional ADT helper; show redaction state; wait for \`y\` unless \`--yes\`.
+2. **Collect** — sysinfo, severity-scoped logs, SEP structure, optional benchmarks, optional ADT instructions.
+3. **Cap** — any single file over 50 MiB keeps its last 50 MiB with a TRUNCATED header so a pathological journal cannot produce an unattachable blob.
+4. **Triage** — \`summary.txt\` with PASS / INFO / WARN / FAIL / SKIP per subsystem.
+5. **Redact** — MACs to \`XX:XX:XX:XX:XX:XX\`; key=value secret backstops; count written to \`redaction-count.txt\`.
+6. **Archive** — deterministic tar (\`--sort=name\`, fixed mtime) compressed; checksum sidecar.
+
+![Bundle schema v1 — logs sysinfo sep benches adt skipped](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/bundle-schema.png)
+
+The schema is documented in \`docs/SCHEMA.md\`. Logs arrive as current boot, previous boot, error, warning — full history is opt-in because long-lived installs turn “helpful” into hundreds of megabytes. Sysinfo covers identity (model, compatible, chip ids), CPU/memory/kernel, package versions and Omarchy markers, device-tree \`/chosen\` **property names only**, block devices without serials, NVMe model+firmware, displays, Type-C roles, scrubbed network, audio/speaker-safety, GPU DRM/EGL state. Benchmarks default to CPU openssl + portable dd probes; glmark2 and vulkaninfo stay opt-in and always sit next to \`benchmarks/context.txt\` so a number without a model/kernel/mesa line is treated as noise.
+
+![Redaction rules — scrubbed, never collected, kept deliberately](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/redaction-rules.png)
+
+Redaction is the product feature, not the apology. Serial numbers, WiFi/Bluetooth keys, NetworkManager secrets, and \`/etc/machine-id\` are never collected. Interface addresses and SSIDs are scrubbed at collection time so a global regex cannot corrupt timestamps. Secret scrubbing matches only \`key=value\` / \`key:value\` forms — journal prose like “Forward Password Requests to Wall” survives. Filesystem UUIDs stay because boot debugging needs them; hostnames stay because owners can edit a bundle before attaching if they care.
+
+The SEP section exists for the TouchID-on-Apple-Silicon research program tracked on omnux-gpu issues #10 and #13. It captures device-tree node names and \`reg\` bytes, \`/dev\` and \`/sys\` bus matches, module and modprobe hints, and firmware identifiers. It does **not** collect enrollment data, biometric templates, keys, tickets, nonces, TSS responses, or FDR dictionaries. Structure that helps match hardware. Nothing that reproduces security state.
+
+\`--adt\` does not dump an Apple Device Tree on the reporting machine. It writes guided instructions for a second host running m1n1’s proxyclient, pre-filled with this machine’s model, plus a scrub checklist before attach to omnux#4.
+
+![Triage vocabulary — PASS INFO WARN FAIL SKIP](/blog/omnux-report-one-command-diagnostics-redaction/screenshots/triage-vocab.png)
+
+Triage is the first screen a bug reader should see: machine Apple-or-fail, DRM render node presence, backlight class, WiFi interface/soft-block, Omarchy release marker, mem_sleep states, speakersafetyd, SEP-named DT nodes. Honest and boring.
+
+On 2026-08-26 this produced a complete redacted 3.5 MB bundle on a real MacBook Pro 16-inch M1 Pro running Omarchy. The same day, \`test/fixture-test.sh\` ran ten checks against a synthetic Apple Silicon sysroot on ordinary Linux — model identity, compatible string, journal skip in fixture mode, triage PASS, ADT helper text, size cap, MAC scrub, secret scrub, prose survival, SHA256 verify. That is the receipt that the pipeline is not “works on my journal.”
+
+What is not done is also named: packaging into the mx-mac live image, glmark2/vulkaninfo validation on machines that actually have them installed, and an owner-facing release. Working tool. Validated. Not finished product marketing.
+
+## Where
+
+It lives where an Omnux or Omarchy Apple Silicon machine — or the live USB — can run a bash script without a network. Fixture mode lives anywhere Linux so CI cosplay is unnecessary for the collectors themselves.
+
+Repo: [michaelmonetized/omnux-report](https://github.com/michaelmonetized/omnux-report). Normative feature spec still points at [omnux#2](https://github.com/michaelmonetized/omnux/issues/2). ADT collection issue: [omnux#4](https://github.com/michaelmonetized/omnux/issues/4). SEP research adjacency: omnux-gpu #10/#13. Parent ship lane: [omnux](https://github.com/michaelmonetized/omnux). GPU siege: [omnux-gpu](https://github.com/michaelmonetized/omnux-gpu).
+
+Local clone used for this pack: \`/home/michael/Projects/omnux-report\` on m1pro16 @ \`f9729a6\`.
+
+## When
+
+**2026-08-26.** Scaffold commit \`1019bda\` — honest state, omnux#2 pointer, layout, offline/consent/evidence principles. Same day: \`aac9244\` lands v0.1.0 — working collectors, triage, redaction, archive. Same day validation: real M1 Pro Omarchy redacted bundle at 3.5 MB; fixture harness ten checks green.
+
+**2026-08-27.** Commit \`f9729a6\` adds the SEP/TouchID evidence collector wired to the omnux-gpu research issues — structure only, secrets excluded by design. Last push \`2026-08-27T18:34:44Z\`.
+
+**2026-09-08.** Content pack drafted. Live omnux and omnux-gpu posts already cover install truth and the AGX wall. This draft stays unique: diagnostics consent and redaction. Still no mx-mac packaging. Still no owner-facing release ceremony.
+
+## Why
+
+Owner telemetry without owner control is just surveillance with a README. I wanted a command that tells you what it will gather before it gathers it. I wanted redaction as the default path so attaching a bug is not a privacy coin-flip. I wanted numbers that only mean something next to model, kernel, and Mesa lines. I wanted SEP research to have evidence without becoming a biometric vacuum. I wanted a fixture that proves the pipeline on machines that are not Apple silicon so the tool does not only exist in folklore.
+
+The Omnux story splits cleanly across three repos: the umbrella ships the install lane and the truth table; omnux-gpu names the driver wall without claiming pixels; omnux-report turns “please attach logs” into a consenting, redacted, checksummed artifact. That is the ask — run the command, read the triage, attach the two files.
+`;
+
+const WNC_TOURS_COVER =
+  "/blog/wnc-history-tours-booking-shell-before-detail-pages/cover.png";
+
+const WNC_TOURS_CONTENT = `![WNC History Tours homepage mock — Discover the Rich History of Western North Carolina](/blog/wnc-history-tours-booking-shell-before-detail-pages/screenshots/home.png)
+
+## Who
+
+I live in the Blue Ridge ops lane. Visitors want a walking tour, a ghost walk, a cemetery afternoon, or a Cherokee heritage day without bouncing between five operator websites and a generic Viator card. Guides want a place to list and take a booking without building their own Next app.
+
+WNC History Tours is for people hunting history experiences from Asheville to Cherokee — and for the small companies that run those walks.
+
+If you build MarTech, local directories, or Stripe-backed booking surfaces: this post is the field notes on what shipped and what did not.
+
+## What
+
+I built a tour booking platform shell for Western North Carolina history tours.
+
+Stack on the box: **Next.js 16.2.6**, React 19, **Convex**, **Clerk**, Stripe (dependency + env slots), PostHog, Sentry, Resend, Tailwind v4, Bun, Vitest, Vercel config. Repo is private under \`HurleyUS/wnchistorytours.com\`. Package version **0.1.0**. README still says Next 15.5.6 — the lockfile moved on.
+
+![Convex schema — companies, tours, bookings, reviews](/blog/wnc-history-tours-booking-shell-before-detail-pages/screenshots/schema.png)
+
+What exists in code:
+
+- Amber/stone homepage with search form, city chips, category cards, featured tour grid
+- Convex tables for \`companies\`, \`tours\`, \`bookings\`, \`reviews\` with search indexes
+- Tour queries (featured, search, by company/slug) and booking create/status mutations
+- Seed mutation for three demo companies and five tours
+- Clerk middleware in \`proxy.ts\` with public matchers for the routes I planned to build
+- SEO (\`sitemap.ts\`, \`robots.ts\`), error boundaries, HTTP security headers, Blacksmith/shipprep CI gates
+
+What does **not** exist as \`app/\` routes despite the nav and cards linking to them: \`/tours\`, \`/companies\`, \`/city/*\`, \`/category/*\`, \`/search\`, \`/tour/[company]/[tour]\`, \`/list-your-business\`, booking checkout. No \`components/\` folder. No Stripe checkout route.
+
+Homepage falls back to hardcoded demo tours when Convex queries are still loading or empty. Category counts (24 walking, 12 ghost, …) are UI constants. The seed script drifts from the schema — \`rating\` vs \`averageRating\`, duration type, missing required company fields — so “production readiness” in that commit message is aspirational.
+
+![Declared stack vs actual app tree](/blog/wnc-history-tours-booking-shell-before-detail-pages/screenshots/stack-gap.png)
+
+## Where
+
+Intended host: [wnchistorytours.com](https://wnchistorytours.com). Layout OG, sitemap, and robots all point there. On pack day the domain returned **Cloudflare 526** (origin TLS/unreachable). \`vercel.json\` also sets \`deploymentEnabled\` for \`main\`/\`master\` to **false** — auto-deploy from those branches is off.
+
+Auth path is Clerk. Money path is declared Stripe in \`.env.example\`. Mail is Resend. Errors go to Sentry. Product events go to PostHog. Maps key slot exists for meeting points later.
+
+Audience sits in Western North Carolina heritage tourism and with builders shipping local vertical directories next to products like BestWNC.
+
+## When
+
+**2026-01-08.** Init. Same day: opportunities doc, homepage pass, Convex tour booking MVP (schema + bookings + tours + provider), PLAN updates, \`.env.example\` + seed. Six January commits. The product idea and the shell landed together.
+
+**January 31.** Chore sync.
+
+**February.** Upgrade to Next.js 16 and React 19. Tailwind v4 CSS-first. Clerk middleware and \`cn()\`. Strict TypeScript. Error boundaries. Sitemap and robots. Security headers. Auth check on \`bookings.updateStatus\`. Query \`.take(100)\` bounds. TypeScript fix PRs.
+
+**March.** Vitest smoke coverage. More TS cleanup. Remove GitHub Actions — Vercel called out as CI. ESLint flat config.
+
+**May.** Densest month (15 commits). shipprep standards, Blacksmith CI gate standardization (many near-duplicate gate commits), local preflight, deploy URL and health-check fixes. Platform reliability work while detail pages stay unbuilt.
+
+**2026-08-08 6:55 AM ET.** \`c298e54\` — set \`X-Robots-Tag\` to \`index, follow\` on Vercel. HEAD. Thirty-seven commits on \`main\`.
+
+That is the clock from empty repo to a hardened shell with an unfinished booking funnel.
+
+![Commit journey Jan through Aug](/blog/wnc-history-tours-booking-shell-before-detail-pages/screenshots/journey.png)
+
+## Why
+
+Directories and booking marketplaces fail two ways: vapor landers with no schema, or beautiful CI with no product routes. I did the honest middle — real Convex models and a real lander — then spent spring on Next 16, Clerk, SEO, and Blacksmith while the tour detail and Stripe checkout pages stayed on PLAN.md.
+
+The domain is named. The robots header asks to be indexed. The origin was 526 when I checked. That gap is part of the story.
+
+Sibling context: BestWNC is the broader WNC business directory. This repo is the narrower history-tour vertical. Same region, different job.
+
+If you run walking tours in Asheville or Cherokee, would you list on a WNC-only history board — or is Viator still the only checkout that matters?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:getfarmin-farm-equipment-marketplace-scaffold",
+    title: "GetFarmin: I scaffolded a farm equipment marketplace with escrow math first",
+    slug: "getfarmin-farm-equipment-marketplace-scaffold",
+    excerpt:
+      "I built GetFarmin — a Next.js 16 + Convex + Clerk farm equipment marketplace — with listing search, Stripe Connect escrow fee math, dealer storefronts, messaging, and a heavy-equipment shipping estimator before the live Vercel deploy stopped 500ing.",
+    content: GETFARMIN_CONTENT,
+    coverImage: GETFARMIN_COVER,
+    tags: [
+      "getfarmin",
+      "farm-equipment",
+      "marketplace",
+      "nextjs",
+      "convex",
+      "clerk",
+      "stripe-connect",
+      "escrow",
+      "agriculture",
+      "martech",
+      "catppuccin",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T00:50:00Z"),
+    readingTime: 4,
+  },
+  {
+    _id: "static:merchwinner-pod-course-marketplace",
+    title: "MerchWinner: I shipped a POD course marketplace before the catalog had courses",
+    slug: "merchwinner-pod-course-marketplace",
+    excerpt:
+      "I built MerchWinner.com — a Next.js 16 + Convex + Clerk + Stripe course marketplace for selling merch online — through six phases and 86 commits. Live catalog still says no courses available yet.",
+    content: MERCHWINNER_CONTENT,
+    coverImage: MERCHWINNER_COVER,
+    tags: [
+      "merchwinner",
+      "print-on-demand",
+      "course-marketplace",
+      "nextjs",
+      "convex",
+      "clerk",
+      "stripe",
+      "resend",
+      "catppuccin",
+      "martech",
+      "pod",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T00:40:00Z"),
+    readingTime: 3,
+  },
+  {
+    _id: "static:omnux-report-one-command-diagnostics-redaction",
+    title: "omnux-report: I shipped one-command diagnostics that refuse to scoop your secrets",
+    slug: "omnux-report-one-command-diagnostics-redaction",
+    excerpt:
+      "omnux-report is the offline diagnostics .tar.zst + SHA256 for Omnux on Apple Silicon — consent first, redaction default, SEP structure only. Validated on a real M1 Pro Omarchy box. Not install. Not GPU pixels.",
+    content: OMNUX_REPORT_CONTENT,
+    coverImage: OMNUX_REPORT_COVER,
+    tags: [
+      "omnux-report",
+      "omnux",
+      "asahi",
+      "apple-silicon",
+      "diagnostics",
+      "redaction",
+      "telemetry",
+      "sep",
+      "touchid",
+      "linux",
+      "omarchy",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T00:30:00Z"),
+    readingTime: 6,
+  },
+  {
+    _id: "static:wnc-history-tours-booking-shell-before-detail-pages",
+    title: "WNC History Tours: I shipped the booking shell before the tour pages existed",
+    slug: "wnc-history-tours-booking-shell-before-detail-pages",
+    excerpt:
+      "WNC History Tours is my Western North Carolina history-tour directory — Next.js 16, Convex, Clerk, Stripe deps. Homepage + schema + Blacksmith CI shipped; tour detail and checkout still missing. Domain answers Cloudflare 526.",
+    content: WNC_TOURS_CONTENT,
+    coverImage: WNC_TOURS_COVER,
+    tags: [
+      "wnc-history-tours",
+      "western-north-carolina",
+      "asheville",
+      "tour-booking",
+      "local-directory",
+      "nextjs",
+      "convex",
+      "clerk",
+      "stripe",
+      "martech",
+      "heritage-tourism",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T00:20:00Z"),
+    readingTime: 4,
+  },
+
   {
     _id: "static:hms-hustle-management-system-live-editor",
     title: "HMS: I replaced WordPress + Elementor with a live site that is the editor",
