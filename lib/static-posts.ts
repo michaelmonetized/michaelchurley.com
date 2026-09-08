@@ -5744,7 +5744,181 @@ Because launch week needed auth that already worked, with a written keep-Firebas
 
 `;
 
+const SALESPROMIS_COVER =
+  "/blog/salespromis-wp-elementor-dump-vs-lovable-live/cover.png";
+
+const SALESPROMIS_CONTENT = `![WP Engine Elementor dump vs Lovable live domain](/blog/salespromis-wp-elementor-dump-vs-lovable-live/screenshots/wp-vs-lovable.png)
+
+## Who
+
+I needed a place to version the **SalesPromis production site** — the WordPress tree that actually ran the SSDI qualify funnels on WP Engine.
+
+Who this write-up is for: operators who still have a private “production site” repo months after the public domain moved stack; builders who want to see how thin the custom layer is under an Elementor + Salert + HurryTimer kit; anyone who has ever opened GitHub expecting the live frontend and found a wp-content dump instead.
+
+## What
+
+I keep **HurleyUS/SalesPromis** private. README line one: **SalesPromis! Production Site.** Line three: “This is the production site for SalesPromis!”
+
+What the tree actually is: a **WordPress wp-content-only** dump. Core, \`wp-admin\`, uploads, and \`wp-config.php\` are gitignored. Tracked: **7,723** files. GitHub disk ~36 MB. Linguist calls primary language **JavaScript** because Elementor’s JS weight wins — PHP is still ~16 MB of bytes.
+
+Builder stack from the plugins directory: **Elementor 3.21.8**, Elementor Pro, Dynamic Content for Elementor (~45M on disk alone), Hello Elementor **3.0.2**, child theme **hello-theme-child-master 2.0.0**. Host signals: WP Engine \`object-cache.php\` (Memcached Redux) + \`wpe-cache-plugin\` mu-plugin + force-strong-passwords. Also in the kit: Really Simple SSL, Redirection, MonsterInsights, SVG Support, Admin Site Enhancements, **HurryTimer**, **Salert 1.2.5**.
+
+![Custom ssdi-qualify.js enqueue + countdown/testimonial behavior](/blog/salespromis-wp-elementor-dump-vs-lovable-live/screenshots/ssdi-qualify-custom.png)
+
+Custom operator code is small. \`functions.php\` enqueues \`ssdi-qualify.js\` only when the request is an Elementor \`e-landing-page\` whose permalink contains \`ssdi-qualify\`. The script (~294 lines) floors \`.elementor-countdown-minutes\` so the timer does not fall below **05**, prepends random faces from \`100k-faces.glitch.me\` into Salert wrappers, and renders two randomized “Qualify SSDI” testimonial cards (hardcoded first-name quotes + five-star glyphs) into Elementor widget \`data-id="8c4d0c4"\`. Salert’s own plugin header says it generates **fake sales notifications**.
+
+There is **no** \`package.json\`. There is a **303-line** \`.cursor/rules/STRIPE.md\` (“How I Stay Sane Implementing Stripe”) with **zero** Stripe usage in the PHP/JS app tree.
+
+![Plugin weight vs child-theme custom surface](/blog/salespromis-wp-elementor-dump-vs-lovable-live/screenshots/plugin-stack.png)
+
+## Where
+
+Code: [github.com/HurleyUS/SalesPromis](https://github.com/HurleyUS/SalesPromis) — **private**, org **HurleyUS**, default branch \`main\`, empty GitHub description and homepage fields. Local Projects checkout on m1Pro13 still lists origin \`michaelmonetized/SalesPromis\`; Brain \`_src\` tracks \`HurleyUS/SalesPromis\`. Same HEAD.
+
+Live domain: [www.salespromis.com](https://www.salespromis.com/) — **HTTP 200**, Cloudflare, title **SalesPromis | AI-Powered Lead Generation - Pay Per Result**. HTML at pack time loads Vite-hashed \`/assets/index-*.js|css\` and \`/lovable-uploads/…\`. That is a **Lovable SPA**, not this WordPress tree. Canonical points at \`https://www.salespromis.com/\`. Portal copy elsewhere references a Tronador login — outside this repo.
+
+Audience sits next to every client lead-gen site that got rebuilt on a new host while the old wp-content dump stayed the Git source of truth.
+
+## When
+
+**2024-08-15 15:48 ET** — \`init\` by Michael Monetized. Full dump: plugins, themes, mu-plugins, icons, GPL-3 \`LICENSE.md\`, three-line README.
+
+**2026-01-31 05:37 ET** — \`chore: sync all changes\`. Diff is **one file**: \`.cursor/rules/STRIPE.md\` (+303). That is HEAD \`c543864\`. GitHub \`pushed_at\` 2026-01-31T10:39:16Z.
+
+Two commits. Seventeen months between them. No Elementor upgrade commit in git history after init — whatever changed on the server between those dates did not land as a second content sync.
+
+![Two-commit arc Aug 2024 → Jan 2026](/blog/salespromis-wp-elementor-dump-vs-lovable-live/screenshots/commit-arc.png)
+
+## Why
+
+Because a private wp-content dump is still useful as an **artifact** of the Elementor funnel even after the marketing domain moves — as long as you do not pretend the dump is still the live renderer.
+
+Because the custom surface that mattered for the SSDI qualify landing page was one child-theme script and an enqueue gate, not the 45 MB Dynamic Content plugin folder.
+
+Because the HEAD commit is a perfect operator scar: I synced a Stripe sanity rule into a WordPress lead-gen dump that never charged a card in-tree.
+
+**Engagement Q:** When the README still says “production site” and the live HTML loads Lovable assets — which one should the content factory treat as the product under review?
+`;
+
+const MYBATHROOMCONVERSION_COVER =
+  "/blog/mybathroomconversion-elementor-salespromis-xdebug-purge/cover.png";
+
+const MYBATHROOMCONVERSION_CONTENT = `![Illustrative home composite from indexed marketing copy](/blog/mybathroomconversion-elementor-salespromis-xdebug-purge/screenshots/home-composite.png)
+
+## Who
+
+I keep meeting bathroom remodel landers that look expensive and behave like a mailto form.
+
+Homeowners need a one-day tub-to-shower path, a phone that answers, and financing language that does not invent a bank. Operators need the Opt In record to leave WordPress and hit an intake API. Agencies that inherit WP Engine content+plugins repos need to find the money path in the child theme — not in another aspirational PLAN checkbox.
+
+If you have ever found \`xdebug_info()\` at the webroot of a client site, you are in the room.
+
+## What
+
+I maintain **www.mybathroomconversion.com** — private **HurleyUS/www.mybathroomconversion.com**, GPL-3.0, five commits, HEAD \`dc5a091\`.
+
+README fact: commissioned by **SalesPromis** through **Hustle Launch** for **RemodelingLoans.com**. Marketing surface (search index; live TLS failed here): dream bath/shower in as little as one day; phone **888-859-8916**; free in-home design consultation.
+
+Stack: Hello Elementor **3.1.1** + child **2.0.0**, Elementor **3.23.4**, Elementor Pro **3.23.3**, Dynamic.ooo **3.0.11**, Rank Math **1.0.225**, MonsterInsights **9.0.0**, Meta pixel **3.0.16**. WP Engine ignore strips core/uploads/config.
+
+Operator spine: \`elementor_pro/forms/new_record\` → \`my_bathroom_conversion_lead\` → Opt In → POST \`https://api.salespromis.com/endpoint/intake/\` with \`API-KEY\` header; success writes \`ABSPATH/.log/salespromis-$now-$id.log\`. Hardcoded SalesPromis API key still in child theme — value redacted here; rotate it.
+
+![Lead pipe composite](/blog/mybathroomconversion-elementor-salespromis-xdebug-purge/screenshots/lead-pipe-composite.png)
+
+## Where
+
+Code private on HurleyUS (local remote still michaelmonetized; same HEAD). Product: **https://www.mybathroomconversion.com**.
+
+Pack-day: DNS **141.193.213.10 / .11**; HTTPS TLS handshake alert; HTTP Cloudflare **409**. Composites labeled. WP File Manager **7.2.9** still vendored (906 files).
+
+![Stack composite](/blog/mybathroomconversion-elementor-salespromis-xdebug-purge/screenshots/stack-composite.png)
+
+## When
+
+**August 15, 2024, 4:03 PM ET:** \`8324926\` init — plugins, themes, SalesPromis logs, \`.htaccess\`, \`local-xdebuginfo.php\`.
+
+**4:06 PM ET:** \`17627c2\` README commission chain.
+
+**4:19 PM ET:** \`ad06651\` untrack \`.htaccess\` + \`.log/salespromis-*.log\`.
+
+**January 8, 2026, 12:21 PM ET:** \`eb7581e\` PLAN.md claims lead capture Not Started while the hook already posts.
+
+**February 27, 2026, 5:18 AM ET:** \`dc5a091\` PR #2 — delete \`<?php xdebug_info();\`, add SECURITY-VERIFICATION.md, closes Issue #1 \`[Launch Week][P0]\`. Checklist boxes remain open on purpose.
+
+**September 8, 2026:** pack day. Draft and assets only. Do not publish.
+
+![Security composite](/blog/mybathroomconversion-elementor-salespromis-xdebug-purge/screenshots/security-composite.png)
+
+![PLAN drift composite](/blog/mybathroomconversion-elementor-salespromis-xdebug-purge/screenshots/plan-drift-composite.png)
+
+## Why
+
+Because a bathroom lead lander that cannot POST an Opt In into intake is a brochure with nicer tile photography.
+
+Because \`xdebug_info()\` at the webroot was a labeled P0 with a one-line PHP file and a merged PR.
+
+Because PLAN.md denying lead capture while \`my_bathroom_conversion_lead\` posts to SalesPromis is document drift — believe the hook, not the checkbox.
+
+Because deleting the probe while leaving WP File Manager and a hardcoded API key means the security story is a chapter, not a finale.
+
+Would you rotate the hardcoded SalesPromis API key first, or uninstall WP File Manager before the next launch-week checklist?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:salespromis-wp-elementor-dump-vs-lovable-live",
+    title: "SalesPromis: GitHub still versions a WP Engine Elementor funnel \u2014 live left for Lovable",
+    slug: "salespromis-wp-elementor-dump-vs-lovable-live",
+    excerpt:
+      "HurleyUS/SalesPromis is a private WordPress wp-content dump of an Elementor SSDI qualify funnel (Salert + HurryTimer + custom ssdi-qualify.js). Live salespromis.com is already a Lovable/Vite SPA. Two commits. HEAD only added a Stripe cursor rule.",
+    content: SALESPROMIS_CONTENT,
+    coverImage: SALESPROMIS_COVER,
+    tags: [
+      "salespromis",
+      "wordpress",
+      "elementor",
+      "wp-engine",
+      "ssdi",
+      "lead-gen",
+      "lovable",
+      "hurleyus",
+      "salert",
+      "hurrytimer",
+      "martech",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T22:10:00Z"),
+    readingTime: 3,
+  },
+
+  {
+    _id: "static:mybathroomconversion-elementor-salespromis-xdebug-purge",
+    title: "MyBathroomConversion.com: Elementor Opt-In \u2192 SalesPromis, then I deleted the xdebug_info() probe",
+    slug: "mybathroomconversion-elementor-salespromis-xdebug-purge",
+    excerpt:
+      "I shipped a WP Engine Elementor bathroom-conversion lead lander for SalesPromis / RemodelingLoans \u2014 Opt In posts into api.salespromis.com/endpoint/intake/ \u2014 then closed launch-week #1 by deleting a committed <?php xdebug_info(); file while PLAN.md still claimed lead capture was not started.",
+    content: MYBATHROOMCONVERSION_CONTENT,
+    coverImage: MYBATHROOMCONVERSION_COVER,
+    tags: [
+      "mybathroomconversion",
+      "wordpress",
+      "elementor",
+      "wp-engine",
+      "salespromis",
+      "remodelingloans",
+      "leadgen",
+      "bathroom-remodel",
+      "security",
+      "xdebug",
+      "hustle-launch",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T22:00:00Z"),
+    readingTime: 2,
+  },
+
   {
     _id: "static:fab-analytics-same-day-php-js-ga-drop-in-json-disk",
     title: "fab-analytics: same-day PHP+JS GA drop-in that writes JSON to disk",
