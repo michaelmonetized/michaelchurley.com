@@ -5864,7 +5864,408 @@ Because deleting the probe while leaving WP File Manager and a hardcoded API key
 Would you rotate the hardcoded SalesPromis API key first, or uninstall WP File Manager before the next launch-week checklist?
 `;
 
+const MONARCHMOUNTAINFOUNDATIONS_COVER =
+  "/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/cover.png";
+
+const MONARCHMOUNTAINFOUNDATIONS_CONTENT = `![Monarch Mountain Foundations Next rebuild hero — Structural Concrete](/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/screenshots/home.png)
+
+## Who
+
+I build for operators in the mountains. Monarch Mountain Foundations pours structural concrete in Highlands, Cashiers, and the surrounding Western North Carolina ridge lines — footings, foundation walls, slabs, driveways, sidewalks, surveying and job-site prep.
+
+The contractor needed a lead surface that matched the job sites: Angi / Chamber / BBB trust, a phone that actually rings, a quote form that lands in email. Homeowners and builders needed to see real pours, not a stock theme.
+
+I am the builder under Hustle-Launch. The concrete is theirs. The stack is mine to keep honest — including when DNS and git disagree.
+
+If you ship local-business sites, MarTech lead paths, or WordPress exits: this is the field notes on a migration that finished in the repo and not at the nameserver.
+
+## What
+
+I rebuilt monarchmountainfoundations.com as a private Next.js App Router site.
+
+Stack on the box: **Next.js ^16.1.6**, React 19, Tailwind v4, Bun, Resend, Sentry, PostHog provider, Radix, Zod/RHF on forms. README still says Next 15.5.6. Package **0.1.0**. Repo: \`Hustle-Launch/monarchmountainfoundations.com\`.
+
+![WordPress www vs Next Vercel — dual hosts](/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/screenshots/dual-hosts.png)
+
+What exists in code:
+
+- Full page set: home, about, foundations, driveways + sidewalks, surveying + job site prep, gallery, contact
+- Resend contact API (\`notify@uncap.us\` → \`monarchmountainfoundationsinc@gmail.com\` + customer thank-you)
+- Schema.org LocalBusiness JSON-LD (phone 828-508-3602, Highlands geo, service offers)
+- SEO files (\`sitemap.ts\`, \`robots.ts\`, \`manifest.ts\`), CSP / HSTS / Permissions-Policy, Sentry configs
+- Job-site gallery categories with real \`public/images\` pours and slabs
+- Gold/navy contractor chrome, fixed bottom bar, Angi 2025 / Chamber / BBB trust row
+
+What is declared but empty or unused:
+
+- **Convex** in package.json — \`convex/\` is a \`.gitkeep\`
+- **Clerk** in package.json — no Clerk routes or wrappers in \`app/\` / \`components/\`
+- Gallery page exists; **not listed in \`sitemap.ts\`**
+- Google Search Console verification string is still the placeholder
+
+Homepage video still points at live WordPress uploads:
+
+\`https://www.monarchmountainfoundations.com/wp-content/uploads/Monarch-Post-FX.m4v\`
+
+Same for the rock-drilling GIF. The rebuild depends on the old host for motion assets.
+
+## Where
+
+Customer DNS today: [www.monarchmountainfoundations.com](https://www.monarchmountainfoundations.com). Pack-day headers: **X-Powered-By: PHP/8.3.33**, LiteSpeed, \`x-redirect-by: WordPress\`.
+
+Next rebuild: [monarchmountainfoundations-com.vercel.app](https://monarchmountainfoundations-com.vercel.app). Headers: Vercel, CSP, HSTS preload, **X-Robots-Tag: index, follow**. \`vercel.json\` has \`deploymentEnabled\` for \`main\`/\`master\` set to **false**.
+
+Canonical metadata, sitemap, and LocalBusiness \`@id\` all name \`https://monarchmountainfoundations.com\` — the host that still serves PHP.
+
+Audience sits with Highlands–Cashiers construction buyers and with builders watching WNC client cutovers next to Mack’s / Barbque-style apex-live sites.
+
+![Foundations service page on the Next rebuild](/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/screenshots/foundations.png)
+
+## When
+
+**2026-01-08.** Init. Next.js, Convex slot, Tailwind. OPPORTUNITIES.md and PLAN.md the same day. Four January commits. Scaffolding, not the migration.
+
+**2026-01-31.** Chore sync.
+
+**2026-02-06.** Upgrade to Next 16 / React 19. Tailwind v4 \`@import\` fix. Then the load-bearing commit: \`ba2a761\` — full WordPress to Next.js migration, all pages, images, content.
+
+**2026-02-09–11.** Resend contact form. Compressed video backgrounds. Foundations page 1:1 polish, white navbar, fixed bottom bar. SEO and production polish. TypeScript \`manifest\` / \`sitemap\` / \`robots\`.
+
+**2026-02-21–28.** LocalBusiness structured data. Tailwind-first CSS. Sentry. Gallery with categorized photos. Kebab-case components. \`lib/constants.ts\`. Hero email fix. Strict tsconfig / next.config / Sentry PR. Build gate. Launch-week TypeScript fixes. Remove GitHub Actions — Vercel called out as CI. Security headers PR (HSTS, CSP, Permissions-Policy). Densest month: **24 commits**.
+
+**2026-05.** shipprep install, revert, ignore local M4V drops, then shipprep observability + Blacksmith deploys. Main Git auto-deploy stays off.
+
+**2026-08-08 6:55 AM ET.** \`c7e4e30\` — set \`X-Robots-Tag\` to \`index, follow\` on Vercel. HEAD. Thirty-three commits on \`main\`.
+
+That is the clock from empty client repo to a hardened Next rebuild that is not what www serves.
+
+![Commit journey Jan through Aug](/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/screenshots/journey.png)
+
+## Why
+
+WordPress exits fail two ways: a pretty Vercel URL nobody’s DNS points at, or a DNS flip with a half-ported theme. I did the hard content port — page parity, Resend leads, Schema, gallery, security headers — then left the apex on LiteSpeed PHP while the rebuild sat on a project alias with main auto-deploy disabled.
+
+sitrep.md still says PROTOTYPE and “last commit January 31.” ROADMAP says Production. PLAN still has homepage unchecked. The tree and the Aug HEAD are the tie-breaker: the product pages exist; the cutover does not.
+
+Sibling context: Mack’s Shack and Barbque Wagon are WNC food clients whose apex already speaks Next. This one is the concrete contractor where git moved and DNS did not.
+
+If you run a WordPress local-business site in the mountains — would you flip DNS the week the Next rebuild matches content 1:1, or keep WordPress live until every \`wp-content\` hotlink is gone?
+`;
+
+const KINGSROOFINGNC_COVER =
+  "/blog/kingsroofingnc-pixel-perfect-wp-to-next-lift/cover.png";
+
+const KINGSROOFINGNC_CONTENT = `![Kings Roofing homepage hero — green metal roof, Free Quote CTA](/blog/kingsroofingnc-pixel-perfect-wp-to-next-lift/screenshots/home.png)
+
+## Who
+
+I get hired when a contractor’s site still works for referrals and dies for everyone else — plugins rotting, forms flaky, hosting bill arguing with the phone.
+
+Kings Roofing already had a personality: orange \`#FF7620\`, leaping lion, metal-roof hero, color pickers, carport kits, Waynesville-to-Highlands location pages. Redesigning that into a generic “modern roofing” template would have trained half of Haywood County that the company changed crews.
+
+This write-up is for operators who will keep the weird brand orange on purpose — and for WNC folks who just need the site to load when they search the truck wrap.
+
+## What
+
+Public repo [Hustle-Launch/kingsroofingnc.com](https://github.com/Hustle-Launch/kingsroofingnc.com). Package **0.1.0**, Bun, Next.js **16.1.6**, React 19, Tailwind 4.
+
+Stack on HEAD: Resend for quote mail, PostHog, Sentry (\`withSentryConfig\` + CSP/HSTS/frame DENY), Phosphor via react-icons, Biome/Oxlint/tsgo local gates. No Stripe on \`main\` — a local branch has quote-fee experiments that never reached HEAD, so I’m not narrating them as shipped.
+
+![Residential services page](/blog/kingsroofingnc-pixel-perfect-wp-to-next-lift/screenshots/residential.png)
+
+What actually shipped:
+
+- Pixel-faithful homepage: Residential & Commercial hero, Free Quote / Call box, New Roof Installation with YouTube embed, Re-Roofing orange band, Roof Repair checklist, four location photo cards, “Roofers in Asheville NC” closer.
+- App Router pages matching the old WordPress menu — About, Residential, Commercial, Contact, Roofing Color Pickers (metal + shingles), Metal Structures (carport kits + pole truss kits + style detail pages).
+- Location SEO under \`/residential/[location]\` for Asheville, Cashiers, Highlands, Waynesville — constants consolidated so phone numbers don’t drift.
+- Contact + feedback flows: Resend from \`notify@uncap.us\` to \`kingshaywood@gmail.com\`, HTML escaped in templates, interactive star rating + loading skeleton from launch week.
+- Ops: Vercel prebuilt / Blacksmith path, git auto-deploy off on main, Aug 8 \`X-Robots-Tag: index, follow\`.
+
+Honesty: sitemap still lists legacy \`/waynesville\` style URLs while the app moved under \`/residential/...\`. Custom domain \`kingsroofingnc.com\` returns Cloudflare **526** from pack hosts — the working surface is the Vercel alias.
+
+![Roofing color pickers](/blog/kingsroofingnc-pixel-perfect-wp-to-next-lift/screenshots/color-pickers.png)
+
+## Where
+
+Working product: [kingsroofingnccom.vercel.app](https://kingsroofingnccom.vercel.app). Intended apex \`kingsroofingnc.com\` is DNS/SSL-incomplete at draft time.
+
+Code: Hustle-Launch (public; michaelmonetized mirror shares HEAD \`984746b\`). Host Vercel. Business phones in constants: **828-246-2193** / **828-279-6896**. Service area string spans Asheville through Weaverville.
+
+![Metal structures hub](/blog/kingsroofingnc-pixel-perfect-wp-to-next-lift/screenshots/metal-structures.png)
+
+## When
+
+**2026-02-12.** One long day. Create Next App → WP migration scaffold → Layout/Providers → exact copy → full sitemap pages → move locations under \`/residential/[location]\` → dropdowns for locations / metal structures / color pickers → white/orange restyle → lion + dark footer → lock Roboto/Poppins/#FF7620 → YouTube → “match WordPress exactly” commits. That afternoon is the product.
+
+**2026-02-15.** Escape user input in Resend HTML so quote mail isn’t an XSS souvenir.
+
+**2026-02-21.** Launch-week hygiene: README that isn’t boilerplate, LOCATIONS single source, star rating + skeleton, Phosphor icons, ContactCTA extract, carport/pole-truss content fleshed out, phone consolidation + \`rel=noopener\`.
+
+**2026-02-27–28.** Build gate, drop GitHub Actions (Vercel is CI), P1 fixes, security headers folded into \`next.config.ts\`.
+
+**2026-05.** shipprep / Blacksmith observability dance — install, revert, re-apply.
+
+**2026-08-08.** HEAD \`984746b\` — robots index/follow on Vercel. Thirty-two commits on the clock.
+
+## Why
+
+Referral businesses don’t buy your taste. They buy continuity.
+
+I kept the orange, the lion, the color pickers, and the metal-structure tree because those were already the marketing system. Next.js, Resend, Sentry, and CSP are the parts that were rotting under WordPress — not the brand.
+
+When you migrate a referral-driven local business off WordPress, do you keep the weird brand orange — or do you “modernize” it until nobody recognizes the truck wrap?
+`;
+
+const APPESTATESALES_COVER =
+  "/blog/appestatesales-elementor-to-next-wnc-liquidation/cover.png";
+
+const APPESTATESALES_CONTENT = `![Appalachian Estate Sales homepage — live capture](/blog/appestatesales-elementor-to-next-wnc-liquidation/screenshots/home.png)
+
+## Who
+
+I build local sites for operators who already have customers and an Elementor habit. Appalachian Estate Sales is Rene' Rickman Ballard's liquidation and downsizing practice in Waynesville — Haywood through Henderson Counties, phone on the header, Facebook already running the sale calendar.
+
+The audience for the business is families mid-transition: bereavement, assisted living moves, divorce. The audience for this write-up is anyone shipping an Elementor → App Router rebuild who still needs lead capture to work on day two.
+
+## What
+
+I rebuilt the marketing site as **Next.js 16.1.7** (App Router), React 19, Tailwind v4, Bun, shadcn/ui, under private \`Hustle-Launch/appestatesales-com\`. Package.json still names the app \`web\` at **0.1.0**.
+
+![Convex schema — leads and subscribers](/blog/appestatesales-elementor-to-next-wnc-liquidation/screenshots/schema.png)
+
+What exists in code and on the live host:
+
+- Seven routes: home, about-rene, estate-sale-services, estate-sales-process, previous-estate-sales, upcoming-estate-sales, contact-us
+- Layout stack: Header (logo + porch swing + phone), cyan Sidebar nav, Footer contact form, floating mobile bar
+- Design tokens pulled from the Elementor screenshots — cream ground, cyan nav, coral subscribe/CTA
+- Markdown under \`content/\` as the copy source of truth
+- Schema.org LocalBusiness + FAQ JSON-LD (\`app/schema.ts\`) pointing at \`https://appestatesales.com\`
+- Convex tables \`leads\` and \`subscribers\` with email indexes
+- \`/api/contact\` and \`/api/subscribe\` writing Convex + Resend (notify@uncap.us → AES Gmail + a michaelmonetized lead alias)
+- Sentry project \`appestatesales\`, PostHog provider slot, Blacksmith \`ship.yml\` prebuilt deploy
+- Estate Sale Liquidator Pros badge on the home article
+
+What is still a stand-in: Previous and Upcoming pages embed the Facebook Page plugin for \`estate.tag.sales.wnc\`. There is no Convex-backed sales gallery yet. README migration checklist still marks Convex and Resend as “coming soon” even though both paths are in the tree.
+
+![Shipped pages vs Facebook-embed gap](/blog/appestatesales-elementor-to-next-wnc-liquidation/screenshots/stack-gap.png)
+
+## Where
+
+Live: [www.appestatesales.com](https://www.appestatesales.com/) — HTTP 200 on pack day, \`X-Robots-Tag: index, follow\`. Apex redirects 307 to www. Vercel alias \`appestatesalescom.vercel.app\` serves the same prerender.
+
+\`vercel.json\` turns **off** git auto-deploy for \`main\`/\`master\`; production moves through Blacksmith + \`vercel deploy --prebuilt\`.
+
+Geography in schema and copy: Waynesville NC 28786, serving Haywood, Buncombe, Jackson, Macon, Swain, Henderson. Social sameAs: Facebook + Instagram.
+
+This is not BestWNC (multi-business directory) and not WNC History Tours (booking marketplace shell). It is one liquidator’s marketing site.
+
+## When
+
+**2026-03-17.** Init (\`916df66\`). Same afternoon: images + Resend contact wiring, Convex and Vercel link, test deploy, styling/logo pass, standards.css + shadcn forms, Schema.org LocalBusiness + FAQ. Densest product day.
+
+**2026-03-18.** viewTransition typing fix, sidebar styles, styling cleanup, Convex wiring cleanup, mobile bar “needs work”, polish, Resend audience-id fix, build optimizations.
+
+**2026-03-19 10:08 AM ET.** \`669a106\` — Facebook embed done. Upcoming/previous now lean on the social feed.
+
+**May 13–15.** shipprep standards install (twice) then revert (twice). Churn, not product.
+
+**2026-05-21.** Apply shipprep observability and Blacksmith deploys; harden Sentry runtime (env-driven DSN, no default PII).
+
+**2026-08-08 6:54 AM ET.** \`7a87d72\` — set \`X-Robots-Tag\` to \`index, follow\` on Vercel. HEAD. Twenty-four commits on \`main\`.
+
+![Commit journey March through August](/blog/appestatesales-elementor-to-next-wnc-liquidation/screenshots/journey.png)
+
+## Why
+
+Elementor migrations fail two ways: pixel-perfect CSS with a dead contact form, or a modern stack with a blank homepage. I aimed at the honest middle — familiar cream/cyan layout clients recognize, seven pages of real copy, and lead capture that actually posts to Convex and Resend.
+
+The sales calendar still lives on Facebook. The robots header asks Google to index a site whose previous-sales gallery is an iframe. That gap is the field note.
+
+If you run estate sales in Western North Carolina, would you trust a Next rebuild that still embeds your Facebook page for the calendar — or do you refuse to ship until Convex owns upcoming and previous sales?
+`;
+
+const JENNINGSCUSTOMHOMES_COVER =
+  "/blog/jenningscustomhomes-post-malware-checklist-still-on-bluehost/cover.png";
+
+const JENNINGSCUSTOMHOMES_CONTENT = `![Live home](/blog/jenningscustomhomes-post-malware-checklist-still-on-bluehost/screenshots/home-live.png)
+
+## Who
+
+I still get the call after Bluehost malware: rebuild the marketing site, keep the builder’s phone ringing, and somehow put the work in git without committing \`wp-content\`.
+
+Highlands / Cashiers luxury custom-home buyers need a gallery and a form. Operators need a checklist that survives a \`.gitignore\` that deletes the entire WordPress tree from the repo.
+
+If you have ever marked “Launched” while the NS records still say \`bluehost.com\`, you are in the room.
+
+## What
+
+I keep **jenningscustomhomes** — public [Hustle-Launch/jenningscustomhomes](https://github.com/Hustle-Launch/jenningscustomhomes). HEAD \`ad1f91f\`. **5** commits. GitHub linguist empty. Tracked surface: **4** files.
+
+![Repo surface](/blog/jenningscustomhomes-post-malware-checklist-still-on-bluehost/screenshots/repo-surface-composite.png)
+
+README truth: *Design a new website following a malware infection due to a lack of security on Bluehost.* Next steps cover CSS cleanup, WP settings, CNAME, Analytics, Rank Math, socials, TrustIndex, form actions, SPF, login details.
+
+![Checklist](/blog/jenningscustomhomes-post-malware-checklist-still-on-bluehost/screenshots/checklist-composite.png)
+
+HEAD “Launched” flips nine boxes to \`[x]\`. Two stay honest: TrustIndex \`[-] // client does not have any reviews\`, and Send login details \`[-]\`.
+
+Live product **https://www.jenningscustomhomes.com** — WordPress **7.1**, Hello Elementor **3.5.1**, child theme **\`jch\` 2.0.0**, Elementor **4.2.4**, Elementor Pro **3.24.4**, Elementor Contact form (name / email / message). Contact block: 83 Village Walk Wy, Cashiers, NC 28717 · **828-743-2307** · sam@jenningscustomhomes.com.
+
+![Still Bluehost](/blog/jenningscustomhomes-post-malware-checklist-still-on-bluehost/screenshots/still-bluehost-composite.png)
+
+Pack-day DNS: **75.98.174.238**, NS **ns1/ns2.bluehost.com**, LiteSpeed, PHP **8.3.33**, Let’s Encrypt, HTTP/2 **200**. SPF still includes \`websitewelcome.com\` plus \`jch.hustlelaunch.com\` and an A2 host. Malware story. Host unchanged.
+
+![Gaps](/blog/jenningscustomhomes-post-malware-checklist-still-on-bluehost/screenshots/gaps-composite.png)
+
+Honest gaps: \`G-85CPJ4D64C\` fires on about/contact/404 — **not** on homepage HTML. Checklist claims Rank Math; home surface shows core \`wp-sitemap.xml\` only (no rank-math assets observed). About **Partners** block is still lorem ipsum. Repo gitignore means the live stack is HTTP-observable only.
+
+## Where
+
+Code: [github.com/Hustle-Launch/jenningscustomhomes](https://github.com/Hustle-Launch/jenningscustomhomes) — public, no license declared.
+
+Product: [www.jenningscustomhomes.com](https://www.jenningscustomhomes.com) — Cashiers / Highlands / Western NC custom luxury builder (marketing copy: in business since 2001).
+
+\`\`\`bash
+git clone https://github.com/Hustle-Launch/jenningscustomhomes.git
+# you get the checklist + gitignore — not wp-admin
+\`\`\`
+
+## When
+
+**2024-06-04 22:43 ET** — \`833a3eb\` init (.gitignore, empty README, workspace, SuperMaven recommend).
+
+**22:47 ET** — \`323c90a\` empty “ready to launch” (same tree).
+
+**2024-06-05 05:53 ET** — \`7f7964d\` checklist all open.
+
+**06:30 ET** — \`e36678b\` preflight newline.
+
+**2024-06-06 14:33 ET** — \`ad1f91f\` Launched → HEAD. Push \`2024-06-06T18:34:29Z\`.
+
+**2026-09-08** — pack day. Site live. Still Bluehost. Draft and assets only. Do not publish.
+
+![Commit arc](/blog/jenningscustomhomes-post-malware-checklist-still-on-bluehost/screenshots/commit-arc-composite.png)
+
+## Why
+
+Because a malware rebuild that never leaves the host that got infected is a different story than a platform migration — and the README still tells it.
+
+Because a public repo that gitignores WordPress is an ops checklist, not a content dump — treat it like one.
+
+Because checkboxes that leave TrustIndex and login handoff open are more honest than a fake green board.
+
+Would you move NS off Bluehost next, or fix homepage GA injection and kill the About Partners lorem first?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:monarch-mountain-foundations-wordpress-to-next-dns-still-php",
+    title: "Monarch Mountain Foundations: I migrated WordPress to Next — DNS still serves PHP",
+    slug: "monarch-mountain-foundations-wordpress-to-next-dns-still-php",
+    excerpt:
+      "Private Hustle-Launch client rebuild for Highlands–Cashiers structural concrete. Next.js 16 + Resend + Schema LocalBusiness live on Vercel; www still answers WordPress on LiteSpeed/PHP. Video heroes hotlink wp-content. HEAD c7e4e30 · 33 commits · draft+assets only.",
+    content: MONARCHMOUNTAINFOUNDATIONS_CONTENT,
+    coverImage: MONARCHMOUNTAINFOUNDATIONS_COVER,
+    tags: [
+      "monarch-mountain-foundations",
+      "highlands-nc",
+      "cashiers-nc",
+      "western-north-carolina",
+      "concrete-foundations",
+      "wordpress-migration",
+      "nextjs",
+      "vercel",
+      "resend",
+      "localbusiness-schema",
+      "martech",
+      "hustle-launch",
+      "client-site",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-08-08T10:55:18Z"),
+    readingTime: 4,
+  },
+  {
+    _id: "static:kingsroofingnc-pixel-perfect-wp-to-next-lift",
+    title: "Kings Roofing NC: I didn't redesign the WordPress site — I lifted it to Next.js",
+    slug: "kingsroofingnc-pixel-perfect-wp-to-next-lift",
+    excerpt:
+      "I moved Kings Roofing (WNC) from WordPress to Next.js 16 without inventing a new brand — kept #FF7620, lion, color pickers, metal carports, Resend quotes. Live on the Vercel alias; custom domain still Cloudflare 526.",
+    content: KINGSROOFINGNC_CONTENT,
+    coverImage: KINGSROOFINGNC_COVER,
+    tags: [
+      "kingsroofingnc",
+      "wordpress-migration",
+      "nextjs",
+      "western-north-carolina",
+      "roofing",
+      "local-business",
+      "resend",
+      "vercel",
+      "martech",
+      "pixel-perfect",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-08-08T10:55:06Z"),
+    readingTime: 3,
+  },
+  {
+    _id: "static:appestatesales-elementor-to-next-wnc-liquidation",
+    title: "Appalachian Estate Sales: I rebuilt the Elementor site in Next before the gallery existed",
+    slug: "appestatesales-elementor-to-next-wnc-liquidation",
+    excerpt:
+      "Hustle-Launch/appestatesales-com is Appalachian Estate Sales — Rene' Rickman Ballard's WNC estate liquidation site. Elementor → Next.js 16 with cream/cyan/coral tokens, seven pages, Schema.org, Convex leads/subscribers, and Resend contact. Live at www.appestatesales.com. Previous/upcoming sales still lean on a Facebook page embed. HEAD 7a87d72.",
+    content: APPESTATESALES_CONTENT,
+    coverImage: APPESTATESALES_COVER,
+    tags: [
+      "appalachian-estate-sales",
+      "appestatesales",
+      "elementor",
+      "nextjs",
+      "western-north-carolina",
+      "waynesville",
+      "estate-sales",
+      "local-business",
+      "convex",
+      "resend",
+      "martech",
+      "hustle-launch",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-08-08T10:54:25Z"),
+    readingTime: 3,
+  },
+  {
+    _id: "static:jenningscustomhomes-post-malware-checklist-still-on-bluehost",
+    title: "Jennings Custom Homes: post-malware WP rebuild checklist — still on Bluehost",
+    slug: "jenningscustomhomes-post-malware-checklist-still-on-bluehost",
+    excerpt:
+      "Public Hustle-Launch/jenningscustomhomes is a 4-file WordPress ops checklist (not a WP dump) for a Highlands/Cashiers NC luxury builder rebuild after Bluehost malware. Five commits Jun 4–6 2024; HEAD ad1f91f flips nine boxes to [x] and leaves TrustIndex + login details [-]. Live www.jenningscustomhomes.com still resolves to Bluehost LiteSpeed (75.98.174.238) — Hello Elementor + jch child, Elementor 4.2.4/Pro 3.24.4, WP 7.1. Honest gaps: GA on inner pages not home, Rank Math claimed vs core sitemap, About Partners still lorem.",
+    content: JENNINGSCUSTOMHOMES_CONTENT,
+    coverImage: JENNINGSCUSTOMHOMES_COVER,
+    tags: [
+      "jenningscustomhomes",
+      "wordpress",
+      "elementor",
+      "bluehost",
+      "malware-recovery",
+      "checklist",
+      "highlands-nc",
+      "cashiers-nc",
+      "custom-homes",
+      "hustle-launch",
+      "spf",
+      "martech",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2024-06-06T18:33:52Z"),
+    readingTime: 2,
+  },
+
   {
     _id: "static:salespromis-wp-elementor-dump-vs-lovable-live",
     title: "SalesPromis: GitHub still versions a WP Engine Elementor funnel \u2014 live left for Lovable",
