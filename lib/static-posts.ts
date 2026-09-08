@@ -772,81 +772,81 @@ ISO still downloads from omarchy.org. Plugins still live at omarchyplugins.com. 
 const OMNUXGPU_COVER =
   "/blog/omnux-gpu-mit-clean-room-m3-siege/cover.png";
 
-const OMNUXGPU_CONTENT = `![OMNUX-GPU — MIT clean-room siege for M3 pixels](/blog/omnux-gpu-mit-clean-room-m3-siege/cover.png)
+const OMNUXGPU_CONTENT = `![OMNUX-GPU, MIT clean-room siege for M3 pixels](/blog/omnux-gpu-mit-clean-room-m3-siege/cover.png)
 
-![Honest state — scaffold only; no working driver](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/honest-state.png)
+![Honest state, scaffold only; no working driver](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/honest-state.png)
 
 ## Who
 
 I am the person who already said the quiet part on the Omnux umbrella post: M3 installs today, software-rendered, and software rendering is not a desktop.
 
-This piece is for a narrower room.
+This piece is for a narrower audience.
 
-M3 owners who will lend a machine for m1n1 proxyclient captures. Reverse engineers who already know Asahi’s AGX story on M1/M2 and want the T603x/T8122 delta wall documented without contamination. DRM and Mesa people who treat “working” as render nodes plus glmark on metal, not a README adjective. License hawks who care that MIT stays clean before \`src/\` fills. Agent operators grinding capture loops under the same agent-army mandate that sits in Omnux GOAL.
+M3 owners who will lend a machine for m1n1 proxyclient captures. Reverse engineers who already know Asahi's AGX story on M1/M2 and want the T603x/T8122 delta wall documented without contamination. DRM and Mesa people who treat "working" as render nodes plus glmark on metal, not a README adjective. License hawks who care that MIT stays clean before \`src/\` fills. Agent operators grinding capture loops under the same agent-army mandate that sits in Omnux GOAL.
 
-If you need an install one-liner or a diagnostics tarball, that is the sibling posts. If you need the GPU long pole named as a project with acceptance criteria, that is this room.
+If you need an install one-liner or a diagnostics tarball, see the sibling posts. If you need the GPU long pole named as a project with acceptance criteria, this is it.
 
 ## What
 
-I stood up **omnux-gpu** — a standalone MIT repo whose entire value proposition is honesty about what is missing.
+I stood up **omnux-gpu**, a standalone MIT repo whose value is honesty about what is missing.
 
 It is an attempt at a clean-room GPU driver for Apple M3-series silicon. License: MIT. Upstream may take everything; that is the point. The repository holds scaffolding, a research roadmap, tooling stubs, and eventually driver code. It does **not** yet contain a working driver. Nothing here claims otherwise until pixels appear on a physical M3.
 
-![Repo layout — docs, tools, empty src, MIT LICENSE](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/repo-layout.png)
+![Repo layout, docs, tools, empty src, MIT LICENSE](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/repo-layout.png)
 
 Three reverse-engineering walls stand between scaffold and acceleration:
 
-1. **Command processor submission model** — how macOS userspace submits work to AGX firmware on T8122/T603x (differs from M2).
-2. **Shader ISA deltas** — M3 brought Dynamic Caching, mesh shaders, hardware ray tracing; instruction encoding moved vs M1/M2.
-3. **Firmware interface** — version negotiation, queues, faults against shipping macOS AGX firmware (issues call 14.8.3+ as the field floor).
+1. **Command processor submission model.** How macOS userspace submits work to AGX firmware on T8122/T603x (differs from M2).
+2. **Shader ISA deltas.** M3 brought Dynamic Caching, mesh shaders, hardware ray tracing; instruction encoding moved vs M1/M2.
+3. **Firmware interface.** Version negotiation, queues, faults against shipping macOS AGX firmware (issues call 14.8.3+ as the field floor).
 
-![Three RE walls — CP submission, ISA deltas, firmware interface](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/re-walls.png)
+![Three RE walls, CP submission, ISA deltas, firmware interface](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/re-walls.png)
 
-Each wall is only discoverable against real hardware, using m1n1’s proxyclient tracing on a machine booted into macOS with instrumentation. Code written away from the metal is fan fiction.
+Each wall is only discoverable against real hardware, using m1n1's proxyclient tracing on a machine booted into macOS with instrumentation. Code written away from the metal is guesswork.
 
-The method is a loop, not a vibe:
+The method is a loop:
 
-1. **Capture** — target M3 into m1n1 proxyclient from a second USB host; run macOS GPU workloads under \`agx_*\` experiments adapted for newer ABI.
-2. **Diff** — compare to known M1/M2 models; land deltas in \`docs/\`.
-3. **Implement** — clean-room sources in \`src/\` from documented behavior only.
-4. **Validate** — kexec Omnux kernel with the driver; iterate until DRM render nodes exist and glmark runs.
-5. **Publish** — every milestone upstream to Asahi first.
+1. **Capture.** Target M3 into m1n1 proxyclient from a second USB host; run macOS GPU workloads under \`agx_*\` experiments adapted for newer ABI.
+2. **Diff.** Compare to known M1/M2 models; land deltas in \`docs/\`.
+3. **Implement.** Clean-room sources in \`src/\` from documented behavior only.
+4. **Validate.** kexec Omnux kernel with the driver; iterate until DRM render nodes exist and glmark runs.
+5. **Publish.** Every milestone upstream to Asahi first.
 
-![Method loop — Capture Diff Implement Validate Upstream](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/method-loop.png)
+![Method loop, Capture Diff Implement Validate Upstream](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/method-loop.png)
 
-Fifteen public issues map the siege. Issues #1–#8 are the GPU spine: capture harness, submission-model docs, ISA delta docs, firmware-interface docs, DRM skeleton (probe + firmware load + first render node **without** claiming acceleration), Mesa Honeykrisp/agx bring-up for G15-class, t603x power/PMP/thermal, and a local validation harness (kexec + glmark2/vkcube → signed JSON, own metal, no hosted CI theater). Issue #9 is the license immune system: \`docs/CLEANROOM.md\`, PR source disclosure, taint procedure — before any non-scaffold code lands. Issues #10–#15 park SEP/TouchID research on the same tracker so the wall is visible; the biometrics frontier and omnux-report evidence collectors are sibling stories, not this one.
+Fifteen public issues map the work. Issues #1–#8 are the GPU spine: capture harness, submission-model docs, ISA delta docs, firmware-interface docs, DRM skeleton (probe + firmware load + first render node **without** claiming acceleration), Mesa Honeykrisp/agx bring-up for G15-class, t603x power/PMP/thermal, and a local validation harness (kexec + glmark2/vkcube to signed JSON, own metal, no hosted CI theater). Issue #9 is the license immune system: \`docs/CLEANROOM.md\`, PR source disclosure, taint procedure, before any non-scaffold code lands. Issues #10–#15 park SEP/TouchID research on the same tracker so the wall is visible; the biometrics frontier and omnux-report evidence collectors are sibling stories.
 
-\`src/\` is empty on purpose. Contaminated contribution — decompiled Apple code, NDA headers, GPL-mixed paste — poisons the MIT claim. The audit process has to exist before the directory fills.
+\`src/\` is empty on purpose. Contaminated contribution (decompiled Apple code, NDA headers, GPL-mixed paste) poisons the MIT claim. The audit process has to exist before the directory fills.
 
 ## Where
 
 It lives where M3 metal and a second USB host can sit on the same desk.
 
-Repo: [michaelmonetized/omnux-gpu](https://github.com/michaelmonetized/omnux-gpu). Parent umbrella wires it as \`gpu/\` under [michaelmonetized/omnux](https://github.com/michaelmonetized/omnux). Diagnostics sibling: [omnux-report](https://github.com/michaelmonetized/omnux-report) — logs, sysinfo, ADT helper, SEP collectors with redaction; useful for evidence, not a substitute for AGX traces.
+Repo: [michaelmonetized/omnux-gpu](https://github.com/michaelmonetized/omnux-gpu). Parent umbrella wires it as \`gpu/\` under [michaelmonetized/omnux](https://github.com/michaelmonetized/omnux). Diagnostics sibling: [omnux-report](https://github.com/michaelmonetized/omnux-report). Logs, sysinfo, ADT helper, SEP collectors with redaction; useful for evidence, not a substitute for AGX traces.
 
-SoCs in scope: T603x / T8122 class. Capture target: shipping macOS firmware on those chips. Validation target: Omnux kernel kexec’d from m1n1 until \`/dev/dri/renderD*\` appears and the acceptance harness stops lying.
+SoCs in scope: T603x / T8122 class. Capture target: shipping macOS firmware on those chips. Validation target: Omnux kernel kexec'd from m1n1 until \`/dev/dri/renderD*\` appears and the acceptance harness stops lying.
 
-If you have hardware to lend, the README says open an issue — that is the bottleneck, full stop.
+If you have hardware to lend, the README says open an issue. That is the bottleneck.
 
 ## When
 
 **2026-08-24.** Single scaffold commit \`a3b7f74\`: MIT LICENSE, honest README, \`docs/NOTES.md\` placeholder, empty \`src/\`, stub \`tools/\`. Created the repo the day before the Omnux umbrella monorepo week. One commit. That is still the commit graph.
 
-**2026-08-25.** Siege map lands as public issues #1 through #9 while Omnux M0 is getting wired. Capture harness called the critical path. Clean-room audit filed as blocking-by-convention and cheap — do it before code, not after a lawsuit hypothetical.
+**2026-08-25.** Siege map lands as public issues #1 through #9 while Omnux M0 is getting wired. Capture harness called the critical path. Clean-room audit filed as blocking-by-convention and cheap: do it before code, not after a lawsuit hypothetical.
 
-**2026-08-26 → 2026-08-27.** Issues #10–#15 add the SEP/TouchID research program to this tracker (T1 community win, T2 bridge, omnux-report SEP section, apstrand frontier notes). Useful adjacency. Still zero GPU capture artifacts under \`docs/captures/\`. Still no DRM skeleton. The calendar moved; the metal bottleneck did not.
+**2026-08-26 to 2026-08-27.** Issues #10–#15 add the SEP/TouchID research program to this tracker (T1 community win, T2 bridge, omnux-report SEP section, apstrand frontier notes). Useful adjacency. Still zero GPU capture artifacts under \`docs/captures/\`. Still no DRM skeleton. The calendar moved; the metal bottleneck did not.
 
 **2026-09-08.** This pack. Still scaffold. Still fifteen open issues. Still waiting on an M3-class machine in the harness loop.
 
-![Issue map — GPU #1–#8, clean-room #9, SEP adjacency #10–#15](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/issue-map.png)
+![Issue map, GPU #1–#8, clean-room #9, SEP adjacency #10–#15](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/issue-map.png)
 
 ## Why
 
-Omnux can already tell the truth about M3 installs. Truth without a GPU project is a permanent software-render sentence dressed up as roadmap poetry.
+Omnux can already tell the truth about M3 installs. Truth without a GPU project is a permanent software-render sentence dressed up as a roadmap.
 
-I wanted a repo whose license Asahi can absorb without a negotiation. I wanted “working” defined as pixels and scores on metal, not a press sentence. I wanted the three RE walls named so contributors argue about captures instead of vibes. I wanted the clean-room gate written before the first real C file, because MIT is easy to claim and hard to un-poison.
+I wanted a repo whose license Asahi can absorb without a negotiation. I wanted "working" defined as pixels and scores on metal. I wanted the three RE walls named so contributors argue about captures. I wanted the clean-room gate written before the first real C file, because MIT is easy to claim and hard to un-poison.
 
-The ask is not stars. The ask is hardware in the capture loop — and issue checkboxes that turn green only when the acceptance criteria say so.
+The ask is not stars. The ask is hardware in the capture loop, and issue checkboxes that turn green only when the acceptance criteria say so.
 `;
 
 const HURLEYUS_COVER =
@@ -1998,73 +1998,71 @@ const WAYNESVILLE_ZAXBYS_CONTENT = `![Waynesville public lander composite from r
 
 ## Who
 
-I kept watching one store — 424 Russ Avenue, Waynesville, NC — try to be three products at once: a community lander for locals and tourists, a hiring funnel, and a shift office that still lived in spreadsheets, Steritech PDFs, and whoever answered the group text first.
+I kept watching one store, 424 Russ Avenue, Waynesville, NC, try to be three products at once: a community lander for locals and tourists, a hiring funnel, and a shift office that still lived in spreadsheets, Steritech PDFs, and whoever answered the group text first.
 
-Not the multi-unit franchise SaaS story. That sibling already has its own pack. This one is for the GM and shift leaders who need lunch daypart labor against a ≤17% goal before the dinner rush, and for the parent looking up Kids Night on the same domain.
+This is not the multi-unit franchise SaaS story. That sibling already has its own pack. This one is for the GM and shift leaders who need lunch daypart labor against a ≤17% goal before the dinner rush, and for the parent looking up Kids Night on the same domain.
 
-If you run MarTech by day and still care whether a CAP finding has an observation → cause → prevention trail, you are in the room. If you only want a pricing page with fake “500+ locations,” go read the other post.
+If you run MarTech by day and still care whether a CAP finding has an observation, cause, prevention trail, this is for you. If you only want a pricing page with fake "500+ locations," read the franchise platform post.
 
 ## What
 
 I built a **single-store** Zaxby's management and customer portal.
 
-Public surface (\`app/(public)\`): home with local events (Wheelin' Wednesdays, bounce party, Kids Night), about, careers + apply, catering (redirects to corporate catering), community, events, menu (redirects to zaxbys.com menu), contact. Store truth lives in \`_project.ts\` — **424 Russ Avenue**, Waynesville NC 28786, phone **828-456-2888**, email \`eat@waynesville.yourzaxbys.com\`, hours 10:30–21:00, dayparts lunch / snack / dinner / late.
+Public surface (\`app/(public)\`): home with local events (Wheelin' Wednesdays, bounce party, Kids Night), about, careers + apply, catering (redirects to corporate catering), community, events, menu (redirects to zaxbys.com menu), contact. Store truth lives in \`_project.ts\`: **424 Russ Avenue**, Waynesville NC 28786, phone **828-456-2888**, email \`eat@waynesville.yourzaxbys.com\`, hours 10:30–21:00, dayparts lunch / snack / dinner / late.
 
-![Ops map — public, shift, people, numbers](/blog/waynesville-zaxbys-single-store-ops-portal/screenshots/ops-map-composite.png)
+![Ops map, public, shift, people, numbers](/blog/waynesville-zaxbys-single-store-ops-portal/screenshots/ops-map-composite.png)
 
 Private surface: \`/dashboard\` with live shift, performance, metrics (including SOS and SMG pages), goals and 6-week trends, hiring Kanban, schedule + swaps + time-off, daypart checklists, Steritech CAP reports, training sessions + Zaxby's University tracking, attendance + points, leadership scores, maintenance, uniforms/smallwares orders, announcements, events CRUD, and CSV ingest under \`/dashboard/injest\`.
 
-Convex is the spine — thirty-plus modules, not a toy schema. Employees, applicants, shifts, metrics daily/weekly/periodic, caps, checklists, training/ZU progress, attendance points, orders. Package name matches the host: **\`waynesville.yourzaxbys.com\` \`0.1.0\`**. Stack: Next **16.1.6**, React 19, Convex, Clerk, Resend + React Email, Sentry, PostHog, Radix + Tailwind 4, Bun, Blacksmith \`ship.yml\`.
+Convex is the spine: thirty-plus modules. Employees, applicants, shifts, metrics daily/weekly/periodic, caps, checklists, training/ZU progress, attendance points, orders. Package name matches the host: **\`waynesville.yourzaxbys.com\` \`0.1.0\`**. Stack: Next **16.1.6**, React 19, Convex, Clerk, Resend + React Email, Sentry, PostHog, Radix + Tailwind 4, Bun, Blacksmith \`ship.yml\`.
 
 ![Illustrative live-shift dashboard composite](/blog/waynesville-zaxbys-single-store-ops-portal/screenshots/dashboard-composite.png)
 
-Honesty checks: sitrep still whispers WIP and “maybe superseded by www.” HEAD has more store-ops depth than the franchise sibling. Custom domain \`waynesville.yourzaxbys.com\` did **not** resolve from pack hosts. Vercel alias answered with a **429 bot challenge** — no clean live screenshot, so composites are labeled. README growth notes and franchise-purchase storytelling are provenance in the repo, not a title search I ran. AUTOPSY roasted missing SEO files; HEAD has \`manifest.ts\`, \`sitemap.ts\`, \`robots.ts\`.
+Honesty checks: sitrep still whispers WIP and "maybe superseded by www." HEAD has more store-ops depth than the franchise sibling. Custom domain \`waynesville.yourzaxbys.com\` did **not** resolve from pack hosts. Vercel alias answered with a **429 bot challenge**, so there is no clean live screenshot and composites are labeled. README growth notes and franchise-purchase storytelling are provenance in the repo. AUTOPSY roasted missing SEO files; HEAD has \`manifest.ts\`, \`sitemap.ts\`, \`robots.ts\`.
 
 ## Where
 
 Code: [github.com/HurleyUS/waynesville.yourzaxbys.com](https://github.com/HurleyUS/waynesville.yourzaxbys.com). **Private.** Empty description. Empty topics. Zero stars.
 
-GitHub homepage field: [waynesvilleyourzaxbyscom.vercel.app](https://waynesvilleyourzaxbyscom.vercel.app). Alias host resolves; HTTPS challenged at pack time. Canonical claim \`https://waynesville.yourzaxbys.com/\` sits in \`_project.ts\` and README — DNS unresolved here.
+GitHub homepage field: [waynesvilleyourzaxbyscom.vercel.app](https://waynesvilleyourzaxbyscom.vercel.app). Alias host resolves; HTTPS challenged at pack time. Canonical claim \`https://waynesville.yourzaxbys.com/\` sits in \`_project.ts\` and README. DNS unresolved here.
 
-Sibling franchise platform (already packed): [www.yourzaxbys.com](https://github.com/HurleyUS/www.yourzaxbys.com). Same family. Different job. Platform sells above-store; this repo runs **one** store’s public face and back-office.
+Sibling franchise platform (already packed): [www.yourzaxbys.com](https://github.com/HurleyUS/www.yourzaxbys.com). Same family. Different job. Platform sells above-store; this repo runs **one** store's public face and back-office.
 
-The audience sits next to every independent franchisee who needs store software that knows Russ Avenue dayparts — and next to every builder who can smell a “restaurant dashboard” template that never met a Steritech CAP form.
+Audience: independent franchisees who need store software that knows Russ Avenue dayparts, and builders who can tell a "restaurant dashboard" template from a Steritech CAP form.
 
 ## When
 
-**2025-05-02.** Create Next App → init → first Vercel deploy. Repo created on GitHub the same day. Package starts as a location product, not a SaaS brochure.
+**2025-05-02.** Create Next App to init to first Vercel deploy. Repo created on GitHub the same day. Package starts as a location product.
 
-**2025-05 → 08.** Fonts, navbar, employee headway, image upload fights, ranking UI. The slow work of making a store site feel like a store.
+**2025-05 to 08.** Fonts, navbar, employee headway, image upload fights, ranking UI. The slow work of making a store site feel like a store.
 
-**2025-10-16 → 10-21.** Security and Convex hardening week. Secure server-side SSN verification. External-link \`rel\` discipline. Full-text employee search. Build compilation fixes for production.
+**2025-10-16 to 10-21.** Security and Convex hardening week. Secure server-side SSN verification. External-link \`rel\` discipline. Full-text employee search. Build compilation fixes for production.
 
-**2026-01-03 → 01-04.** Dashboard redesign — Spotify Wrapped energy, scroll snap, metrics tables that calculate labor %, LY comparisons, placeholder rows for the current week, double-click cell edits, charts with 6-week averages and goals.
+**2026-01-03 to 01-04.** Dashboard redesign: Spotify Wrapped energy, scroll snap, metrics tables that calculate labor %, LY comparisons, placeholder rows for the current week, double-click cell edits, charts with 6-week averages and goals.
 
-**2026-01-08 → 01-09.** The suite ships in a day: CSV import/reporting, employee onboarding/self-registration, Indeed hiring Kanban, live shift dashboard, shift checklists, announcements, scheduling, uniforms/smallwares, Steritech CAP, training agendas, attendance tracker — then a training rebuild with scheduled sessions and ZU course tracking.
+**2026-01-08 to 01-09.** The suite ships in a day: CSV import/reporting, employee onboarding/self-registration, Indeed hiring Kanban, live shift dashboard, shift checklists, announcements, scheduling, uniforms/smallwares, Steritech CAP, training agendas, attendance tracker, then a training rebuild with scheduled sessions and ZU course tracking.
 
 **2026-01-12.** Delete buttons and missing-week detection on metrics. Practical GM requests.
 
-**2026-02-15 → 02-26.** Security that matters: remove hardcoded encryption key fallback; fix proxy middleware that had made routes public; encrypt SSN at rest AES-256-GCM (#34/#41); strip SSN context from console logs (#43/#50); enforce auth on Convex public mutations (#42/#51).
+**2026-02-15 to 02-26.** Security that matters: remove hardcoded encryption key fallback; fix proxy middleware that had made routes public; encrypt SSN at rest AES-256-GCM (#34/#41); strip SSN context from console logs (#43/#50); enforce auth on Convex public mutations (#42/#51).
 
-**2026-03-21.** Remaining \`console.*\` → Sentry logging (#53).
+**2026-03-21.** Remaining \`console.*\` to Sentry logging (#53).
 
 **2026-05-14.** Blacksmith CI gates standardized across a stack of commits. Clerk/email client check fixes. Lazy Resend. Skip Convex provider without public env.
 
 **2026-08-08.** \`fix: set X-Robots-Tag to index, follow on Vercel\`. HEAD **\`c9f97b7\`**. Two hundred thirty-five commits on the ledger. Pack day is September 8, 2026.
 
-That is the journey from a May Create-Next-App on Russ Avenue to a versioned single-store ops portal that still wears package **0.1.0** like an honest scar.
+May Create-Next-App on Russ Avenue to a versioned single-store ops portal that still wears package **0.1.0**.
 
 ## Why
 
-I did not want one location’s public community face and its shift office to keep living on different planets.
+I did not want one location's public community face and its shift office to keep living on different planets.
 
-So I put events and careers on the same origin as live dayparts, Steritech CAPs, hiring, training, and attendance. I put Clerk on the door and Convex under the floor. I left package **0.1.0** because “store software that GMs touch” is not the same milestone as a franchise SaaS **1.0.0** marketing claim. I left the sibling relationship explicit: www is the platform pack; this is the store pack.
+So I put events and careers on the same origin as live dayparts, Steritech CAPs, hiring, training, and attendance. I put Clerk on the door and Convex under the floor. I left package **0.1.0** because "store software that GMs touch" is not the same milestone as a franchise SaaS **1.0.0** marketing claim. I left the sibling relationship explicit: www is the platform pack; this is the store pack.
 
-sitrep can keep saying LOW priority. The git log disagrees with “empty.” The schema disagrees with “template.”
+sitrep can keep saying LOW priority. The git log disagrees with "empty." The schema disagrees with "template."
 
-If your current “location site” folder has a hero image and no checklist submission table — or a dashboard route and a proxy that accidentally made everything public — you already know which hole I was staring at.
-
-Would you point real DNS at this alias and run a week of live shift entry next — or keep the franchise platform and the store portal honest as two products with two jobs?
+Would you point real DNS at this alias and run a week of live shift entry next, or keep the franchise platform and the store portal honest as two products with two jobs?
 `;
 
 const MODERN_DESIGN_PLAYGROUND_COVER =
@@ -2199,13 +2197,13 @@ Would you keep an unprotected \`/admin\` board after ripping Clerk, or is a sing
 const EVERYTHINGMONETIZED_COVER =
   "/blog/everythingmonetized-parody-lms-course-bros/cover.png";
 
-const EVERYTHINGMONETIZED_CONTENT = `![EverythingMonetized live hero — Cohort 04 parody LMS academy redesign](/blog/everythingmonetized-parody-lms-course-bros/screenshots/home-live.png)
+const EVERYTHINGMONETIZED_CONTENT = `![EverythingMonetized live hero, Cohort 04 parody LMS academy redesign](/blog/everythingmonetized-parody-lms-course-bros/screenshots/home-live.png)
 
 ## Who
 
-I build products in public for operators who can smell a funnel from across the room. The course economy already sells the same promise on a loop: buy a course about making money by selling courses about making money. Fans of that bit — and builders who want the satire to have a real schema — are who this is for.
+I build products in public for operators who can smell a funnel from across the room. The course economy already sells the same promise on a loop: buy a course about making money by selling courses about making money. Fans of that bit, and builders who want the satire to have a real schema, are who this is for.
 
-If you already read the MerchWinner pack (POD course marketplace, empty catalog) or iLeague (golf creator Stripe), this is a different lane. EverythingMonetized is intentional parody of the guru machine, not a commerce vertical wearing a joke title.
+If you already read the MerchWinner pack (POD course marketplace, empty catalog) or iLeague (golf creator Stripe), this is a different lane. EverythingMonetized is intentional parody of the guru machine.
 
 ## What
 
@@ -2215,26 +2213,26 @@ README one-liner: **Parody site where AI generated course bros sell course bro c
 
 Stack on the box: **Next.js 16.2.6**, React 19.2.6, **Convex**, Tailwind v4, Phosphor, Framer Motion, Radix, next-themes (dark default), PostHog, Sentry, Resend. Bun. Package **everythingmonetized** **0.1.0**. Private HurleyUS repo. Public site at [www.everythingmonetized.com](https://www.everythingmonetized.com).
 
-![Illustrative course catalog — 9 of 10 seeded absurd titles](/blog/everythingmonetized-parody-lms-course-bros/screenshots/courses.png)
+![Illustrative course catalog, 9 of 10 seeded absurd titles](/blog/everythingmonetized-parody-lms-course-bros/screenshots/courses.png)
 
 Convex schema is the product spine:
 
-- \`courseBros\` — name, slug, tagline, bio, catchphrases, specialties, socialProof, featured
-- \`courses\` — absurd titles, inflated \`originalPrice\`, modules/lessons, category, search index
-- \`testimonials\` — always-verified parody outcomes
-- \`subscribers\` — newsletter with email dedupe + source
-- \`purchases\` — pending/completed/refunded; paymentMethod includes **exposure**
-- \`rateLimits\` — newsletter + purchase mutations
+- \`courseBros\`: name, slug, tagline, bio, catchphrases, specialties, socialProof, featured
+- \`courses\`: absurd titles, inflated \`originalPrice\`, modules/lessons, category, search index
+- \`testimonials\`: always-verified parody outcomes
+- \`subscribers\`: newsletter with email dedupe + source
+- \`purchases\`: pending/completed/refunded; paymentMethod includes **exposure**
+- \`rateLimits\`: newsletter + purchase mutations
 
-Seed ships **5** AI gurus (Chad Hustlemax, Brandon Scale, Tiffany Funnel, Derek Dropship, Maximilian Leverage) and **10** courses from $2,997 to $8,997 — titles like *How to Find Your First Course Idea (By Buying This Course)* and *Mindset Mastery: Think Rich, Stay Poor (Until You Buy This)*. Avatars and thumbs are Pollinations prompt URLs.
+Seed ships **5** AI gurus (Chad Hustlemax, Brandon Scale, Tiffany Funnel, Derek Dropship, Maximilian Leverage) and **10** courses from $2,997 to $8,997, titles like *How to Find Your First Course Idea (By Buying This Course)* and *Mindset Mastery: Think Rich, Stay Poor (Until You Buy This)*. Avatars and thumbs are Pollinations prompt URLs.
 
-Admin is a full CRUD plane: bros, courses, testimonials, subscribers. Auth is a **password cookie** (\`ADMIN_PASSWORD\`, fail-secure after Feb 15). \`@clerk/nextjs\` sits in package.json; public Clerk billing is README fiction — TODO from Feb 13 says no Clerk auth.
+Admin is a full CRUD plane: bros, courses, testimonials, subscribers. Auth is a **password cookie** (\`ADMIN_PASSWORD\`, fail-secure after Feb 15). \`@clerk/nextjs\` sits in package.json; public Clerk billing is README fiction. TODO from Feb 13 says no Clerk auth.
 
-Purchase success copy is the thesis: congratulations, course bro — **no actual course will be delivered**. Commitment to the bit is the product.
+Purchase success copy is the thesis: congratulations, course bro, **no actual course will be delivered**. Commitment to the bit is the product.
 
-![Illustrative course detail — High-Ticket Alchemy parody checkout](/blog/everythingmonetized-parody-lms-course-bros/screenshots/course-detail.png)
+![Illustrative course detail, High-Ticket Alchemy parody checkout](/blog/everythingmonetized-parody-lms-course-bros/screenshots/course-detail.png)
 
-What is also true on pack day: the live \`/courses\` page says **Showing 0 of 0 courses**. Seed exists. Production Convex is empty or unconfigured. TODO still blocks on GitHub issue #1 — Convex env vars on Vercel. sitrep.md still claims PROTOTYPE / last commit Jan 31 / LOW priority. README still says Next 15.5.6. That drift is the story, not a footnote.
+What is also true on pack day: the live \`/courses\` page says **Showing 0 of 0 courses**. Seed exists. Production Convex is empty or unconfigured. TODO still blocks on GitHub issue #1, Convex env vars on Vercel. sitrep.md still claims PROTOTYPE / last commit Jan 31 / LOW priority. README still says Next 15.5.6. That drift is the story.
 
 ## Where
 
@@ -2242,52 +2240,52 @@ It runs on Vercel. Apex \`everythingmonetized.com\` 307s to www. Alias \`everyth
 
 Surfaces that matter:
 
-- Public lander — teal academy hero, learning-dashboard.tsx card, featured tracks, faculty, learner outcomes, weekly lab newsletter
-- Catalog — search / category / price / sort / pagination
-- Bro profiles — \`/bros/[slug]\`
-- Course detail — modules + parody purchase form
-- About — mission + core values (Hustle Over Health, etc.)
-- Admin — password gate via \`proxy.ts\`
+- Public lander: teal academy hero, learning-dashboard.tsx card, featured tracks, faculty, learner outcomes, weekly lab newsletter
+- Catalog: search / category / price / sort / pagination
+- Bro profiles: \`/bros/[slug]\`
+- Course detail: modules + parody purchase form
+- About: mission + core values (Hustle Over Health, etc.)
+- Admin: password gate via \`proxy.ts\`
 
-Audience sits with satire builders, MarTech operators, and anyone comparing a seeded Convex backend to a live empty catalog.
+Audience: satire builders, MarTech operators, and anyone comparing a seeded Convex backend to a live empty catalog.
 
-![Live courses page — Showing 0 of 0](/blog/everythingmonetized-parody-lms-course-bros/screenshots/courses-live.png)
+![Live courses page, Showing 0 of 0](/blog/everythingmonetized-parody-lms-course-bros/screenshots/courses-live.png)
 
 ## When
 
-**2026-01-08.** Initial Next.js + Convex + Tailwind. OPPORTUNITIES.md and PLAN.md the same day — the bit was named early.
+**2026-01-08.** Initial Next.js + Convex + Tailwind. OPPORTUNITIES.md and PLAN.md the same day. The bit was named early.
 
 **January 31.** Chore sync.
 
 **February 6.** Next.js 16 + React 19. Tailwind v4 \`@import\` fix.
 
-**February 8.** The product day. Admin panel, tests, search/filter/SEO, edit pages — CHANGELOG **0.1.0** lists five tables, parody purchase, Pollinations images, 48 unit tests, Playwright config, PostHog, Sentry, rate limits.
+**February 8.** The product day. Admin panel, tests, search/filter/SEO, edit pages. CHANGELOG **0.1.0** lists five tables, parody purchase, Pollinations images, 48 unit tests, Playwright config, PostHog, Sentry, rate limits.
 
 **February 13.** Production readiness: BUILDING.md button compliance, dark mode via next-themes, \`proxy.ts\` naming for Next 16.
 
 **February 15.** Security: remove hardcoded admin password + fallback. Fail closed if \`ADMIN_PASSWORD\` missing.
 
-**February 21.** lucide → \`@phosphor-icons/react\`.
+**February 21.** lucide to \`@phosphor-icons/react\`.
 
 **April 6.** ESLint / vitest chore.
 
-**May 13–15.** shipprep + Blacksmith CI gate spam, then deploy health URL fixes. Same CI noise pattern as sibling HurleyUS templates — but this repo already had the Feb product pass underneath.
+**May 13–15.** shipprep + Blacksmith CI gate spam, then deploy health URL fixes. Same CI noise pattern as sibling HurleyUS templates, but this repo already had the Feb product pass underneath.
 
 **May 22.** **redesign.** Teal/slate academy UI on home, cards, header/footer, newsletter. Orange hustle-gradient brand in DESIGN.md becomes the light-theme leftover; dark default is the live look.
 
-**August 8, 6:54 AM ET.** HEAD \`e7c6a61\` — \`X-Robots-Tag: index, follow\`. Thirty-one commits on \`main\`.
+**August 8, 6:54 AM ET.** HEAD \`e7c6a61\`, \`X-Robots-Tag: index, follow\`. Thirty-one commits on \`main\`.
 
 **September 8 pack day.** Live lander matches redesign. Catalog still 0/0. Draft only.
 
-![Illustrative faculty row — five AI course-bro operators](/blog/everythingmonetized-parody-lms-course-bros/screenshots/bros.png)
+![Illustrative faculty row, five AI course-bro operators](/blog/everythingmonetized-parody-lms-course-bros/screenshots/bros.png)
 
 ## Why
 
-Satire of the course economy fails when it is only a landing meme. It needs personas, a catalog, an admin plane, and a checkout that confesses the joke. I wanted that spine in Convex — not a static joke page.
+Satire of the course economy fails when it is only a landing meme. It needs personas, a catalog, an admin plane, and a checkout that confesses the joke. I wanted that spine in Convex.
 
 I also refused to pretend production was seeded. Robots say index,follow. Courses say 0 of 0. Seed.ts says ten high-ticket absurdities. Those three sentences together are the operator note.
 
-If you ship a parody LMS next, what do you fix first — seed Convex so the bit has inventory, or leave Showing 0 of 0 as the meta punchline?
+If you ship a parody LMS next, what do you fix first: seed Convex so the bit has inventory, or leave Showing 0 of 0 as the meta punchline?
 `;
 
 const CRAVEES_COVER =
@@ -2884,47 +2882,47 @@ Engagement: if deploy state and git dirt only live in browser tabs — what are 
 const GLASS_DESIGN_SYSTEM_COVER =
   "/blog/glass-design-system-apple-svg-refraction-showcase/cover.png";
 
-const GLASS_DESIGN_SYSTEM_CONTENT = `![Glass Design System home — video hero and glass contact form](/blog/glass-design-system-apple-svg-refraction-showcase/screenshots/home.png)
+const GLASS_DESIGN_SYSTEM_CONTENT = `![Glass Design System home, video hero and glass contact form](/blog/glass-design-system-apple-svg-refraction-showcase/screenshots/home.png)
 
 ## Who
 
-I needed liquid glass on the web that bent the photograph behind it — not a CSS blur wearing a trench coat, and not a WebGL sphere I install from a registry.
+I needed liquid glass on the web that bent the photograph behind it. A CSS blur was not enough. A WebGL sphere from a registry was the wrong shape for this demo.
 
 That operator is me on a March afternoon with a BRIEF.md that names five effects and hard rules: real Catppuccin \`dark:\` classes, no \`filter: invert()\`, Tailwind v4 only, Next 16.
 
-It is also anyone comparing two glass paths in my queue. twelveux ships pen.dev **glass.glsl** as a hosted shadcn item. This repo is the other path: SVG \`feDisplacementMap\`, animated conic borders, jelly nav, Apple-style sidebar — a full demo site over HustleLaunch photo and video plates.
+It is also anyone comparing two glass paths in my queue. twelveux ships pen.dev **glass.glsl** as a hosted shadcn item. This repo is the other path: SVG \`feDisplacementMap\`, animated conic borders, jelly nav, Apple-style sidebar. A full demo site over HustleLaunch photo and video plates.
 
 Frontend builders who live in shadcn New York primitives but want the chrome to refract. Catppuccin people who refuse grayscale hacks. MarTech / indie product people who need cards, forms, dialogs, and a contact sidebar that still read when the backdrop is a real campaign still.
 
 ## What
 
-I built **glass-design-system** — Next.js 16.2.6, React 19.2.6, Tailwind 4.3, shadcn New York, package \`0.1.0\` private. Bun lockfile. Live title: Glass Design System.
+I built **glass-design-system**: Next.js 16.2.6, React 19.2.6, Tailwind 4.3, shadcn New York, package \`0.1.0\` private. Bun lockfile. Live title: Glass Design System.
 
 Five effects from the project brief, all in the tree:
 
-1. **Apple Liquid Glass** — \`GlassPanel\` + \`src/lib/displacement.ts\`. SVG displacement map, chromatic aberration, strength/depth/radius props, \`backdropFilter: url(...)\`.
-2. **AnimatedBorder** — \`@property --conic-gradient-angle\`, mask compositing, optional glow. Pink→Blue Catppuccin conic.
-3. **Glass morphism** — layered \`color-mix\` gradients + blur. Opacity got walked down hard so the displacement stays visible.
-4. **GlassNav** — framer-motion jelly indicator that follows the active route.
-5. **Catppuccin Mocha / Latte** — real tokens in \`globals.css\`. Geist on the page (Max stays on twelveux / uncap / hms).
+1. **Apple Liquid Glass.** \`GlassPanel\` + \`src/lib/displacement.ts\`. SVG displacement map, chromatic aberration, strength/depth/radius props, \`backdropFilter: url(...)\`.
+2. **AnimatedBorder.** \`@property --conic-gradient-angle\`, mask compositing, optional glow. Pink to Blue Catppuccin conic.
+3. **Glass morphism.** Layered \`color-mix\` gradients + blur. Opacity got walked down hard so the displacement stays visible.
+4. **GlassNav.** framer-motion jelly indicator that follows the active route.
+5. **Catppuccin Mocha / Latte.** Real tokens in \`globals.css\`. Geist on the page (Max stays on twelveux / uncap / hms).
 
 Glass barrel at \`src/components/glass/\`: panel, border, card, nav, button, dialog, sheet, sidebar (+ provider), form controls, \`use-glass-surface\`.
 
 Routes:
 
-- \`/\` — video hero, YouTube embed, glass contact form in AnimatedBorder, value copy, CTA.
-- \`/components\` — ~3,215 lines. Commit message says 80+ example variations across commerce, auth, analytics, productivity, messaging, and states.
-- \`/about\` — content page using the system.
+- \`/\`: video hero, YouTube embed, glass contact form in AnimatedBorder, value copy, CTA.
+- \`/components\`: ~3,215 lines. Commit message says 80+ example variations across commerce, auth, analytics, productivity, messaging, and states.
+- \`/about\`: content page using the system.
 
 Layout shell: sticky GlassNav + non-modal right **GlassSidebar** titled Quick Contact.
 
-Backgrounds under \`public/bg/\` — hero-video.webm, hero-michael.jpg, campaign-monitoring.webp, web-designer.png, and the rest of the HustleLaunch stills. March 21 replaced flat gradient section shells with full-width photographic plates so the glass has something to bend.
+Backgrounds under \`public/bg/\`: hero-video.webm, hero-michael.jpg, campaign-monitoring.webp, web-designer.png, and the rest of the HustleLaunch stills. March 21 replaced flat gradient section shells with full-width photographic plates so the glass has something to bend.
 
-Reference originals stay in-tree (\`reference-apple-glass/\`, \`reference-animated-border.css\`). Fallow marks them unused. That is honest — they are the port sources, not runtime.
+Reference originals stay in-tree (\`reference-apple-glass/\`, \`reference-animated-border.css\`). Fallow marks them unused. That is honest: they are the port sources, not runtime.
 
 Fallow REVIEW snapshot: ~10,194 LOC, dead files 11.1%, dead exports 24.9%, one circular dep. GlassSheet / GlassButton / GlassSidebar sit in the high-CRAP table. Live response sends \`X-Robots-Tag: index, follow\`.
 
-![Components showcase — glass cards over photographic backdrop](/blog/glass-design-system-apple-svg-refraction-showcase/screenshots/components-loaded.png)
+![Components showcase, glass cards over photographic backdrop](/blog/glass-design-system-apple-svg-refraction-showcase/screenshots/components-loaded.png)
 
 ## Where
 
@@ -2932,7 +2930,7 @@ Live: https://glass-design-system.vercel.app
 
 Repo: https://github.com/michaelmonetized/glass-design-system
 
-Homepage field on GitHub points at that Vercel app. Adjacent systems in the same operator map: twelveux (WebGL registry Glass), modern-design-playground (WebGL instrument + nine worlds), uncap.us and hms (Max + Catppuccin product surfaces — different jobs).
+Homepage field on GitHub points at that Vercel app. Adjacent systems in the same operator map: twelveux (WebGL registry Glass), modern-design-playground (WebGL instrument + nine worlds), uncap.us and hms (Max + Catppuccin product surfaces, different jobs).
 
 ## When
 
@@ -2942,7 +2940,7 @@ Homepage field on GitHub points at that Vercel app. Adjacent systems in the same
 
 **2:30–3:14.** Photo/video sections, HustleLaunch assets, local webm instead of a dead WordPress URL, fixed parallax plates.
 
-**3:23–3:53.** Opacity and contrast wars — glass-morphism thin enough for displacement, Tailwind utility backgrounds overridden, nav readable, gradient repeat tuned, button/dialog/sheet contrast fixed.
+**3:23–3:53.** Opacity and contrast wars: glass-morphism thin enough for displacement, Tailwind utility backgrounds overridden, nav readable, gradient repeat tuned, button/dialog/sheet contrast fixed.
 
 **4:01–4:31.** Apple-style non-modal glass sidebar, glass form components, hero wireframe iterations until video left + form right matched the layout.
 
@@ -2952,7 +2950,7 @@ Sixteen commits the same afternoon.
 
 **2026-06-22.** Two \`nightly\` commits.
 
-**2026-08-08, 6:49 AM ET.** HEAD \`0814e1f\` — X-Robots-Tag index, follow. Same robots batch as several sibling Vercel repos that morning. **24** commits on main.
+**2026-08-08, 6:49 AM ET.** HEAD \`0814e1f\`, X-Robots-Tag index, follow. Same robots batch as several sibling Vercel repos that morning. **24** commits on main.
 
 ## Why
 
@@ -2960,11 +2958,11 @@ I already had Apple-glass and animated-border references sitting as ports. I wan
 
 Glass only proves itself against a photograph or a video plate. Gradients flatter. The March 21 backdrop swap is the reason the showcase exists at that density.
 
-twelveux answers a different question — can I \`npx\` Max, theme, and a real WebGL Glass shader. This repo answers: can the whole chrome stack refract with SVG displacement and still ship a contact sidebar and an 80-variation gallery.
+twelveux answers a different question: can I \`npx\` Max, theme, and a real WebGL Glass shader. This repo answers: can the whole chrome stack refract with SVG displacement and still ship a contact sidebar and an 80-variation gallery.
 
 ## Engagement
 
-If you already run twelveux Glass, what breaks first when you try SVG displacement over a busy campaign still instead — chromatic fringe, text contrast, or the nav jelly fighting the sidebar?
+If you already run twelveux Glass, what breaks first when you try SVG displacement over a busy campaign still: chromatic fringe, text contrast, or the nav jelly fighting the sidebar?
 
 ![About page on Glass Design System](/blog/glass-design-system-apple-svg-refraction-showcase/screenshots/about.png)
 `;
@@ -7695,7 +7693,7 @@ export const staticPosts: StaticPost[] = [
     title: "glass-design-system: I shipped Apple SVG refraction, not the WebGL registry",
     slug: "glass-design-system-apple-svg-refraction-showcase",
     excerpt:
-      "March 2026 I built a Next.js 16 glass design system with SVG feDisplacementMap Apple Liquid Glass, animated conic borders, jelly nav, and an 80+ Catppuccin showcase \u2014 live on Vercel. Distinct from twelveux WebGL Glass.",
+      "March 2026 I built a Next.js 16 glass design system with SVG feDisplacementMap Apple Liquid Glass, animated conic borders, jelly nav, and an 80+ Catppuccin showcase, live on Vercel. Distinct from twelveux WebGL Glass.",
     content: GLASS_DESIGN_SYSTEM_CONTENT,
     coverImage: GLASS_DESIGN_SYSTEM_COVER,
     tags: [
@@ -7914,7 +7912,7 @@ export const staticPosts: StaticPost[] = [
     title: "EverythingMonetized: I built a parody LMS where course bros sell courses about selling courses",
     slug: "everythingmonetized-parody-lms-course-bros",
     excerpt:
-      "I shipped EverythingMonetized.com — a Next.js 16 + Convex parody LMS with 5 AI course-bro personas, 10 absurd courses, admin CRUD, and a purchase flow that admits nothing ships — then left the live catalog at Showing 0 of 0 because Convex never got seeded on Vercel.",
+      "I shipped EverythingMonetized.com, a Next.js 16 + Convex parody LMS with 5 AI course-bro personas, 10 absurd courses, admin CRUD, and a purchase flow that admits nothing ships, then left the live catalog at Showing 0 of 0 because Convex never got seeded on Vercel.",
     content: EVERYTHINGMONETIZED_CONTENT,
     coverImage: EVERYTHINGMONETIZED_COVER,
     tags: [
@@ -8019,7 +8017,7 @@ export const staticPosts: StaticPost[] = [
     title: "Waynesville Zaxby's: I built the single-store ops portal so Russ Avenue does not run on group texts",
     slug: "waynesville-zaxbys-single-store-ops-portal",
     excerpt:
-      "I shipped waynesville.yourzaxbys.com as a Next.js 16 + Convex + Clerk single-store portal for 424 Russ Ave \u2014 public events/careers/community out front, live shift metrics, Steritech CAPs, hiring, training, and attendance behind the door \u2014 package 0.1.0, 235 commits, HEAD c9f97b7. Not the franchise SaaS sibling.",
+      "I shipped waynesville.yourzaxbys.com as a Next.js 16 + Convex + Clerk single-store portal for 424 Russ Ave: public events/careers/community out front, live shift metrics, Steritech CAPs, hiring, training, and attendance behind the door. Package 0.1.0, 235 commits, HEAD c9f97b7. Not the franchise SaaS sibling.",
     content: WAYNESVILLE_ZAXBYS_CONTENT,
     coverImage: WAYNESVILLE_ZAXBYS_COVER,
     tags: [
@@ -8481,7 +8479,7 @@ export const staticPosts: StaticPost[] = [
     title: "omnux-gpu: I opened an MIT siege for M3 pixels and refused to call it a driver",
     slug: "omnux-gpu-mit-clean-room-m3-siege",
     excerpt:
-      "omnux-gpu is the clean-room MIT attempt at Apple M3 AGX \u2014 scaffold, fifteen public issues, capture-first method. No working driver. Hardware is the bottleneck.",
+      "omnux-gpu is the clean-room MIT attempt at Apple M3 AGX: scaffold, fifteen public issues, capture-first method. No working driver. Hardware is the bottleneck.",
     content: OMNUXGPU_CONTENT,
     coverImage: OMNUXGPU_COVER,
     tags: [
