@@ -5103,7 +5103,425 @@ A launch pad should know its localhost slug, env contract, and which gates fail 
 **Engagement Q:** Web + desktop + mobile on day one — wire Caddy HTTPS, freview, or Convex SSR loaders first?
 `;
 
+const CONNECTEDIN_COVER =
+  "/blog/connectedin-mv3-linkedin-auto-connect-chrome-extension/cover.png";
+
+const CONNECTEDIN_CONTENT = `## Who
+
+I still hit LinkedIn people-search pages where the work is repetitive Connect clicks — and I still want the delay, the stop button, and the weekly ceiling visible before the loop runs away.
+
+For operators who load-unpacked a tiny MV3 tool on their own account, not a SaaS growth bot.
+
+## What
+
+I shipped **ConnectedIn** — public https://github.com/michaelmonetized/ConnectedIn. HEAD \`a6236fa\`. **2** commits. Version **1.0.0**. Manifest V3 popup + \`content.js\` clicker.
+
+![Content loop](/blog/connectedin-mv3-linkedin-auto-connect-chrome-extension/screenshots/content-loop.png)
+
+Popup: delay input (100–5000ms, default 500), Start/Stop, clicked/remaining stats, yellow ~1,100 connects/week warning. \`chrome.storage.sync\` keeps delay + stats. Content script filters \`button[type="button"]\` whose trimmed text is exactly \`connect\`, clicks with \`setTimeout\` spacing, posts \`updateStats\` / \`finished\` messages.
+
+![Manifest gaps](/blog/connectedin-mv3-linkedin-auto-connect-chrome-extension/screenshots/manifest-gaps.png)
+
+Honest gaps on day one: manifest declares icons under \`images/\` but **no images directory**; **no \`content_scripts\` entry** so \`content.js\` is not auto-injected — popup \`sendMessage\` has nothing to talk to unless something else injects the file. \`scripting\` permission is unused.
+
+![Rate limit](/blog/connectedin-mv3-linkedin-auto-connect-chrome-extension/screenshots/rate-limit.png)
+
+README + INSTALL.md document LinkedIn’s weekly ceiling, delay bands, and that automation sits awkwardly against LinkedIn ToS — personal-use framing only.
+
+## Where
+
+Code: [github.com/michaelmonetized/ConnectedIn](https://github.com/michaelmonetized/ConnectedIn) — public MIT.
+
+\`\`\`bash
+git clone https://github.com/michaelmonetized/ConnectedIn.git
+# chrome://extensions → Developer mode → Load unpacked → select folder
+# open linkedin.com people search → click extension → Start Clicking
+\`\`\`
+
+## When
+
+**2026-03-21 15:30 ET** — init (+548, 7 files). **15:31 ET** — INSTALL.md (+147) → HEAD a6236fa. Queue \`pushed_at\` **2026-03-21T19:31:06Z**.
+
+![Commit arc](/blog/connectedin-mv3-linkedin-auto-connect-chrome-extension/screenshots/commit-arc.png)
+
+## Why
+
+A Connect clicker is only useful if the delay and the weekly ceiling are first-class — and if the manifest actually wires the content script.
+
+**Engagement Q:** Fix \`content_scripts\` + icons first, or rewrite the selector against today’s LinkedIn DOM?
+`;
+
+const HURLEYUS_SOP_COVER =
+  "/blog/hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack/cover.png";
+
+const HURLEYUS_SOP_CONTENT = `# HurleyUS Agent SOP: Ship or shut up, OpenClaw memory layers, DHH gstack mandate
+
+**Slug:** \`hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack\`
+
+**Excerpt:** Public single-file AGENT_SOP.md (548 lines, v1.0) for HurleyUS agents — Ship or shut up philosophy, ~/.openclaw/workspace memory layers, hard rules (no GitHub paid services, Next.js 16+, no CSS filter hacks, Clerk copy-button keys), Graphite stacked PRs, send-agent protocol, 9 lessons from production incidents. PR #2 adds DHH research-first + gstack-default + deployment discipline. 2 commits. HEAD c418e5e. Docs-only; language null. Not hurley-mission-control.
+
+**Tags:** hurleyus-sop, agent-sop, openclaw, gstack, dhh, graphite, nextjs-16, convex, operations, hurleyus, agent-ops, standard-operating-procedure
+
+---
+
+![OG / Ship or shut up](/blog/hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack/screenshots/toc-map.png)
+
+## Who
+
+I write operating doctrine when agents keep rediscovering their own commits as found treasure.
+
+For operators running **multi-agent HurleyUS sessions** who need a **single public SOP file** — not a Convex control plane, not a landing page — covering philosophy, OpenClaw memory layers, hard rules earned from incidents, Graphite/\`send-agent\` team ops, and the **DHH** research-first / **gstack** mandate.
+
+## What
+
+I published **hurleyus-sop** — public \`https://github.com/HurleyUS/hurleyus-sop\`. One tracked file: **\`AGENT_SOP.md\`**. HEAD \`c418e5e\`. **2** commits. 0 stars. GitHub Linguist **language: null**. Version **1.0**. Header maintainers: Rusty P. Shackelford, Theo Browne, DHH.
+
+Facts from the file at HEAD:
+
+- Lead philosophy: **“Ship or shut up.”** Revenue over polish cycles.
+- Role: partner with equity stake · senior engineer · Michael's right hand
+- Stack named: TypeScript, **Next.js 16+**, Convex, React · RN/Expo/NativeWind · Swift supporting · \`sr-*\` skills
+- Workspace root documented: **\`~/.openclaw/workspace/\`** with \`SOUL.md\`, \`AGENTS.md\`, \`MEMORY.md\`, \`USER.md\`, \`TEAM.md\`, \`TOOLS.md\`, \`HEARTBEAT.md\`, \`TODO.md\`, daily \`memory/YYYY-MM-DD.md\`, \`current-workload.md\` compaction dump
+- Memory model: long-term MEMORY.md · daily raw logs · compaction checkpoint at ~**80%** context (“goldfish brain”)
+- Hard rules: **no CSS filter hacks** · **Next.js 16+ only** · **never type Clerk keys by eye** · **no GitHub paid services** (Vercel is CI; strip \`.github/workflows/\`) · **do the hard work** (all 25 files)
+- Git: Conventional Commits + **Graphite** stacked PRs (\`gt submit -p --ai\`, \`~/bin/stack\`)
+- Comms: \`send-agent rusty|theo|dhh\` · standups **4×/day** EST · ~30 min heartbeat (cron, Telegram, email/bird/moltbook, SITREP)
+- Lessons: removed Actions from **12** repos · 29 parallel agents → 50K non-compiling lines → single agent Convex rewrite in **11 minutes** · AVPlayerLooper leak (RustyP) · reaferral invite persistence
+- Anti-pattern table + Closing partner mandate
+
+![OpenClaw memory layers](/blog/hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack/screenshots/memory-layers.png)
+
+![Hard rules](/blog/hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack/screenshots/hard-rules.png)
+
+**PR #2** (merged 2026-03-31, closes #1) appends **DHH Learnings & Operating Principles** (+46 lines):
+
+- Research-first — questions are failures; delivered solutions are wins
+- **gstack is default** for major workflows
+- Deployment discipline: local \`bun run build\` → lint → preview → env synced → PR reviewed → merge · **no blind deployments**
+- No \`any\` / \`@ts-ignore\` · document self-review · spawn via gstack/\`sessions_spawn\` with explicit scope
+
+![DHH gstack mandate](/blog/hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack/screenshots/dhh-mandate.png)
+
+![Commit arc](/blog/hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack/screenshots/commit-arc.png)
+
+This is **not** \`HurleyUS/hurley-mission-control\` (Next/Clerk/Convex **comms app**). **Not** empty mkproject scaffold SKIP class — **548** lines of intentional doctrine. No README, no CI, no package.json — the product *is* the SOP.
+
+## Where
+
+Code/docs: [github.com/HurleyUS/hurleyus-sop](https://github.com/HurleyUS/hurleyus-sop) — public.
+
+No product domain. No Vercel app for this repo. OpenClaw paths are local (\`~/.openclaw/workspace/…\`). Clone used for pack: m1Pro13 \`~/Projects/HurleyUS/hurleyus-sop\` @ \`c418e5e\`.
+
+## When
+
+- **2026-03-25** — repo created; \`f5fdc4a\` adds \`AGENT_SOP.md\` (+502) — v1.0 body through Closing
+- **2026-03-31** — PR #2 merge \`c418e5e\` — DHH section (+46); \`pushed_at\` 2026-03-31T23:28:55Z
+- Pack prepared **2026-09-08 ~5:15 PM ET** — draft + assets only
+
+## Why
+
+Agents without a written operating contract repeat the same expensive mistakes: filter-hack dark mode, Actions that bill, parallel agent thrash, typed Clerk secrets, goldfish-brain after compaction. This file is the HurleyUS answer in one Markdown path — philosophy, workspace layout, hard rules, lessons, then DHH's research-first / gstack / deploy checklist so “contrib” is doctrine, not vibes.
+
+What would you put in your agents' single public SOP that you refuse to negotiate — and which incident finally forced it onto disk?
+`;
+
+const CODEMAIL_COVER =
+  "/blog/codemail-mail-config-as-code-founder-email-infra/cover.png";
+
+const CODEMAIL_CONTENT = `
+I wanted company email on day 1 of an idea without paying Google or Microsoft per seat while the product was still a maybe.
+
+For founders who think \`mail.config.ts\` in git should be law — not another admin dashboard.
+
+## What
+
+I built **codemail** — private https://github.com/michaelmonetized/codemail (selection label HurleyUS/codemail; origin is michaelmonetized). HEAD \`e9fece4\`. **27** commits. Default **main**. Version **0.1.0**.
+
+**Thesis:** email infrastructure for founders — config as code, per-domain pricing, unlimited mailboxes. Not “replace Gmail.”
+
+![Config as code](/blog/codemail-mail-config-as-code-founder-email-infra/screenshots/config-as-code.png)
+
+![Day-1 workflow](/blog/codemail-mail-config-as-code-founder-email-infra/screenshots/day1-workflow.png)
+
+**Shipped (weekend MVP arc):** Turborepo monorepo · \`@codemail/config\` (Zod + \`defineMailConfig\`) · \`@codemail/cli\` (setup/deploy/status/dns/logs/users) · \`@codemail/smtp\` on Fly · Convex backend · Next 15 web mail + dashboard · Clerk · Resend outbound · marketing Free Forever / Simple $8 / Managed $80 / Self-Hosted.
+
+![Architecture](/blog/codemail-mail-config-as-code-founder-email-infra/screenshots/architecture-stack.png)
+
+**Gaps:** PLAN still ❌ IMAP while README + Simple tier market IMAP; GitHub public probe 404 (private) despite OSS CTA; \`codemail.vercel.app\` MIDDLEWARE 500 vs \`codemail-web.vercel.app\` 200; root \`mail.config.ts\` is informal t3.chat demo shape; \`codemail.dev\` unchecked.
+
+![Docs vs shipped](/blog/codemail-mail-config-as-code-founder-email-infra/screenshots/docs-vs-shipped-gap.png)
+
+## Where
+
+Code: https://github.com/michaelmonetized/codemail — private.
+Live marketing/app: https://codemail-web.vercel.app
+SMTP: codemail-smtp.fly.dev (per TODO)
+
+## When
+
+**2026-02-12** — SMTP → web mail → dashboard → Convex → API → auth/SEO → Fly SMTP fixes → marketing rewrite to business-plan thesis (same-day blast).
+**2026-02-13** — public marketing routes + \`(private)\` auth route group.
+**2026-02-15** — 62fcaed better sales positioning (#1).
+**2026-02-18** — e9fece4 design updates → HEAD.
+
+## Why
+
+![Commit arc](/blog/codemail-mail-config-as-code-founder-email-infra/screenshots/commit-arc.png)
+
+Because day-1 company email should be a \`git push\`, not a $600/year seat tax.
+**Engagement Q:** Ship IMAP before opening the repo public, or cut IMAP from the landing first?
+`;
+
+const SVGANIMATOR_COVER =
+  "/blog/svganimator-electron-to-canaveral-keyframe-export-studio/cover.png";
+
+const SVGANIMATOR_CONTENT = `![Migrate arc](/blog/svganimator-electron-to-canaveral-keyframe-export-studio/screenshots/migrate-arc.png)
+
+## Who
+
+I wanted an SVG keyframe studio under my own roof — first as an Electron app with Svgator inspiration docs, then as a product surface living inside the Canaveral Bun monorepo.
+
+For operators who care about the honest rename tax: GitHub says **svganimator**, \`package.json\` says **canaveral**, \`appConfig\` and the UI eyebrow say **SVG Animator**.
+
+## What
+
+I built **svganimator** — public \`https://github.com/HurleyUS/svganimator\`. HEAD \`86bb4a2\`. **13** commits. **0** stars. Default **main**. Root package name **\`canaveral\`** **0.1.0**.
+
+**At HEAD (Bun / TanStack / workspaces):**
+
+- \`@canaveral/svg\` — **963** LOC Zod schemas for elements, keyframes, collaborators, projects; export formats **\`svg\` | \`lottie\` | \`gif\` | \`mkv\`**; \`serializeStandaloneSvg\`, \`serializeLottie\`, \`applySvgAnimations\`, \`createStarterSvgProject\`
+- \`web/src/routes/index.tsx\` (~378) — SVG Animator studio: projects sidebar, canvas scrubber, invite form, export grid
+- \`web/src/lib/export-renderer.ts\` (~160) — GIF/MKV via Resvg frame raster (\`fps 30\`, \`880×720\`)
+- Zustand \`useSvgWorkspaceStore\` in \`shared/state\`
+- Electron \`desktop/\` loads \`appConfig.url\` with title **SVG Animator**
+- Expo \`mobile/app/index.tsx\` shows starter project element/keyframe counts
+- \`shared/config\` sets \`name: "SVG Animator"\`, \`support@svganimator.localhost\`
+
+![Studio layout](/blog/svganimator-electron-to-canaveral-keyframe-export-studio/screenshots/studio-layout.png)
+
+**Deleted on migrate (\`f2f6023\`):** Electron \`src/renderer/**\` editor, \`electron.vite.config.ts\`, and the Svgator \`inspiration-docs/\` scrape from the May 3 init.
+
+![Export formats](/blog/svganimator-electron-to-canaveral-keyframe-export-studio/screenshots/export-formats.png)
+
+**Honesty gaps:** README + \`pub/\` + \`.env.example\` still market **Canaveral**. Seven same-afternoon commits titled “Standardize Blacksmith CI gates”. \`REVIEW.md\` is a large fallow dump. No public demo URL.
+
+This is **not** private \`HurleyUS/canaveral\` (generic launch pad already packed). **Not** the local no-git \`~/Projects/svganimator\` Bun path draw-on app. **Not** \`tsxsvg\` (SKIP / plan-only).
+
+## Where
+
+Code: [github.com/HurleyUS/svganimator](https://github.com/HurleyUS/svganimator) — public.
+
+Run (facts from README/scripts): \`bun install\`, \`cp .env.example .env\`, \`bun run env:check\`, \`bun run dev\` (Caddy) or \`bun run dev:raw\` (Vite).
+
+No live product URL. No claimed domain.
+
+## When
+
+- **2026-05-03** — \`0965ad7\` needs work: Electron + Svgator inspiration-docs (~94 files)
+- **2026-05-04** — \`3e38809\` exports: timeline/properties/exporter panels + tests
+- **2026-05-04** — \`f2f6023\` migrate svganimator to canaveral monorepo
+- **2026-05-14 afternoon ET** — Blacksmith CI ×7 + FReview observability + formatter → HEAD \`86bb4a2\`
+- Pack prepared **2026-09-08 ~5:06 PM ET** — draft + assets only
+
+## Why
+
+I needed the SVG animator product to sit on the same Bun/TanStack/Caddy rails as the rest of the launch pad — shared Zod contracts, web studio, Electron shell, Expo card — without pretending the GitHub repo name and the root package name agree.
+
+**Engagement:** how many public product repos keep README saying the scaffold name while \`appConfig\` and the UI sell a different product?
+
+---
+
+*Draft + assets only. Do not publish. Do not git push. No SendToUser.*
+`;
+
+const DEVHOST_COVER =
+  "/blog/devhost-ink-tui-caddy-port80-multihost/cover.png";
+
+const DEVHOST_CONTENT = `![DevHost Manager TUI](/blog/devhost-ink-tui-caddy-port80-multihost/screenshots/tui-manager.png)
+
+## Who
+
+I run a pile of Next/Bun apps on one Mac and got tired of remembering which project owns which port — and of typing \`localhost:3xxx\` when the hostname should just be the project name.
+
+## What
+
+Private **michaelmonetized/devhost** · v1.0.0 · HEAD \`db69995\` · **1** commit (+1426 / 14 files). Bun CLI + Ink/React TUI that:
+
+1. \`devhost add\` — reads \`package.json\` name, requires \`scripts.dev\`, assigns next port from **3001**, registers \`<name>.localhost\`
+2. Writes \`~/.config/devhost/config.json\` + auto Caddyfile + marker-bounded \`/etc/hosts\` block
+3. \`devhost start\` — ensures Caddy, spawns \`bun run dev --port N\` (env \`PORT\`/\`HOSTNAME\`), tracks PID, opens \`http://<name>.localhost\`
+4. Bare \`devhost\` — Ink manager: start/stop/open + Caddy toggle
+
+![Architecture](/blog/devhost-ink-tui-caddy-port80-multihost/screenshots/architecture.png)
+
+![Hosts + Caddyfile](/blog/devhost-ink-tui-caddy-port80-multihost/screenshots/hosts-caddyfile.png)
+
+## Where
+
+github.com/michaelmonetized/devhost (**private**). No product domain. Config lives at \`~/.config/devhost/\`. On pack machine m1Pro13 the live config still has **bestwnc-com.localhost → :3001**. Sibling story: **bundx-init** patches Next repos for **HTTPS** \`.localhost\` on **:443**; devhost is the **HTTP :80 multi-host lifecycle TUI**.
+
+![Sibling vs bundx-init](/blog/devhost-ink-tui-caddy-port80-multihost/screenshots/sibling-vs-bundx-init.png)
+
+## When
+
+**2026-02-15** — sole commit \`db69995\` Initial commit (Caddy + Ink TUI + CLI + hosts + ports). Queue \`pushed_at\` 2026-06-22 (nightly/metadata push; tree still one commit). No follow-up features in git.
+
+![Commit arc](/blog/devhost-ink-tui-caddy-port80-multihost/screenshots/commit-arc.png)
+
+## Why
+
+Port roulette does not scale past three apps. A marker-bounded hosts block + one Caddyfile + a TUI that knows PIDs is the boring operator loop I actually run. HTTP on :80 is intentional — this is not the Clerk-friendly HTTPS path (that's bundx-init).
+
+**Engagement Q:** Do you want a TUI that owns \`/etc/hosts\` + Caddy :80 — or a one-shot installer that patches each Next repo for HTTPS \`.localhost\`?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:connectedin-mv3-linkedin-auto-connect-chrome-extension",
+    title: "ConnectedIn: MV3 LinkedIn auto-connect Chrome extension",
+    slug: "connectedin-mv3-linkedin-auto-connect-chrome-extension",
+    excerpt:
+      "Public michaelmonetized/ConnectedIn is a Manifest V3 Chrome extension that auto-clicks LinkedIn Connect buttons with configurable 100\u20135000ms delays, popup stats, chrome.storage.sync persistence, and a ~1,100 connects/week rate-limit warning. Same-afternoon 2-commit ship (init + INSTALL.md). HEAD a6236fa. Honest gaps: no content_scripts registration, missing images/icons. Not reaferral-chrome-extension scaffold, not buffer-cli.",
+    content: CONNECTEDIN_CONTENT,
+    coverImage: CONNECTEDIN_COVER,
+    tags: [
+      "connectedin",
+      "linkedin",
+      "chrome-extension",
+      "manifest-v3",
+      "auto-connect",
+      "content-script",
+      "popup",
+      "rate-limit",
+      "martech",
+      "michaelmonetized",
+      "hurleyus",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T10:50:00Z"),
+    readingTime: 1,
+  },
+
+  {
+    _id: "static:hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack",
+    title: "HurleyUS Agent SOP: Ship or shut up, OpenClaw memory layers, DHH gstack mandate",
+    slug: "hurleyus-sop-ship-or-shut-up-openclaw-dhh-gstack",
+    excerpt:
+      "Public single-file AGENT_SOP.md (548 lines, v1.0) for HurleyUS agents \u2014 Ship or shut up philosophy, ~/.openclaw/workspace memory layers, hard rules (no GitHub paid services, Next.js 16+, no CSS filter hacks, Clerk copy-button keys), Graphite stacked PRs, send-agent protocol, 9 lessons from production incidents. PR #2 adds DHH research-first + gstack-default + deployment discipline. 2 commits. HEAD c418e5e. Docs-only; language null. Not hurley-mission-control.",
+    content: HURLEYUS_SOP_CONTENT,
+    coverImage: HURLEYUS_SOP_COVER,
+    tags: [
+      "hurleyus-sop",
+      "agent-sop",
+      "openclaw",
+      "gstack",
+      "dhh",
+      "graphite",
+      "nextjs-16",
+      "convex",
+      "operations",
+      "hurleyus",
+      "agent-ops",
+      "standard-operating-procedure",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T10:40:00Z"),
+    readingTime: 3,
+  },
+
+  {
+    _id: "static:codemail-mail-config-as-code-founder-email-infra",
+    title: "codemail: mail.config.ts founder email \u2014 per-domain, not per-seat",
+    slug: "codemail-mail-config-as-code-founder-email-infra",
+    excerpt:
+      "Private michaelmonetized/codemail: Turborepo mail stack where mail.config.ts is law \u2014 Convex + Clerk + Resend + Fly SMTP + Next web mail/dashboard. Free Forever BYO keys / $8 Simple / $80 Managed. README still lists IMAP; PLAN marks IMAP out of MVP. Live codemail-web.vercel.app 200; codemail.vercel.app 500. 27 commits. HEAD e9fece4.",
+    content: CODEMAIL_CONTENT,
+    coverImage: CODEMAIL_COVER,
+    tags: [
+      "codemail",
+      "email",
+      "mail-config",
+      "infrastructure",
+      "convex",
+      "clerk",
+      "resend",
+      "smtp",
+      "nextjs",
+      "turborepo",
+      "founder",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T10:30:00Z"),
+    readingTime: 1,
+  },
+
+  {
+    _id: "static:svganimator-electron-to-canaveral-keyframe-export-studio",
+    title: "svganimator: Electron Svgator clone \u2192 Canaveral monorepo SVG keyframe studio",
+    slug: "svganimator-electron-to-canaveral-keyframe-export-studio",
+    excerpt:
+      "Public HurleyUS/svganimator: May 3 Electron Svgator-inspired animator + inspiration scrape; May 4 exports + migrate to Bun Canaveral monorepo. HEAD keeps package name canaveral but product identity SVG Animator \u2014 @canaveral/svg (963 LOC Zod schemas, svg/lottie/gif/mkv), TanStack web studio, Electron shell, Expo card. 13 commits. HEAD 86bb4a2. Not private HurleyUS/canaveral launch pad; not local draw-on Bun SVGanimator; not tsxsvg.",
+    content: SVGANIMATOR_CONTENT,
+    coverImage: SVGANIMATOR_COVER,
+    tags: [
+      "svganimator",
+      "svg",
+      "animation",
+      "keyframes",
+      "lottie",
+      "export",
+      "canaveral",
+      "bun",
+      "tanstack-start",
+      "tanstack-router",
+      "zustand",
+      "zod",
+      "electron",
+      "expo",
+      "resvg",
+      "blacksmith",
+      "freview",
+      "fallow",
+      "hurleyus",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T10:25:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:devhost-ink-tui-caddy-port80-multihost",
+    title: "devhost: Ink TUI + Caddy :80 multi-project .localhost manager",
+    slug: "devhost-ink-tui-caddy-port80-multihost",
+    excerpt:
+      "Private michaelmonetized/devhost is a Bun+Ink host manager: sequential ports from 3001, /etc/hosts DEVHOST markers, Caddy :80 reverse_proxy to each project, start/stop/open lifecycle + TUI. 1 commit (+1426). HEAD db69995. Live config still lists bestwnc-com.localhost. Distinct from bundx-init HTTPS Next patcher.",
+    content: DEVHOST_CONTENT,
+    coverImage: DEVHOST_COVER,
+    tags: [
+      "devhost",
+      "caddy",
+      "ink",
+      "tui",
+      "bun",
+      "localhost",
+      "local-dev",
+      "reverse-proxy",
+      "hosts-file",
+      "cli",
+      "react",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T10:20:00Z"),
+    readingTime: 1,
+  },
+
   {
     _id: "static:milkup-tiptap-convex-wysiwyg-stale-milkdown-readme",
     title: "milkup: TipTap+Convex WYSIWYG that still ships a Milkdown README",
