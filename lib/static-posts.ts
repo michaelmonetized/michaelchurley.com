@@ -3836,7 +3836,169 @@ Because deleting the C/SDL pile is a product decision. Because Pipe.scored is mo
 **Engagement Q:** Keep the pure-bash platformer beside Ink Flappy, or split so the README stops lying by omission?
 `;
 
+const REDACTTHING_COVER =
+  "/blog/redactthing-streamer-pii-mv3-jquery-ghost-iframe-gap/cover.png";
+
+const REDACTTHING_CONTENT = `![Five redaction modes](/blog/redactthing-streamer-pii-mv3-jquery-ghost-iframe-gap/screenshots/modes-matrix.png)
+
+## Who
+
+I stream. Inboxes and admin UIs leak emails and phones the second the browser is shared. I wanted one extension click that covers PII without waiting for every site to grow a privacy mode.
+
+## What
+
+Public **michaelmonetized/redactthing** · Chrome MV3 · extension **0.0.1** · HEAD \`5c4661c\` · **7** commits. Modes: redact / blur / mask / hide / show. Email + phone regex + custom lines. MutationObserver tree walk. Popup **Redact Now**. \`chrome.storage.sync\` settings. package.json says MIT 1.0.0; \`LICENSE.md\` is GPL-3.0. \`jquery.js\` (~84KB) still in \`content_scripts\` with zero \`$()\` usage after the Jun 22 vanilla rewrite. hustlelaunch.com/redactthing **404**. \`ROADMAP.md\` describes document/PDF SaaS; \`PLAN.md\` matches the extension.
+
+![Settings + popup](/blog/redactthing-streamer-pii-mv3-jquery-ghost-iframe-gap/screenshots/settings-popup.png)
+
+![jQuery ghost](/blog/redactthing-streamer-pii-mv3-jquery-ghost-iframe-gap/screenshots/jquery-ghost.png)
+
+![Google Sites iframe gap](/blog/redactthing-streamer-pii-mv3-jquery-ghost-iframe-gap/screenshots/iframe-gap.png)
+
+## Where
+
+github.com/michaelmonetized/redactthing (public). Unpacked \`src/\`. No CWS. No demo host. hustlelaunch.com root is live; \`/redactthing\` is not.
+
+![Commit arc](/blog/redactthing-streamer-pii-mv3-jquery-ghost-iframe-gap/screenshots/commit-arc.png)
+
+## When
+
+2024-08-21 init · 2024-08-23 Google Sites iframe commit · 2026-01-31 sync (+ STRIPE.md) · 2026-02-27 package.json · 2026-06-22 nightly rewrite \`7881d00\` · empty nightly HEAD \`5c4661c\` same day.
+
+![ROADMAP irony](/blog/redactthing-streamer-pii-mv3-jquery-ghost-iframe-gap/screenshots/roadmap-irony.png)
+
+## Why
+
+Streamer PII is a content-script problem. The repo still ships the unused jQuery, the 404 lander, and a ROADMAP for a different product. The iframe limit is documented in a commit subject.
+
+**Engagement Q:** Vanilla MutationObserver already shipped — delete the jQuery ghost tonight, or carry 84KB into the store listing?
+`;
+
+const HUSTLEDESK_COVER =
+  "/blog/hustledesk-com-eight-dollar-helpdesk-lander-wordpress-domain/cover.png";
+
+const HUSTLEDESK_CONTENT = `![Home hero](/blog/hustledesk-com-eight-dollar-helpdesk-lander-wordpress-domain/screenshots/home-hero.png)
+
+## Who
+
+I keep a private GitHub org full of product shells. Some are real apps. Some are landers that talk like apps. Some claim a domain that answers something else entirely.
+
+For operators who need the honest split between a **$8/mo flat helpdesk marketing site** and the **WordPress parking page** currently living at hustledesk.com.
+
+## What
+
+I built **hustledesk-com** — private \`https://github.com/michaelmonetized/hustledesk-com\`. Next.js marketing shell. HEAD \`d446e97\`. **3** commits. 0 stars. package name \`hustledesk.com@0.1.0\`. README is **stock** create-next-app boilerplate.
+
+Stack facts from \`package.json\`: Next **16.2.6**, React **19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there — no Clerk, no Convex, no Stripe package, no IMAP/email inbound library.
+
+What the UI claims:
+
+- Hero: “Support tickets, **nothing more**.” Subhead inbox zero. Price line **$8/mo. Really.**
+- CTAs: **Start Free Trial** → \`https://app.hustledesk.com/signup\`, **See Features** → \`/features\`. Header **Sign in** → \`https://app.hustledesk.com/login\`.
+- Home **inbox mock**: Sarah Chen “Can't reset password” (SLA: 28m left), Mike Johnson, Emily Davis — chrome window, not a product screenshot.
+- Feature grid: Email Inbound, Ticket Inbox, Canned Responses, SLA Timers, Team Assignment, **HustleChat Integration**.
+- Competitor cards: Zendesk \`$55+\`, Freshdesk \`$18+\`, Help Scout \`$25+\` (per user) vs HustleDesk **\`$8\` flat · Unlimited users**.
+- Pricing: **one** plan — $8/month flat; team-of-5 table ends at Zendesk **$3,300/yr** vs HustleDesk **$96/yr** (“Save $3,204/year…”).
+- Brand sky: Tailwind \`--color-hustle-500 = #0ea5e9\` / \`600 = #0284c7\`.
+
+![Pricing flat $8](/blog/hustledesk-com-eight-dollar-helpdesk-lander-wordpress-domain/screenshots/pricing-flat.png)
+
+![Competitor table](/blog/hustledesk-com-eight-dollar-helpdesk-lander-wordpress-domain/screenshots/competitor-table.png)
+
+Real \`page.tsx\` routes: \`/\`, \`/features\`, \`/pricing\`, \`/docs\`.
+
+Linked but **missing in-repo**: \`/privacy\`, \`/terms\`, and the docs children (\`/docs/quick-start\`, \`/docs/email-forwarding\`, \`/docs/api\`, \`/docs/hustlechat\`, …). \`/docs\` is an index of cards pointing at pages that do not exist.
+
+![Docs dead links](/blog/hustledesk-com-eight-dollar-helpdesk-lander-wordpress-domain/screenshots/docs-dead-links.png)
+
+![Missing routes + app 301](/blog/hustledesk-com-eight-dollar-helpdesk-lander-wordpress-domain/screenshots/missing-routes.png)
+
+This is **not** \`hustlemail-com\` — that sibling is the **email-marketing** $8 lander (red \`#ef4444\`, Free/$8/$24, in-repo missing \`/signup\`). Different product claim. Different brand. Different honesty bug.
+
+## Where
+
+Code: [github.com/michaelmonetized/hustledesk-com](https://github.com/michaelmonetized/hustledesk-com) — private.
+
+Live probes at pack time:
+
+- \`hustledesk.com\` DNS A → **66.96.162.142**; HTTPS **200** WordPress PHP/7.4.33; title **Hustle Desk – Make extra income from the comfort of your home**; default “This is your front page” copy — **not** this Next helpdesk lander
+- \`www\` / \`app.hustledesk.com\` → same A; \`app\` **301** \`X-Redirect-By: WordPress\` → \`https://hustledesk.com/\`
+- \`hustledesk-com.vercel.app\` → **404** \`DEPLOYMENT_NOT_FOUND\`
+- \`hustledesk.vercel.app\` → unrelated Vite SPA (\`<title>hustledesk</title>\`)
+
+Local inspect clone: \`/tmp/cf-inspect/hustledesk-com\` @ \`d446e97\`.
+
+## When
+
+**2026-02-18 07:57 ET** — \`4439645\` feat: initial hustledesk.com marketing site (+2206 / 22 files).  
+**2026-06-22 17:23 ET** — \`b45b480\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).  
+**2026-06-22 18:14 ET** — \`d446e97\` nightly empty tip (HEAD).
+
+![Commit arc](/blog/hustledesk-com-eight-dollar-helpdesk-lander-wordpress-domain/screenshots/commit-arc.png)
+
+## Why
+
+Because a Zendesk-price lander still needs an auth surface that is not a WordPress 301. Because “Save $3,204/year” on a four-page private repo is table copy, not a billed product. Because hustlemail-com already told the $8 lander story for email marketing — this pack is the **helpdesk** twin with a **domain that answers something else**.
+
+**Engagement Q:** How many of your SaaS domains currently serve a default WordPress “Make extra income” front page while the Next lander never shipped?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:redactthing-streamer-pii-mv3-jquery-ghost-iframe-gap",
+    title: "redactthing: streamer PII Chrome extension that still ships unused jQuery and a 404 lander",
+    slug: "redactthing-streamer-pii-mv3-jquery-ghost-iframe-gap",
+    excerpt:
+      "Public michaelmonetized/redactthing is a Manifest V3 Chrome extension for streamers: one-click redact/blur/mask/hide of emails, phones, and custom PII via MutationObserver. HEAD 5c4661c. 7 commits. June 22 nightly rewrote foreground.js to vanilla JS \u2014 jquery.js stays in the manifest unused. Google Sites fails on iframe piles. hustlelaunch.com/redactthing 404s. ROADMAP describes a different product.",
+    content: REDACTTHING_CONTENT,
+    coverImage: REDACTTHING_COVER,
+    tags: [
+      "redactthing",
+      "chrome-extension",
+      "manifest-v3",
+      "privacy",
+      "pii",
+      "streaming",
+      "mutation-observer",
+      "jquery",
+      "google-sites",
+      "hustlelaunch",
+      "michaelmonetized"
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T07:10:00Z"),
+    readingTime: 1,
+  },
+
+  {
+    _id: "static:hustledesk-com-eight-dollar-helpdesk-lander-wordpress-domain",
+    title: "hustledesk.com: $8 flat helpdesk lander vs WordPress domain",
+    slug: "hustledesk-com-eight-dollar-helpdesk-lander-wordpress-domain",
+    excerpt:
+      "Private Next 16 marketing shell for HustleDesk \u2014 Zendesk/Freshdesk/Help Scout comparison, single $8/mo flat unlimited-users plan, inbox mock UI, docs index of dead child links. Auth CTAs point at app.hustledesk.com which redirects to a parked WordPress front page (\u201cMake extra income from the comfort of your home\u201d). Stock create-next-app README. 3 commits. HEAD d446e97. Not a live helpdesk product.",
+    content: HUSTLEDESK_CONTENT,
+    coverImage: HUSTLEDESK_COVER,
+    tags: [
+      "hustledesk-com",
+      "hustledesk",
+      "helpdesk",
+      "zendesk-alternative",
+      "support-tickets",
+      "marketing-site",
+      "nextjs",
+      "tailwind",
+      "pricing",
+      "wordpress",
+      "lander",
+      "michaelmonetized"
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T07:05:00Z"),
+    readingTime: 3,
+  },
+
   {
     _id: "static:kitchen-cloud-native-project-store",
     title: "Kitchen: I built a cloud project store where files are rows and disk is a Mirror \u2014 no git",
