@@ -4926,7 +4926,277 @@ Because a picker that only filters hex forces me to already know the codepoint. 
 **Engagement Q:** Update README/PLAN to match the fuzzy+50k HEAD, or leave the stale 15k/hex story as a museum label next to the working binary?
 `;
 
+const MILKUP_COVER =
+  "/blog/milkup-tiptap-convex-wysiwyg-stale-milkdown-readme/cover.png";
+
+const MILKUP_CONTENT = `## Who
+
+I needed a drop-in editor for HustleLaunch client blogs — toolbar clicks instead of markdown homework, paste from Google Docs, and a media picker that doesn't dump files into \`/public\` forever.
+
+For operators who already run Convex and Next and want the HTML model to keep emitting clean markdown behind the scenes.
+
+## What
+
+I built **milkup** — public https://github.com/michaelmonetized/milkup. HEAD \`45fb587\`. **9** commits. **0** stars / **1** fork. Default **master**. Version **0.1.0**. Local Next app only.
+
+**Hour zero (\`fea1956\`, 06:03 ET):** Milkdown + Convex media picker + \`lib/milkdown-video-plugin.ts\` custom \`!video[alt](url)\` path.
+
+**Two minutes later (\`d73d1f9\`):** strip Convex, ship \`MOCK_MEDIA\`, keep the textarea POC honest.
+
+**README (\`91fa36f\`):** locks the public story on Next.js **15** / React **18** / Milkdown / mock library / \`!video[]()\` — and that file never got another commit.
+
+![README vs HEAD](/blog/milkup-tiptap-convex-wysiwyg-stale-milkdown-readme/screenshots/readme-head-gap.png)
+
+**Pivot (\`35c109f\`, 06:32):** TipTap \`RichEditor\` + \`Toolbar\` + \`html-to-markdown\` / \`markdown-it\` converters + Convex \`Providers\` back in. \`EditorPage\` subtitle says "WYSIWYG editor with TipTap + Convex media storage."
+
+**CVE pin (\`e11562e\`):** React **19** + Next **14.2** because BUILDPLAN bans Next 15.x / React 18.x.
+
+**Next 16 (\`9b7b0e6\`, 06:48):** jump to \`next\` ^16 "Vercel-ready" — BUILDPLAN stack blurb still says Next 15 + React 18 in places.
+
+**Opus QA (\`45fb587\`, 06:59) → HEAD:** delete leftover \`milkdown-video-plugin.ts\`, ESLint config, MediaPicker tidy.
+
+![Stack @ HEAD](/blog/milkup-tiptap-convex-wysiwyg-stale-milkdown-readme/screenshots/stack-head.png)
+
+Residue that matters:
+
+- \`handleMediaSelect\` inserts \`![Video](url)\` for videos — custom \`!video[]()\` is documentation only.
+- \`convex/media.ts\` is **queries only** (\`listMedia\`, \`listMediaByType\`). ARCHITECTURE still diagrams \`uploadFile\` / \`registerMedia\`.
+- \`MediaPicker\` empty state: "No media found. Upload some first!" with nowhere to upload.
+- \`providers.tsx\` falls back to \`https://your-deployment.convex.cloud\`.
+
+![Media picker empty](/blog/milkup-tiptap-convex-wysiwyg-stale-milkdown-readme/screenshots/media-picker-empty-convex.png)
+
+![Video syntax lost](/blog/milkup-tiptap-convex-wysiwyg-stale-milkdown-readme/screenshots/video-syntax-lost.png)
+
+## Where
+
+Code: [github.com/michaelmonetized/milkup](https://github.com/michaelmonetized/milkup) — public. No live product URL.
+
+\`\`\`bash
+git clone https://github.com/michaelmonetized/milkup.git
+cd milkup
+bun install
+# set NEXT_PUBLIC_CONVEX_URL in .env.local
+bunx next dev
+\`\`\`
+
+Open http://localhost:3000 — TipTap left, raw markdown right, Insert Media opens the Convex modal.
+
+## When
+
+**2026-03-25 06:03–06:59 ET** — entire arc on one afternoon.
+
+| SHA | Clock | Beat |
+|---|---|---|
+| \`fea1956\` | 06:03 | Milkdown + Convex + video plugin |
+| \`d73d1f9\` | 06:05 | Mock strip |
+| \`91fa36f\` | 06:06 | README (frozen face) |
+| \`30ff01a\` | 06:25 | BUILDPLAN + ARCHITECTURE |
+| \`35c109f\` | 06:32 | TipTap + Convex return |
+| \`e11562e\` | 06:33 | React19 + Next14.2 |
+| \`c28d8d5\` | 06:35 | CONVEX_SETUP |
+| \`9b7b0e6\` | 06:48 | Next.js 16 |
+| \`45fb587\` | 06:59 | Opus QA → HEAD |
+
+Queue \`pushed_at\` 2026-03-25T10:59:17Z.
+
+![Commit arc](/blog/milkup-tiptap-convex-wysiwyg-stale-milkdown-readme/screenshots/commit-arc.png)
+
+## Why
+
+Because client editors fail when the truth lives in TipTap and the README still teaches Milkdown. Because a media picker that can only \`listMedia\` is a museum of intent. Because CVE notes and a Next 16 bump in the same hour are how a POC ages in public.
+
+**Engagement Q:** Rewrite README to TipTap+Next16+queries-only truth, or keep the Milkdown museum label and finish the upload mutations ARCHITECTURE already drew?
+`;
+
+const NOTION_CLI_COVER =
+  "/blog/notion-cli-openclaw-skill-crud-markdown-property-filter/cover.png";
+
+const NOTION_CLI_CONTENT = `## Who
+
+I wanted agents to talk to Notion without a scrape wrapper and without pasting JSON into the wrong curl.
+
+For OpenClaw / Claude Code workflows that need db/page/block CRUD, property-filtered page lists, and Markdown out of page content.
+
+## What
+
+I built **notion-cli** — public https://github.com/michaelmonetized/notion-cli. HEAD \`5309974\`. **1** commit. **0** stars. Default **main**. Version **1.0.0** (CLI banner still says **v2.0.0**). CLI / agent skill only.
+
+**Shipped (~1145 LOC src):** \`notion db|page|pages|block|search|spaces\` via Bun + @notionhq/client v3. Vitest + Biome. \`bun build --compile\` → \`dist/notion\`.
+
+![CLI subcommands](/blog/notion-cli-openclaw-skill-crud-markdown-property-filter/screenshots/cli-subcommands.png)
+
+![Agent skill install](/blog/notion-cli-openclaw-skill-crud-markdown-property-filter/screenshots/agent-skill-install.png)
+
+**Agent path:** \`./setup\` → OpenClaw \`~/.openclaw/workspace/bin/notion\` or \`./setup --host codex\` → \`~/.claude/skills/notion\`. Full command reference in **SKILL.md**.
+
+**Filters + Markdown:** \`pages list <db> -p "Name,Tags"\` / \`-n "Status"\`; \`page content <id>\` → block-to-Markdown.
+
+![Docs vs HEAD](/blog/notion-cli-openclaw-skill-crud-markdown-property-filter/screenshots/docs-vs-head-gap.png)
+
+**Gaps:** package 1.0.0 vs banner v2.0.0; DELIVERY/FINAL-DELIVERY still flat \`list-databases\`; unused \`spaces.ts\`/\`page.ts\`/\`search.ts\` modules; \`spaces list\` aliases db list; orphan empty postcss.config.js.
+
+![Architecture](/blog/notion-cli-openclaw-skill-crud-markdown-property-filter/screenshots/architecture-stack.png)
+
+## Where
+
+Code: https://github.com/michaelmonetized/notion-cli — public. No live web app.
+
+Run: \`export NOTION_API_KEY=…\` && \`bun install\` && \`bun build src/cli.ts --compile --outfile dist/notion\` (or \`./setup\`).
+
+## When
+
+**2026-03-28** — 5309974 Initial commit: production-ready Notion CLI (+29 files) → HEAD.
+
+## Why
+
+![Commit arc](/blog/notion-cli-openclaw-skill-crud-markdown-property-filter/screenshots/commit-arc.png)
+
+Because agents need a typed Notion subcommand surface with Markdown out — not another unofficial scrape.
+**Engagement Q:** Align package + banner to 1.0.0 and delete flat-command DELIVERY docs, or finish a real spaces API first?
+`;
+
+const CANAVERAL_COVER =
+  "/blog/canaveral-bun-tanstack-start-web-desktop-mobile-caddy/cover.png";
+
+const CANAVERAL_CONTENT = `## Who
+
+I keep starting the same product spine: TanStack Start web, Electron shell, Expo screen, shared Zod/forms/state, Clerk–Convex–Stripe–Resend–Sentry–PostHog wiring — then re-deriving Caddy HTTPS and the lint gate.
+
+For operators who want that monorepo launch pad as one private repo, not an empty hustlestack husk.
+
+## What
+
+I built **Canaveral** — private https://github.com/HurleyUS/canaveral. HEAD \`df2c041\`. **11** commits. Version **0.1.0**. Bun **1.3.1** workspaces: web (TanStack Start), desktop (Electron), mobile (Expo), pub, shared/*.
+
+![Workspace map](/blog/canaveral-bun-tanstack-start-web-desktop-mobile-caddy/screenshots/workspace-map.png)
+
+Starter home: waitlist (RHF+Zod client parse), launch checklist (Zustand), Test Resend/Stripe via createServerFn. Lazy Clerk when key present. Caddy in-repo: \`https://canaveral.localhost\` port **5337**.
+
+![Caddy localhost](/blog/canaveral-bun-tanstack-start-web-desktop-mobile-caddy/screenshots/caddy-localhost.png)
+
+house-checks ban any/unknown and useEffect/useState. gate.mts runs ten checks including ~/bin/freview. Blacksmith CI ends with freview --ci. REVIEW.md 1003 lines / six sections.
+
+![Gate + freview](/blog/canaveral-bun-tanstack-start-web-desktop-mobile-caddy/screenshots/gate-freview.png)
+
+Gaps: package.json lint is oxlint-only while AGENTS.md sells Biome→house→freview; five OPEN manifesto issues still want loaders/useActionState/hydration fixes.
+
+## Where
+
+Code: [github.com/HurleyUS/canaveral](https://github.com/HurleyUS/canaveral) — private. No public deploy.
+
+\`\`\`bash
+bun install && cp .env.example .env && bun run env:check && bun run dev
+# → https://canaveral.localhost (Vite :5337 behind Caddy)
+\`\`\`
+
+## When
+
+**2026-05-04** — init (+6074). **2026-05-14** — Blacksmith×7 + FReview RN observability + formatter → HEAD df2c041. **2026-06-09** — five manifesto issues (still OPEN). **2026-06-18** — queue pushed_at.
+
+![Commit arc](/blog/canaveral-bun-tanstack-start-web-desktop-mobile-caddy/screenshots/commit-arc.png)
+
+## Why
+
+A launch pad should know its localhost slug, env contract, and which gates fail before the first feature branch.
+
+**Engagement Q:** Web + desktop + mobile on day one — wire Caddy HTTPS, freview, or Convex SSR loaders first?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:milkup-tiptap-convex-wysiwyg-stale-milkdown-readme",
+    title: "milkup: TipTap+Convex WYSIWYG that still ships a Milkdown README",
+    slug: "milkup-tiptap-convex-wysiwyg-stale-milkdown-readme",
+    excerpt:
+      "Public michaelmonetized/milkup: same-day 9-commit arc (2026-03-25). Milkdown+Convex POC \u2192 mock strip \u2192 TipTap WYSIWYG + Convex listMedia \u2192 React19/Next14.2 CVE pin \u2192 Next16 \u2192 Opus QA deletes milkdown-video-plugin. README still markets Next15/Milkdown/MOCK_MEDIA/!video[](). HEAD 45fb587. Video insert is ![Video](url). No upload mutations.",
+    content: MILKUP_CONTENT,
+    coverImage: MILKUP_COVER,
+    tags: [
+      "milkup",
+      "tiptap",
+      "wysiwyg",
+      "convex",
+      "nextjs",
+      "react",
+      "markdown",
+      "html-to-markdown",
+      "media-picker",
+      "milkdown",
+      "typescript",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T10:10:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:notion-cli-openclaw-skill-crud-markdown-property-filter",
+    title: "notion-cli: OpenClaw/Claude Code Notion API skill \u2014 CRUD, filters, Markdown",
+    slug: "notion-cli-openclaw-skill-crud-markdown-property-filter",
+    excerpt:
+      "Public michaelmonetized/notion-cli: Bun/TS Notion API CLI for agents \u2014 db/page/pages/block/search subcommands, -p/-n property filters, page\u2192Markdown, SKILL.md + setup for OpenClaw/Codex. package 1.0.0 vs banner v2.0.0; DELIVERY still flat list-databases; spaces/page/search modules unused by cli. 1 commit. HEAD 5309974.",
+    content: NOTION_CLI_CONTENT,
+    coverImage: NOTION_CLI_COVER,
+    tags: [
+      "notion-cli",
+      "notion",
+      "cli",
+      "typescript",
+      "bun",
+      "openclaw",
+      "claude-code",
+      "agent",
+      "markdown",
+      "skill",
+      "crud",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T10:00:00Z"),
+    readingTime: 1,
+  },
+
+  {
+    _id: "static:canaveral-bun-tanstack-start-web-desktop-mobile-caddy",
+    title: "Canaveral: Bun TanStack Start launch pad \u2014 web, Electron, Expo, Caddy",
+    slug: "canaveral-bun-tanstack-start-web-desktop-mobile-caddy",
+    excerpt:
+      "Private HurleyUS/canaveral is a Bun monorepo launch pad: TanStack Start web + Electron + Expo + pub + shared packages, Caddy https://canaveral.localhost:5337 path, Clerk/Convex/Resend/Stripe/PostHog/Sentry stubs, house-checks + freview gate. 11 commits. HEAD df2c041. Not hustlestack husks, not freview itself, not bundx-init.",
+    content: CANAVERAL_CONTENT,
+    coverImage: CANAVERAL_COVER,
+    tags: [
+      "canaveral",
+      "tanstack-start",
+      "tanstack-router",
+      "bun",
+      "monorepo",
+      "caddy",
+      "localhost",
+      "electron",
+      "expo",
+      "clerk",
+      "convex",
+      "stripe",
+      "resend",
+      "sentry",
+      "posthog",
+      "biome",
+      "tsgo",
+      "freview",
+      "fallow",
+      "blacksmith",
+      "hurleyus",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T09:55:00Z"),
+    readingTime: 1,
+  },
+
   {
     _id: "static:nfglyph-bun-ansi-nerd-font-picker-linux-quit",
     title: "nfglyph: Bun raw-ANSI Nerd Font picker \u2014 fuzzy names, Linux quit fixed",
