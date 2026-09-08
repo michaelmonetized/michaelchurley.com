@@ -7035,7 +7035,7 @@ export const staticPosts: StaticPost[] = [
     title: "hustlecrm.com: $8/user CRM lander vs legacy PHP login domain",
     slug: "hustlecrm-com-eight-per-user-crm-lander-legacy-php-domain",
     excerpt:
-      "Private Next 16 marketing shell for HustleCRM (HEAD 2c50bbb, 3 commits): HubSpot/Pipedrive/Salesforce comparison, $8/user/mo Pro + 14-day free trial, Kanban demo chrome, docs/API cards with href=#. Live hustlecrm.com still serves a 2023 Bootstrap PHP login; Vercel aliases 404."#\". Auth CTAs are dead anchors. Live hustlecrm.com is a Bootstrap+PHPSESSID login form posting to scripts/login.php (title \u201cHustle CRM!\u201d), not this Next lander. Stock create-next-app README. 3 commits. HEAD 2c50bbb. Not a live CRM product.",
+      "Private Next 16 marketing shell for HustleCRM (HEAD 2c50bbb, 3 commits): HubSpot/Pipedrive/Salesforce comparison, $8/user/mo Pro + 14-day free trial, Kanban demo chrome, docs/API cards with hash hrefs. Live hustlecrm.com still serves a 2023 Bootstrap PHP login; Vercel aliases 404.",
     content: HUSTLECRM_CONTENT,
     coverImage: HUSTLECRM_COVER,
     tags: [
