@@ -2122,35 +2122,33 @@ const DJSIDETHREE_CONTENT = `![DJ Side Three homepage hero](/blog/djsidethree-wn
 
 ## Who
 
-I wanted a wedding DJ site for Western North Carolina that did not hide the price behind “request a quote” theater.
+I wanted a wedding DJ site for Western North Carolina that put package prices on the page instead of hiding them behind “request a quote.”
 
 Couples in Asheville, Boone, and Highlands still get Instagram DMs and PDF menus. I wanted a one-pager: soundtrack promise up top, three packages with numbers, availability form at the bottom, admin board for whoever answers the phone.
 
-This is for engaged couples shopping entertainment, for venues that need a link that is not a Linktree, and for operators who will ship Convex inquiries before they cosplay a full SaaS auth stack.
-
-If you build local-service Next apps and have watched Clerk + CAPTCHA + Sentry take down a marketing page with a 500, you are in the room.
+This is for engaged couples shopping entertainment, for venues that need a real link, and for operators who will ship Convex inquiries before they mount a full SaaS auth stack on a marketing page.
 
 ## What
 
 Live at [djsidethree.com](https://www.djsidethree.com/). Private repo [HurleyUS/djsidethree.com](https://github.com/HurleyUS/djsidethree.com). Package **djsideThree** **0.1.0**, Bun, Next.js **16.2.6**, React 19, Tailwind 4, purple/pink on black.
 
-Lockfile reality: Convex, Resend, PostHog, Stripe, Phosphor, Zod, React Hook Form, next-themes. README still lists Clerk/Sentry/Radix from the scaffold era — those got cut or never shipped in the live tree.
+Lockfile reality: Convex, Resend, PostHog, Stripe, Phosphor, Zod, React Hook Form, next-themes. README still lists Clerk/Sentry/Radix from the scaffold era. Those got cut or never shipped in the live tree.
 
-![Services — ceremony, reception, lighting](/blog/djsidethree-wnc-wedding-dj-funnel-after-clerk-cut/screenshots/services.png)
+![Services. ceremony, reception, lighting](/blog/djsidethree-wnc-wedding-dj-funnel-after-clerk-cut/screenshots/services.png)
 
 What the page actually sells:
 
-- **Ceremony** from **$500** — sound, two wireless mics, prelude/processional/recessional, officiant coordination
-- **Reception** from **$1,200** (Most Popular) — four-hour DJ, lighting, MC, requests, cocktail hour, backup gear
-- **Full Day** from **$1,500** — ceremony + reception, up to eight hours, upgraded lighting, rehearsal/timeline help
+- **Ceremony** from **$500**. sound, two wireless mics, prelude/processional/recessional, officiant coordination
+- **Reception** from **$1,200** (Most Popular). four-hour DJ, lighting, MC, requests, cocktail hour, backup gear
+- **Full Day** from **$1,500**. ceremony + reception, up to eight hours, upgraded lighting, rehearsal/timeline help
 
 ![Wedding packages $500 / $1200 / $1500](/blog/djsidethree-wnc-wedding-dj-funnel-after-clerk-cut/screenshots/packages.png)
 
-Inquiry path: \`#contact\` form → Zod client validation → Convex \`inquiries.create\` (future date check, normalize email, **3/email/hour** server rate limit, Resend notification schedule). Client also throttles resubmits to 60 seconds. Testimonials pull approved Convex rows or fall back to three static couple quotes. \`/admin\` shows New / Contacted / Booked / Total — on 2026-09-08 capture: all zeros and skeleton rows (no live inquiry data in that session).
+Inquiry path: \`#contact\` form to Zod client validation to Convex \`inquiries.create\` (future date check, normalize email, **3/email/hour** server rate limit, Resend notification schedule). Client also throttles resubmits to 60 seconds. Testimonials pull approved Convex rows or fall back to three static couple quotes. \`/admin\` shows New / Contacted / Booked / Total. On 2026-09-08 capture: all zeros and skeleton rows (no live inquiry data in that session).
 
 ![Check Availability inquiry form](/blog/djsidethree-wnc-wedding-dj-funnel-after-clerk-cut/screenshots/contact.png)
 
-Honesty: hero claims **200+** weddings / **5.0** / **10+** years are marketing copy. Footer phone is \`(828) 555-0123\`. Stripe is a dependency and a Cursor rule, not a deposit checkout on the page. Clerk identity checks remain in Convex admin functions after the Clerk provider was removed — the admin board is not “secure by UI hope.”
+Honesty: hero claims **200+** weddings / **5.0** / **10+** years are marketing copy. Footer phone is \`(828) 555-0123\`. Stripe is a dependency and a Cursor rule, not a deposit checkout on the page. Clerk identity checks remain in Convex admin functions after the Clerk provider was removed. The admin board is not secure by UI hope.
 
 ## Where
 
@@ -2160,25 +2158,25 @@ Code stays private under HurleyUS. Host Vercel; Blacksmith/prebuilt CI path in M
 
 ## When
 
-**2026-01-08.** Scaffold Next + Convex + Tailwind. Same day: OPPORTUNITIES/PLAN, then **complete DJ landing MVP** — hero, services, packages, testimonials, contact — plus seed script, Resend path, and admin dashboard. That is the product surface.
+**2026-01-08.** Scaffold Next + Convex + Tailwind. Same day: OPPORTUNITIES/PLAN, then **complete DJ landing MVP**. hero, services, packages, testimonials, contact, plus seed script, Resend path, and admin dashboard. That is the product surface.
 
-**2026-02-06–13.** Next 16 / React 19, Tailwind v4 CSS import fix, Convex generated types, dark mode defaults, build/design-rule cleanup.
+**2026-02-06 to 13.** Next 16 / React 19, Tailwind v4 CSS import fix, Convex generated types, dark mode defaults, build/design-rule cleanup.
 
-**2026-02-21–22.** Hardening week: inquiry auth checks + validation, focus rings, label associations, mobile hamburger, skeletons, Phosphor instead of lucide, Zod + rate limiting, Turnstile CAPTCHA, Server Component extract for static sections, Clerk middleware on \`/admin\`.
+**2026-02-21-22.** Hardening week: inquiry auth checks + validation, focus rings, label associations, mobile hamburger, skeletons, Phosphor instead of lucide, Zod + rate limiting, Turnstile CAPTCHA, Server Component extract for static sections, Clerk middleware on \`/admin\`.
 
-**2026-02-27.** The plot twist: **\`fix: remove Clerk, Turnstile, and Sentry — fix production 500 error\`** (\`be461fc\`). Auth/CAPTCHA/error-tracking chrome was cheaper to delete than to keep misconfigured in prod.
+**2026-02-27.** Plot twist: **\`fix: remove Clerk, Turnstile, and Sentry, fix production 500 error\`** (\`be461fc\`). Auth/CAPTCHA/error-tracking chrome was cheaper to delete than to keep misconfigured in prod.
 
-**Late Feb → early March.** P1 security follow-ups, inquiry rate limit **3/email/hour**, env validation fail-fast.
+**Late Feb to early March.** P1 security follow-ups, inquiry rate limit **3/email/hour**, env validation fail-fast.
 
-**May.** Seven “Standardize Blacksmith CI gates” commits plus deploy URL verification — CI theater, little marketing surface change.
+**May.** Seven “Standardize Blacksmith CI gates” commits plus deploy URL verification. CI theater, little marketing surface change.
 
-**2026-08-08.** HEAD \`2c804ad\` — robots index/follow header. Forty-three commits on the clock.
+**2026-08-08.** HEAD \`2c804ad\`. robots index/follow header. Forty-three commits on the clock.
 
 ## Why
 
 A wedding DJ site that hides price and inquiry behind “book a call” is a brochure. I wanted packages and a form in production first.
 
-When Clerk + Turnstile + Sentry 500’d the marketing page, I cut them. Zod, rate limits, Phosphor, and the Convex inquiry shape stayed. Deposits and real admin auth can earn their way back — the soundtrack page should not die for missing keys.
+When Clerk + Turnstile + Sentry 500’d the marketing page, I cut them. Zod, rate limits, Phosphor, and the Convex inquiry shape stayed. Deposits and real admin auth can earn their way back. The soundtrack page should not die for missing keys.
 
 Would you keep an unprotected \`/admin\` board after ripping Clerk, or is a single shared secret / Convex auth identity the next Saturday morning?
 `;
@@ -2631,21 +2629,19 @@ If you were standing at 610 Main tonight, which plate would you order before the
 const SANTABOX_COVER =
   "/blog/santabox-charity-lootbox-rebuild/cover.png";
 
-const SANTABOX_CONTENT = `![SantaBox home — Christmas 2026 campaign](/blog/santabox-charity-lootbox-rebuild/screenshots/home.png)
+const SANTABOX_CONTENT = `![SantaBox home. Christmas 2026 campaign](/blog/santabox-charity-lootbox-rebuild/screenshots/home.png)
 
 ## Who
 
 I got tired of charity landers that look like Christmas and behave like a brochure.
 
-Toy drives need funding progress, not stock photography. Parents need a tax receipt path. Partners need an inquiry form that emails a human — not a carousel of invented 501(c)(3) logos. Operators who inherit a wrong-vertical Next scaffold need an autopsy that says the quiet part: this README used to be BestWNC.
+Toy drives need funding progress. Parents need a tax receipt path. Partners need an inquiry form that emails a human. Operators who inherit a wrong-vertical Next scaffold need an autopsy that says the quiet part: this README used to be BestWNC.
 
 SantaBox is for people funding age-tagged gift boxes before December 15 delivery cutoffs, and for builders who will delete fake partner names when legal risk shows up in a commit message.
 
-If you have ever shipped a “verified nonprofit” badge with no EIN in the repo, you are in the room.
-
 ## What
 
-I built **SantaBox.org** — package \`santabox.org\`, version **0.1.0**, private under **HurleyUS/santabox.org**. Metadata line: *Christmas Gift Boxes for Children in Need.* Campaign badge on the live hero: **Christmas 2026 Campaign Now Open.**
+I built **SantaBox.org**. Package \`santabox.org\`, version **0.1.0**, private under **HurleyUS/santabox.org**. Metadata line: *Christmas Gift Boxes for Children in Need.* Campaign badge on the live hero: **Christmas 2026 Campaign Now Open.**
 
 Stack facts from the lockfile and tree: **Next.js 16.1.6**, **React 19.2.4**, **Tailwind 4.1**, Bun, **Convex** schema for gift boxes / donations / donors / subscribers / nonprofits / partner inquiries / impact stories, **Clerk** (optional when keys missing), **Stripe** checkout + subscribe APIs, Resend, Sentry, PostHog. Forty-two commits. HEAD \`67712cb\`.
 
@@ -2655,23 +2651,23 @@ Donate presets: $25 stocking · $50 half box · $75 small · $100 full (default)
 
 ## Where
 
-Code stays private on GitHub. Product answers at **https://www.santabox.org** (apex 307→www) and the GitHub homepage URL **https://web-iota-topaz-45.vercel.app**. Both returned marketing **HTTP 200** with \`X-Robots-Tag: index, follow\` on pack day.
+Code stays private on GitHub. Product answers at **https://www.santabox.org** (apex 307 to www) and the GitHub homepage URL **https://web-iota-topaz-45.vercel.app**. Both returned marketing **HTTP 200** with \`X-Robots-Tag: index, follow\` on pack day.
 
-Routes that still 500 without service env: \`/impact\`, \`/subscribe\`, \`/create-wishlist\`. May 20 commits explicitly keep the public site up when service env is missing — the 500s are the other side of that bargain.
+Routes that still 500 without service env: \`/impact\`, \`/subscribe\`, \`/create-wishlist\`. May 20 commits explicitly keep the public site up when service env is missing. The 500s are the other side of that bargain.
 
 No \`public/\` directory in the tree. Layout still points at \`/og-image.png\` and favicons that are not on disk. Partners page now sells “Team Up with SantaBox” plus a grid of real team projects instead of invented orgs.
 
-![Partners — inquiry + project grid](/blog/santabox-charity-lootbox-rebuild/screenshots/partners.png)
+![Partners. inquiry + project grid](/blog/santabox-charity-lootbox-rebuild/screenshots/partners.png)
 
 ## When
 
-**January 8, 2026:** \`eebf7a1\` — Next.js, Convex, Tailwind scaffold. GitHub \`created_at\` is later (Feb 6). The clock and the hosting console do not owe each other an apology; the commit log does.
+**January 8, 2026:** \`eebf7a1\`. Next.js, Convex, Tailwind scaffold. GitHub \`created_at\` is later (Feb 6). The clock and the hosting console do not owe each other an apology; the commit log does.
 
 **February 6:** Next 16 / React 19 / Tailwind v4 import fix.
 
 **February 9:** Docs stop lying about BestWNC. Major rebuild commit lands the charity storytelling surface. Clerk becomes optional so builds survive missing keys. AUTOPSY.md records the crime scene: wrong layout title, empty Convex, dead buttons, wrong year, subscription-box confusion vs donation README.
 
-**February 13:** \`10377d8\` — remove fabricated nonprofit/sponsor data. Commit body names the liability. Replacement: partner inquiry form + Resend \`/api/partner-inquiry\` + project grid of confirmed live sites.
+**February 13:** \`10377d8\`. remove fabricated nonprofit/sponsor data. Commit body names the liability. Replacement: partner inquiry form + Resend \`/api/partner-inquiry\` + project grid of confirmed live sites.
 
 **February 15:** Stripe webhook + signature verification + donate button actually calls checkout.
 
@@ -2681,25 +2677,25 @@ No \`public/\` directory in the tree. Layout still points at \`/og-image.png\` a
 
 **May:** Blacksmith ship gates, Santabox typecheck fixes, deploy URL verification, public-site-without-service-env.
 
-**August 8, 2026 6:50 AM ET:** \`67712cb\` — X-Robots-Tag index, follow. HEAD. Forty-two commits.
+**August 8, 2026 6:50 AM ET:** \`67712cb\`. X-Robots-Tag index, follow. HEAD. Forty-two commits.
 
 ![Boxes browse](/blog/santabox-charity-lootbox-rebuild/screenshots/boxes.png)
 
 ## Why
 
-Because a Christmas charity site that still wears another product's metadata is worse than an unfinished one.
+A Christmas charity site that still wears another product's metadata is worse than an unfinished one.
 
-Because fabricated partner logos are not “placeholder content” — they are a lawsuit with good lighting.
+Fabricated partner logos are not placeholder content. They are a lawsuit with good lighting.
 
-Because dual honesty shows up here too: PLAN.md still lists Convex schema and Stripe as not started while \`convex/schema.ts\` and \`/api/checkout\` exist; AUTOPSY celebrates “production ready” with unchecked env boxes; homepage hardcodes \`statesReached: 42\` even on the live Convex path; marketing claims 501(c)(3) without an EIN file in-repo. Say the drift out loud.
+Dual honesty shows up here too: PLAN.md still lists Convex schema and Stripe as not started while \`convex/schema.ts\` and \`/api/checkout\` exist; AUTOPSY celebrates “production ready” with unchecked env boxes; homepage hardcodes \`statesReached: 42\` even on the live Convex path; marketing claims 501(c)(3) without an EIN file in-repo. Say the drift out loud.
 
-Because the money path is real enough to document: fee cover math, taxReceiptSent boolean, subscriber Stripe IDs, wishlist create client, box status enum \`pending → open → funded → shipped → delivered\`.
+The money path is real enough to document: fee cover math, taxReceiptSent boolean, subscriber Stripe IDs, wishlist create client, box status enum \`pending\` to \`open\` to \`funded\` to \`shipped\` to \`delivered\`.
 
-![Stories — Maya narrative](/blog/santabox-charity-lootbox-rebuild/screenshots/stories.png)
+![Stories. Maya narrative](/blog/santabox-charity-lootbox-rebuild/screenshots/stories.png)
 
 ![About](/blog/santabox-charity-lootbox-rebuild/screenshots/about.png)
 
-What would you delete first if you found another vertical's partner logos still living in your charity repo — the logos, or the launch date?
+What would you delete first if you found another vertical's partner logos still living in your charity repo: the logos, or the launch date?
 `;
 
 const SHIPTHING_COVER =
@@ -3419,71 +3415,71 @@ Because parallel Next apps on one port are a lie. Because Clerk and friends want
 const ORCLAWSTRATOR_COVER =
   "/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/cover.png";
 
-const ORCLAWSTRATOR_CONTENT = `![Orclawstrator TUI dashboard — projects, agents, branches, stacks](/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/screenshots/tui-dashboard.png)
+const ORCLAWSTRATOR_CONTENT = `![Orclawstrator TUI dashboard. projects, agents, branches, stacks](/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/screenshots/tui-dashboard.png)
 
 ## Who
 
-I wanted one keyboard surface for every AI coding agent I had running across \`~/Projects\` — not another Slack, not another browser tab of Vercel logs.
+I wanted one keyboard surface for every AI coding agent running across \`~/Projects\`. Slack tabs and Vercel log windows were the wrong shape for sessions, tokens, and dirty git state.
 
-Who this is for: operators with an OpenClaw Gateway on localhost who need sessions, tokens, and dirty git state in one place. Builders who will open both \`swift-appkit/\` and \`tui/\` and ask which runtime is the product. Readers who already know I have three differently named “mission / command center” repos and need the OpenClaw-specific one named aloud.
+Orclawstrator is for operators with an OpenClaw Gateway on localhost who need that portfolio strip in one place. It is also for anyone who opens both \`swift-appkit/\` and \`tui/\` and has to decide which runtime is the install path.
 
-If you have ever shipped a native Mac prototype in a weekend, then quietly made the terminal the recommended install path four months later — you are in the room.
+I keep three differently named mission / command center repos. This one is the OpenClaw Gateway story: \`ws://localhost:3377/ws\`. The others are separate products with separate stores.
 
 ## What
 
-I built **Orclawstrator** — public **michaelmonetized/orclawstrator**, bundle **0.1.0**, **8** commits, HEAD \`01d9a20\`. README one-liner: *Command center for orchestrating AI coding agents across your entire project portfolio.* Lobster branding. “Built with 🦞 by the OpenClaw ecosystem.” GitHub description field: empty.
+I built **Orclawstrator**. Public **michaelmonetized/orclawstrator**, bundle **0.1.0**, **8** commits, HEAD \`01d9a20\`. README one-liner: *Command center for orchestrating AI coding agents across your entire project portfolio.* Lobster branding. “Built with 🦞 by the OpenClaw ecosystem.” GitHub description field is empty.
 
-![Dual runtime — swift-appkit archived, tui recommended, shared cache.db](/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/screenshots/dual-runtime.png)
+![Dual runtime. swift-appkit archived, tui recommended, shared cache.db](/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/screenshots/dual-runtime.png)
 
 **Two UIs. One SQLite file.**
 
-1. **Swift AppKit** (path \`swift-appkit/\`, README: archived) — macOS 14+, Swift 5.9, Catppuccin chromeless window, dashboard table (agent, branches, stacks, untracked/staged, Vercel build), sidebar chat + inbox, project detail with **SwiftTerm** embedding nvim for README/PLAN/ROADMAP/CHANGELOG tabs, PR stack popover, branch checkout popup, Cmd+K quick switcher, menu-bar \`NSStatusItem\`, ErrorBanner. Services: \`ShellExecutor\`, \`GitService\`, \`GitHubService\` (\`gh … --json\`), \`GraphiteService\` (\`gt log short --stack\`), \`VercelService\` (\`vercel ls --yes\`), \`OpenClawService\` (REST + \`ws://host:port/ws\`), \`ProjectScanner\`, \`DatabaseManager\`.
+1. **Swift AppKit** (path \`swift-appkit/\`, README: archived). macOS 14+, Swift 5.9, Catppuccin chromeless window, dashboard table (agent, branches, stacks, untracked/staged, Vercel build), sidebar chat + inbox, project detail with **SwiftTerm** embedding nvim for README/PLAN/ROADMAP/CHANGELOG tabs, PR stack popover, branch checkout popup, Cmd+K quick switcher, menu-bar \`NSStatusItem\`, ErrorBanner. Services: \`ShellExecutor\`, \`GitService\`, \`GitHubService\` (\`gh … --json\`), \`GraphiteService\` (\`gt log short --stack\`), \`VercelService\` (\`vercel ls --yes\`), \`OpenClawService\` (REST + \`ws://host:port/ws\`), \`ProjectScanner\`, \`DatabaseManager\`.
 
-2. **Go TUI** (path \`tui/\`, README: recommended) — Go **1.21**, Charm **Bubble Tea** / Bubbles / Lipgloss, \`go-sqlite3\`, vim j/k/h/l, Nerd Font icons, dashboard + project detail + inbox views, \`make run\` / \`make install\` → binary \`orclawstrator\`. Module path still \`github.com/michaelcolletti/orclawstrator\`. Committed binary ~8.3MB in tree.
+2. **Go TUI** (path \`tui/\`, README: recommended). Go **1.21**, Charm **Bubble Tea** / Bubbles / Lipgloss, \`go-sqlite3\`, vim j/k/h/l, Nerd Font icons, dashboard + project detail + inbox views, \`make run\` / \`make install\` to binary \`orclawstrator\`. Module path still \`github.com/michaelcolletti/orclawstrator\`. Committed binary ~8.3MB in tree.
 
 Shared schema at \`~/.orclawstrator/cache.db\`: \`projects\`, \`sessions\`, \`messages\`, \`settings\`, \`recent_chats\`. Gateway host/port from settings (defaults **localhost:3377**).
 
 ![OpenClaw Gateway REST + WebSocket session/token path](/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/screenshots/openclaw-gateway.png)
 
-Tree irony: Swift is still ~210KB of source vs ~39KB Go — linguist says Swift; README says use the TUI. \`sitrep.md\` last updated 2026-02-09 still calls the AppKit stack Active Development ~85%. \`AUTOPSY.md\` calls the Feb patient RESUSCITATED / ship-worthy. PLAN.md still has open Phase 4–6 checkboxes that the Feb code partially answered.
+Swift is still ~210KB of source vs ~39KB Go. Linguist reports Swift. README says use the TUI. \`sitrep.md\` last updated 2026-02-09 still calls the AppKit stack Active Development ~85%. \`AUTOPSY.md\` calls the Feb patient RESUSCITATED / ship-worthy. PLAN.md still has open Phase 4-6 checkboxes that the Feb code partially answered.
 
-**Not** \`michaelmonetized/mission-control\` (p10k-style \`mc\` TUI, \`~/.hustlemc/\`, Phase 2 Fly/Claude SaaS scaffold). **Not** \`HurleyUS/hurley-mission-control\` (Clerk + Convex \`users.kind\` human|agent deliveries web).
+Name collision to avoid: \`michaelmonetized/mission-control\` is the p10k-style \`mc\` TUI under \`~/.hustlemc/\` with a Phase 2 Fly/Claude SaaS scaffold. \`HurleyUS/hurley-mission-control\` is the Clerk + Convex \`users.kind\` human|agent deliveries web app. Orclawstrator is the OpenClaw gateway portfolio strip only.
 
 ## Where
 
-Code: [github.com/michaelmonetized/orclawstrator](https://github.com/michaelmonetized/orclawstrator) — **public**, branch **main**. No dedicated homepage / Vercel lander.
+Code: [github.com/michaelmonetized/orclawstrator](https://github.com/michaelmonetized/orclawstrator). Public, branch **main**. No dedicated homepage / Vercel lander.
 
 ![AppKit chromeless Catppuccin dashboard (archived path)](/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/screenshots/appkit-dashboard.png)
 
 Local surfaces: \`cd tui && make run\` · \`cd swift-appkit && swift build\` · cache \`~/.orclawstrator/cache.db\` · Gateway \`http://localhost:3377\` + \`ws://…/ws\`. Optional CLIs: \`gh\`, \`gt\`, \`vercel\`, Nerd Font.
 
-Audience sits next to every multi-repo agent fleet that outgrew a single IDE chat panel — and next to my other two Mission Control names so the OpenClaw gateway story does not get stolen by the p10k TUI or the Convex comms plane.
+Audience sits with multi-repo agent fleets that outgrew a single IDE chat panel, and with anyone who needs the OpenClaw gateway pack named without stealing the p10k TUI or the Convex comms plane.
 
 ## When
 
-**2026-02-06** — Initial README + PLAN mockup. Same afternoon: AppKit prototype with dashboard + git. Same evening: MVP split view sidebar + dashboard.
+**2026-02-06.** Initial README + PLAN mockup. Same afternoon: AppKit prototype with dashboard + git. Same evening: MVP split view sidebar + dashboard.
 
-**2026-02-08** — Core services wired, project detail, SQLite persistence. Later: chromeless semi-transparent window, full-width status bars.
+**2026-02-08.** Core services wired, project detail, SQLite persistence. Later: chromeless semi-transparent window, full-width status bars.
 
-**2026-02-09** — SwiftTerm for proper nvim terminal emulation in markdown tabs. AUTOPSY / inbox / shortcuts / PR stack / menu bar wave lands in the patient chart.
+**2026-02-09.** SwiftTerm for proper nvim terminal emulation in markdown tabs. AUTOPSY / inbox / shortcuts / PR stack / menu bar wave lands in the patient chart.
 
-**2026-06-22** — \`nightly\`: move AppKit under \`swift-appkit/\`, add complete Go TUI + committed binary, flip README to TUI-recommended. Second \`nightly\` becomes HEAD \`01d9a20\` (18:15 ET). GitHub \`pushed_at\` 2026-06-22T22:15:42Z.
+**2026-06-22.** \`nightly\`: move AppKit under \`swift-appkit/\`, add complete Go TUI + committed binary, flip README to TUI-recommended. Second \`nightly\` becomes HEAD \`01d9a20\` (18:15 ET). GitHub \`pushed_at\` 2026-06-22T22:15:42Z.
 
-![Commit arc Feb sprint → Jun dual-runtime nightly](/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/screenshots/commit-arc.png)
+![Commit arc. Feb sprint to Jun dual-runtime nightly](/blog/orclawstrator-swift-appkit-to-go-tui-openclaw-gateway/screenshots/commit-arc.png)
 
 Eight commits. No post-June product commits in the log.
 
 ## Why
 
-Because OpenClaw needed a portfolio command surface that spoke Gateway sessions and tokens — not just git dirty counts.
+OpenClaw needed a portfolio command surface that spoke Gateway sessions and tokens, not just git dirty counts.
 
-Because I could prove the AppKit path in four days (SwiftTerm nvim tabs included) and still decide the install story operators would actually run was \`make install\` in a terminal.
+I proved the AppKit path in four days, SwiftTerm nvim tabs included, and still decided the install story operators would actually run was \`make install\` in a terminal.
 
-Because sharing \`~/.orclawstrator/cache.db\` across runtimes is the real monorepo bet; renaming folders under a \`nightly\` commit is how the bet got honest.
+Sharing \`~/.orclawstrator/cache.db\` across runtimes is the monorepo bet. Renaming folders under a \`nightly\` commit is how that bet got honest.
 
-Because saying “mission control” three times in my GitHub org without naming which one talks to \`ws://localhost:3377/ws\` is how readers get the wrong pack.
+Saying “mission control” three times in the org without naming which one talks to \`ws://localhost:3377/ws\` is how readers get the wrong pack.
 
-**Engagement Q:** When README recommends the Go TUI but linguist still reports Swift — which runtime owns the product title?
+When README recommends the Go TUI but linguist still reports Swift, which runtime owns the product title?
 `;
 
 const HUSTLEPAY_COVER =
@@ -6082,15 +6078,13 @@ const JENNINGSCUSTOMHOMES_CONTENT = `![Live home](/blog/jenningscustomhomes-post
 
 ## Who
 
-I still get the call after Bluehost malware: rebuild the marketing site, keep the builder’s phone ringing, and somehow put the work in git without committing \`wp-content\`.
+I still get the call after Bluehost malware: rebuild the marketing site, keep the builder’s phone ringing, and put the work in git without committing \`wp-content\`.
 
 Highlands / Cashiers luxury custom-home buyers need a gallery and a form. Operators need a checklist that survives a \`.gitignore\` that deletes the entire WordPress tree from the repo.
 
-If you have ever marked “Launched” while the NS records still say \`bluehost.com\`, you are in the room.
-
 ## What
 
-I keep **jenningscustomhomes** — public [Hustle-Launch/jenningscustomhomes](https://github.com/Hustle-Launch/jenningscustomhomes). HEAD \`ad1f91f\`. **5** commits. GitHub linguist empty. Tracked surface: **4** files.
+I keep **jenningscustomhomes**. Public [Hustle-Launch/jenningscustomhomes](https://github.com/Hustle-Launch/jenningscustomhomes). HEAD \`ad1f91f\`. **5** commits. GitHub linguist empty. Tracked surface: **4** files.
 
 ![Repo surface](/blog/jenningscustomhomes-post-malware-checklist-still-on-bluehost/screenshots/repo-surface-composite.png)
 
@@ -6100,7 +6094,7 @@ README truth: *Design a new website following a malware infection due to a lack 
 
 HEAD “Launched” flips nine boxes to \`[x]\`. Two stay honest: TrustIndex \`[-] // client does not have any reviews\`, and Send login details \`[-]\`.
 
-Live product **https://www.jenningscustomhomes.com** — WordPress **7.1**, Hello Elementor **3.5.1**, child theme **\`jch\` 2.0.0**, Elementor **4.2.4**, Elementor Pro **3.24.4**, Elementor Contact form (name / email / message). Contact block: 83 Village Walk Wy, Cashiers, NC 28717 · **828-743-2307** · sam@jenningscustomhomes.com.
+Live product **https://www.jenningscustomhomes.com**. WordPress **7.1**, Hello Elementor **3.5.1**, child theme **\`jch\` 2.0.0**, Elementor **4.2.4**, Elementor Pro **3.24.4**, Elementor Contact form (name / email / message). Contact block: 83 Village Walk Wy, Cashiers, NC 28717 · **828-743-2307** · sam@jenningscustomhomes.com.
 
 ![Still Bluehost](/blog/jenningscustomhomes-post-malware-checklist-still-on-bluehost/screenshots/still-bluehost-composite.png)
 
@@ -6108,42 +6102,42 @@ Pack-day DNS: **75.98.174.238**, NS **ns1/ns2.bluehost.com**, LiteSpeed, PHP **8
 
 ![Gaps](/blog/jenningscustomhomes-post-malware-checklist-still-on-bluehost/screenshots/gaps-composite.png)
 
-Honest gaps: \`G-85CPJ4D64C\` fires on about/contact/404 — **not** on homepage HTML. Checklist claims Rank Math; home surface shows core \`wp-sitemap.xml\` only (no rank-math assets observed). About **Partners** block is still lorem ipsum. Repo gitignore means the live stack is HTTP-observable only.
+Honest gaps: \`G-85CPJ4D64C\` fires on about/contact/404, and does not fire on homepage HTML. Checklist claims Rank Math; home surface shows core \`wp-sitemap.xml\` only (no rank-math assets observed). About **Partners** block is still lorem ipsum. Repo gitignore means the live stack is HTTP-observable only.
 
 ## Where
 
-Code: [github.com/Hustle-Launch/jenningscustomhomes](https://github.com/Hustle-Launch/jenningscustomhomes) — public, no license declared.
+Code: [github.com/Hustle-Launch/jenningscustomhomes](https://github.com/Hustle-Launch/jenningscustomhomes). Public, no license declared.
 
-Product: [www.jenningscustomhomes.com](https://www.jenningscustomhomes.com) — Cashiers / Highlands / Western NC custom luxury builder (marketing copy: in business since 2001).
+Product: [www.jenningscustomhomes.com](https://www.jenningscustomhomes.com). Cashiers / Highlands / Western NC custom luxury builder (marketing copy: in business since 2001).
 
 \`\`\`bash
 git clone https://github.com/Hustle-Launch/jenningscustomhomes.git
-# you get the checklist + gitignore — not wp-admin
+# you get the checklist + gitignore, not wp-admin
 \`\`\`
 
 ## When
 
-**2024-06-04 22:43 ET** — \`833a3eb\` init (.gitignore, empty README, workspace, SuperMaven recommend).
+**2024-06-04 22:43 ET.** \`833a3eb\` init (.gitignore, empty README, workspace, SuperMaven recommend).
 
-**22:47 ET** — \`323c90a\` empty “ready to launch” (same tree).
+**22:47 ET.** \`323c90a\` empty “ready to launch” (same tree).
 
-**2024-06-05 05:53 ET** — \`7f7964d\` checklist all open.
+**2024-06-05 05:53 ET.** \`7f7964d\` checklist all open.
 
-**06:30 ET** — \`e36678b\` preflight newline.
+**06:30 ET.** \`e36678b\` preflight newline.
 
-**2024-06-06 14:33 ET** — \`ad1f91f\` Launched → HEAD. Push \`2024-06-06T18:34:29Z\`.
+**2024-06-06 14:33 ET.** \`ad1f91f\` Launched to HEAD. Push \`2024-06-06T18:34:29Z\`.
 
-**2026-09-08** — pack day. Site live. Still Bluehost. Draft and assets only. Do not publish.
+**2026-09-08.** Pack day. Site live. Still Bluehost. Draft and assets only. Do not publish.
 
 ![Commit arc](/blog/jenningscustomhomes-post-malware-checklist-still-on-bluehost/screenshots/commit-arc-composite.png)
 
 ## Why
 
-Because a malware rebuild that never leaves the host that got infected is a different story than a platform migration — and the README still tells it.
+A malware rebuild that never leaves the host that got infected is a different story than a platform migration, and the README still tells it.
 
-Because a public repo that gitignores WordPress is an ops checklist, not a content dump — treat it like one.
+A public repo that gitignores WordPress is an ops checklist. Treat it like one, not like a content dump.
 
-Because checkboxes that leave TrustIndex and login handoff open are more honest than a fake green board.
+Checkboxes that leave TrustIndex and login handoff open are more honest than a fake green board.
 
 Would you move NS off Bluehost next, or fix homepage GA injection and kill the About Partners lorem first?
 `;
@@ -6234,7 +6228,7 @@ export const staticPosts: StaticPost[] = [
     title: "Jennings Custom Homes: post-malware WP rebuild checklist — still on Bluehost",
     slug: "jenningscustomhomes-post-malware-checklist-still-on-bluehost",
     excerpt:
-      "Public Hustle-Launch/jenningscustomhomes is a 4-file WordPress ops checklist (not a WP dump) for a Highlands/Cashiers NC luxury builder rebuild after Bluehost malware. Five commits Jun 4–6 2024; HEAD ad1f91f flips nine boxes to [x] and leaves TrustIndex + login details [-]. Live www.jenningscustomhomes.com still resolves to Bluehost LiteSpeed (75.98.174.238) — Hello Elementor + jch child, Elementor 4.2.4/Pro 3.24.4, WP 7.1. Honest gaps: GA on inner pages not home, Rank Math claimed vs core sitemap, About Partners still lorem.",
+      "Public Hustle-Launch/jenningscustomhomes is a 4-file WordPress ops checklist for a Highlands/Cashiers NC luxury builder rebuild after Bluehost malware. Five commits Jun 4-6 2024; HEAD ad1f91f flips nine boxes to [x] and leaves TrustIndex plus login details open. Live www.jenningscustomhomes.com still resolves to Bluehost LiteSpeed at 75.98.174.238.",
     content: JENNINGSCUSTOMHOMES_CONTENT,
     coverImage: JENNINGSCUSTOMHOMES_COVER,
     tags: [
@@ -7404,7 +7398,7 @@ export const staticPosts: StaticPost[] = [
     title: "orclawstrator: I built the OpenClaw command center in Swift, then archived it for a Go TUI",
     slug: "orclawstrator-swift-appkit-to-go-tui-openclaw-gateway",
     excerpt:
-      "Orclawstrator is the dual-runtime OpenClaw agent command center: Feb 2026 Swift AppKit + SQLite + Gateway WS on :3377, then a Jun nightly that archived AppKit under swift-appkit/ and made the Bubble Tea TUI the recommended surface \u2014 same ~/.orclawstrator/cache.db. Not mission-control. Not hurley-mission-control. 8 commits. HEAD 01d9a20.",
+      "Orclawstrator is the dual-runtime OpenClaw agent command center: Feb 2026 Swift AppKit plus SQLite and Gateway WS on :3377, then a Jun nightly that archived AppKit under swift-appkit/ and made the Bubble Tea TUI the recommended surface on the same ~/.orclawstrator/cache.db. Eight commits. HEAD 01d9a20. Separate from mission-control and hurley-mission-control.",
     content: ORCLAWSTRATOR_CONTENT,
     coverImage: ORCLAWSTRATOR_COVER,
     tags: [
@@ -7715,7 +7709,7 @@ export const staticPosts: StaticPost[] = [
     title: "SantaBox.org: I rebuilt a BestWNC copy-paste into a Christmas charity lootbox platform",
     slug: "santabox-charity-lootbox-rebuild",
     excerpt:
-      "I rebuilt SantaBox.org \u2014 a Next.js 16 + Convex + Clerk + Stripe Christmas gift-box charity \u2014 from a BestWNC directory copy-paste into a real donate/wishlist/partner stack, then deleted fabricated nonprofit logos before they became a liability.",
+      "SantaBox.org is a Next.js 16 + Convex + Clerk + Stripe Christmas gift-box charity rebuilt from a BestWNC directory copy-paste into a donate/wishlist/partner stack. Feb 13 deleted fabricated nonprofit logos before they became a liability. HEAD 67712cb.",
     content: SANTABOX_CONTENT,
     coverImage: SANTABOX_COVER,
     tags: [
@@ -7882,7 +7876,7 @@ export const staticPosts: StaticPost[] = [
     title: "DJ Side Three: WNC wedding DJ funnel after cutting Clerk",
     slug: "djsidethree-wnc-wedding-dj-funnel-after-clerk-cut",
     excerpt:
-      "I shipped djsidethree.com as a purple Next.js wedding-DJ landing — $500/$1,200/$1,500 packages, Convex inquiry + admin — then ripped Clerk, Turnstile, and Sentry to kill a production 500. Zod, rate limits, and Phosphor stayed.",
+      "djsidethree.com is a purple Next.js wedding-DJ landing with $500 / $1,200 / $1,500 packages, Convex inquiry, and an admin board. Feb 27 ripped Clerk, Turnstile, and Sentry to kill a production 500. Zod, rate limits, and Phosphor stayed.",
     content: DJSIDETHREE_CONTENT,
     coverImage: DJSIDETHREE_COVER,
     tags: [
