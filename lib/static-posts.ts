@@ -1095,57 +1095,55 @@ const SONNY_CONTENT = `![The Shining Gazette landing composite](/blog/sonnys-shi
 
 I kept catching myself wanting a beat-em-up that felt like Max Fleischer had a bad New Year's Eve and a bowling league problem.
 
-Not another Unity template with a purple capsule for a hero. Not a pitch deck that says "Cuphead vibes" and then ships nothing you can read. I wanted the cast, the fatalities, the alley transitions, and the joke about Lucy's heart following the leaderboard — on disk — before I pretended an engine folder meant progress.
+I wanted the cast, the fatalities, the alley transitions, and the joke about Lucy's heart following the leaderboard on disk before I pretended an empty engine folder meant progress. A Unity purple-capsule template would not get me there. A pitch deck that says "Cuphead vibes" and ships nothing readable would not either.
 
-Sonny's Shining is for people who will sit with a Game Design Document. Indie animation nerds. Silent-film weirdos. Operators who think a Stripe Checkout and a refund policy are part of pre-production, not a later surprise. If you build MarTech by day and still care whether Bertie the bartender gets stuffed in a trash can, you are in the room.
+Sonny's Shining is for people who will sit with a Game Design Document. Indie animation nerds. Silent-film weirdos. Operators who treat Stripe Checkout and a refund policy as pre-production work. If you build MarTech by day and still care whether Bertie the bartender gets stuffed in a trash can, this is for you.
 
 ## What
 
 I wrote the IP as a stack of plain Markdown and a marketing site that looks like a 1935 newspaper.
 
-The story: New Year's Eve. Bertie's Bustling Bubbles. Sonny — lanky hound dog man, Sonny Tufts energy, ball-shining towel in the back pocket — holds Lucy, a red fox with Lucille Ball danger in the smile. The bartender whispers. She leaves. Kewpie's bowling-pin limo peels out. Eight levels of Kewpie's payroll stand between a tournament bowler and a girl whose heart tracks the standings.
+The story: New Year's Eve. Bertie's Bustling Bubbles. Sonny (lanky hound dog man, Sonny Tufts energy, ball-shining towel in the back pocket) holds Lucy, a red fox with Lucille Ball danger in the smile. The bartender whispers. She leaves. Kewpie's bowling-pin limo peels out. Eight levels of Kewpie's payroll stand between a tournament bowler and a girl whose heart tracks the standings.
 
 ![Eight bosses / levels](/blog/sonnys-shining-rubber-hose-beat-em-up/screenshots/bosses.png)
 
 Combat is bowling-native. Towel catch-and-return. Barehand bottle returns when the timing is honest. Later, a modified ball-return device becomes an over-the-shoulder launcher. Bosses are silent-film and vaudeville ghosts wearing animal suits: Bert Williams behind the bar, Chaplin as a mouse puppeteering a Fabio crab, Desi on the fire escape, Tippi in the dance school, Bessie on the decks, Snub Pollard in the hangar, Ivy Lee on the docks, Kewpie Morgan as the pig kingpin with a shipboard alley that sways on purpose.
 
-Art bible is rubber hose / Fleischer / Roger Rabbit — noodle limbs, pie-cut eyes, four-finger gloves, springy idle. GDD.md is ~1,250 lines. NOVEL.md ~1,600. SCRIPT.md ~800. PLAY.md stages it as a tragedy in three acts. PLAN.md still says engine TBD (Unity or Godot). That sentence is accurate. There is no \`.unity\` or Godot project in this repo yet.
+Art bible is rubber hose / Fleischer / Roger Rabbit: noodle limbs, pie-cut eyes, four-finger gloves, springy idle. \`GDD.md\` is ~1,250 lines. \`NOVEL.md\` ~1,600. \`SCRIPT.md\` ~800. \`PLAY.md\` stages it as a tragedy in three acts. \`PLAN.md\` still says engine TBD (Unity or Godot). That sentence is accurate. There is no \`.unity\` or Godot project in this repo yet.
 
-The web half is real software. Next.js 16.2.6, React 19, Tailwind 4, Bun lockfile, package **0.1.0**. Landing is "The Shining Gazette" — ticker tape, masthead, drop caps, classified boxes. \`PreorderButton\` collects email, hits \`POST /api/checkout\`, opens Stripe Checkout for **$8.00** (\`unit_amount: 800\`) with metadata \`sonnys-shining-preorder\` and expected release **Christmas 2026**. Privacy, terms, refunds, and success routes shipped with that checkout.
+The web half is real software. Next.js 16.2.6, React 19, Tailwind 4, Bun lockfile, package **0.1.0**. Landing is "The Shining Gazette": ticker tape, masthead, drop caps, classified boxes. \`PreorderButton\` collects email, hits \`POST /api/checkout\`, opens Stripe Checkout for **$8.00** (\`unit_amount: 800\`) with metadata \`sonnys-shining-preorder\` and expected release **Christmas 2026**. Privacy, terms, refunds, and success routes shipped with that checkout.
 
 ![Preorder / Stripe surface](/blog/sonnys-shining-rubber-hose-beat-em-up/screenshots/preorder.png)
 
 ## Where
 
-Marketing lives at [sonnysshining.com](https://sonnysshining.com). Code at [github.com/michaelmonetized/Sonny-s-Shining](https://github.com/michaelmonetized/Sonny-s-Shining). Public. Empty GitHub description. Empty topics. Zero stars. That is fine — the README and the Gazette carry the pitch.
+Marketing lives at [sonnysshining.com](https://sonnysshining.com). Code at [github.com/michaelmonetized/Sonny-s-Shining](https://github.com/michaelmonetized/Sonny-s-Shining). Public. Empty GitHub description. Empty topics. Zero stars. That is fine. The README and the Gazette carry the pitch.
 
-The audience sits next to every thread that wants Cuphead's lineage without Cuphead's budget, and next to every builder who knows a preorder page without a refund policy is a future apology.
+Audience: people who want Cuphead's lineage without Cuphead's budget, and builders who know a preorder page without a refund policy becomes an apology later.
 
 ## When
 
-**2025-12-27.** Four commits in one afternoon. \`init\`. Web submodule and last names stripped from the celebrity inspo list. Novel pass. "initalize marketing website for the novel" — yes, that typo is in the commit message. Next 16.1.1 scaffold era.
+**2025-12-27.** Four commits in one afternoon. \`init\`. Web submodule and last names stripped from the celebrity inspo list. Novel pass. "initalize marketing website for the novel" (yes, that typo is in the commit message). Next 16.1.1 scaffold era.
 
-**2026-01-31.** \`chore: sync all changes\` — one big dump, +1,640 / −79. Writing and early web catching up with each other.
+**2026-01-31.** \`chore: sync all changes\`, one big dump, +1,640 / −79. Writing and early web catching up with each other.
 
-**2026-03-17.** The money day. Privacy, terms, refunds, success. Stripe checkout route. PreorderButton. Newspaper redesign of \`page.tsx\`. PLAN.md lands. ROADMAP.md also lands — and it is wrong. It talks about a cleaning/detailing client site. I am not going to launder that into a feature. It is a stale stub sitting in the tree.
+**2026-03-17.** The money day. Privacy, terms, refunds, success. Stripe checkout route. PreorderButton. Newspaper redesign of \`page.tsx\`. \`PLAN.md\` lands. \`ROADMAP.md\` also lands, and it is wrong. It talks about a cleaning/detailing client site. I am leaving that stale stub in the tree rather than rewriting history.
 
 **2026-06-22.** Two \`nightly\` commits. GDD, Stripe cursor rules, fallow review hooks, dependency bump to Next 16.2.6 and \`stripe\` ^22. HEAD \`d6ae3ac\`. Still no engine.
 
 **2026-08-16.** GitHub \`pushed_at\` moves. Main still ends at the June nightly. Eight commits on the ledger. Pack day is September 8, 2026.
 
-That is the journey from empty repo to a design-complete tragedy with a live preorder path and an honest hole where the engine should be.
+Empty repo to a design-complete tragedy with a live preorder path and a missing engine folder.
 
 ## Why
 
 I did not want to lie to myself with a blank game project named after a feeling.
 
-So I wrote the characters until Sonny's ears twitched in idle. I wrote the levels until the alley between Bertie and Charlie was a cut, not a load screen pitch. I put $8 and Christmas 2026 on a Stripe session so the promise had a price and a date. I left Unity/Godot as a checkbox in PLAN.md because checking a box is not the same as shipping a towel mechanic.
+So I wrote the characters until Sonny's ears twitched in idle. I wrote the levels until the alley between Bertie and Charlie was a cut you can read. I put $8 and Christmas 2026 on a Stripe session so the promise had a price and a date. I left Unity/Godot as a checkbox in \`PLAN.md\` because checking a box is not shipping a towel mechanic.
 
-It is still web 0.1.0. The newsletter form on the lander is a client-side smile, not a list backend. ROADMAP.md needs to be deleted or rewritten. The game does not run. The bible does.
+It is still web 0.1.0. The newsletter form on the lander is client-side only, with no list backend. \`ROADMAP.md\` needs to be deleted or rewritten. The game does not run. The bible does.
 
-If your current "game idea" folder has a repo and no GDD, or a GDD and no way for someone to give you eight dollars, you already know which hole I was staring at.
-
-Would you lock the Christmas 2026 preorder first — or open the engine folder and refuse to write another fatality until Bertie's bottle timing feels true?
+Would you lock the Christmas 2026 preorder first, or open the engine folder and refuse to write another fatality until Bertie's bottle timing feels true?
 `;
 
 
@@ -1214,65 +1212,67 @@ What would you put on the first HMS page — the home hero, the shop archive, or
 const TWELVEUX_COVER =
   "/blog/twelveux-hosted-shadcn-registry-glass/cover.png";
 
-const TWELVEUX_CONTENT = `![twelveux Glass playground — circle and NEW MATERIAL card](/blog/twelveux-hosted-shadcn-registry-glass/screenshots/playground.png)
+const TWELVEUX_CONTENT = `![twelveux Glass playground, circle and NEW MATERIAL card](/blog/twelveux-hosted-shadcn-registry-glass/screenshots/playground.png)
 
 ## Who
 
 I still install UI the shadcn way. Copy the files. Own the code. The default face is still Inter. The default kit is still New York.
 
-That is fine for a starter. It is not the system I already run on uncap.us and hms — Max type, phi type scale, Catppuccin surfaces.
+That is fine for a starter. It is not the system I already run on uncap.us and hms: Max type, phi type scale, Catppuccin surfaces.
 
-twelveux is for the operator who wants that system as a registry namespace, not a Figma moodboard. Frontend builders who already type npx shadcn add. People who remember twelve.ux from the WHATWG-era chrome. Anyone who wants liquid glass that is the actual shader, not a blur filter wearing a trench coat.
+twelveux is for operators who want that system as a registry namespace they can install. Frontend builders who already type \`npx shadcn add\`. People who remember twelve.ux from the WHATWG-era chrome. Anyone who wants liquid glass from the actual shader, not a CSS blur.
 
 ## What
 
 I built a hosted shadcn/ui registry. Next.js 15. React 19. Tailwind 4. Package version 0.1.0.
 
-Three installable items ship in public/r today: **max**, **theme**, **glass**.
+Three installable items ship in \`public/r\` today: **max**, **theme**, **glass**.
 
-**Max** is the typeface — local woff faces, weights 100 through 900, roman and italic.
+**Max** is the typeface. Local woff faces, weights 100 through 900, roman and italic.
 
 **theme** is phi type and spacing, Catppuccin light and dark CSS variables, Max as sans. Same grammar as uncap.us and hms.
 
-**Glass** is the first real component. Official pen.dev glass.glsl. Wrapper. Circle defaults baked in. GlassText is a second path with softer defaults for type.
+**Glass** is the first real component. Official pen.dev \`glass.glsl\`. Wrapper. Circle defaults baked in. GlassText is a second path with softer defaults for type.
 
 The playground is the product surface. Live circle. Live card. CIRCLE PROPS sliders. Same wrapper on a shadcn button and a navbar over a photo.
 
 ![2012 twelve.ux chrome mock](https://raw.githubusercontent.com/michaelmonetized/twelveux/main/public/og/mock-full.jpg)
 
-/og is the archive. Exact 2009-2012 twelve.ux chrome. /kit is the same chrome under glass.
+\`/og\` is the archive: exact 2009-2012 twelve.ux chrome. \`/kit\` is the same chrome under glass.
 
 ![glass kit](/blog/twelveux-hosted-shadcn-registry-glass/screenshots/kit-page.png)
 
 ## Where
 
-Live on Vercel: https://twelveux.vercel.app — playground, /og, /kit, and /r JSON.
+Live on Vercel: https://twelveux.vercel.app (playground, \`/og\`, \`/kit\`, and \`/r\` JSON).
 
 Repo: https://github.com/michaelmonetized/twelveux
 
-registry.json still says homepage https://twelveux.com. That name has no public DNS as of this writing. The host that answers is the Vercel app.
+\`registry.json\` still says homepage https://twelveux.com. That name has no public DNS as of this writing. The host that answers is the Vercel app.
 
 ![scene backdrop](https://raw.githubusercontent.com/michaelmonetized/twelveux/main/public/scene.jpg)
 
 ## When
 
-**2009-2012.** twelve.ux chrome. The mock on /og still wears that date.
+**2009-2012.** twelve.ux chrome. The mock on \`/og\` still wears that date.
 
-**2026-08-15, 4:42 PM ET.** Initial commit — registry, Glass playground, Max fonts, og/kit mocks, built public/r.
+**2026-08-15, 4:42 PM ET.** Initial commit: registry, Glass playground, Max fonts, og/kit mocks, built \`public/r\`.
 
-**4:44.** Vercel install freeze fix. **4:46.** Production typecheck fix for Glass. **4:58.** Phone playground. **5:15.** Accordion panes + price ribbon. HEAD 8b9773b.
+**4:44.** Vercel install freeze fix. **4:46.** Production typecheck fix for Glass. **4:58.** Phone playground. **5:15.** Accordion panes and price ribbon. HEAD \`8b9773b\`.
 
 Five Production deploys the same evening. Five commits. One afternoon.
 
 ## Why
 
-I already had a visual system. Max. Phi. Catppuccin. It lived on uncap.us and hms as CSS and fonts, not as something you could npx into a fresh app.
+I already had a visual system (Max, phi, Catppuccin) living on uncap.us and hms as CSS and fonts. I could not \`npx\` it into a fresh app.
 
-I wanted Glass as a file you install, with the real shader and the circle props, not a screenshot of someone else glassmorphism.
+I wanted Glass as installable files: the real shader and the circle props.
 
-I also still have the 2012 chrome in my head. studioTWELVE. twelve.ux. Putting /og and /kit next to the 2026 playground keeps the arc honest — same operator, longer timeline.
+I also still have the 2012 chrome in my head. studioTWELVE. twelve.ux. Putting \`/og\` and \`/kit\` next to the 2026 playground keeps the timeline honest.
 
-So the registry is the portable form. The playground is the proof. The archive is the scar that stayed.
+The registry is the portable form. The playground is the proof. The archive is the old chrome, still online.
+
+What would you install first on a greenfield Next app: \`@twelveux/max\`, \`@twelveux/theme\`, or \`@twelveux/glass\`?
 `;
 
 
@@ -1577,73 +1577,71 @@ const YOURZAXBYS_CONTENT = `![Your ZAXBYS landing hero on Vercel](/blog/yourzaxb
 
 I kept catching myself watching franchise operators bounce between a POS export, a Steritech PDF, a schedule spreadsheet, and a text thread that somehow became HR.
 
-Not another generic “restaurant dashboard” template with fake charts and a purple sidebar. Not a pitch that says multi-unit without a stores table. I wanted the above-store view and the store-level pain in the same repo family — with real auth, real email, and an honest hole where the custom domain DNS still is not answering from my network.
+I wanted the above-store view and the store-level pain in the same repo family: real auth, real email, and an honest note that the custom domain DNS still does not answer from my network. A generic restaurant dashboard template with fake charts would not cut it. Neither would a pitch that says multi-unit without a stores table.
 
-Your ZAXBYS is for multi-unit Zaxby's owners, above-store folks, and GMs who will sit with a CAP form. Operators who think Clerk + Convex is a product decision, not a tutorial. If you run MarTech by day and still care whether a food-safety observation has a written plan, you are in the room.
+Your ZAXBYS is for multi-unit Zaxby's owners, above-store folks, and GMs who will sit with a CAP form. Operators who treat Clerk + Convex as a product decision. If you run MarTech by day and still care whether a food-safety observation has a written plan, this is for you.
 
 ## What
 
 I built a franchise management platform as a Next.js app with a marketing shell and a gated dashboard.
 
-Public surface: hero lander, features, pricing, about, testimonials, blog stub, contact, privacy. Clerk sign-in / sign-up. CTAs now point at \`/signup\` — that wiring was a March 1 fix, not day-one magic. Pricing page sells **Starter $99/mo**, **Professional $199/mo**, **Enterprise Custom**, plus add-ons ($25 per extra location, analytics, integrations setup, priority support). FinalCTA still shows a placeholder \`(555) 123-ZAXBYS\`. I am not going to pretend that is a real phone bank.
+Public surface: hero lander, features, pricing, about, testimonials, blog stub, contact, privacy. Clerk sign-in / sign-up. CTAs now point at \`/signup\`. That wiring was a March 1 fix, not day-one. Pricing page sells **Starter $99/mo**, **Professional $199/mo**, **Enterprise Custom**, plus add-ons ($25 per extra location, analytics, integrations setup, priority support). FinalCTA still shows a placeholder \`(555) 123-ZAXBYS\`. That is not a real phone bank.
 
 ![Pricing lander on Vercel](/blog/yourzaxbys-franchise-management-platform/screenshots/pricing.png)
 
-Private surface: \`/dashboard\` with stores, employees, schedule, audits, reports, settings. Convex schema is the spine — \`employees\` (roles from \`franchise_owner\` down to \`team_member\`, \`eid\` like \`ZAX######\`, **\`ssnLast4\` only**), \`stores\`, \`schedules\` + \`shifts\`, \`caps\` (food safety / RER with observation → solution → plan), \`audits\` (Steritech, health department, internal, RER), \`salesData\`, \`feedback\`, \`notifications\`. Resend routes send confirmation, invite, and notification mail from \`notify@yourzaxbys.com\`. Invite copy still names **Zaxby's Waynesville, NC** — the sibling store product is not theoretical.
+Private surface: \`/dashboard\` with stores, employees, schedule, audits, reports, settings. Convex schema is the spine: \`employees\` (roles from \`franchise_owner\` down to \`team_member\`, \`eid\` like \`ZAX######\`, **\`ssnLast4\` only**), \`stores\`, \`schedules\` + \`shifts\`, \`caps\` (food safety / RER with observation, solution, plan), \`audits\` (Steritech, health department, internal, RER), \`salesData\`, \`feedback\`, \`notifications\`. Resend routes send confirmation, invite, and notification mail from \`notify@yourzaxbys.com\`. Invite copy still names **Zaxby's Waynesville, NC**. The sibling store product is real.
 
 Stack on disk: Next **16.1.6**, React 19, Convex, Clerk, Radix + Tailwind, Sentry (\`hustle-launch\` / \`shipthing\`), PostHog provider, Bun lockfile, package **\`zaxbys-franchise-management-platform\` \`1.0.0\`**. \`proxy.ts\` is the Next 16 rename of middleware. Blacksmith \`ship.yml\` pulls Vercel env and Convex deploy keys.
 
 ![Illustrative dashboard composite from schema + routes](/blog/yourzaxbys-franchise-management-platform/screenshots/dashboard-composite.png)
 
-Honesty checks: the lander brags \`500+\` locations / \`25%\` cost reduction / \`99.9%\` uptime / \`4.9★\`. Those strings live in \`app/page.tsx\`. They are not a warehouse receipt. Unauthenticated \`/dashboard\` on the Vercel alias returned 404 at pack time — no logged-in screenshot. README still tells you to clone \`michaelmonetized/www.yourzaxbys.com\`; the GitHub org is **HurleyUS**. AUTOPSY.md from February roasted a missing navbar and missing SEO files; HEAD has \`manifest.ts\`, \`sitemap.ts\`, \`robots.ts\`. Treat the autopsy as a scar, not the current build report.
+Honesty checks: the lander brags \`500+\` locations / \`25%\` cost reduction / \`99.9%\` uptime / \`4.9★\`. Those strings live in \`app/page.tsx\`. They are marketing copy, not a warehouse receipt. Unauthenticated \`/dashboard\` on the Vercel alias returned 404 at pack time, so there is no logged-in screenshot. README still tells you to clone \`michaelmonetized/www.yourzaxbys.com\`; the GitHub org is **HurleyUS**. AUTOPSY.md from February roasted a missing navbar and missing SEO files; HEAD has \`manifest.ts\`, \`sitemap.ts\`, \`robots.ts\`. Treat the autopsy as a scar, not the current build report.
 
 ## Where
 
 Code: [github.com/HurleyUS/www.yourzaxbys.com](https://github.com/HurleyUS/www.yourzaxbys.com). Public. Empty description. Empty topics. Zero stars.
 
-Live alias that answered HTTP 200 for this pack: [wwwyourzaxbyscom.vercel.app](https://wwwyourzaxbyscom.vercel.app). GitHub homepage field points there. Custom domain \`www.yourzaxbys.com\` did **not** resolve from the pack hosts — NXDOMAIN. Sibling store app: private [waynesville.yourzaxbys.com](https://github.com/HurleyUS/waynesville.yourzaxbys.com) with its own Vercel alias.
+Live alias that answered HTTP 200 for this pack: [wwwyourzaxbyscom.vercel.app](https://wwwyourzaxbyscom.vercel.app). GitHub homepage field points there. Custom domain \`www.yourzaxbys.com\` did **not** resolve from the pack hosts (NXDOMAIN). Sibling store app: private [waynesville.yourzaxbys.com](https://github.com/HurleyUS/waynesville.yourzaxbys.com) with its own Vercel alias.
 
-The audience sits next to every franchise thread that wants one login for labor, audits, and CAP follow-ups, and next to every builder who knows a SaaS pricing page without a protect() boundary is cosplay.
+Audience: franchise teams that want one login for labor, audits, and CAP follow-ups, and builders who know a SaaS pricing page without a \`protect()\` boundary is unfinished.
 
 ## When
 
-**2025-03-07 → 03-09.** First \`init\` commits under Michael Monetized. Fonts. Style passes. The classic “we gotta push to main to see minor changes yuck” loop. Repo created on GitHub 2025-03-08.
+**2025-03-07 to 03-09.** First \`init\` commits under Michael Monetized. Fonts. Style passes. The classic "we gotta push to main to see minor changes yuck" loop. Repo created on GitHub 2025-03-08.
 
-**2025-10-02.** Another \`init\` — reboot marker on the timeline.
+**2025-10-02.** Another \`init\`, reboot marker on the timeline.
 
-**2025-10-15.** The YOLO pivot. Commit message literally: letting CodeRabbit and GPT5 duke out a refactor into a new project idea. Missing deps. Bun trusts. “Updated everything YOLO.” “says ready for prod :shrug:” Accessibility vibing. That afternoon is when the franchise platform stopped being a mood and became a tree.
+**2025-10-15.** The YOLO pivot. Commit message literally: letting CodeRabbit and GPT5 duke out a refactor into a new project idea. Missing deps. Bun trusts. "Updated everything YOLO." "says ready for prod :shrug:" Accessibility vibing. That afternoon is when the franchise platform stopped being a mood and became a tree.
 
 **2025-10-16.** Marketing pages land.
 
 **2025-12-29.** CVE dependency passes.
 
-**2026-01-08.** PLAN.md — multi-store dashboard, unified reporting, document library, the above-store wishlist.
+**2026-01-08.** \`PLAN.md\`: multi-store dashboard, unified reporting, document library, the above-store wishlist.
 
 **2026-01-31.** Big \`chore: sync all changes\`.
 
-**2026-02-04.** \`Add complete franchise management dashboard\` — the product-shaped commit.
+**2026-02-04.** \`Add complete franchise management dashboard\`, the product-shaped commit.
 
-**2026-02-06 → 02-21.** Next 16 \`proxy.ts\` rename. Security: SSN off the wire, \`ssnLast4\` in schema, encrypt-at-rest notes in changelog, email domain / EID standardization (#11, #12).
+**2026-02-06 to 02-21.** Next 16 \`proxy.ts\` rename. Security: SSN off the wire, \`ssnLast4\` in schema, encrypt-at-rest notes in changelog, email domain / EID standardization (#11, #12).
 
-**2026-02-28 → 03-09.** TypeScript fix PR. Strip thirteen console statements. Wire CTAs to \`/signup\`. Bump Next to **16.1.6** for CVEs (#21).
+**2026-02-28 to 03-09.** TypeScript fix PR. Strip thirteen console statements. Wire CTAs to \`/signup\`. Bump Next to **16.1.6** for CVEs (#21).
 
 **2026-05-14.** Blacksmith CI gates standardized across a stack of commits. Lazy-init Resend clients. Skip Convex provider when public env is missing so the marketing shell does not die without a deployment.
 
 **2026-08-08.** \`fix: set X-Robots-Tag to index, follow on Vercel\`. HEAD \`705473f\`. Forty-six commits on the ledger. Pack day is September 8, 2026.
 
-That is the journey from font fiddling to a versioned franchise ops platform with a live Vercel alias and a custom domain that still needs DNS honesty.
+Font fiddling to a versioned franchise ops platform with a live Vercel alias and a custom domain that still needs DNS honesty.
 
 ## Why
 
 I did not want the store and the above-store to keep living in different tabs forever.
 
-So I put employees, stores, schedules, CAPs, and audits in one Convex schema. I put Clerk in front of the dashboard and Resend on the invite path. I left the marketing stats labeled as marketing. I left the Waynesville invite copy as a breadcrumb to the sibling store app. I set package **1.0.0** knowing “1.0” here means the platform shape shipped — not that every PLAN.md checkbox is green.
+So I put employees, stores, schedules, CAPs, and audits in one Convex schema. I put Clerk in front of the dashboard and Resend on the invite path. I left the marketing stats labeled as marketing. I left the Waynesville invite copy as a breadcrumb to the sibling store app. I set package **1.0.0** knowing "1.0" here means the platform shape shipped, not that every \`PLAN.md\` checkbox is green.
 
-sitrep still says WIP and HIGH client priority. ROADMAP still wants owner UAT. That is fine. The repo is not empty, not a junk stub, and not a logo dump. It is a franchise ops bet with receipts in git.
+sitrep still says WIP and HIGH client priority. ROADMAP still wants owner UAT. That is fine. The repo has receipts in git: schema, auth, email, CI.
 
-If your current “franchise tool” folder has a pricing page and no \`ssnLast4\` decision, or a dashboard route and no protect middleware, you already know which hole I was staring at.
-
-Would you fix \`www.yourzaxbys.com\` DNS and run a real owner pilot next — or delete the fake 500+ lander stats before anyone quotes them as proof?
+Would you fix \`www.yourzaxbys.com\` DNS and run a real owner pilot next, or delete the fake 500+ lander stats before anyone quotes them as proof?
 `;
 
 const MOCKUP_GALLERY_COVER =
@@ -8073,7 +8071,7 @@ export const staticPosts: StaticPost[] = [
     title: "Your ZAXBYS: I built a franchise ops platform so the store and the above-store stop living in different spreadsheets",
     slug: "yourzaxbys-franchise-management-platform",
     excerpt:
-      "I shipped Your ZAXBYS as a Next.js 16 + Convex + Clerk franchise management platform — employees, stores, schedules, CAPs, audits — with a public marketing lander and a private dashboard, package 1.0.0, 46 commits, HEAD 705473f.",
+      "I shipped Your ZAXBYS as a Next.js 16 + Convex + Clerk franchise management platform (employees, stores, schedules, CAPs, audits) with a public marketing lander and a private dashboard, package 1.0.0, 46 commits, HEAD 705473f.",
     content: YOURZAXBYS_CONTENT,
     coverImage: YOURZAXBYS_COVER,
     tags: [
@@ -8333,7 +8331,7 @@ export const staticPosts: StaticPost[] = [
     title: "twelveux: I hosted a shadcn registry and shipped Glass in one afternoon",
     slug: "twelveux-hosted-shadcn-registry-glass",
     excerpt:
-      "I stood up twelveux — a hosted shadcn registry with Max, a phi Catppuccin theme, and pen.dev Glass. Playground on Vercel. Five commits. Same day.",
+      "I stood up twelveux: a hosted shadcn registry with Max, a phi Catppuccin theme, and pen.dev Glass. Playground on Vercel. Five commits. Same day.",
     content: TWELVEUX_CONTENT,
     coverImage: TWELVEUX_COVER,
     tags: [
@@ -8383,7 +8381,7 @@ export const staticPosts: StaticPost[] = [
     title: "Sonny's Shining: I wrote a rubber-hose beat-em-up tragedy before I picked an engine",
     slug: "sonnys-shining-rubber-hose-beat-em-up",
     excerpt:
-      "I shipped Sonny's Shining as a Fleischer-noir beat-em-up bible \u2014 GDD, novel, screenplay \u2014 plus a Next.js 16 newspaper site with an $8 Stripe preorder aimed at Christmas 2026.",
+      "I shipped Sonny's Shining as a Fleischer-noir beat-em-up bible (GDD, novel, screenplay) plus a Next.js 16 newspaper site with an $8 Stripe preorder aimed at Christmas 2026.",
     content: SONNY_CONTENT,
     coverImage: SONNY_COVER,
     tags: [
