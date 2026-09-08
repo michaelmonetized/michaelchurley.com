@@ -2647,7 +2647,276 @@ The custom domain is still dark. The Vercel alias is live. The Instagram link is
 If you were standing at 610 Main tonight, which plate would you order before the kitchen sells out?
 `;
 
+const SANTABOX_COVER =
+  "/blog/santabox-charity-lootbox-rebuild/cover.png";
+
+const SANTABOX_CONTENT = `![SantaBox home — Christmas 2026 campaign](/blog/santabox-charity-lootbox-rebuild/screenshots/home.png)
+
+## Who
+
+I got tired of charity landers that look like Christmas and behave like a brochure.
+
+Toy drives need funding progress, not stock photography. Parents need a tax receipt path. Partners need an inquiry form that emails a human — not a carousel of invented 501(c)(3) logos. Operators who inherit a wrong-vertical Next scaffold need an autopsy that says the quiet part: this README used to be BestWNC.
+
+SantaBox is for people funding age-tagged gift boxes before December 15 delivery cutoffs, and for builders who will delete fake partner names when legal risk shows up in a commit message.
+
+If you have ever shipped a “verified nonprofit” badge with no EIN in the repo, you are in the room.
+
+## What
+
+I built **SantaBox.org** — package \`santabox.org\`, version **0.1.0**, private under **HurleyUS/santabox.org**. Metadata line: *Christmas Gift Boxes for Children in Need.* Campaign badge on the live hero: **Christmas 2026 Campaign Now Open.**
+
+Stack facts from the lockfile and tree: **Next.js 16.1.6**, **React 19.2.4**, **Tailwind 4.1**, Bun, **Convex** schema for gift boxes / donations / donors / subscribers / nonprofits / partner inquiries / impact stories, **Clerk** (optional when keys missing), **Stripe** checkout + subscribe APIs, Resend, Sentry, PostHog. Forty-two commits. HEAD \`67712cb\`.
+
+Donate presets: $25 stocking · $50 half box · $75 small · $100 full (default) · $150 premium · $250 two boxes. Cover processing fees (\`2.9% + $0.30\`) so the gift side can stay whole. Subscribe UI/schema: **$10/mo** or **$100/yr**.
+
+![Donate presets](/blog/santabox-charity-lootbox-rebuild/screenshots/donate.png)
+
+## Where
+
+Code stays private on GitHub. Product answers at **https://www.santabox.org** (apex 307→www) and the GitHub homepage URL **https://web-iota-topaz-45.vercel.app**. Both returned marketing **HTTP 200** with \`X-Robots-Tag: index, follow\` on pack day.
+
+Routes that still 500 without service env: \`/impact\`, \`/subscribe\`, \`/create-wishlist\`. May 20 commits explicitly keep the public site up when service env is missing — the 500s are the other side of that bargain.
+
+No \`public/\` directory in the tree. Layout still points at \`/og-image.png\` and favicons that are not on disk. Partners page now sells “Team Up with SantaBox” plus a grid of real team projects instead of invented orgs.
+
+![Partners — inquiry + project grid](/blog/santabox-charity-lootbox-rebuild/screenshots/partners.png)
+
+## When
+
+**January 8, 2026:** \`eebf7a1\` — Next.js, Convex, Tailwind scaffold. GitHub \`created_at\` is later (Feb 6). The clock and the hosting console do not owe each other an apology; the commit log does.
+
+**February 6:** Next 16 / React 19 / Tailwind v4 import fix.
+
+**February 9:** Docs stop lying about BestWNC. Major rebuild commit lands the charity storytelling surface. Clerk becomes optional so builds survive missing keys. AUTOPSY.md records the crime scene: wrong layout title, empty Convex, dead buttons, wrong year, subscription-box confusion vs donation README.
+
+**February 13:** \`10377d8\` — remove fabricated nonprofit/sponsor data. Commit body names the liability. Replacement: partner inquiry form + Resend \`/api/partner-inquiry\` + project grid of confirmed live sites.
+
+**February 15:** Stripe webhook + signature verification + donate button actually calls checkout.
+
+**Late February:** force-dynamic for Clerk/Convex pages, \`proxy.ts\` protection, error boundaries, sitemap/robots, security headers, auth on user mutations, \`.take(100)\` on collects.
+
+**March:** Sentry instead of console.error spam; Vitest; then drop GitHub Actions because Vercel is CI.
+
+**May:** Blacksmith ship gates, Santabox typecheck fixes, deploy URL verification, public-site-without-service-env.
+
+**August 8, 2026 6:50 AM ET:** \`67712cb\` — X-Robots-Tag index, follow. HEAD. Forty-two commits.
+
+![Boxes browse](/blog/santabox-charity-lootbox-rebuild/screenshots/boxes.png)
+
+## Why
+
+Because a Christmas charity site that still wears another product's metadata is worse than an unfinished one.
+
+Because fabricated partner logos are not “placeholder content” — they are a lawsuit with good lighting.
+
+Because dual honesty shows up here too: PLAN.md still lists Convex schema and Stripe as not started while \`convex/schema.ts\` and \`/api/checkout\` exist; AUTOPSY celebrates “production ready” with unchecked env boxes; homepage hardcodes \`statesReached: 42\` even on the live Convex path; marketing claims 501(c)(3) without an EIN file in-repo. Say the drift out loud.
+
+Because the money path is real enough to document: fee cover math, taxReceiptSent boolean, subscriber Stripe IDs, wishlist create client, box status enum \`pending → open → funded → shipped → delivered\`.
+
+![Stories — Maya narrative](/blog/santabox-charity-lootbox-rebuild/screenshots/stories.png)
+
+![About](/blog/santabox-charity-lootbox-rebuild/screenshots/about.png)
+
+What would you delete first if you found another vertical's partner logos still living in your charity repo — the logos, or the launch date?
+`;
+
+const SHIPTHING_COVER =
+  "/blog/shipthing-contacts-spine-not-carrier-rates/cover.png";
+
+const SHIPTHING_CONTENT = `![ShipThing home — lead form + signed-in contacts table](/blog/shipthing-contacts-spine-not-carrier-rates/screenshots/home-contacts.png)
+
+## Who
+
+I wanted a shipping-rate desk for e-commerce sellers — compare USPS, UPS, FedEx, print labels, stop guessing retail rates.
+
+What I built instead is for operators who need a **honest stack spine**: Clerk auth, Convex contacts, Resend lead email, Sentry, PostHog, and a Next 16 \`proxy.ts\` filename law. People who will read PLAN.md, then open the tree, and not pretend the carrier boxes are checked.
+
+If you have ever named a repo after the product you meant to ship and then shipped the scaffolding that every later app copies — you are in the room.
+
+## What
+
+I built **ShipThing** — package \`shipthing\` **0.1.0**, public under **michaelmonetized/shipthing**. Layout metadata title: **Shipthing**. Description: **Combining convex, posthog, clerk and sentry**. That description is more accurate than the repo name.
+
+Stack from the lockfile: **Next.js 16.1.1**, **React 19.2.3**, Tailwind **4**, Bun, **Clerk**, **Convex**, **Resend** + React Email, **Sentry** (org \`hustle-launch\`, project \`shipthing\`), PostHog, zod 4, react-hook-form, Radix/shadcn UI. \`stripe\` sits in dependencies with a long \`.cursor/rules/STRIPE.md\` — **zero app imports**. Thirty-nine commits. HEAD \`9f91d97\`.
+
+![PLAN.md Not Started vs what the tree actually contains](/blog/shipthing-contacts-spine-not-carrier-rates/screenshots/plan-vs-shipped.png)
+
+Surfaces that exist: \`/\` lead form (“Be the first to contact us!” / Send Message with name, 10-digit phone, email, message) plus signed-in **Contacts** table with delete; \`/login\`; \`/sentry-example-page\`; API routes \`/api/send/notification\` and \`/api/send/confirmation\`; \`proxy.ts\` Clerk middleware file; \`sitemap.ts\` / \`robots.ts\`.
+
+Convex schema is a single \`contacts\` table — search index on name, indexes by name/phone/email/page. Notification mail sends from \`Notifications <notify@uncap.us>\` to \`michaelmonetized@gmail.com\` and \`8285931935@vtext.com\`. Confirmation is a short “Hey {name}, we received your message” React Email.
+
+Navbar lists Security, Auth, Layout, Typography, Forms, Analytics, Error Tracking, Email, Realtime Data Sync, APIs, More — **no \`/features/*\` pages** in the tree. Footer still links Learn / Examples / nextjs.org from create-next-app.
+
+\`PLAN.md\` still sells the other product: carrier APIs, rate comparison, ZPL/PDF labels, address validation, Shopify import, batch labels, tracking, cost analytics. Success metrics: active users > 500, monthly labels > 10,000, savings > 30%. Every checkbox is empty.
+
+## Where
+
+Code: [github.com/michaelmonetized/shipthing](https://github.com/michaelmonetized/shipthing) — **public**. Live: [shipthing.vercel.app](https://shipthing.vercel.app) (**HTTP 200**, Clerk signed-out chrome, \`X-Robots-Tag: index, follow\`).
+
+![proxy.ts + check:proxy Next 16 guardrail](/blog/shipthing-contacts-spine-not-carrier-rates/screenshots/proxy-guardrail.png)
+
+Audience sits next to every “I’ll bolt carriers on next sprint” SaaS skeleton. Sibling operator furniture: Fallow gate notes in \`AGENTS.md\`, Bun-only local law, Blacksmith/Vercel prebuilt rules, env.template for Clerk + Resend + Convex.
+
+![Resend notification + confirmation lead path](/blog/shipthing-contacts-spine-not-carrier-rates/screenshots/resend-lead-path.png)
+
+## When
+
+**2025-03-22** — Create Next App. Same day: Convex + PostHog + Sentry, not-found + shadcn button, middleware build thrash, Clerk, forms.
+
+**2025-03-26–27** — Convex contacts land. Resend starts. Real bugs: could not access \`name\` in notification email, copy-pasta, split emails so sending stops after the first try/catch, more Resend fixes, light-mode toggle attempt.
+
+**2025-03-28–29** — Navbar, error boundary, login. Then: \`convex dev, i finally recovered my github login 🎉\`.
+
+**2025-04** — layout components; **box, stack, deck** + Next update.
+
+**2025-12-29** — React Server Components CVE pass.
+
+**2026-01-08** — \`PLAN.md\` with shipping-rate “improvement opportunities.” Jan 31 chore sync.
+
+**2026-02** — CVE PR #1; rename \`middleware.ts\` → \`proxy.ts\` (#7); env.template (#8); proxy filename guardrail (#10); security headers (#11); sitemap + robots (#12).
+
+**2026-06-22** — nightly ×2.
+
+**2026-08-08** — HEAD \`9f91d97\`: set \`X-Robots-Tag\` to \`index, follow\` on Vercel.
+
+![Commit arc Mar 2025 → Aug 2026](/blog/shipthing-contacts-spine-not-carrier-rates/screenshots/commit-arc.png)
+
+## Why
+
+Because the shipping product needed a spine before it needed a carrier SDK — and the spine is what survived.
+
+Because Next 16 renamed the middleware file and I wanted a script that fails if \`middleware.ts\` comes back (\`bun run check:proxy\`).
+
+Because a lead form that emails me and texts \`8285931935@vtext.com\` is a product loop I can prove. A FedEx rate matrix I never integrated is not.
+
+Because naming the repo ShipThing and leaving PLAN.md full of unchecked USPS boxes is more useful as an operator story than as a fake launch post.
+
+**Engagement Q:** When your PLAN.md still lists the vertical and your \`layout.tsx\` description lists the stack — which one should the blog title obey?
+`;
+
+const CONVEX_NEXTFASTER_COVER =
+  "/blog/convex-nextfaster-perf-meets-convex-ecommerce-scaffold/cover.png";
+
+const CONVEX_NEXTFASTER_CONTENT = `![Convex NextFaster home mock](/blog/convex-nextfaster-perf-meets-convex-ecommerce-scaffold/screenshots/home.png)
+
+## Who
+
+I got tired of cloning e-commerce starters that worship Postgres or pretend performance is a CSS animation.
+
+NextFaster proved PPR, prefetch, mouseDown nav, React Compiler, inline CSS. I wanted that DNA on Convex with Clerk, Stripe, Resend, Sentry, PostHog.
+
+For operators who ship schema before fake catalog. If you clicked Shop Now on your own template and hit a 404, you are in the room.
+
+## What
+
+I built Convex NextFaster — package convex-nextfaster v1.0.0, public HurleyUS/convex-nextfaster. fork=false; 355 upstream + 5 mine.
+
+Stack: Next.js 15.3.0, React 19, PPR + inlineCss + reactCompiler, Convex (1115 LOC), Clerk, Stripe, Sentry, PostHog, Resend.
+
+## Where
+
+https://github.com/HurleyUS/convex-nextfaster — public. No homepage. No demo.
+
+## When
+
+2026-01-08 a18c09c cutover; c635ab3 drop data.zip; e1164e9 PLAN.
+2026-01-31 db28fe7 sync.
+2026-08-08 125dd75 X-Robots-Tag. HEAD. 360 commits; 5 mine.
+
+## Why
+
+Perf demos that force SQL as destiny are a tax. A Convex cart with expiry beats Lighthouse of a deleted tree. Shipping 1.0.0 with PLAN Not Started is honesty.
+
+Who else stars templates that document routes they never created?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:santabox-charity-lootbox-rebuild",
+    title: "SantaBox.org: I rebuilt a BestWNC copy-paste into a Christmas charity lootbox platform",
+    slug: "santabox-charity-lootbox-rebuild",
+    excerpt:
+      "I rebuilt SantaBox.org \u2014 a Next.js 16 + Convex + Clerk + Stripe Christmas gift-box charity \u2014 from a BestWNC directory copy-paste into a real donate/wishlist/partner stack, then deleted fabricated nonprofit logos before they became a liability.",
+    content: SANTABOX_CONTENT,
+    coverImage: SANTABOX_COVER,
+    tags: [
+      "santabox",
+      "charity",
+      "christmas",
+      "nonprofit",
+      "lootbox",
+      "donations",
+      "nextjs",
+      "convex",
+      "clerk",
+      "stripe",
+      "resend",
+      "vercel",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T04:40:00Z"),
+    readingTime: 3,
+  },
+
+  {
+    _id: "static:shipthing-contacts-spine-not-carrier-rates",
+    title: "shipthing: I named it for shipping rates and shipped a contacts spine instead",
+    slug: "shipthing-contacts-spine-not-carrier-rates",
+    excerpt:
+      "ShipThing was supposed to compare USPS/UPS/FedEx rates. What I actually shipped is a Next.js 16 + Clerk + Convex + Resend contacts CRM spine with a proxy.ts Next 16 guardrail \u2014 PLAN.md still lists carrier APIs as Not Started.",
+    content: SHIPTHING_CONTENT,
+    coverImage: SHIPTHING_COVER,
+    tags: [
+      "shipthing",
+      "nextjs",
+      "convex",
+      "clerk",
+      "resend",
+      "sentry",
+      "posthog",
+      "proxy-ts",
+      "contacts",
+      "shipping",
+      "vercel",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T04:30:00Z"),
+    readingTime: 3,
+  },
+
+  {
+    _id: "static:convex-nextfaster-perf-meets-convex-ecommerce-scaffold",
+    title: "Convex NextFaster: I swapped Neon for a Convex e-commerce template before the demo store existed",
+    slug: "convex-nextfaster-perf-meets-convex-ecommerce-scaffold",
+    excerpt:
+      "I took NextFaster PPR/prefetch DNA, ripped out Neon/Drizzle storefront pages, and shipped a public Convex + Clerk + Stripe + Sentry + PostHog + Resend e-commerce template with ~1.1k lines of Convex schema/mutations and a marketing homepage that still links to a /products route that does not exist yet.",
+    content: CONVEX_NEXTFASTER_CONTENT,
+    coverImage: CONVEX_NEXTFASTER_COVER,
+    tags: [
+      "convex-nextfaster",
+      "nextfaster",
+      "nextjs",
+      "convex",
+      "clerk",
+      "stripe",
+      "sentry",
+      "posthog",
+      "resend",
+      "ecommerce",
+      "template",
+      "ppr",
+      "performance",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T04:20:00Z"),
+    readingTime: 1,
+  },
+
   {
     _id: "static:citation-manager-uberall-competitor-958-directories",
     title: "Citation Manager: I built an Uberall competitor with 958 directories — and left auth on three stacks",
