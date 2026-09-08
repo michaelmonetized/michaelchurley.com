@@ -3533,7 +3533,450 @@ Guest rows without a claim bridge orphan purchases at signup. Auth-agnostic mean
 **Engagement Q:** When @hustlepay/react only exports VERSION, do you import Pay from @core — or wait for the TODOs?
 `;
 
+const KITCHEN_COVER =
+  "/blog/kitchen-cloud-native-project-store/cover.png";
+
+const KITCHEN_CONTENT = `![Kitchen home — cloud-native project store](/blog/kitchen-cloud-native-project-store/screenshots/home.png)
+
+## Who
+
+I got tired of treating Editor, disk, git, and remote hosting as four different systems for the same daily loop.
+
+Kitchen is for operators who want live sync and a real editor — nvim, VS Code, Zed — without renaming the product a cloud IDE. It is for people who will say “no git” and mean no add/commit/push/pull/rebase, while history and human merge stay.
+
+If you have ever saved a file and still had a ceremony left before another machine could see it, you are in the room.
+## What
+
+I built Kitchen (michaelmonetized/kitchen, web 0.1.0). Codename. Next 16.2.9 + Convex + Clerk + Mirror. HEAD 97bec56. 34 commits.
+
+![Pricing](/blog/kitchen-cloud-native-project-store/screenshots/pricing.png)
+
+## Where
+
+Live https://kitchen-gilt-nine.vercel.app — home/pricing/docs/sign-in 200; discover 404; vision/mission 404 (untracked WT). Web is tree/diff/blame — not a textarea editor.
+
+![Docs](/blog/kitchen-cloud-native-project-store/screenshots/docs.png)
+
+## When
+
+June 18 2026: public log opens at fork-merge; same day org-admin, collab-relay, landing, Vercel ship, recovery loops, then Mirror client, launch-gate, diff/blame, agent kit, offline queue. June 21 lakebed parity. June 22 nightly HEAD 97bec56. Pack day 2026-09-08 draft-only; WT dirty not pushed.
+
+![Sign-in](/blog/kitchen-cloud-native-project-store/screenshots/sign-in.png)
+
+## Why
+
+Honest codename. Launch gate blocks PH/HN until Mirror demo is true. Dual honesty: marketing 200 vs discover 404 and WT docs drift. No git means no ceremony verbs — Versions and Pierre merge stay.
+
+![Four layers](/blog/kitchen-cloud-native-project-store/screenshots/four-layers.png)
+
+If your editor already saves to disk, what would have to be true before you deleted git add — live Versions on another machine, or a merge UI you trust more than conflict markers?
+`;
+
+const HUSTLEMAIL_COVER =
+  "/blog/hustlemail-com-eight-dollar-lander-missing-signup/cover.png";
+
+const HUSTLEMAIL_CONTENT = `![Home hero](/blog/hustlemail-com-eight-dollar-lander-missing-signup/screenshots/home-hero.png)
+
+## Who
+
+I keep a private GitHub org full of product shells. Some are real apps. Some are landers that talk like apps.
+
+For operators who need the honest split between a **$8/mo email-marketing marketing site** and the separate Resend mail-client monorepo that actually moves mail.
+
+## What
+
+I built **hustlemail-com** — private \`https://github.com/michaelmonetized/hustlemail-com\`. Next.js marketing shell. HEAD \`ab984f2\`. **3** commits. 0 stars. package name \`hustlemail.com@0.1.0\`. **No README.md**.
+
+Stack facts from \`package.json\`: Next **^16.2.6**, React **^19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there — no Clerk, no Convex, no Stripe package, no Resend.
+
+What the UI claims:
+
+- Hero: “Email marketing, **minus the bloat**.” CTAs to \`/signup\` and \`/docs\`.
+- Social proof strip: **10K+ Active Users** / **50M+ Emails Sent** — no backend in this tree to back that.
+- Competitor cards: Mailchimp \`$20+/mo\`, ConvertKit \`$29+/mo\`, HustleMail **\`$8/mo\`**.
+- Pricing: **Starter Free** (500 subs / 1,000 emails), **Pro $8/mo** (5,000 subs, unlimited emails, sequences, A/B, custom branding), **Business $24/mo** (25,000, dedicated IP, API, phone). Annual Pro copy: **$80/year**.
+- FAQ text says Stripe + PayPal, 14-day trial, 30-day refund — still no Stripe in deps.
+- Brand red: Tailwind \`brand.500 = #ef4444\`.
+
+![Pricing plans](/blog/hustlemail-com-eight-dollar-lander-missing-signup/screenshots/pricing-plans.png)
+
+![Competitor table](/blog/hustlemail-com-eight-dollar-lander-missing-signup/screenshots/competitor-table.png)
+
+Real \`page.tsx\` routes: \`/\`, \`/features\`, \`/pricing\`, \`/docs\`.
+
+Linked but **missing**: \`/signup\`, \`/login\`, \`/about\`, \`/blog\`, \`/contact\`, \`/privacy\`, \`/terms\`, \`/community\`, and the docs children (\`/docs/quick-start\`, \`/docs/api\`, …). \`/docs\` is an index of cards pointing at pages that do not exist.
+
+![Docs dead links](/blog/hustlemail-com-eight-dollar-lander-missing-signup/screenshots/docs-dead-links.png)
+
+![Missing routes](/blog/hustlemail-com-eight-dollar-lander-missing-signup/screenshots/missing-routes.png)
+
+This is **not** \`michaelmonetized/hustlemail\` — that sibling is a Resend+Convex keyboard-first mail client for \`notify@uncap.us\`. Different repo. Different job.
+
+## Where
+
+Code: [github.com/michaelmonetized/hustlemail-com](https://github.com/michaelmonetized/hustlemail-com) — private.
+
+Live probes at pack time:
+
+- \`hustlemail-com.vercel.app\` / \`hustlemail.vercel.app\` → **404** \`DEPLOYMENT_NOT_FOUND\`
+- \`hustlemail.com\` DNS A → **54.243.117.197** (AWS); HTTPS TLS → **UNEXPECTED_EOF** (not this Next app)
+
+Local inspect clone: \`/tmp/cf-inspect/hustlemail-com\` @ \`ab984f2\`.
+
+## When
+
+**2026-02-18** — \`286bef3\` feat: initial hustlemail.com marketing site (+1469 / 15 files).  
+**2026-06-22 17:38 ET** — \`e96ceb6\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).  
+**2026-06-22 18:16 ET** — \`ab984f2\` nightly empty tip (HEAD).
+
+![Commit arc](/blog/hustlemail-com-eight-dollar-lander-missing-signup/screenshots/commit-arc.png)
+
+## Why
+
+Because a lander that prices against ConvertKit still needs a \`/signup\` route before it is a product story. Because 10K+/50M+ on a four-page private repo is copy, not telemetry. Because the real mail work in this org lives in the Resend client — and this pack refuses to merge those narratives.
+
+**Engagement Q:** How many of your “$8/mo SaaS” repos are four marketing pages with a missing \`/signup\`?
+`;
+
+const NVIBE_COVER =
+  "/blog/nvibe-neovim-cursor-coderabbit-layout-until-it-works/cover.png";
+
+const NVIBE_CONTENT = `![nvibe layout — left AI panel, editor, bottom tools](/blog/nvibe-neovim-cursor-coderabbit-layout-until-it-works/screenshots/layout-concept.png)
+
+## Who
+
+I wanted Cursor Agent and CodeRabbit **already open** when Neovim started — not behind another tmux pane, not in a separate Electron window, not one \`<leader>\` chord away from forgetting which split I was in.
+
+If you run NvChad and keep AI CLIs on PATH, you already know the friction: alt-tab to the agent, lose the buffer context, come back, rebalance windows by hand. I wanted the layout to be the product.
+
+## What
+
+I built **nvibe** — a Lua Neovim plugin at [michaelmonetized/nvibe](https://github.com/michaelmonetized/nvibe). Version badge says **0.1.0**. Module lives at \`lua/nvibe/init.lua\` (~354 lines). Public. Stars: 0.
+
+On \`VimEnter\`, if you are not already in a terminal buffer, \`setup()\` calls \`create_terminal_split()\`:
+
+1. Hard-requires \`nvchad.term\` (ERROR notify + abort if missing).
+2. Checks \`vim.fn.executable\` for \`cursor_agent_cmd\` / \`coderabbit_cmd\` (defaults \`cursor-agent\`, \`coderabbit\`).
+3. Left panel width = \`width_percent\` × \`$COLS\` (or \`vim.o.columns\` fallback).
+4. \`nvchad.term.new\` for Cursor Agent (top) and CodeRabbit (bottom) on that panel.
+5. Bottom strip: LazyGit + two shells (\`vim.o.shell\`), with a pile of \`wincmd\` / \`close\` cleanup so empty buffers do not stick around.
+6. \`stopinsert\` so the editor is not left in insert mode.
+
+Config surface is small:
+
+\`\`\`lua
+require('nvibe').setup({
+  width_percent = 30,
+  cursor_agent_cmd = "cursor-agent",
+  coderabbit_cmd = "coderabbit",
+})
+\`\`\`
+
+Honesty check against the tree: the **code default** for \`width_percent\` is **20**, while README / \`docs/API.md\` / busted expectations still talk like **30**. LazyGit and the dual shells are **hardcoded** — not setup opts. ROADMAP still has "make bottom panel commands and sizes configurable" open.
+
+![NvimTree #4/#5 — height constrain + rebalance](/blog/nvibe-neovim-cursor-coderabbit-layout-until-it-works/screenshots/nvimtree-fix.png)
+
+February fix (\`6a931f6\`, closes #4 and #5): opening NvimTree used to equalize windows and grow full height over the terminal panes. Plugin now caches editor-row height after layout, constrains \`FileType NvimTree\` windows to that height, and \`rebalance_panels()\` restores left-column terminal widths on open/close. README documents \`preserve_window_proportions = true\` as the paired NvimTree setting.
+
+Tests: busted (\`tests/test_nvibe.lua\`, **18** \`it(\` cases) with mocked \`vim\` + \`nvchad.term\`. Makefile: \`make test\` / \`lint\` / \`check\` via busted + luacheck. CHANGELOG documents the early interactivity bug — raw \`vim.cmd("terminal …")\` vs NvChad's interactive \`term.new\`.
+
+![CI added, then deleted for Vercel](/blog/nvibe-neovim-cursor-coderabbit-layout-until-it-works/screenshots/ci-vercel-irony.png)
+
+CI subplot: \`3ee0092\` added \`.github/workflows/build.yml\` ("keep prod build green"). \`5ab79db\` corrected it for a Lua project. Next morning \`365a17e\` deleted **all** GitHub config with message **“Vercel is our only CI/CD”** — on a Neovim Lua plugin with no web app in the tree. HEAD has no \`.github/\`. Local \`make test\` is the gate that remains.
+
+Also true: MIT badge in README, **no LICENSE file**. Product Hunt badges link to producthunt.com root. PLAN.md still has Phase 3 "Product Hunt launch preparation." CHANGELOG dates 0.1.0 as 2025-01-17; git history starts **2025-10-17**.
+
+## Where
+
+Code: [github.com/michaelmonetized/nvibe](https://github.com/michaelmonetized/nvibe) — **public**. No hosted demo.
+
+Install path in README: Lazy.nvim or Packer snippets calling \`require('nvibe').setup()\`, after NvChad. Runtime needs Neovim 0.7+, NvChad (\`nvchad.term\`), and the CLIs you configured (plus \`lazygit\` for the bottom middle pane as written).
+
+Checked-in \`screenshot.png\` (~948KB) from the Oct 18 roadmap commit is the visual proof the layout existed on a real session.
+
+## When
+
+- **2025-10-17 morning** — \`a65bb50\` init → \`e0766a4\` initial plugin release → Product Hunt marketing README (\`be96f88\`) → docs, tests, NvChad error handling, CodeRabbit PR cleanup → merge #2.
+- **2025-10-17 evening – 2025-10-18** — bottom panel / 3-column layout fight: auto-launch, separate creation paths, sizing context bugs, manual vim-cmd walking (\`i've been using 1 not l but needed h\`) → **\`903e4d6\` "it works!"** → merge #3 from \`stage\` → \`5a790f2\` roadmap + screenshot.
+- **2026-02-21** — \`6a931f6\` NvimTree height + panel width restore (closes #4, #5).
+- **2026-02-27–28** — Actions build gate → Lua workflow fix → delete GitHub config for Vercel; PLAN.md + \`.hustlemc\` land.
+- **2026-06-22** — \`e7833a1\` / HEAD \`56d0152\` nightlies. Last push \`2026-06-22T22:17:08Z\`. **35** commits total.
+
+![35-commit arc highlights](/blog/nvibe-neovim-cursor-coderabbit-layout-until-it-works/screenshots/commit-arc.png)
+
+## Why
+
+Because "vibe coding" for me is not another chat sidebar — it is **terminals I already pay for**, laid out so the agent and the reviewer never leave the frame while I edit.
+
+I also wanted the diary of actually making Neovim splits behave. The commit messages from Oct 18 are the product as much as the README ASCII: simplify, comment out close, walk the steps, use \`h\` not \`1\`, then ship **"it works!"** Same energy as deleting a brand-new Actions workflow because the org mantra said Vercel — leave that commit in history instead of rewriting it.
+
+## Engagement Q
+
+Would you hard-depend on **NvChad's terminal module** to glue Cursor Agent + CodeRabbit into Neovim — or keep AI in separate panes forever — and does a commit titled **"it works!"** after a day of \`wincmd\` hell earn more trust than a polished 0.1.0 badge?
+`;
+
+const COMPARE_COVER =
+  "/blog/compare-git-isolated-command-benchmarker/cover.png";
+
+const COMPARE_CONTENT = `![Git-isolated A/B workflow](/blog/compare-git-isolated-command-benchmarker/screenshots/workflow-isolation.png)
+
+## Who
+
+I kept running \`time cmd-a; time cmd-b\` and then arguing with myself about whether the second one won because it was faster — or because the first one warmed the cache and the tree had drifted.
+
+For operators comparing formatters and linters who refuse that lie. Especially anyone already typing \`vp exec biome format --write\` next to \`vp exec oxlint\` and wanting the median, not the vibes.
+
+## What
+
+I built **compare** — public [\`michaelmonetized/compare\`](https://github.com/michaelmonetized/compare). Bash. \`VERSION="0.1.0"\`. \`bin/compare\` is **825** lines at HEAD (468 on init). \`install.sh\` drops it in \`/usr/local/bin\` (or \`$PREFIX\`). HEAD \`c5dbcd6\`. **3** commits. 0 stars. CLI only. No LICENSE. No release tag.
+
+![CLI help surface](/blog/compare-git-isolated-command-benchmarker/screenshots/cli-help.png)
+
+The product is git isolation for shell A/B:
+
+1. If the working tree is dirty, commit \`compare: snapshot before benchmark\` (with \`--no-verify\`).
+2. Force-create \`compare/<slug-a>\` and \`compare/<slug-b>\` from that shared SHA.
+3. Checkout A, run command A \`-n\` times with \`TIMEFORMAT\`, append to the log; blank line; same for B.
+4. Restore the original branch. Leave the snapshot and \`compare/*\` branches for inspection — delete them yourself.
+
+Log lines look like POSIX \`time\`:
+
+\`\`\`text
+vp exec biome lint --write  1.36s user 0.36s system 151% cpu 1.134 total
+vp exec oxlint --write  0.21s user 0.18s system 73% cpu 0.528 total
+\`\`\`
+
+Default path: \`../tests/compare-<cwd>-<c1>-<c2>-<UTCstamp>.log\`. Flags: \`-n\`, \`-c\`, \`-o\`, \`-g/--graph\`, \`--md\`. Subcommands: \`compare graph <log>\`, \`compare report <log>\`. Graphs: user / system / CPU% / total — blue A, yellow B. \`--md\` writes tables + mermaid and opens [mdr](https://github.com/CleverCloud/mdr) (else \`open\` / \`xdg-open\`). Commands go through \`eval\` — trusted only.
+
+![Sample log + terminal charts](/blog/compare-git-isolated-command-benchmarker/screenshots/sample-log-graph.png)
+
+Smoke on the pack box: \`compare "sleep 0.05" "sleep 0.12" -n 3\` → totals ~0.051 vs ~0.121, branches \`compare/sleep-0-05\` and \`compare/sleep-0-12\` left behind. README caveats remain honest: no CPU pinning, mutating commands can diverge branches, one intentional variable is on you.
+
+Residue: \`plans/README.md\` still says the repo had **no commits and no source code** — docs-only improve plans. Those four plans are marked DONE. \`compare report\` is in \`--help\` and code; it is not in the README Contents. Second nightly (\`c5dbcd6\`) shares the exact tree with the first nightly — empty HEAD commit.
+
+![plans irony](/blog/compare-git-isolated-command-benchmarker/screenshots/plans-irony.png)
+
+## Where
+
+Code: [github.com/michaelmonetized/compare](https://github.com/michaelmonetized/compare) — public, branch \`main\`. No homepage. No live web demo. Clone + \`./install.sh\` (or \`PREFIX=$HOME/.local ./install.sh\`).
+
+Audience sits next to biome, oxlint, Vite Plus, and anyone who already treats \`time\` output as courtroom evidence.
+
+## When
+
+**2026-06-17, 6:57 AM Eastern.** \`217d4ac\` init — README, 468-line CLI, install script, four docs plans.
+
+**2026-06-22, 5:40 PM Eastern.** \`b4fea7b\` nightly — CLI grows to 825 lines; README gains \`--md\` / mdr / CPU chart.
+
+**2026-06-22, 6:17 PM Eastern.** \`c5dbcd6\` nightly — same tree as \`b4fea7b\`. HEAD. Empty.
+
+![Commit arc](/blog/compare-git-isolated-command-benchmarker/screenshots/commit-arc.png)
+
+## Why
+
+Because back-to-back \`time\` is a shared-state measurement pretending to be a tool measurement. Because a snapshot commit plus two named branches is the smallest honest isolator I would actually run. Because biome-vs-oxlint needs a log file outside the working tree, not another Slack debate.
+
+**Engagement Q:** When you A/B two CLIs, what is the one variable you pretend you controlled — and which dirty-tree / warm-cache factor actually won?
+`;
+
+const BASHFORMER_COVER =
+  "/blog/bashformer-ink-flappy-after-c-sdl-cleanup/cover.png";
+
+const BASHFORMER_CONTENT = `![Ink Flappy frame](/blog/bashformer-ink-flappy-after-c-sdl-cleanup/screenshots/ink-flappy-frame.png)
+
+## Who
+
+I wanted Flappy Bird that lives in the TTY — not a browser tab — and I kept a pure-bash platformer under the same repo name because the first instinct was bash + former, not Ink clone.
+
+For people who install Bun and still respect a 300-line bash game that only needs Nerd Fonts.
+
+## What
+
+I built **bashformer** — public https://github.com/michaelmonetized/bashformer. HEAD \`541d2bc\`. **21** commits. **0** stars. Default **master**. Version **Unreleased**. CLI/TTY only.
+
+**Product A (README):** \`index.tsx\` (~263 LOC). Bun + React 19 + Ink 7. CONFIG: FPS 30, GRAVITY 0.32, FLAP_VY -1.7, PIPE_SPEED 3.1, PIPE_GAP 8. Space flaps/restarts; Q quits. Pipe.scored prevents double-count (\`d1fa8d0\`, #7). Terminal <40x10 exits (\`6678fda\`).
+
+![CONFIG + scored](/blog/bashformer-ink-flappy-after-c-sdl-cleanup/screenshots/config-scored-fix.png)
+
+**Product B (in-tree):** \`bashformer.sh\` (~314 LOC). Pure bash Nerd Font side-scroller — coins/spikes/goal, camera follow. A/D move, W/Space jump, Q quit.
+
+![Bash platformer HUD](/blog/bashformer-ink-flappy-after-c-sdl-cleanup/screenshots/bash-platformer-hud.png)
+
+**Feb 21 cleanup:** CONFIG extract (\`6b9eead\`), PLAN rewrite (\`e27c79b\`), bun tests (\`810e5f4\`), remove vex_sdl (#14) and C/SDL (\`5a840cf\`), CHANGELOG (#11), README match, scored flag, term size.
+
+Residue: PLAN still lists deleted C experiments; sitrep says Unknown tool / PROTOTYPE; CHANGELOG [Unreleased]; package.json private.
+
+![Cleanup arc](/blog/bashformer-ink-flappy-after-c-sdl-cleanup/screenshots/cleanup-arc.png)
+
+## Where
+
+Code: [github.com/michaelmonetized/bashformer](https://github.com/michaelmonetized/bashformer) — public. No live web app.
+
+\`\`\`bash
+bun install && bun run index.tsx
+# or
+./bashformer.sh
+\`\`\`
+
+![Dual stack](/blog/bashformer-ink-flappy-after-c-sdl-cleanup/screenshots/dual-stack.png)
+
+## When
+
+**2025-12-21 -> 12-27** — init, kong/baddies/tools, zoom/png, story cleanup.
+**2026-01-31** — chore sync.
+**2026-02-21** — CONFIG -> tests -> delete C/SDL -> scored flag -> term size.
+**2026-06-22** — nightly x2 -> HEAD \`541d2bc\`.
+
+![Commit arc](/blog/bashformer-ink-flappy-after-c-sdl-cleanup/screenshots/commit-arc.png)
+
+## Why
+
+Because deleting the C/SDL pile is a product decision. Because Pipe.scored is more honest than score feels off. Because Unreleased with empty Phase 1 checkboxes beats inventing a 1.0 tag.
+
+**Engagement Q:** Keep the pure-bash platformer beside Ink Flappy, or split so the README stops lying by omission?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:kitchen-cloud-native-project-store",
+    title: "Kitchen: I built a cloud project store where files are rows and disk is a Mirror \u2014 no git",
+    slug: "kitchen-cloud-native-project-store",
+    excerpt:
+      "I built Kitchen \u2014 a Next.js 16 + Convex + Clerk cloud-native project store: insert-only Version rows, a Mirror daemon at $HOME/Projects, Pierre line-pick merge, and a live Vercel beta. Codename. No git ceremony.",
+    content: KITCHEN_CONTENT,
+    coverImage: KITCHEN_COVER,
+    tags: [
+      "kitchen",
+      "cloud-native",
+      "sync",
+      "convex",
+      "clerk",
+      "nextjs",
+      "mirror",
+      "versioning",
+      "no-git",
+      "developer-tools",
+      "pierre",
+      "vercel",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T06:55:00Z"),
+    readingTime: 1,
+  },
+
+  {
+    _id: "static:hustlemail-com-eight-dollar-lander-missing-signup",
+    title: "hustlemail.com: $8/mo email-marketing lander with missing /signup",
+    slug: "hustlemail-com-eight-dollar-lander-missing-signup",
+    excerpt:
+      "Private Next 16 marketing shell for HustleMail \u2014 Free / $8 Pro / $24 Business, Mailchimp vs ConvertKit comparison table, docs index full of dead child links, CTAs to /signup and /login that do not exist. No README. 3 commits. HEAD ab984f2. Not the Resend+Convex hustlemail mail client.",
+    content: HUSTLEMAIL_CONTENT,
+    coverImage: HUSTLEMAIL_COVER,
+    tags: [
+      "hustlemail-com",
+      "hustlemail",
+      "email-marketing",
+      "marketing-site",
+      "nextjs",
+      "tailwind",
+      "pricing",
+      "convertkit",
+      "mailchimp",
+      "lander",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T06:50:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:nvibe-neovim-cursor-coderabbit-layout-until-it-works",
+    title: "nvibe: I wired Cursor Agent + CodeRabbit into Neovim, then fought the window manager until \"it works!\"",
+    slug: "nvibe-neovim-cursor-coderabbit-layout-until-it-works",
+    excerpt:
+      "Lua Neovim plugin that auto-lays out Cursor Agent + CodeRabbit on the left and LazyGit/shells on the bottom (hard NvChad dependency) \u2014 35 commits from Product Hunt README through \"it works!\" window-management hell, NvimTree #4/#5 fixes, a GitHub Actions gate that got deleted for \"Vercel is our only CI/CD,\" and June 22 nightlies. HEAD 56d0152.",
+    content: NVIBE_CONTENT,
+    coverImage: NVIBE_COVER,
+    tags: [
+      "nvibe",
+      "neovim",
+      "nvim",
+      "lua",
+      "nvchad",
+      "cursor-agent",
+      "coderabbit",
+      "lazygit",
+      "vibe-coding",
+      "nvim-tree",
+      "terminal",
+      "ai-coding",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T06:45:00Z"),
+    readingTime: 4,
+  },
+
+  {
+    _id: "static:compare-git-isolated-command-benchmarker",
+    title: "compare: back-to-back time lies \u2014 so I git-isolated the benchmark",
+    slug: "compare-git-isolated-command-benchmarker",
+    excerpt:
+      "Public michaelmonetized/compare is an 825-line bash CLI that snapshots a dirty tree, runs each command on its own compare/<slug> branch from a shared baseline, and logs POSIX time. Motivating examples: biome vs oxlint. VERSION 0.1.0. 3 commits. HEAD c5dbcd6. Second nightly is an empty tree.",
+    content: COMPARE_CONTENT,
+    coverImage: COMPARE_COVER,
+    tags: [
+      "compare",
+      "bash",
+      "cli",
+      "benchmark",
+      "posix-time",
+      "git-isolation",
+      "biome",
+      "oxlint",
+      "mdr",
+      "mermaid",
+      "devtools",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T06:40:00Z"),
+    readingTime: 3,
+  },
+
+  {
+    _id: "static:bashformer-ink-flappy-after-c-sdl-cleanup",
+    title: "bashformer: terminal Flappy Bird in Ink \u2014 after I deleted the C/SDL pile",
+    slug: "bashformer-ink-flappy-after-c-sdl-cleanup",
+    excerpt:
+      "Public michaelmonetized/bashformer: Bun + React/Ink 30 FPS Flappy Bird in the terminal, plus a pure-bash Nerd Font platformer still in-tree. Feb 21 deleted vex_sdl/C games, extracted CONFIG, added bun tests, fixed Pipe.scored (#7). 21 commits. HEAD 541d2bc. Unreleased; Phase 1 polish still unchecked.",
+    content: BASHFORMER_CONTENT,
+    coverImage: BASHFORMER_COVER,
+    tags: [
+      "bashformer",
+      "flappy-bird",
+      "ink",
+      "react",
+      "bun",
+      "typescript",
+      "terminal-game",
+      "bash",
+      "platformer",
+      "nerd-font",
+      "cli",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T06:35:00Z"),
+    readingTime: 1,
+  },
+
   {
     _id: "static:orclawstrator-swift-appkit-to-go-tui-openclaw-gateway",
     title: "orclawstrator: I built the OpenClaw command center in Swift, then archived it for a Go TUI",
