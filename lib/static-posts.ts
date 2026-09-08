@@ -850,47 +850,47 @@ The ask is not stars. The ask is hardware in the capture loop, and issue checkbo
 const HURLEYUS_COVER =
   "/blog/hurleyus-omarchy-catppuccin-rally-theme/cover.png";
 
-const HURLEYUS_CONTENT = `![Hurleyus hero — desktop preview beside Plymouth unlock](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/hero-desktop-unlock.png)
+const HURLEYUS_CONTENT = `![Hurleyus hero. desktop preview beside Plymouth unlock](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/hero-desktop-unlock.png)
 
 ## Who
 
-I run Omarchy as the daily desk. Catppuccin Mocha is already the right palette — soft contrast, blue accent, pink errors, the whole mocha set.
+I run Omarchy as the daily desk. Catppuccin Mocha is already the right palette: soft contrast, blue accent, pink errors, the whole mocha set.
 
-Stock Mocha still looks like everybody else’s laptop.
+Stock Mocha still looks like everybody else's laptop.
 
 Hurleyus is for the Omarchy operator who wants Mocha without anonymity. For the Hurley / quattro / rally-art orbit who want the desk to match the brand. For Asahi Mac people who care that the unlock screen and the compiled-in U-Boot splash say the same name as the bar. For theme authors who already learned that shipping Foot or Ghostty palette files inside a theme is how you get a black terminal.
 
-If your Style menu is full of fine defaults and none of them feel like yours — that is the room.
+If your Style menu is full of fine defaults and none of them feel like yours, this is the pack.
 
 ## What
 
 I built an Omarchy **theme package**. Id folder \`hurleyus\`. Display name **Hurleyus**. MIT. Public repo. Branch \`main\`.
 
-![Desktop preview — Mocha chrome over rally wall](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/desktop-preview.png)
+![Desktop preview. Mocha chrome over rally wall](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/desktop-preview.png)
 
 **Palette.** \`colors.toml\` is the source of truth. Background \`#1e1e2e\`. Accent \`#89b4fa\`. Omarchy expands that into Foot, Ghostty, Kitty, Alacritty, btop, Chromium, shell chrome. README is blunt: do not ship terminal palette files in the theme. Those files block the templates. You get a black terminal. I have no interest in that support thread.
 
-**Window chrome.** \`hyprland.lua\` — 20px rounding, 20px gaps in and out, Mocha active/inactive borders. Editors: \`neovim.lua\` points LazyVim at Catppuccin; \`vscode.json\` names the Catppuccin Mocha extension. Icons: Yaru-purple.
+**Window chrome.** \`hyprland.lua\`: 20px rounding, 20px gaps in and out, Mocha active/inactive borders. Editors: \`neovim.lua\` points LazyVim at Catppuccin; \`vscode.json\` names the Catppuccin Mocha extension. Icons: Yaru-purple.
 
-![Repo layout — colors, lua, walls, branding, unlock](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/repo-structure.png)
+![Repo layout. colors, lua, walls, branding, unlock](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/repo-structure.png)
 
-**Walls.** Seven 4K JPEGs, 3840×2160, pre-darkened so the bar and terminals stay readable. Titles in the gallery: Canyon run, Hairpin, The jump, Donuts, Tunnel blast, Service park, Last light. Cycle with \`omarchy theme bg next\` or Style → Background.
+**Walls.** Seven 4K JPEGs, 3840×2160, pre-darkened so the bar and terminals stay readable. Titles in the gallery: Canyon run, Hairpin, The jump, Donuts, Tunnel blast, Service park, Last light. Cycle with \`omarchy theme bg next\` or Style to Background.
 
 ![Seven pre-darkened 4K Hurleyus walls](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/walls-gallery.png)
 
-**Boot.** \`unlock.png\` for Plymouth / SDDM — set with \`omarchy plymouth set by theme hurleyus\` (same path Lumon uses). Branding ASCII for about + screensaver. Logo PNG. And the Asahi-specific piece: \`branding/install-uboot-logo.sh\` finds the 160×160 8-bit BMP slot inside \`/usr/lib/asahi-boot/u-boot-nodtb.bin\`, writes a patched copy under cache, runs \`update-m1n1\`. The splash that ships in U-Boot becomes Hurleyus.
+**Boot.** \`unlock.png\` for Plymouth / SDDM. Set with \`omarchy plymouth set by theme hurleyus\` (same path Lumon uses). Branding ASCII for about + screensaver. Logo PNG. And the Asahi-specific piece: \`branding/install-uboot-logo.sh\` finds the 160×160 8-bit BMP slot inside \`/usr/lib/asahi-boot/u-boot-nodtb.bin\`, writes a patched copy under cache, runs \`update-m1n1\`. The splash that ships in U-Boot becomes Hurleyus.
 
-**Install.** Origin README still shows \`omarchy theme install <url>\`. Pack-day local note (not pushed yet): Omarchy 4.0.2+ treats a nested \`.git\` directory as a stranger theme and drops \`hyprland.lua\` on install. Keep the Lua by cloning into \`~/.local/share/themes/hurleyus\`, symlinking into \`~/.config/omarchy/themes/hurleyus\`, then \`omarchy theme set hurleyus\`. A symlink counts as yours. A submodule’s \`.git\` *file* also keeps the Lua.
+**Install.** Origin README still shows \`omarchy theme install <url>\`. Pack-day local note (not pushed yet): Omarchy 4.0.2+ treats a nested \`.git\` directory as a stranger theme and drops \`hyprland.lua\` on install. Keep the Lua by cloning into \`~/.local/share/themes/hurleyus\`, symlinking into \`~/.config/omarchy/themes/hurleyus\`, then \`omarchy theme set hurleyus\`. A symlink counts as yours. A submodule's \`.git\` *file* also keeps the Lua.
 
 ![Install path that keeps hyprland.lua on Omarchy 4.0.2+](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/install-path.png)
 
 ## Where
 
-It lives where Omarchy themes live — \`~/.config/omarchy/themes/hurleyus\` on the machine I actually use. Same tree is the git checkout of [michaelmonetized/omarchy-hurleyus-theme](https://github.com/michaelmonetized/omarchy-hurleyus-theme).
+It lives where Omarchy themes live: \`~/.config/omarchy/themes/hurleyus\` on the machine I actually use. Same tree is the git checkout of [michaelmonetized/omarchy-hurleyus-theme](https://github.com/michaelmonetized/omarchy-hurleyus-theme).
 
-Boot path is Plymouth / SDDM for unlock, and Asahi’s \`u-boot-nodtb.bin\` for the early splash. No Pages marketing site. No GitHub Release tag. Linguist is mostly the U-Boot install shell plus a little Lua; the walls are the byte mass.
+Boot path is Plymouth / SDDM for unlock, and Asahi's \`u-boot-nodtb.bin\` for the early splash. No Pages marketing site. No GitHub Release tag. Linguist is mostly the U-Boot install shell plus a little Lua; the walls are the byte mass.
 
-Audience sits next to Omarchy, Catppuccin, Asahi / Omnux Mac desks, and the quattro / Hurley brand lane — people who already know Style → Theme, not people who need a tutorial on what a wallpaper is.
+Audience sits next to Omarchy, Catppuccin, Asahi / Omnux Mac desks, and the quattro / Hurley brand lane. People who already know Style to Theme, not people who need a tutorial on what a wallpaper is.
 
 ![Boot unlock preview](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/unlock-preview.png)
 
@@ -900,23 +900,25 @@ Audience sits next to Omarchy, Catppuccin, Asahi / Omnux Mac desks, and the quat
 
 **Same night, 8:09 PM Eastern.** Twelve minutes later. \`Add Hurleyus unlock screen and Asahi U-Boot splash.\` Unlock assets, BMPs, \`install-uboot-logo.sh\`.
 
-**2026-08-22, 6:36 AM Eastern.** \`init\` — wall refresh, bigger about/screensaver ASCII, hyprland tweak.
+**2026-08-22, 6:36 AM Eastern.** \`init\`. Wall refresh, bigger about/screensaver ASCII, hyprland tweak.
 
 **2026-08-26, 5:58 AM Eastern.** \`Package for distribution: 4K JPEG walls, README gallery, cleanup.\` PNG walls out. Seven JPEGs in. Gallery in the README. Fat binaries gone so \`theme install\` is not a joke.
 
-Four commits. Still. Last push \`65f4da3\`. Zero stars. Local README has an unpushed install-path rewrite for the 4.0.2+ Lua drop — pack day tells that truth instead of pretending origin already has it.
+Four commits. Still. Last push \`65f4da3\`. Zero stars. Local README has an unpushed install-path rewrite for the 4.0.2+ Lua drop. Pack day tells that truth instead of pretending origin already has it.
 
 ## Why
 
-Because Mocha was correct and still felt rental.
+Mocha was correct and still felt rental.
 
-Because I want one \`colors.toml\` driving the terminals and the rally art carrying the identity — not a fork of every emulator config.
+I want one \`colors.toml\` driving the terminals and the rally art carrying the identity, not a fork of every emulator config.
 
-Because on an Asahi Mac the splash in U-Boot is part of the machine’s face, and patching a 160×160 slot is a real receipt, not a settings-app wallpaper picker.
+On an Asahi Mac the splash in U-Boot is part of the machine's face, and patching a 160×160 slot is a real receipt, not a settings-app wallpaper picker.
 
-Because Omarchy’s theme system rewards packages that respect templates, and I refuse to relearn the black-terminal lesson.
+Omarchy's theme system rewards packages that respect templates. I refuse to relearn the black-terminal lesson.
 
-Fork Thursday night. Unlock and U-Boot twelve minutes later. Slim JPEG distribution five mornings after that. That is the clock.
+Fork Thursday night. Unlock and U-Boot twelve minutes later. Slim JPEG distribution five mornings after that.
+
+Would you keep the nested \`.git\` and lose \`hyprland.lua\` on Omarchy 4.0.2+, or clone + symlink so the Lua stays yours?
 `;
 
 const REAFERAL_COVER =
@@ -2487,67 +2489,67 @@ Engagement: if your agents and your humans do not share a thread id, what exactl
 const CITATION_MANAGER_COVER =
   "/blog/citation-manager-uberall-competitor-958-directories/cover.png";
 
-const CITATION_MANAGER_CONTENT = `![Citation Manager dashboard mock — locations, submit, directories, submissions](/blog/citation-manager-uberall-competitor-958-directories/screenshots/dashboard.png)
+const CITATION_MANAGER_CONTENT = `![Citation Manager dashboard mock. locations, submit, directories, submissions](/blog/citation-manager-uberall-competitor-958-directories/screenshots/dashboard.png)
 
 ## Who
 
-I build operator tools for people who get paid when the NAP is right — agencies, multi-location owners, anyone tired of logging into Google, Yelp, and a dozen legacy directories by hand.
+I build operator tools for people who get paid when the NAP is right: agencies, multi-location owners, anyone tired of logging into Google, Yelp, and a dozen legacy directories by hand.
 
-Citation Manager is for that lane. Not for academic bibliography. Not for a WNC city guide. For pushing business listings out and tracking what stuck.
+Citation Manager is that lane. Business listings out. Tracking what stuck. Skip the academic bibliography frame and the WNC city-guide frame.
 
-If you care about local SEO plumbing, directory registries, or how a two-week SaaS sprint accumulates three auth stacks and a 500 on the homepage URL: these are the field notes.
+If you care about local SEO plumbing, directory registries, or how a two-week SaaS sprint accumulates three auth stacks and a 500 on the homepage URL, these are the field notes.
 
 ## What
 
-I shipped \`HurleyUS/citation-manager\` — public TypeScript repo, package **0.0.1**, **83** commits, HEAD \`78e9fb1\`.
+I shipped \`HurleyUS/citation-manager\`. Public TypeScript repo, package **0.0.1**, **83** commits, HEAD \`78e9fb1\`.
 
 GitHub description is blunt: manage business listings across 1000+ directories. **Uberall competitor.** The README narrows it to **958+** directories and names Uberall, BrightLocal, and Yext as the alternatives it wants to undercut on price ($99 vs $500–2000/mo copy in the roadmap).
 
 Stack on the box: **Next.js 16.2**, React 19, **Convex**, Tailwind v4, Bun, Lucide, Puppeteer, Argon2. Clerk and \`@convex-dev/auth\` sit in \`package.json\`; Fallow marks both unused while the UI talks to \`/api/auth\` and \`localStorage\` tokens.
 
-![Directory registry mock — rank, method, API flags from directories.json](/blog/citation-manager-uberall-competitor-958-directories/screenshots/directories.png)
+![Directory registry mock. rank, method, API flags from directories.json](/blog/citation-manager-uberall-competitor-958-directories/screenshots/directories.png)
 
-The real artifact is \`data/directories.json\`: **958** rows. Rank 1 is Google Business Profile. Methods break down api 88 / form 773 / manual 70 / email 27. \`apiAvailable\` is true on 219. Convex schema mirrors that world — \`locations\`, \`directories\`, \`submissions\` with pending→submitted→verified→failed, plus \`verifications\`.
+The real artifact is \`data/directories.json\`: **958** rows. Rank 1 is Google Business Profile. Methods break down api 88 / form 773 / manual 70 / email 27. \`apiAvailable\` is true on 219. Convex schema mirrors that world: \`locations\`, \`directories\`, \`submissions\` with pending to submitted to verified to failed, plus \`verifications\`.
 
-Surfaces that exist: auth, dashboard, locations CRUD, directories browser with “View All 958”, bulk submit with search/filter, submissions tracker, seed-directories API, google/yelp/facebook API routes.
+Surfaces that exist: auth, dashboard, locations CRUD, directories browser with "View All 958", bulk submit with search/filter, submissions tracker, seed-directories API, google/yelp/facebook API routes.
 
 What is also true:
 
-- \`bulkSubmit\` inserts \`pending\` rows. The schedule helpers flip to \`submitted\` only if env keys exist — they do **not** call the fetch helpers in that path.
+- \`bulkSubmit\` inserts \`pending\` rows. The schedule helpers flip to \`submitted\` only if env keys exist. They do **not** call the fetch helpers in that path.
 - \`generateGoogleJWT\` is a documented **placeholder**.
-- Login hashes the password with Argon2 again and string-compares to the stored hash. New salt → verify cannot work as written.
-- Dashboard copy still says “100+ directories” while the registry is 958.
+- Login hashes the password with Argon2 again and string-compares to the stored hash. New salt means verify cannot work as written.
+- Dashboard copy still says "100+ directories" while the registry is 958.
 
-![Bulk submit mock — location + directory multi-select](/blog/citation-manager-uberall-competitor-958-directories/screenshots/submit.png)
+![Bulk submit mock. location + directory multi-select](/blog/citation-manager-uberall-competitor-958-directories/screenshots/submit.png)
 
 ## Where
 
-It is supposed to run on Vercel against Convex. Dev uses Caddy \`cm.localhost:8080\` → Next on 3000.
+It is supposed to run on Vercel against Convex. Dev uses Caddy \`cm.localhost:8080\` to Next on 3000.
 
 Probed 2026-09-08:
 
-- **https://citation-manager-pi.vercel.app** (GitHub homepageUrl) → **500** \`MIDDLEWARE_INVOCATION_FAILED\`
-- **https://citation-manager.vercel.app** → **200**, but it is a different “research workflow” citation app with Admin/User portals — **name collision, not this product**
+- **https://citation-manager-pi.vercel.app** (GitHub homepageUrl) returns **500** \`MIDDLEWARE_INVOCATION_FAILED\`
+- **https://citation-manager.vercel.app** returns **200**, but it is a different "research workflow" citation app with Admin/User portals. **Name collision, not this product.**
 
 Audience: local-SEO operators, agencies replacing BrightLocal/Yext spend, builders watching auth and integration honesty in a Convex/Next SaaS.
 
-![Deploy reality mock — 500 homepage vs name-collision 200](/blog/citation-manager-uberall-competitor-958-directories/screenshots/deploy-reality.png)
+![Deploy reality mock. 500 homepage vs name-collision 200](/blog/citation-manager-uberall-competitor-958-directories/screenshots/deploy-reality.png)
 
 ## When
 
-Created **2026-03-22**. Same day: scaffold, directory research, API skeletons, Clerk blank-page fix, Convex Auth swap, “FULL PHASE 2 READY FOR 6PM SHIP,” Google Maps submission claim, locations wired to Convex.
+Created **2026-03-22**. Same day: scaffold, directory research, API skeletons, Clerk blank-page fix, Convex Auth swap, "FULL PHASE 2 READY FOR 6PM SHIP," Google Maps submission claim, locations wired to Convex.
 
 Late March: Argon2, push-to-directories UI, View All 958, submissions dashboard.
 
-**2026-04-01–02:** registry expanded 100→958, Issue #12 Google/Yelp/Facebook modules, Clerk middleware returns, Phase 2B bypass + test infra, form validation, GBP PR.
+**2026-04-01–02.** Registry expanded 100 to 958, Issue #12 Google/Yelp/Facebook modules, Clerk middleware returns, Phase 2B bypass + test infra, form validation, GBP PR.
 
-**2026-05-14–15:** seven “Standardize Blacksmith CI gates” commits (same batch pattern as sibling repos) plus deploy verification fixes.
+**2026-05-14–15.** Seven "Standardize Blacksmith CI gates" commits (same batch pattern as sibling repos) plus deploy verification fixes.
 
-**2026-08-08:** HEAD sets \`X-Robots-Tag: index, follow\` — same day pattern as other HurleyUS pushes.
+**2026-08-08.** HEAD sets \`X-Robots-Tag: index, follow\`. Same day pattern as other HurleyUS pushes.
 
-README still says Phase 2A 100% complete and Phase 2B “current” as of early April. Stripe is still Phase 4 fiction.
+README still says Phase 2A 100% complete and Phase 2B "current" as of early April. Stripe is still Phase 4 fiction.
 
-![Auth whiplash timeline — Clerk → Convex Auth → Argon2 → Clerk middleware → bypass](/blog/citation-manager-uberall-competitor-958-directories/screenshots/auth-whiplash.png)
+![Auth whiplash timeline. Clerk to Convex Auth to Argon2 to Clerk middleware to bypass](/blog/citation-manager-uberall-competitor-958-directories/screenshots/auth-whiplash.png)
 
 ## Why
 
@@ -2555,11 +2557,9 @@ Local citations are still a grind. The expensive tools win on coverage and integ
 
 I also wanted to ship before the story was clean. That is why the homepage 500s, why login verify is wrong, why Clerk middleware and a bypass flag coexist, and why the integration modules look finished while bulkSubmit mostly writes \`pending\`.
 
-The registry is real. The competitor framing is real. The production URL on the GitHub homepage is not a product yet — it is an error page.
+The registry is real. The competitor framing is real. The production URL on the GitHub homepage is not a product yet. It is an error page.
 
-## Engagement
-
-If you run citations for clients: would you trust a 958-row registry with honest \`pending\` states more than a vendor dashboard that always says “submitted”? What is the minimum live integration — Google only — before this is worth putting a real domain on?
+If you run citations for clients: would you trust a 958-row registry with honest \`pending\` states more than a vendor dashboard that always says "submitted"? What is the minimum live integration (Google only) before this is worth putting a real domain on?
 `;
 
 const BARBQUEWAGON_COVER =
@@ -2707,75 +2707,75 @@ What would you delete first if you found another vertical's partner logos still 
 const SHIPTHING_COVER =
   "/blog/shipthing-contacts-spine-not-carrier-rates/cover.png";
 
-const SHIPTHING_CONTENT = `![ShipThing home — lead form + signed-in contacts table](/blog/shipthing-contacts-spine-not-carrier-rates/screenshots/home-contacts.png)
+const SHIPTHING_CONTENT = `![ShipThing home. lead form + signed-in contacts table](/blog/shipthing-contacts-spine-not-carrier-rates/screenshots/home-contacts.png)
 
 ## Who
 
-I wanted a shipping-rate desk for e-commerce sellers — compare USPS, UPS, FedEx, print labels, stop guessing retail rates.
+I wanted a shipping-rate desk for e-commerce sellers: compare USPS, UPS, FedEx, print labels, stop guessing retail rates.
 
-What I built instead is for operators who need a **honest stack spine**: Clerk auth, Convex contacts, Resend lead email, Sentry, PostHog, and a Next 16 \`proxy.ts\` filename law. People who will read PLAN.md, then open the tree, and not pretend the carrier boxes are checked.
+What I built instead is an honest stack spine: Clerk auth, Convex contacts, Resend lead email, Sentry, PostHog, and a Next 16 \`proxy.ts\` filename law. People who read PLAN.md, then open the tree, and do not pretend the carrier boxes are checked.
 
-If you have ever named a repo after the product you meant to ship and then shipped the scaffolding that every later app copies — you are in the room.
+If you have ever named a repo after the product you meant to ship and then shipped the scaffolding that every later app copies, this is that receipt.
 
 ## What
 
-I built **ShipThing** — package \`shipthing\` **0.1.0**, public under **michaelmonetized/shipthing**. Layout metadata title: **Shipthing**. Description: **Combining convex, posthog, clerk and sentry**. That description is more accurate than the repo name.
+I built **ShipThing**. Package \`shipthing\` **0.1.0**, public under **michaelmonetized/shipthing**. Layout metadata title: **Shipthing**. Description: **Combining convex, posthog, clerk and sentry**. That description is more accurate than the repo name.
 
-Stack from the lockfile: **Next.js 16.1.1**, **React 19.2.3**, Tailwind **4**, Bun, **Clerk**, **Convex**, **Resend** + React Email, **Sentry** (org \`hustle-launch\`, project \`shipthing\`), PostHog, zod 4, react-hook-form, Radix/shadcn UI. \`stripe\` sits in dependencies with a long \`.cursor/rules/STRIPE.md\` — **zero app imports**. Thirty-nine commits. HEAD \`9f91d97\`.
+Stack from the lockfile: **Next.js 16.1.1**, **React 19.2.3**, Tailwind **4**, Bun, **Clerk**, **Convex**, **Resend** + React Email, **Sentry** (org \`hustle-launch\`, project \`shipthing\`), PostHog, zod 4, react-hook-form, Radix/shadcn UI. \`stripe\` sits in dependencies with a long \`.cursor/rules/STRIPE.md\`. **Zero app imports.** Thirty-nine commits. HEAD \`9f91d97\`.
 
 ![PLAN.md Not Started vs what the tree actually contains](/blog/shipthing-contacts-spine-not-carrier-rates/screenshots/plan-vs-shipped.png)
 
-Surfaces that exist: \`/\` lead form (“Be the first to contact us!” / Send Message with name, 10-digit phone, email, message) plus signed-in **Contacts** table with delete; \`/login\`; \`/sentry-example-page\`; API routes \`/api/send/notification\` and \`/api/send/confirmation\`; \`proxy.ts\` Clerk middleware file; \`sitemap.ts\` / \`robots.ts\`.
+Surfaces that exist: \`/\` lead form ("Be the first to contact us!" / Send Message with name, 10-digit phone, email, message) plus signed-in **Contacts** table with delete; \`/login\`; \`/sentry-example-page\`; API routes \`/api/send/notification\` and \`/api/send/confirmation\`; \`proxy.ts\` Clerk middleware file; \`sitemap.ts\` / \`robots.ts\`.
 
-Convex schema is a single \`contacts\` table — search index on name, indexes by name/phone/email/page. Notification mail sends from \`Notifications <notify@uncap.us>\` to \`michaelmonetized@gmail.com\` and \`8285931935@vtext.com\`. Confirmation is a short “Hey {name}, we received your message” React Email.
+Convex schema is a single \`contacts\` table. Search index on name, indexes by name/phone/email/page. Notification mail sends from \`Notifications <notify@uncap.us>\` to \`michaelmonetized@gmail.com\` and \`8285931935@vtext.com\`. Confirmation is a short "Hey {name}, we received your message" React Email.
 
-Navbar lists Security, Auth, Layout, Typography, Forms, Analytics, Error Tracking, Email, Realtime Data Sync, APIs, More — **no \`/features/*\` pages** in the tree. Footer still links Learn / Examples / nextjs.org from create-next-app.
+Navbar lists Security, Auth, Layout, Typography, Forms, Analytics, Error Tracking, Email, Realtime Data Sync, APIs, More. **No \`/features/*\` pages** in the tree. Footer still links Learn / Examples / nextjs.org from create-next-app.
 
 \`PLAN.md\` still sells the other product: carrier APIs, rate comparison, ZPL/PDF labels, address validation, Shopify import, batch labels, tracking, cost analytics. Success metrics: active users > 500, monthly labels > 10,000, savings > 30%. Every checkbox is empty.
 
 ## Where
 
-Code: [github.com/michaelmonetized/shipthing](https://github.com/michaelmonetized/shipthing) — **public**. Live: [shipthing.vercel.app](https://shipthing.vercel.app) (**HTTP 200**, Clerk signed-out chrome, \`X-Robots-Tag: index, follow\`).
+Code: [github.com/michaelmonetized/shipthing](https://github.com/michaelmonetized/shipthing). **Public.** Live: [shipthing.vercel.app](https://shipthing.vercel.app) (**HTTP 200**, Clerk signed-out chrome, \`X-Robots-Tag: index, follow\`).
 
 ![proxy.ts + check:proxy Next 16 guardrail](/blog/shipthing-contacts-spine-not-carrier-rates/screenshots/proxy-guardrail.png)
 
-Audience sits next to every “I’ll bolt carriers on next sprint” SaaS skeleton. Sibling operator furniture: Fallow gate notes in \`AGENTS.md\`, Bun-only local law, Blacksmith/Vercel prebuilt rules, env.template for Clerk + Resend + Convex.
+Audience sits next to every "I'll bolt carriers on next sprint" SaaS skeleton. Sibling operator furniture: Fallow gate notes in \`AGENTS.md\`, Bun-only local law, Blacksmith/Vercel prebuilt rules, env.template for Clerk + Resend + Convex.
 
 ![Resend notification + confirmation lead path](/blog/shipthing-contacts-spine-not-carrier-rates/screenshots/resend-lead-path.png)
 
 ## When
 
-**2025-03-22** — Create Next App. Same day: Convex + PostHog + Sentry, not-found + shadcn button, middleware build thrash, Clerk, forms.
+**2025-03-22.** Create Next App. Same day: Convex + PostHog + Sentry, not-found + shadcn button, middleware build thrash, Clerk, forms.
 
-**2025-03-26–27** — Convex contacts land. Resend starts. Real bugs: could not access \`name\` in notification email, copy-pasta, split emails so sending stops after the first try/catch, more Resend fixes, light-mode toggle attempt.
+**2025-03-26–27.** Convex contacts land. Resend starts. Real bugs: could not access \`name\` in notification email, copy-pasta, split emails so sending stops after the first try/catch, more Resend fixes, light-mode toggle attempt.
 
-**2025-03-28–29** — Navbar, error boundary, login. Then: \`convex dev, i finally recovered my github login 🎉\`.
+**2025-03-28–29.** Navbar, error boundary, login. Then: \`convex dev, i finally recovered my github login 🎉\`.
 
-**2025-04** — layout components; **box, stack, deck** + Next update.
+**2025-04.** Layout components; **box, stack, deck** + Next update.
 
-**2025-12-29** — React Server Components CVE pass.
+**2025-12-29.** React Server Components CVE pass.
 
-**2026-01-08** — \`PLAN.md\` with shipping-rate “improvement opportunities.” Jan 31 chore sync.
+**2026-01-08.** \`PLAN.md\` with shipping-rate "improvement opportunities." Jan 31 chore sync.
 
-**2026-02** — CVE PR #1; rename \`middleware.ts\` → \`proxy.ts\` (#7); env.template (#8); proxy filename guardrail (#10); security headers (#11); sitemap + robots (#12).
+**2026-02.** CVE PR #1; rename \`middleware.ts\` to \`proxy.ts\` (#7); env.template (#8); proxy filename guardrail (#10); security headers (#11); sitemap + robots (#12).
 
-**2026-06-22** — nightly ×2.
+**2026-06-22.** Nightly ×2.
 
-**2026-08-08** — HEAD \`9f91d97\`: set \`X-Robots-Tag\` to \`index, follow\` on Vercel.
+**2026-08-08.** HEAD \`9f91d97\`: set \`X-Robots-Tag\` to \`index, follow\` on Vercel.
 
-![Commit arc Mar 2025 → Aug 2026](/blog/shipthing-contacts-spine-not-carrier-rates/screenshots/commit-arc.png)
+![Commit arc Mar 2025 to Aug 2026](/blog/shipthing-contacts-spine-not-carrier-rates/screenshots/commit-arc.png)
 
 ## Why
 
-Because the shipping product needed a spine before it needed a carrier SDK — and the spine is what survived.
+The shipping product needed a spine before it needed a carrier SDK, and the spine is what survived.
 
-Because Next 16 renamed the middleware file and I wanted a script that fails if \`middleware.ts\` comes back (\`bun run check:proxy\`).
+Next 16 renamed the middleware file. I wanted a script that fails if \`middleware.ts\` comes back (\`bun run check:proxy\`).
 
-Because a lead form that emails me and texts \`8285931935@vtext.com\` is a product loop I can prove. A FedEx rate matrix I never integrated is not.
+A lead form that emails me and texts \`8285931935@vtext.com\` is a product loop I can prove. A FedEx rate matrix I never integrated is not.
 
-Because naming the repo ShipThing and leaving PLAN.md full of unchecked USPS boxes is more useful as an operator story than as a fake launch post.
+Naming the repo ShipThing and leaving PLAN.md full of unchecked USPS boxes is more useful as an operator story than as a fake launch post.
 
-**Engagement Q:** When your PLAN.md still lists the vertical and your \`layout.tsx\` description lists the stack — which one should the blog title obey?
+When your PLAN.md still lists the vertical and your \`layout.tsx\` description lists the stack, which one should the blog title obey?
 `;
 
 const CONVEX_NEXTFASTER_COVER =
@@ -5792,19 +5792,19 @@ const MYBATHROOMCONVERSION_CONTENT = `![Illustrative home composite from indexed
 
 I keep meeting bathroom remodel landers that look expensive and behave like a mailto form.
 
-Homeowners need a one-day tub-to-shower path, a phone that answers, and financing language that does not invent a bank. Operators need the Opt In record to leave WordPress and hit an intake API. Agencies that inherit WP Engine content+plugins repos need to find the money path in the child theme — not in another aspirational PLAN checkbox.
+Homeowners need a one-day tub-to-shower path, a phone that answers, and financing language that does not invent a bank. Operators need the Opt In record to leave WordPress and hit an intake API. Agencies that inherit WP Engine content+plugins repos need to find the money path in the child theme, not in another aspirational PLAN checkbox.
 
-If you have ever found \`xdebug_info()\` at the webroot of a client site, you are in the room.
+If you have ever found \`xdebug_info()\` at the webroot of a client site, this is the audit trail.
 
 ## What
 
-I maintain **www.mybathroomconversion.com** — private **HurleyUS/www.mybathroomconversion.com**, GPL-3.0, five commits, HEAD \`dc5a091\`.
+I maintain **www.mybathroomconversion.com**. Private **HurleyUS/www.mybathroomconversion.com**, GPL-3.0, five commits, HEAD \`dc5a091\`.
 
 README fact: commissioned by **SalesPromis** through **Hustle Launch** for **RemodelingLoans.com**. Marketing surface (search index; live TLS failed here): dream bath/shower in as little as one day; phone **888-859-8916**; free in-home design consultation.
 
 Stack: Hello Elementor **3.1.1** + child **2.0.0**, Elementor **3.23.4**, Elementor Pro **3.23.3**, Dynamic.ooo **3.0.11**, Rank Math **1.0.225**, MonsterInsights **9.0.0**, Meta pixel **3.0.16**. WP Engine ignore strips core/uploads/config.
 
-Operator spine: \`elementor_pro/forms/new_record\` → \`my_bathroom_conversion_lead\` → Opt In → POST \`https://api.salespromis.com/endpoint/intake/\` with \`API-KEY\` header; success writes \`ABSPATH/.log/salespromis-$now-$id.log\`. Hardcoded SalesPromis API key still in child theme — value redacted here; rotate it.
+Operator spine: \`elementor_pro/forms/new_record\` to \`my_bathroom_conversion_lead\` to Opt In to POST \`https://api.salespromis.com/endpoint/intake/\` with \`API-KEY\` header; success writes \`ABSPATH/.log/salespromis-$now-$id.log\`. Hardcoded SalesPromis API key still in child theme. Value redacted here; rotate it.
 
 ![Lead pipe composite](/blog/mybathroomconversion-elementor-salespromis-xdebug-purge/screenshots/lead-pipe-composite.png)
 
@@ -5818,7 +5818,7 @@ Pack-day: DNS **141.193.213.10 / .11**; HTTPS TLS handshake alert; HTTP Cloudfla
 
 ## When
 
-**August 15, 2024, 4:03 PM ET:** \`8324926\` init — plugins, themes, SalesPromis logs, \`.htaccess\`, \`local-xdebuginfo.php\`.
+**August 15, 2024, 4:03 PM ET:** \`8324926\` init. Plugins, themes, SalesPromis logs, \`.htaccess\`, \`local-xdebuginfo.php\`.
 
 **4:06 PM ET:** \`17627c2\` README commission chain.
 
@@ -5826,7 +5826,7 @@ Pack-day: DNS **141.193.213.10 / .11**; HTTPS TLS handshake alert; HTTP Cloudfla
 
 **January 8, 2026, 12:21 PM ET:** \`eb7581e\` PLAN.md claims lead capture Not Started while the hook already posts.
 
-**February 27, 2026, 5:18 AM ET:** \`dc5a091\` PR #2 — delete \`<?php xdebug_info();\`, add SECURITY-VERIFICATION.md, closes Issue #1 \`[Launch Week][P0]\`. Checklist boxes remain open on purpose.
+**February 27, 2026, 5:18 AM ET:** \`dc5a091\` PR #2. Delete \`<?php xdebug_info();\`, add SECURITY-VERIFICATION.md, closes Issue #1 \`[Launch Week][P0]\`. Checklist boxes remain open on purpose.
 
 **September 8, 2026:** pack day. Draft and assets only. Do not publish.
 
@@ -5836,13 +5836,13 @@ Pack-day: DNS **141.193.213.10 / .11**; HTTPS TLS handshake alert; HTTP Cloudfla
 
 ## Why
 
-Because a bathroom lead lander that cannot POST an Opt In into intake is a brochure with nicer tile photography.
+A bathroom lead lander that cannot POST an Opt In into intake is a brochure with nicer tile photography.
 
-Because \`xdebug_info()\` at the webroot was a labeled P0 with a one-line PHP file and a merged PR.
+\`xdebug_info()\` at the webroot was a labeled P0 with a one-line PHP file and a merged PR.
 
-Because PLAN.md denying lead capture while \`my_bathroom_conversion_lead\` posts to SalesPromis is document drift — believe the hook, not the checkbox.
+PLAN.md denying lead capture while \`my_bathroom_conversion_lead\` posts to SalesPromis is document drift. Believe the hook, not the checkbox.
 
-Because deleting the probe while leaving WP File Manager and a hardcoded API key means the security story is a chapter, not a finale.
+Deleting the probe while leaving WP File Manager and a hardcoded API key means the security story is a chapter, not a finale.
 
 Would you rotate the hardcoded SalesPromis API key first, or uninstall WP File Manager before the next launch-week checklist?
 `;
@@ -6281,7 +6281,7 @@ export const staticPosts: StaticPost[] = [
     title: "MyBathroomConversion.com: Elementor Opt-In \u2192 SalesPromis, then I deleted the xdebug_info() probe",
     slug: "mybathroomconversion-elementor-salespromis-xdebug-purge",
     excerpt:
-      "I shipped a WP Engine Elementor bathroom-conversion lead lander for SalesPromis / RemodelingLoans \u2014 Opt In posts into api.salespromis.com/endpoint/intake/ \u2014 then closed launch-week #1 by deleting a committed <?php xdebug_info(); file while PLAN.md still claimed lead capture was not started.",
+      "www.mybathroomconversion.com is a SalesPromis/Hustle Launch Elementor lander whose child theme already POSTs Opt In leads to api.salespromis.com while PLAN.md once claimed lead capture Not Started. Feb 27 HEAD dc5a091 deleted webroot xdebug_info(); WP File Manager 7.2.9 and a hardcoded API key remain.",
     content: MYBATHROOMCONVERSION_CONTENT,
     coverImage: MYBATHROOMCONVERSION_COVER,
     tags: [
@@ -7735,7 +7735,7 @@ export const staticPosts: StaticPost[] = [
     title: "shipthing: I named it for shipping rates and shipped a contacts spine instead",
     slug: "shipthing-contacts-spine-not-carrier-rates",
     excerpt:
-      "ShipThing was supposed to compare USPS/UPS/FedEx rates. What I actually shipped is a Next.js 16 + Clerk + Convex + Resend contacts CRM spine with a proxy.ts Next 16 guardrail \u2014 PLAN.md still lists carrier APIs as Not Started.",
+      "ShipThing is the public michaelmonetized/shipthing spine: Next 16.1.1, Clerk, Convex contacts, Resend lead mail, Sentry, PostHog, and proxy.ts. Thirty-nine commits; HEAD 9f91d97. PLAN.md still lists unchecked USPS/UPS/FedEx boxes.",
     content: SHIPTHING_CONTENT,
     coverImage: SHIPTHING_COVER,
     tags: [
@@ -7792,7 +7792,7 @@ export const staticPosts: StaticPost[] = [
     title: "Citation Manager: I built an Uberall competitor with 958 directories — and left auth on three stacks",
     slug: "citation-manager-uberall-competitor-958-directories",
     excerpt:
-      "HurleyUS/citation-manager is my NAP citation SaaS — Next.js 16, Convex, 958-directory registry, Google/Yelp/Facebook integration modules. 83 commits, v0.0.1. GitHub homepage Vercel 500s; login re-hashes Argon2; Clerk middleware still bypassable.",
+      "HurleyUS/citation-manager is an Uberall-framed local listings SaaS with a real 958-row directories.json registry, Convex schema, and 83 commits to HEAD 78e9fb1. Pack-day probe: citation-manager-pi.vercel.app returns 500 MIDDLEWARE_INVOCATION_FAILED.",
     content: CITATION_MANAGER_CONTENT,
     coverImage: CITATION_MANAGER_COVER,
     tags: [
@@ -8492,7 +8492,7 @@ export const staticPosts: StaticPost[] = [
     title: "Hurleyus: I put Catppuccin Mocha in Hurley rally livery on Omarchy",
     slug: "hurleyus-omarchy-catppuccin-rally-theme",
     excerpt:
-      "I forked stock Omarchy Catppuccin into Hurleyus \u2014 Mocha palette, seven pre-darkened 4K quattro walls, Plymouth unlock, and an Asahi U-Boot splash patch. colors.toml owns the terminals. The art owns the room.",
+      "Hurleyus is the Omarchy Catppuccin Mocha theme pack with rally walls, Plymouth unlock, and an Asahi U-Boot 160x160 splash patch. Four commits; last push 65f4da3. Omarchy 4.0.2+ drops hyprland.lua unless you clone + symlink.",
     content: HURLEYUS_CONTENT,
     coverImage: HURLEYUS_COVER,
     tags: [
