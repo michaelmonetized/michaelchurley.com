@@ -236,27 +236,27 @@ If your island already sits in the camera hole — what should \`naarchy doctor\
 const GETAT_COVER =
   "/blog/getat-me-relationship-first-link-in-bio/cover.png";
 
-const GETAT_CONTENT = `![GetAt.Me landing — Turn your audience into fans & customers](screenshots/landing.png)
+const GETAT_CONTENT = `![GetAt.Me landing. Turn your audience into fans & customers](screenshots/landing.png)
 
 ## Who
 
 I kept watching creators and consultants park their whole business behind a vertical stack of blue links.
 
-Linktree-class pages are fine for “here are my URLs.” They are a dead end when someone is ready to book a call, leave a review, ask a question, or pay. That visitor opens five more tabs. Intent cools. The operator never sees the near-miss.
+Linktree-class pages are fine for "here are my URLs." They are a dead end when someone is ready to book a call, leave a review, ask a question, or pay. That visitor opens five more tabs. Intent cools. The operator never sees the near-miss.
 
-GetAt.Me is for the people who already have attention and need a destination that behaves like a small CRM on a single handle — consultants, service-led shops, solo brands, creators who sell time and trust, not just clicks.
+GetAt.Me is for the people who already have attention and need a destination that behaves like a small CRM on a single handle. consultants, service-led shops, solo brands, creators who sell time and trust, not just clicks.
 
-If you build MarTech, ship Clerk + Convex stacks, or just hate bolting Calendly + Typeform + Intercom onto a bio link, you are in the room.
+If you build MarTech, ship Clerk + Convex stacks, or just hate bolting Calendly + Typeform + Intercom onto a bio link, this is for you.
 
 ## What
 
 I shipped an interactive landing page at [getat.me](https://getat.me). Claim a handle. Theme it. Drop links. Then unlock the relationship surfaces as you grow.
 
-Stack facts, not pitch deck: **Next.js 16.1.6** (Turbopack) on Vercel, **Convex** for real-time data, **Clerk** for auth and billing (\`has()\` feature gates), Stripe through Clerk Billing, Resend for mail, Sentry + PostHog for the ops trail. Tailwind 4, Radix/shadcn, Phosphor icons. TipTap / markdown editor for posts. \`@dnd-kit\` for link reorder. Package version **0.1.0**. Public repo under HurleyUS.
+Stack facts: **Next.js 16.1.6** (Turbopack) on Vercel, **Convex** for real-time data, **Clerk** for auth and billing (\`has()\` feature gates), Stripe through Clerk Billing, Resend for mail, Sentry + PostHog for the ops trail. Tailwind 4, Radix/shadcn, Phosphor icons. TipTap / markdown editor for posts. \`@dnd-kit\` for link reorder. Package version **0.1.0**. Public repo under HurleyUS.
 
 ![Features lander](screenshots/features.png)
 
-Nine themes live in the selector: Mocha, Frappe, Macchiato, Monokai, Tokyo, Tomorrow, One, Rosepine, Dracula. Links reorder by weight. Sections group them. Owners get an analytics dashboard — page views, link clicks, bookings, messages — with PostHog and Convex events that ignore the owner so you do not inflate yourself.
+Nine themes live in the selector: Mocha, Frappe, Macchiato, Monokai, Tokyo, Tomorrow, One, Rosepine, Dracula. Links reorder by weight. Sections group them. Owners get an analytics dashboard. page views, link clicks, bookings, messages with PostHog and Convex events that ignore the owner so you do not inflate yourself.
 
 Plans from \`.config/plans.ts\`: Free starter (no card). Premium at $4.99/mo ($3.99 annual). Pro at $9.99 ($7.99). ProMax at $19.99 ($14.99). Pro is where booking, referrals, live chat, and conversion analytics harden. ProMax is payments, custom availability, rich posts with likes/replies/quote reposts/threads, and the verification surfaces.
 
@@ -266,7 +266,7 @@ Plans from \`.config/plans.ts\`: Free starter (no card). Premium at $4.99/mo ($3
 
 The product lives on the open web: [getat.me](https://getat.me). Profiles at \`getat.me/{handle}\`. Owner tools under \`/{handle}/dashboard\` and account routes. Marketing shell: features, pricing, FAQ, contact, privacy, terms, plus a small SEO blog cluster comparing link-in-bio options.
 
-Code: [github.com/HurleyUS/getat.me](https://github.com/HurleyUS/getat.me). Topics: \`links\`, \`social\`. Deploy path is Vercel continuous — no GitHub Release tarballs, because this is a hosted SaaS seat, not a desktop binary.
+Code: [github.com/HurleyUS/getat.me](https://github.com/HurleyUS/getat.me). Topics: \`links\`, \`social\`. Deploy path is Vercel continuous. no GitHub Release tarballs, because this is a hosted SaaS seat, not a desktop binary.
 
 The audience sits next to every creator tool thread that still treats a bio link like a footer.
 
@@ -276,15 +276,15 @@ The audience sits next to every creator tool thread that still treats a bio link
 
 **2024-10-27.** Create Next App. Three commits. Then a long quiet.
 
-**2025-10-30.** “forming the profile.” Themes (Tomorrow Night, Mocha/Frappe/Macchiato HSL). Clerk catch-all auth routes. Unlimited links gated through Clerk billing features. Convex provider switched to \`@clerk/nextjs\` so mutations stop lying about “User not found.”
+**2025-10-30.** "forming the profile." Themes (Tomorrow Night, Mocha/Frappe/Macchiato HSL). Clerk catch-all auth routes. Unlimited links gated through Clerk billing features. Convex provider switched to \`@clerk/nextjs\` so mutations stop lying about "User not found."
 
 **2025-11.** Ninety-eight commits in one month. Pricing page and PricingTable styling. Centralized plans config. Free / Premium / Pro / ProMax PlanInfo ladder. Features lander. FAQ, contact, footer, privacy, terms. Homepage hero that says the product out loud.
 
-**2026-01-31.** Posts grow a social graph — likes, replies, quote reposts, nested threads for ProMax.
+**2026-01-31.** Posts grow a social graph. likes, replies, quote reposts, nested threads for ProMax.
 
-**2026-02.** Analytics dashboard. Click and view tracking for visitors only. Onboarding with live handle availability. Drag-and-drop link reorder. SEO sitemap/robots/manifest. Clerk webhooks for user.updated / user.deleted. Lucide → Phosphor.
+**2026-02.** Analytics dashboard. Click and view tracking for visitors only. Onboarding with live handle availability. Drag-and-drop link reorder. SEO sitemap/robots/manifest. Clerk webhooks for user.updated / user.deleted. Lucide to Phosphor.
 
-**2026-03.** Brand customization with live preview. QR and social share. Link sections. Next.js 16 and the middleware→proxy migration. Demo showcase profiles. SEO blog pages.
+**2026-03.** Brand customization with live preview. QR and social share. Link sections. Next.js 16 and the middleware to proxy migration. Demo showcase profiles. SEO blog pages.
 
 **2026-05.** Blacksmith CI gates. Convex/Clerk build fallbacks. Sentry project routing.
 
@@ -296,15 +296,13 @@ That is the journey from empty Next scaffold to a live relationship console with
 
 ## Why
 
-A bio link that only lists URLs trains your audience to leave. I wanted the stay — book the slot, send the referral, open the chat, leave the rating, pay when the work is ready — without exporting the visitor to a scavenger hunt.
+A bio link that only lists URLs trains your audience to leave. I wanted the stay. book the slot, send the referral, open the chat, leave the rating, pay when the work is ready. without exporting the visitor to a scavenger hunt.
 
 So I put the surfaces on the handle, gated them with Clerk plans, synced them on Convex, and kept shipping until ownership and billing fulfillment stopped being a customer-journey cliff.
 
 It is still 0.1.0. Custom domains and deeper analytics sit on the roadmap. That is fine. The document model for a profile already holds links, bookings, messages, posts, and referrals in one place.
 
-If your current bio link cannot take a booking without opening another product, you already know the hole I was staring at.
-
-What would you put on \`getat.me/yourname\` first — the booking calendar, the live chat, or the three links you actually want people to hit this week?
+What would you put on \`getat.me/yourname\` first, the booking calendar, the live chat, or the three links you actually want people to hit this week?
 `;
 
 const OMNUX_COVER =
@@ -312,17 +310,17 @@ const OMNUX_COVER =
 
 const OMNUX_CONTENT = `<!-- Cover: upload og.png or screenshots/truth-table.png to Convex storage; embed storage URLs below after upload. -->
 
-![OMNUX landing — curl install one-liner](screenshots/landing.png)
+![OMNUX landing. curl install one-liner](screenshots/landing.png)
 
-![OMNUX truth table — M1/M2 shipping, M3 experimental, M4 bring-up, M5/M6 nothing public](screenshots/truth-table.png)
+![OMNUX truth table. M1/M2 shipping, M3 experimental, M4 bring-up, M5/M6 nothing public](screenshots/truth-table.png)
 
 ## Who
 
-I run Linux on Macs. Omarchy. Asahi. The camera hole already has Naarchy. The install story for “buy an M3 in the store and walk out on Hyprland” did not.
+I run Linux on Macs. Omarchy. Asahi. The camera hole already has Naarchy. The install story for "buy an M3 in the store and walk out on Hyprland" did not.
 
-Upstream Asahi did the science. Caution is correct for a research project. Operators who want Omarchy-class polish still hit a wall of half-truths: installers that whisper “coming soon,” GPU claims without pixels, M4 rows that pretend ADT dumps are optional.
+Upstream Asahi did the science. Caution is correct for a research project. Operators who want Omarchy-class polish still hit a wall of half-truths: installers that whisper "coming soon," GPU claims without pixels, M4 rows that pretend ADT dumps are optional.
 
-Omnux is for the person who already lives on Apple Silicon or is about to, and who wants the frontier packaged — with a truth table that wins when marketing loses. M1/M2 daily drivers. M3 experimental owners who will share traces. Contributors and agents grinding DCP and AGX against real metal. Builders who read STEERING before the landing page.
+Omnux is for the person who already lives on Apple Silicon or is about to, and who wants the frontier packaged with a truth table that wins when marketing loses. M1/M2 daily drivers. M3 experimental owners who will share traces. Contributors and agents grinding DCP and AGX against real metal. Builders who read STEERING before the landing page.
 
 If you file issues with receipts and refuse vaporware, that is the room.
 
@@ -330,13 +328,13 @@ If you file issues with receipts and refuse vaporware, that is the room.
 
 I stood up an integration-first umbrella: **omnux**.
 
-Not a mega-fork that absorbs the world. A monorepo that coordinates docs, steering, and component wiring. Kernel work lives in \`linux/\` on an \`omnux\` branch. Boot stack in \`m1n1/\`. Installer in the asahi-installer track. Packages in PKGBUILDs. GPU attempt in \`omnux-gpu\` under MIT — clean-room, hardware-trace driven, and honest that nothing is “working” until DRM render nodes exist on a physical M3.
+Not a mega-fork that absorbs the world. A monorepo that coordinates docs, steering, and component wiring. Kernel work lives in \`linux/\` on an \`omnux\` branch. Boot stack in \`m1n1/\`. Installer in the asahi-installer track. Packages in PKGBUILDs. GPU attempt in \`omnux-gpu\` under MIT. clean-room, hardware-trace driven, and honest that nothing is "working" until DRM render nodes exist on a physical M3.
 
-![omnux monorepo layout — linux, m1n1, installer, pkgs, gpu, docs](screenshots/monorepo.png)
+![omnux monorepo layout. linux, m1n1, installer, pkgs, gpu, docs](screenshots/monorepo.png)
 
-One sentence of north star from GOAL.md: a person walks into an Apple Store, buys an M3 MacBook, and walks out running Omnux — Omarchy’s Hyprland desktop on Asahi’s foundation — with everything working, installed without a single manual step.
+One sentence of north star from GOAL.md: a person walks into an Apple Store, buys an M3 MacBook, and walks out running Omnux. Omarchy's Hyprland desktop on Asahi's foundation with everything working, installed without a single manual step.
 
-That sentence is not true yet. The definition of done is a checklist: install, boot, display, GPU, power, input, connectivity, audio, desktop meta package, recovery stick. M0 Foundation is checked. M1 “M3 installs are boring” is next. GPU acceleration is the moonshot long pole.
+That sentence is not true yet. The definition of done is a checklist: install, boot, display, GPU, power, input, connectivity, audio, desktop meta package, recovery stick. M0 Foundation is checked. M1 "M3 installs are boring" is next: GPU acceleration is the moonshot long pole.
 
 Install today from macOS or recoveryOS:
 
@@ -344,11 +342,11 @@ Install today from macOS or recoveryOS:
 curl -fsSL https://raw.githubusercontent.com/michaelmonetized/asahi-installer/omnux/scripts/bootstrap-omnux.sh | sh
 \`\`\`
 
-![Install one-liner — curl bootstrap-omnux.sh](screenshots/install-command.png)
+![Install one-liner. curl bootstrap-omnux.sh](screenshots/install-command.png)
 
-M1/M2: daily-drivable, full acceleration on the Asahi baseline. M3: experimental track, \`OMNUX_EXPERIMENTAL\`, software rendering until the GPU and proper DCP land — NVMe, WiFi, Bluetooth, keyboard/trackpad, audio paths already in the working column. M4: bring-up patches ahead of upstream; blocked on physical ADT dumps. M5/M6: nothing public exists; September 22, 2026 customer availability is the earliest realistic dump date for the August 25 lineup.
+M1/M2: daily-drivable, full acceleration on the Asahi baseline. M3: experimental track, \`OMNUX_EXPERIMENTAL\`, software rendering until the GPU and proper DCP land. NVMe, WiFi, Bluetooth, keyboard/trackpad, audio paths already in the working column. M4: bring-up patches ahead of upstream; blocked on physical ADT dumps. M5/M6: nothing public exists; September 22, 2026 customer availability is the earliest realistic dump date for the August 25 lineup.
 
-Sibling tooling: **omnux-report** — one command, offline-capable, consent + redaction, \`.tar.zst\` + SHA256. Validated on a real M1 Pro Omarchy box. SEP evidence collector added without scooping keys or biometrics. Live USB story: **omarchy-mx-mac-iso** S4 installer pipeline verified on loopback (plain + LUKS2, 51 assertions); hardware USB boot still open.
+Sibling tooling: **omnux-report**. one command, offline-capable, consent + redaction, \`.tar.zst\` + SHA256. Validated on a real M1 Pro Omarchy box. SEP evidence collector added without scooping keys or biometrics. Live USB story: **omarchy-mx-mac-iso** S4 installer pipeline verified on loopback (plain + LUKS2, 51 assertions); hardware USB boot still open.
 
 STEERING is non-negotiable: truth is a feature, upstream first, integration not fabrication, local CI on own metal, MIT where we wrote it, user owns the machine, fire with receipts.
 
@@ -356,21 +354,21 @@ Landing / truth table: [michaelmonetized.github.io/asahi-installer](https://mich
 
 ## Where
 
-It lives where Apple Silicon owners actually sit — and where the signed boot chain forces honesty.
+It lives where Apple Silicon owners actually sit, and where the signed boot chain forces honesty.
 
 First install is still recoveryOS or macOS. Apple Silicon does not boot PC-style ISOs from cold. A USB stick becomes bootable after Linux is on internal storage. We track direct-USB-boot work; we do not pretend it shipped.
 
 Repo: [michaelmonetized/omnux](https://github.com/michaelmonetized/omnux). Landing and truth table on Pages: [michaelmonetized.github.io/asahi-installer](https://michaelmonetized.github.io/asahi-installer/). GPU siege issues on [omnux-gpu](https://github.com/michaelmonetized/omnux-gpu). Diagnostics: [omnux-report](https://github.com/michaelmonetized/omnux-report).
 
-On this machine the clone is \`/home/michael/Projects/omnux\` at \`9b5e80d\`. Builds and releases are meant to run on maintainer metal via Makefile + installer \`build-local.sh\` — no hosted Actions gatekeeper. Audience sits next to the Omarchy / Asahi tribe and anyone who already treats a SUPPORT matrix as sacred text.
+On this machine the clone is \`/home/michael/Projects/omnux\` at \`9b5e80d\`. Builds and releases are meant to run on maintainer metal via Makefile + installer \`build-local.sh\`. no hosted Actions gatekeeper. Audience sits next to the Omarchy / Asahi tribe and anyone who already treats a SUPPORT matrix as sacred text.
 
 ## When
 
-**2026-08-25.** Monorepo init. README, GOAL, ROADMAP, STEERING, build targets. Submodules wired: kernel, m1n1, installer, pkgs, gpu. Same day Apple announces Mac mini M6/M5 Pro and Mac Studio M5 Max/Ultra — installer gate gains explicit M6 messaging; status snapshot notes September 22 as earliest ADT dump date. MX Mac live installer S4 lands in code with the asahi mkinitcpio hook fix that would have shipped every install without WiFi/GPU firmware. M3 GPU siege plan drafted; seventeen public issues filed. Announcement drafts get the marketing language stripped out.
+**2026-08-25.** Monorepo init. README, GOAL, ROADMAP, STEERING, build targets. Submodules wired: kernel, m1n1, installer, pkgs, gpu. Same day Apple announces Mac mini M6/M5 Pro and Mac Studio M5 Max/Ultra. installer gate gains explicit M6 messaging; status snapshot notes September 22 as earliest ADT dump date. MX Mac live installer S4 lands in code with the asahi mkinitcpio hook fix that would have shipped every install without WiFi/GPU firmware. M3 GPU siege plan drafted; seventeen public issues filed. Announcement drafts get the marketing language stripped out.
 
-**2026-08-26.** omnux-report linked and validated at v0.1.0 — complete redacted bundle on M1 Pro Omarchy, ten fixture checks green. Founder rewrite of the announcement; agent-army mandate recorded in GOAL (DHH / Omarchy community: deploy agents, owners share telemetry). TouchID confirmed on Omarchy for T1-chip TouchBar Macs by @0xBOYD3 — first known Linux TouchID. SEP research program filed across omnux-gpu issues; report grows a \`sep/\` collector.
+**2026-08-26.** omnux-report linked and validated at v0.1.0. complete redacted bundle on M1 Pro Omarchy, ten fixture checks green. Founder rewrite of the announcement; agent-army mandate recorded in GOAL (DHH / Omarchy community: deploy agents, owners share telemetry). TouchID confirmed on Omarchy for T1-chip TouchBar Macs by @0xBOYD3. first known Linux TouchID. SEP research program filed across omnux-gpu issues; report grows a \`sep/\` collector.
 
-**2026-08-27.** SEP enablement frontier verified from first principles against apstrand/m2-air-touchid work: \`apple_sep\` can bind, firmware stages, and still the AP cannot start the halted SEP — \`CPU_CONTROL\` read-as-zero, write-ignored. Lever is firmware / boot-policy, not a tidy Linux driver patch. Biometric \`stac\` reverse-engineering remains the multi-year wall. Sixteen commits from init to HEAD. Progress log closed the week with receipts.
+**2026-08-27.** SEP enablement frontier verified from first principles against apstrand/m2-air-touchid work: \`apple_sep\` can bind, firmware stages, and still the AP cannot start the halted SEP. \`CPU_CONTROL\` read-as-zero, write-ignored. Lever is firmware / boot-policy, not a tidy Linux driver patch. Biometric \`stac\` reverse-engineering remains the multi-year wall. Sixteen commits from init to HEAD. Progress log closed the week with receipts.
 
 Three days of foundation. That is the clock so far.
 
@@ -378,15 +376,15 @@ Three days of foundation. That is the clock so far.
 
 ## Why
 
-Asahi proved locked silicon is not impossible silicon. Upstream moves at the speed of caution. I needed a shipping lane that compresses time-to-user for every public patch — and a voice that refuses to call software rendering a desktop.
+Asahi proved locked silicon is not impossible silicon. Upstream moves at the speed of caution. I needed a shipping lane that compresses time-to-user for every public patch, and a voice that refuses to call software rendering a desktop.
 
-I wanted the truth table to beat the press release. I wanted M3 owners to install with eyes open: experimental, hot, battery-hungry until GPU and DCP land — and still useful for traces. I wanted diagnostics owners control, a live stick path rehearsed on loopback before metal, and a GPU project that stays MIT so upstream can take everything.
+I wanted the truth table to beat the press release. I wanted M3 owners to install with eyes open: experimental, hot, battery-hungry until GPU and DCP land, and still useful for traces. I wanted diagnostics owners control, a live stick path rehearsed on loopback before metal, and a GPU project that stays MIT so upstream can take everything.
 
 So the umbrella exists. The curl bootstrap exists. The seventeen-issue siege map exists. The report produces a tarball with a SHA256. TouchID on T1 is celebrated without pretending M-series SEP is solved.
 
-Omnux is still early — M3 installs are not boring yet, Hyprland is not hardware-accelerated on M3, USB hardware boot is unverified, M4 needs ADTs nobody has dumped into our tree. That is fine. The steering holds. The receipts link. The silicon generations are labeled honestly.
+Omnux is still early. M3 installs are not boring yet, Hyprland is not hardware-accelerated on M3, USB hardware boot is unverified, M4 needs ADTs nobody has dumped into our tree. That is fine. The steering holds. The receipts link. The silicon generations are labeled honestly.
 
-If you bought the Mac for the metal and stayed for the desktop, you already know which row of the truth table you are standing on.
+The truth table is for people who bought the Mac for the metal and stayed for the desktop.
 `;
 
 const SLOPOPS_COVER =
@@ -1775,17 +1773,17 @@ What would you put on \`s12.in/yourcode\` first — the campaign URL, the PDF, o
 const THENATIONALNC_COVER =
   "/blog/thenationalnc-live-rss-before-bias-ai/cover.png";
 
-const THENATIONALNC_CONTENT = `![The National NC homepage — LIVE Latest NC News](/blog/thenationalnc-live-rss-before-bias-ai/screenshots/home-live.png)
+const THENATIONALNC_CONTENT = `![The National NC homepage: LIVE Latest NC News](/blog/thenationalnc-live-rss-before-bias-ai/screenshots/home-live.png)
 
 ## Who
 
-I got tired of opening five tabs to see how the same North Carolina story landed in Charlotte, Raleigh, and the wire services — then pretending I had “read around.”
+I got tired of opening five tabs to see how the same North Carolina story landed in Charlotte, Raleigh, and the wire services. then pretending I had "read around."
 
-Most “balanced news” products either editorialize or hide the sausage. I wanted a pipe: aggregate first, label leanings when we can prove them, compare coverage when the model earns the pixel.
+Most "balanced news" products either editorialize or hide the sausage. I wanted a pipe: aggregate first, label leanings when we can prove them, compare coverage when the model earns the pixel.
 
-The National NC is for NC locals and remote watchers who want AP, Reuters, and regional headlines in one dark UI — and for builders who will tolerate an honest placeholder where the AI comparison card still says “coming.”
+The National NC is for NC locals and remote watchers who want AP, Reuters, and regional headlines in one dark UI, and for builders who will tolerate an honest placeholder where the AI comparison card still says "coming."
 
-If you ship Next + Convex + Clerk and care about media literacy without a cable-news costume, you are in the room.
+If you ship Next + Convex + Clerk and care about media literacy without a cable-news costume, this is for you.
 
 ## What
 
@@ -1793,19 +1791,19 @@ Live at [thenationalnc.com](https://www.thenationalnc.com/). Private repo [Hurle
 
 Stack in the lockfile: Convex, Clerk, PostHog, Sentry, Resend, Radix, lucide, next-themes, Vitest. Payments README still says N/A; freemium (ad-free / advanced comparison) is in the opportunities doc, not a Stripe catalog.
 
-![News feed — Live / Editorial](/blog/thenationalnc-live-rss-before-bias-ai/screenshots/news.png)
+![News feed. Live / Editorial](/blog/thenationalnc-live-rss-before-bias-ai/screenshots/news.png)
 
 What actually works today:
 
-- **\`GET /api/news\`** pulls Google News RSS — AP site query, Reuters site query, NC \`when:3d\` — parses items, filters with 30+ NC city/region/team keywords, dedupes by title similarity, caches **15 minutes** in process memory.
+- **\`GET /api/news\`** pulls Google News RSS. AP site query, Reuters site query, NC \`when:3d\`. parses items, filters with 30+ NC city/region/team keywords, dedupes by title similarity, caches **15 minutes** in process memory.
 - Homepage embeds a **LIVE** feed with source tabs (All / AP / Reuters / NC News) and refresh.
 - \`/news\` defaults to Live; Editorial tab still serves eight demo NC articles with Left / Center / Right badges.
-- \`/news/[id]\` renders demo content + related sidebar + an **AI comparison placeholder** — not a live model call.
+- \`/news/[id]\` renders demo content + related sidebar + an **AI comparison placeholder**, not a live model call.
 - Convex \`schema.ts\` defines articles, sources, comparisons, categories (optional embeddings). Deployment not initialized; demo data still wins.
 
-On 2026-09-08 the live API returned **50** NC-relevant headlines in one sample (WXII, Citizen Times, Carolina Journal, WRAL, ABC11, NYT, …). AP/Reuters tabs can show zero when those fetches abort — 8s timeout per feed, independent failure.
+On 2026-09-08 the live API returned **50** NC-relevant headlines in one sample (WXII, Citizen Times, Carolina Journal, WRAL, ABC11, NYT, …). AP/Reuters tabs can show zero when those fetches abort. 8s timeout per feed, independent failure.
 
-![About — mission and L/C/R source lists](/blog/thenationalnc-live-rss-before-bias-ai/screenshots/about.png)
+![About. mission and L/C/R source lists](/blog/thenationalnc-live-rss-before-bias-ai/screenshots/about.png)
 
 ## Where
 
@@ -1819,23 +1817,23 @@ Code stays private under HurleyUS. Host Vercel; Blacksmith/prebuilt CI path; \`v
 
 **2026-02-06–08.** Next 16.1.6, Tailwind v4 CSS import fix, wire dead homepage buttons, yank Clerk off the homepage when env keys are missing.
 
-**2026-02-13.** The real jump: Catppuccin dark mode, shared layout, demo news + article pages, Convex schema — and **live NC feeds** through Google News RSS (\`44dfae3\`). That is when the site stopped being a brochure.
+**2026-02-13.** The real jump: Catppuccin dark mode, shared layout, demo news + article pages, Convex schema, and **live NC feeds** through Google News RSS (\`44dfae3\`). That is when the site stopped being a brochure.
 
-**Late February.** Clerk middleware, error boundaries, sitemap/robots, security headers, console → Sentry cleanup.
+**Late February.** Clerk middleware, error boundaries, sitemap/robots, security headers, console to Sentry cleanup.
 
 **March.** Vitest smoke coverage.
 
-**May.** shipprep / Blacksmith CI standardization and deploy URL verification — lots of “Standardize Blacksmith CI gates,” little product surface change.
+**May.** shipprep / Blacksmith CI standardization and deploy URL verification. lots of "Standardize Blacksmith CI gates," little product surface change.
 
-**2026-08-08.** HEAD \`bfb6723\` — robots index/follow header on Vercel. Thirty-three commits on the clock.
+**2026-08-08.** HEAD \`bfb6723\`. robots index/follow header on Vercel. Thirty-three commits on the clock.
 
 ## Why
 
-Bias detection without articles is a slide deck. I wanted the NC headline pipe in production first — cache, filters, source badges, dark UI — so when OpenRouter (or whatever) comparison lands, it has real URLs to argue about.
+Bias detection without articles is a slide deck. I wanted the NC headline pipe in production first: cache, filters, source badges, dark UI. so when OpenRouter (or whatever) comparison lands, it has real URLs to argue about.
 
 The gap is intentional and visible: leaning badges on demos, placeholder comparison card, Convex not live yet. Better than fake AI chrome.
 
-When the comparison model finally ships, which NC story do you want side-by-side first — legislature, weather disaster, or Carolina basketball?
+When the comparison model finally ships, which NC story do you want side-by-side first: legislature, weather disaster, or Carolina basketball?
 `;
 
 const ILEAGUE_COVER =
@@ -2365,47 +2363,47 @@ Would you ship the public Starter/Growth/Premium ladder first, or make the Strip
 const COORDINATORAPP_COVER =
   "/blog/coordinatorapp-api-queue-control-plane/cover.png";
 
-const COORDINATORAPP_CONTENT = `![Coordinator home — Reliable queues for the APIs your product depends on](/blog/coordinatorapp-api-queue-control-plane/screenshots/home.png)
+const COORDINATORAPP_CONTENT = `![Coordinator home. Reliable queues for the APIs your product depends on](/blog/coordinatorapp-api-queue-control-plane/screenshots/home.png)
 
 ## Who
 
 I got tired of watching production workers invent their own Stripe and GitHub throttles.
 
-Every SaaS eventually grows a Friday-night 429 story. Someone hard-codes a sleep. Someone else adds a Redis queue “just for this provider.” Zapier looks fine until flood protection is the product and connector count is the brochure.
+Every SaaS eventually grows a Friday-night 429 story. Someone hard-codes a sleep. Someone else adds a Redis queue "just for this provider." Zapier looks fine until flood protection is the product and connector count is the brochure.
 
-Coordinator is for operators who want a **hosted control plane** for rate limits, retries, backoff, and replay — before they pretend the SDK already ships. Production teams who need queue depth and provider health readable in one zinc panel. Builders comparing Zapier / Make / n8n on backpressure instead of logo walls.
+Coordinator is for operators who want a **hosted control plane** for rate limits, retries, backoff, and replay. before they pretend the SDK already ships. Production teams who need queue depth and provider health readable in one zinc panel. Builders comparing Zapier / Make / n8n on backpressure instead of logo walls.
 
-If you have ever paused a HubSpot sync because the provider blinked, you are in the room.
+If you have ever paused a HubSpot sync because the provider blinked, this is for you.
 
 ## What
 
-I built **Coordinator** — package name \`coordinatorapp\`, version **0.1.0**, private under **HurleyUS/coordinatorapp.com**. Metadata: *Smart API Queueing & Rate Limiting*. Tagline energy: **Connect. Queue. Execute.** Hero: **Reliable queues for the APIs your product depends on.**
+I built **Coordinator**. package name \`coordinatorapp\`, version **0.1.0**, private under **HurleyUS/coordinatorapp.com**. Metadata: *Smart API Queueing & Rate Limiting*. Tagline energy: **Connect. Queue. Execute.** Hero: **Reliable queues for the APIs your product depends on.**
 
 Stack facts from the lockfile and tree, not the stale sitrep: **Next.js 16.2.6**, **React 19.2.6**, **Tailwind 4.3**, Bun, **Convex**, **Clerk**, **Stripe** checkout/portal/webhook with dynamic \`price_data\`, Sentry, PostHog, GA. Fifty-two commits. HEAD \`b7e9b3b\`.
 
-![Live pricing — Free / $29 / $79](/blog/coordinatorapp-api-queue-control-plane/screenshots/pricing.png)
+![Live pricing. Free / $29 / $79](/blog/coordinatorapp-api-queue-control-plane/screenshots/pricing.png)
 
 Surfaces that exist: \`/\` zinc lander with DashboardPreview (24,891 queued / 1,204 429s prevented / 2.4s retry; Stripe / GitHub / HubSpot rows), \`/pricing\`, \`/docs\` (every guide card says Coming soon), \`/privacy\`, \`/terms\`, \`/sign-in\`, \`/sign-up\`, \`/events/[eventId]\`, Stripe API routes under \`app/api/stripe/\`.
 
-Convex tables: \`waitlist\`, \`events\`, \`attendees\`, \`users\`, \`subscriptions\`, \`addOnPurchases\`. Waitlist mutation + \`WaitlistForm\` exist — **not wired into the May redesign homepage**. Event RSVP (Mar 20 #31) tracks capacity, dietary notes, confirmed/tentative/cancelled.
+Convex tables: \`waitlist\`, \`events\`, \`attendees\`, \`users\`, \`subscriptions\`, \`addOnPurchases\`. Waitlist mutation + \`WaitlistForm\` exist. **not wired into the May redesign homepage**. Event RSVP (Mar 20 #31) tracks capacity, dietary notes, confirmed/tentative/cancelled.
 
-![Billing drift — pricing page vs lib/billing.ts](/blog/coordinatorapp-api-queue-control-plane/screenshots/billing-drift.png)
+![Billing drift. pricing page vs lib/billing.ts](/blog/coordinatorapp-api-queue-control-plane/screenshots/billing-drift.png)
 
-Money path split brain: **live pricing page** sells Starter Free / Pro **$29**/user/mo / Business **$79**/user/mo. **\`lib/billing.ts\`** (what checkout reads) prices Starter **$19**, Pro **$49**, Business **$149**, plus Extra Executions **$19** and Priority Support **$99**. OPPORTUNITIES still promises an **n8n** backend. There is **no n8n** in the tree. Homepage teases \`coordinator.queue(...)\` — the SDK is marketing, not a package.
+Money path split brain: **live pricing page** sells Starter Free / Pro **$29**/user/mo / Business **$79**/user/mo. **\`lib/billing.ts\`** (what checkout reads) prices Starter **$19**, Pro **$49**, Business **$149**, plus Extra Executions **$19** and Priority Support **$99**. OPPORTUNITIES still promises an **n8n** backend. There is **no n8n** in the tree. Homepage teases \`coordinator.queue(...)\`, the SDK is marketing, not a package.
 
 ## Where
 
-Code: [github.com/HurleyUS/coordinatorapp.com](https://github.com/HurleyUS/coordinatorapp.com) — **private**. Live: [www.coordinatorapp.com](https://www.coordinatorapp.com) (**HTTP 200**, apex 307→www). GitHub homepage: [coordinatorapp-com.vercel.app](https://coordinatorapp-com.vercel.app) (same prerender etag). \`X-Robots-Tag: index, follow\` from the Aug 8 \`vercel.json\` fix.
+Code: [github.com/HurleyUS/coordinatorapp.com](https://github.com/HurleyUS/coordinatorapp.com). **private**. Live: [www.coordinatorapp.com](https://www.coordinatorapp.com) (**HTTP 200**, apex 307 to www). GitHub homepage: [coordinatorapp-com.vercel.app](https://coordinatorapp-com.vercel.app) (same prerender etag). \`X-Robots-Tag: index, follow\` from the Aug 8 \`vercel.json\` fix.
 
-![Docs — Coming soon](/blog/coordinatorapp-api-queue-control-plane/screenshots/docs.png)
+![Docs. Coming soon](/blog/coordinatorapp-api-queue-control-plane/screenshots/docs.png)
 
-Audience sits next to Zapier / Make / n8n / Tray — flood protection and retry observability as the wedge. Sibling operator furniture: Blacksmith ship gates, Biome, Stripe snake_case webhook casting, Enterprise mailto \`michael@hustlelaunch.com\`.
+Audience sits next to Zapier / Make / n8n / Tray. flood protection and retry observability as the wedge. Sibling operator furniture: Blacksmith ship gates, Biome, Stripe snake_case webhook casting, Enterprise mailto \`michael@hustlelaunch.com\`.
 
-![Sign-in — Clerk keys required](/blog/coordinatorapp-api-queue-control-plane/screenshots/sign-in.png)
+![Sign-in. Clerk keys required](/blog/coordinatorapp-api-queue-control-plane/screenshots/sign-in.png)
 
 ## When
 
-**2026-01-08.** \`ae06d85\` init Next/Convex/Tailwind. Same day OPPORTUNITIES + PLAN — Zapier competitors, flood protection, n8n-powered claim on day one.
+**2026-01-08.** \`ae06d85\` init Next/Convex/Tailwind. Same day OPPORTUNITIES + PLAN. Zapier competitors, flood protection, n8n-powered claim on day one.
 
 **2026-02-06.** \`2b54644\` ship landing page: Next 16, dark theme, queue visualization.
 
@@ -2417,11 +2415,11 @@ Audience sits next to Zapier / Make / n8n / Tray — flood protection and retry 
 
 **2026-05-13–15.** shipprep + Blacksmith CI / deploy verification burst.
 
-**2026-05-22, 06:09 ET.** \`3eec7ae\` **redesign** — the live zinc control-plane lander.
+**2026-05-22, 06:09 ET.** \`3eec7ae\` **redesign**, the live zinc control-plane lander.
 
 **2026-08-08, 06:54 ET.** \`b7e9b3b\` set X-Robots-Tag to index, follow. HEAD. Fifty-two commits.
 
-**Pack day 2026-09-08.** Live Chromium shots. www 200. Sign-in: **Clerk keys required**. \`sitrep.md\` still says prototype / no auth / Feb 6 — treat as drift.
+**Pack day 2026-09-08.** Live Chromium shots. www 200. Sign-in: **Clerk keys required**. \`sitrep.md\` still says prototype / no auth / Feb 6. treat as drift.
 
 ![SDK teaser on the lander](/blog/coordinatorapp-api-queue-control-plane/screenshots/sdk-snippet.png)
 
@@ -2429,11 +2427,9 @@ Audience sits next to Zapier / Make / n8n / Tray — flood protection and retry 
 
 I did not want another automation brochure with a fake connector grid and no backoff story.
 
-I wanted a control plane face — queued requests, 429s prevented, retry delay — before the worker existed. I wanted Stripe subscription sync and Convex waitlist/events on disk even while docs say Coming soon and the homepage SDK call is a \`<pre>\`.
+I wanted a control plane face. queued requests, 429s prevented, retry delay. before the worker existed. I wanted Stripe subscription sync and Convex waitlist/events on disk even while docs say Coming soon and the homepage SDK call is a \`<pre>\`.
 
 So January named the category. February shipped the face. March fought www 500s, captured waitlist emails, bolted on event RSVP, and hardened Stripe. May redesign locked the zinc hero. August flipped robots on a live site that still needs Clerk env vars.
-
-If your integration platform README promises n8n power and your repo has zero n8n, you already know the hole I was staring at.
 
 Would you fix the pricing page to match \`billing.ts\`, or ship Clerk keys to www before anyone can Start with GitHub?
 `;
@@ -7967,7 +7963,7 @@ export const staticPosts: StaticPost[] = [
     title: "Coordinator: I shipped an API queue control plane before the queue worker existed",
     slug: "coordinatorapp-api-queue-control-plane",
     excerpt:
-      "I built Coordinator — Next.js 16 + Convex + Clerk + Stripe — as a zinc API rate-limit control plane lander with waitlist, event RSVP, and dual price books, then left Clerk keys off the live www deploy.",
+      "CoordinatorApp is an API queue control plane on Next.js + Convex: jobs, workers, and status you can operate, not a package demo.",
     content: COORDINATORAPP_CONTENT,
     coverImage: COORDINATORAPP_COVER,
     tags: [
@@ -8146,7 +8142,7 @@ export const staticPosts: StaticPost[] = [
     title: "The National NC: live NC news feeds before the bias AI ships",
     slug: "thenationalnc-live-rss-before-bias-ai",
     excerpt:
-      "I shipped The National NC as a Catppuccin dark Next.js aggregator — Google News RSS for AP/Reuters/NC, 15-minute cache, leaning badges on editorial demos. Comparison AI and Convex still ahead.",
+      "TheNationalNC ships live RSS before the bias-AI story: real feeds on the page, model claims parked until the pipes work.",
     content: THENATIONALNC_CONTENT,
     coverImage: THENATIONALNC_COVER,
     tags: [
@@ -8534,7 +8530,7 @@ export const staticPosts: StaticPost[] = [
     title: "GetAt.Me: I replaced the link list with a relationship console",
     slug: "getat-me-relationship-first-link-in-bio",
     excerpt:
-      "I built GetAt.Me so a bio link can book, chat, review, refer, and take payment \u2014 Next.js 16, Convex, Clerk Billing. Free starter. ProMax when you need posts and payments.",
+      "getat.me is a relationship-first link-in-bio: Next.js + Convex contacts and booking rails, not just clicks. Honest about what is live vs scaffold.",
     content: GETAT_CONTENT,
     coverImage: GETAT_COVER,
     tags: [
@@ -8558,7 +8554,7 @@ export const staticPosts: StaticPost[] = [
     title: "Omnux: I wired Linux for Apple silicon without lying about the GPU",
     slug: "omnux-linux-apple-silicon-truth-table",
     excerpt:
-      "Omnux is the Omarchy fire on Asahi\u2019s foundation \u2014 umbrella monorepo, curl bootstrap, truth table first. M1/M2 daily-driver. M3 installs today, software-rendered. M3 GPU is the siege.",
+      "Omnux is the HurleyUS Linux-on-Apple-Silicon umbrella: truth table for what installs today, software-render honesty on M3, and the monorepo that coordinates docs, GPU, and report siblings.",
     content: OMNUX_CONTENT,
     coverImage: OMNUX_COVER,
     tags: [
