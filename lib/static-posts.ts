@@ -3011,7 +3011,299 @@ Portal shells and field protection before pretending checkout shipped.
 Which tool would you delete first across five restaurants?
 `;
 
+const ITOUR_GOLF_COVER =
+  "/blog/itour-golf-tour-lander-ahead-of-deploy/cover.png";
+
+const ITOUR_GOLF_CONTENT = `![iTour.golf HEAD homepage mock — May 12 2027 inaugural, Join iLeague to Qualify](/blog/itour-golf-tour-lander-ahead-of-deploy/screenshots/home.png)
+
+## Who
+
+I build ecosystem products that have to stay distinct under one brand family. Golf creators already get a scorecard-and-tips platform on [iLeague.golf](https://ileague.golf). That pack is a different story — Patreon meets 18Birdies, Stripe tiers, fifteen percent fee.
+
+iTour.golf is for the next layer: creators who need a **season** to aim at, courses that want to **host** a stop, and sponsors who buy **tour inventory** instead of a creator subscription.
+
+If you care about monorepo landers that outrun their Vercel deploy, Convex schemas that model tournaments before any admin UI exists, or how not to collapse three golf domains into one blog post: this is the field notes.
+
+## What
+
+I shipped a national golf **creator tour** under \`HurleyUS/itour.golf\`.
+
+README one-liner: iPro.golf’s national influencer golf tour. Brain note (\`iLeague Golf.md\`): **36-week** tour; **top 54** qualify for iConference. HEAD lander badge: **The National Golf Influencer Tour**. H1: **iTour.golf**. Line: **Where Golf Creators Become Champions**.
+
+Stack on the box: **Next.js 15.5.6**, **React 19**, Convex, Clerk (optional when the publishable key is missing), PostHog, Sentry, Resend, Tailwind v4, Bun workspaces (\`web\` + \`mobile\`), Inter + Oswald, Vercel. Package **itour-monorepo** **1.0.0**. Repo private. Site public at [www.itour.golf](https://www.itour.golf) (apex 307s to www).
+
+![Championship path mock — iLeague → iTour → iConference](/blog/itour-golf-tour-lander-ahead-of-deploy/screenshots/championship-path.png)
+
+This is **not** the creator billing product. There is **no Stripe dependency** in \`web/package.json\`. README monetization is blunt:
+
+1. Sponsors, ads, vendors, partners, investors  
+2. Courses bid to host stops on the iTour  
+
+HEAD page CTAs: **Join iLeague to Qualify** (outbound to ileague.golf) and **Become a Sponsor** / **Host a Tour Stop** (on-page sections with buttons — not checkout).
+
+Convex \`web/convex/schema.ts\` is tour-shaped: \`users\` (creator|fan|admin), \`courses\` (optional week), \`tournaments\` (weeks 1–36), \`entries\` (score + videoUrl), \`standings\`. No \`subscriptionTiers\`. No \`tips\`. No content feed. Those tables live on the iLeague sibling.
+
+What is also true on pack day:
+
+- **Live www** still markets **“2026 Season Now Open”**, **18 Stops / 18 Courses / 1 Champion**, a fake **Desert Classic** at Pebble Beach, a fake leaderboard, and a **$3.5M+** prize-pool story aimed at a Sept 9 **2026** Augusta finale.  
+- **Repo HEAD** \`page.tsx\` is the amber rewrite: **36-week** season, **May 12, 2027** inaugural, **Top 54 → iConference**, qualify-via-iLeague funnel.  
+- \`layout.tsx\` SEO says **36 weeks, 36 courses**; the hero says **18 courses of their choice**. PLAN/OPPORTUNITIES still say top **18**. Brain + footer say top **54**.  
+- CHANGELOG 1.0.0 still claims “golf course discovery and booking.” sitrep.md still says **PROTOTYPE** with last commit stamped **2026-01-31**.  
+- Mobile is an Expo stub that renders the words **Mobile App**.  
+
+That gap is the product story — not a footnote.
+
+![Live vs HEAD deploy drift mock](/blog/itour-golf-tour-lander-ahead-of-deploy/screenshots/live-vs-head.png)
+
+## Where
+
+It is supposed to run on Vercel against Convex with Clerk when keys exist. Providers deliberately render without Clerk if \`NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY\` is unset (May 14 fix). Convex client only instantiates when \`NEXT_PUBLIC_CONVEX_URL\` is set.
+
+Surfaces that matter on HEAD:
+
+- Public amber lander — hero, how-to-qualify (4 steps), championship path, 2027 coming-soon chips, host-a-stop, sponsors, ecosystem footer  
+- \`robots.ts\` / \`sitemap.ts\` / JSON-LD SportsOrganization + SportsEvent (2027-05-12 → 2027-09-09)  
+- Middleware protect list for dashboard/account/settings/api — public marketing routes stay public  
+- Mobile folder — scaffold only  
+
+Live HTML on 2026-09-08 did **not** show Clerk \`pk_test\` / \`pk_live\` strings. The stale marketing shell is prerendered on Vercel (\`x-nextjs-prerender: 1\`).
+
+![Sponsors + course hosting mock](/blog/itour-golf-tour-lander-ahead-of-deploy/screenshots/sponsors-hosting.png)
+
+Related domains in the footer/copy: **iLeague.golf** (emerald — creator platform), **iTour.golf** (amber — this pack), **iConference.golf** (purple — championship). Do not collapse this post into the iLeague creator-economy pack.
+
+## When
+
+**January 8, 2026.** Initial Next.js + Convex + Tailwind setup. OPPORTUNITIES and homepage docs the same day. This tree starts as a tour concept, not a WNC directory.
+
+**January 31.** Chore sync. sitrep still thinks this is the last meaningful stamp — it is wrong.
+
+**February 11.** GitHub \`HurleyUS/itour.golf\` exists. Homepage gets ecosystem context. iTour/iCon details corrected from the OG vision. Placeholder season data removed — **TBD until May 12, 2027**.
+
+**February 15.** Explicit commit: **replace bestwnc.com boilerplate with iTour content**. Lineage matters so this pack does not retell BestWNC.
+
+**February 21.** Fonts, favicon, Tailwind v4 CSS-first, React 19 types, providers/middleware/schema/layout batch, CHANGELOG labeled 1.0.0.
+
+**Late February.** CI build gate, security headers + regression script, SEO/analytics baseline, then GitHub Actions removed because Vercel is CI.
+
+**March 28.** Workspace scripts stop using bun filters — \`cd web && bun run …\`. A Gumroad \`/pricing\` page also appears in history (Golfer Basic/Pro pre-order links) — not the live shell’s center of gravity.
+
+**May 14–15.** Blacksmith CI standardize noise, then delete it. **Skip Clerk provider when key is unavailable** — lander must not hard-crash without auth config.
+
+**June 22.** Two \`nightly\` commits. HEAD **\`d2a49ef\`**. Last push on the repo.
+
+**September 8, 2026 (pack day).** www returns 200. Content is still the old 18-Stops / fake-season shell. Draft pack only — no publish, no push.
+
+![Convex tour schema mock — users courses tournaments entries standings](/blog/itour-golf-tour-lander-ahead-of-deploy/screenshots/tour-schema.png)
+
+## Why
+
+Because the HurleyUS golf stack needs **three honest products**, not one blog post with three domains.
+
+iLeague is where creators publish, subscribe, and tip. iTour is where a **season** and **sponsor/host** economy are supposed to live. iConference is the September championship punchline. If you describe iTour as “another creator SaaS,” you erase the only reason the domain exists.
+
+Because **schema-before-UI** is an operator move: tournaments 1–36, entries with video URLs, season standings — committed while the live site still invents Jake Matthews and a Desert Classic.
+
+Because **deploy drift** is a better lesson than a launch party. Rewriting \`page.tsx\` for May 2027 does nothing for golf fans if Vercel keeps serving the 2026 placeholder season. Same pattern as shipping robots \`index,follow\` while leaving test keys on a sibling domain — different failure mode, same honesty requirement.
+
+Because the money model is different on purpose. No platform fee constant. No tip presets. Sponsor tiers and course hosting bids are the README — even if the buttons still go nowhere.
+
+## Engagement
+
+If you run a marketing lander in a monorepo: what do you trust on pack day — \`git show HEAD:app/page.tsx\`, or \`curl\` the production HTML — and which one did you ship last?
+`;
+
+const ASCII_COMMIT_GRAPH_COVER =
+  "/blog/ascii-commit-graph-terminal-heatmap-cd-hook-fastpath/cover.png";
+
+const ASCII_COMMIT_GRAPH_CONTENT = `![Terminal heatmap](/blog/ascii-commit-graph-terminal-heatmap-cd-hook-fastpath/screenshots/terminal-heatmap.png)
+
+## Who
+
+I wanted GitHub's contribution calendar without leaving the shell — and on every \`cd\` via zoxide, not only when I opened a browser tab.
+
+For operators who hang visual git context off directory changes, and who will delete an alias the moment it gets slow.
+
+## What
+
+I built **ascii-commit-graph** — public \`https://github.com/michaelmonetized/ascii-commit-graph\`. README **V1.0.4**. Script \`ascii-commit-graph.sh\`, 209 lines. HEAD \`9221b76\`. 13 commits. 1 star. CLI only.
+
+Paints a GitHub-style week grid (Nerd Font glyph, ANSI greens). \`GRID_ROWS=6\`, \`GRID_COLS=51\` sliding weeks. Buckets 0/1/2/3+.
+
+Flags: \`--this-year\`, \`--full-width\`, \`--author\`, \`--show-issues\`, \`--show-todos\`.
+
+![Flags](/blog/ascii-commit-graph-terminal-heatmap-cd-hook-fastpath/screenshots/flags-panel.png)
+
+v1.0.4 local path: one \`git log\` pass, O(1) bumps, GNU+BSD dates. \`--author\`: one \`gh\` GraphQL contributionCalendar call. Extras opt-in so default/cd path stays lean.
+
+![Fast path](/blog/ascii-commit-graph-terminal-heatmap-cd-hook-fastpath/screenshots/fastpath-rewrite.png)
+
+README zoxide \`zcd\` runs \`--full-width --show-issues --show-todos\` on every cd — that habit forced the Jul 2026 rewrite. ROADMAP still unchecked: Create a release for 1.0.4. Install snippet still references \`michael-k/\`.
+
+## Where
+
+Code: [github.com/michaelmonetized/ascii-commit-graph](https://github.com/michaelmonetized/ascii-commit-graph) — public. No live web app. Clone + chmod + symlink.
+
+![zoxide hook](/blog/ascii-commit-graph-terminal-heatmap-cd-hook-fastpath/screenshots/zoxide-cd-hook.png)
+
+## When
+
+**2024-06-06** — rc + docs + PNGs + PR #1.
+**2024-06-08** — customization; v1.0.3-rc prep.
+**2026-06-03** — compatibility.
+**2026-07-31** — HEAD \`9221b76\`: Speed up heatmap: single git pass and one GraphQL author fetch.
+
+![Commit arc](/blog/ascii-commit-graph-terminal-heatmap-cd-hook-fastpath/screenshots/commit-arc.png)
+
+## Why
+
+Because browser greens are a context switch. Because a cd-hook heatmap makes latency a product bug. Because one git pass + one GraphQL call is the honest fix — and an unchecked release checkbox beats a fake tag.
+
+**Engagement Q:** If your cd alias paints a heatmap, what latency makes you delete the alias?
+`;
+
+const NIRI_MACOS_COVER =
+  "/blog/niri-macos-scrollable-tiling-swift-ax-port/cover.png";
+
+const NIRI_MACOS_CONTENT = `![niri-macos scrollable column strip concept](/blog/niri-macos-scrollable-tiling-swift-ax-port/screenshots/scroll-strip-concept.png)
+
+## Who
+
+I wanted niri's scrollable tiling on the Mac without living inside Hammerspoon.
+
+YaLTeR's [niri](https://github.com/YaLTeR/niri) is a Wayland compositor: windows live in columns on an **infinite horizontal strip**; you scroll the strip like a document; opening a window does not crush the ones you already have. PaperWM.spoon already brings that idea to macOS — in Lua, on Hammerspoon. I wanted the same paradigm as a **native Swift daemon** with Accessibility APIs, spring animations, and a yabai-shaped IPC CLI so skhd can drive it.
+
+If you have ever rewritten a compositor concept as a weekend Accessibility prototype and then left an autopsy in the repo for future-you — this is that diary.
+
+## What
+
+I built **niri-macos** — SPM package \`niri-macos\`, version **0.1.0** (\`niri-macos --version\`), public under **michaelmonetized/niri-macos**. Platforms: **macOS 13+**. Zero external Swift packages. Products: library **NiriCore**, daemon **niri-macos**, CLI **niri-msg**.
+
+Stack from the tree: AppKit + CoreGraphics + QuartzCore, \`AXObserver\` / \`AXUIElement\` for event-driven window tracking, \`CGWindowList\` enumeration, \`CVDisplayLink\` 60fps spring animation, \`CGEventTap\` gestures, Unix socket IPC at \`/tmp/niri-macos.sock\` with JSON commands. Config is JSON via \`ConfigManager\` at \`~/.config/niri-macos/config.json\` (gaps, outer gaps, preset widths, spring params, scroll thresholds, windowRules Codable). Hotkeys stay external — **skhd** bindings documented in README and \`HOTKEYS.md\`. Gestures: **Cmd+Shift+scroll** (focus window), **Cmd+scroll** (workspace), **3-finger swipe** (free scroll with momentum).
+
+![Architecture — NiriCore, daemon, niri-msg, skhd](/blog/niri-macos-scrollable-tiling-swift-ax-port/screenshots/architecture-ipc.png)
+
+Surfaces that exist: horizontal layout engine (\`LayoutEngine.swift\` ~44KB), consume/expel column stacking, center/maximize/preset widths (33/50/66/100%), dynamic workspaces (up/down/create above/below), split groups (horizontal/vertical/quad), multi-monitor isolation (active monitor follows mouse), menubar operations, \`niri-msg status\` / \`list-windows\` / \`quit\`. Tests: **112** \`func test*\` under \`NiriCoreTests\` (layout, types, IPC). CI: GitHub Actions on \`macos-14\` — build, test, release build. HEAD \`d21a739\`. **Four** commits. ~226KB of Swift.
+
+README still marks Planned: focus ring overlay, window-rule **enforcement** (structs parse; sitrep says not applied), overview mode, sketchybar integration, Homebrew formula, launchd plist. PLAN.md still dreams of KDL like upstream niri — the shipped parser is JSON.
+
+![AUTOPSY.md roast vs sitrep FUNCTIONAL](/blog/niri-macos-scrollable-tiling-swift-ax-port/screenshots/autopsy-vs-sitrep.png)
+
+\`AUTOPSY.md\` (dated 2026-02-09) is the scar: it calls the early tree a 3,672-line prototype with **two** commits, **zero** tests, seven singletons, hardcoded gaps, and a README that was “aspirational fiction.” It also credits real spring physics, a thoughtful IPC command set, and clean \`ColumnWidth\` modeling. \`sitrep.md\` at the same era (updated for the refactor) says **FUNCTIONAL** — 112 passing tests, JSON config, protocol-based DI, main-thread layout serialization. The June 22 \`nightly\` commits are where that contradiction resolves in git history.
+
+## Where
+
+Code: [github.com/michaelmonetized/niri-macos](https://github.com/michaelmonetized/niri-macos) — **public**. No hosted demo. Run locally: \`swift build -c release\`, put \`niri-macos\` on your PATH, grant **Accessibility**, start the daemon, drive it with \`niri-msg\` / skhd. Socket default \`/tmp/niri-macos.sock\`. Log default \`/tmp/niri-macos.log\`.
+
+## When
+
+- **2026-02-06** — \`640d314\` feat: implement niri scrolling layout paradigm for macOS (initial README/PLAN + core sources).
+- **2026-02-08** — \`37f34ad\` “fix” that is really a sequel: multi-monitor isolation, discrete scroll, workspace creation, split groups, animation/gestures/AX observer (+2391/−132). AUTOPSY calls the message an undersell.
+- **2026-02-09** — AUTOPSY.md examination date; sitrep claims FUNCTIONAL + 112 tests (landed in tree with the later nightly push).
+- **2026-06-22** — GitHub repo \`created_at\`; two \`nightly\` commits (\`f3b1d77\`, HEAD \`d21a739\`) ship NiriCore extraction, ConfigManager, full test suite, workflow, AUTOPSY in-tree, hustlemc/uncap crumbs. Last push \`2026-06-22T22:20:39Z\`.
+
+![Four-commit arc](/blog/niri-macos-scrollable-tiling-swift-ax-port/screenshots/commit-arc.png)
+
+## Why
+
+Because I use macOS and I still want niri's rule: **new windows append; existing frames stay**; scroll the strip; isolate per monitor. Hammerspoon is fine. I wanted direct APIs, spring physics I own, and \`niri-msg\` that feels like talking to yabai while the layout model is niri's.
+
+I also wanted the honesty layer. Shipping AUTOPSY.md next to a polished README is the point: document the Jenga tower, then answer it with tests and a library boundary instead of deleting the roast.
+
+## Engagement Q
+
+Would you rather run scrollable tiling as **native Swift + Accessibility + skhd**, or stay on **PaperWM.spoon** and keep the Lua runtime — and what would make you trust a 0.1.0 WM with four commits and 112 tests?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:itour-golf-tour-lander-ahead-of-deploy",
+    title: "iTour.golf: I rewrote the national creator-tour lander for May 2027 \u2014 production still serves the 2026 fake season",
+    slug: "itour-golf-tour-lander-ahead-of-deploy",
+    excerpt:
+      "iTour.golf is the HurleyUS national golf creator tour \u2014 not the iLeague creator platform. Repo HEAD: amber 36-week lander, Top 54 \u2192 iConference, May 12 2027, sponsor/host bids, Convex tour schema. Live www still shows 18 Stops / fake leaderboard. 36 commits, HEAD d2a49ef.",
+    content: ITOUR_GOLF_CONTENT,
+    coverImage: ITOUR_GOLF_COVER,
+    tags: [
+      "itour",
+      "itour-golf",
+      "golf",
+      "golf-tour",
+      "creator-tour",
+      "sponsors",
+      "ileague",
+      "iconference",
+      "convex",
+      "nextjs",
+      "clerk",
+      "vercel",
+      "deploy-drift",
+      "hurleyus",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T05:40:00Z"),
+    readingTime: 5,
+  },
+
+  {
+    _id: "static:ascii-commit-graph-terminal-heatmap-cd-hook-fastpath",
+    title: "ascii-commit-graph: GitHub's heatmap in my terminal \u2014 then I made the cd hook fast",
+    slug: "ascii-commit-graph-terminal-heatmap-cd-hook-fastpath",
+    excerpt:
+      "A 209-line bash CLI that paints a GitHub-style contribution calendar as ASCII in the terminal, wired into zoxide/cd. v1.0.4 rewrote local mode to one git log pass and --author to one GraphQL call so the hook stays responsive. 13 commits. HEAD 9221b76. Release still unchecked.",
+    content: ASCII_COMMIT_GRAPH_CONTENT,
+    coverImage: ASCII_COMMIT_GRAPH_COVER,
+    tags: [
+      "ascii-commit-graph",
+      "bash",
+      "cli",
+      "git",
+      "github",
+      "heatmap",
+      "contribution-graph",
+      "zoxide",
+      "terminal",
+      "gh",
+      "ripgrep",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T05:30:00Z"),
+    readingTime: 1,
+  },
+
+  {
+    _id: "static:niri-macos-scrollable-tiling-swift-ax-port",
+    title: "niri-macos: I ported niri's scrollable tiling to macOS, then wrote an autopsy on my own Swift",
+    slug: "niri-macos-scrollable-tiling-swift-ax-port",
+    excerpt:
+      "Native Swift 0.1.0 port of YaLTeR/niri's infinite horizontal strip to macOS via Accessibility APIs \u2014 four commits, ~226KB Swift, AUTOPSY.md roasting the early prototype, then nightly commits that answered it with 112 tests, ConfigManager, and a NiriCore library split.",
+    content: NIRI_MACOS_CONTENT,
+    coverImage: NIRI_MACOS_COVER,
+    tags: [
+      "niri-macos",
+      "niri",
+      "swift",
+      "macos",
+      "tiling",
+      "window-manager",
+      "accessibility",
+      "scrollable-tiling",
+      "paperwm",
+      "yabai",
+      "skhd",
+      "spm",
+      "ipc",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T05:20:00Z"),
+    readingTime: 3,
+  },
+
   {
     _id: "static:breazyapp-pocket-peo-aes-before-stripe",
     title: "BreazyApp pocket PEO draft pack",
