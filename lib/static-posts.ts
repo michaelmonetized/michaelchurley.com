@@ -552,13 +552,13 @@ If you own a shop between Asheville and Boone, what would you fix first on your 
 const MACKS_COVER =
   "/blog/macks-bbq-shack-canton-condensation-site/cover.png";
 
-const MACKS_CONTENT = `![Mack's Shack homepage — wood nav, shield logo, chalk value prop over pit fire](https://www.macksbbqshack.com/ribs-sack.avif)
+const MACKS_CONTENT = `![Mack's Shack homepage. Wood nav, shield logo, chalk value prop over pit fire](https://www.macksbbqshack.com/ribs-sack.avif)
 
 ## Who
 
 I build for operators. Sometimes that operator is me. Sometimes it is a pit crew on Main Street in Canton, North Carolina.
 
-Mack's Shack BBQ needed a site that looked like the shack — not a generic restaurant theme with stock smoke overlays — and a catering path that dropped leads somewhere durable when Chris was on the line. Guests needed hours, address, phone, and a menu that matched the board on the wall. Planners needed “mouths to feed” and an event date without playing phone tag first.
+Mack's Shack BBQ needed a site that looked like the shack, with a catering path that dropped leads somewhere durable when Chris was on the line. Guests needed hours, address, phone, and a menu that matched the board on the wall. Planners needed "mouths to feed" and an event date without playing phone tag first.
 
 I am the builder. Hustle Launch is on the footer. The food is theirs. The stack is mine to keep honest.
 
@@ -570,11 +570,11 @@ The homepage is a condensation-glass hero over looping pit video. Pointer clears
 
 ![Mack's Shack BBQ logo mark](https://www.macksbbqshack.com/logo.avif)
 
-The menu is a skeuomorphic blackboard — real blackboard texture, wood dividers with inset depth, taped Polaroids for brisket, pork, sides, banana pudding. Item copy lives in one content module so the Schema.org Restaurant JSON-LD and the chalk board drink from the same list. Wings brined, smoked, fried, tossed in Bama white. Mack Sack Combo. Family packs. Pick N Choose by the pound.
+The menu is a skeuomorphic blackboard: real blackboard texture, wood dividers with inset depth, taped Polaroids for brisket, pork, sides, banana pudding. Item copy lives in one content module so the Schema.org Restaurant JSON-LD and the chalk board drink from the same list. Wings brined, smoked, fried, tossed in Bama white. Mack Sack Combo. Family packs. Pick N Choose by the pound.
 
-Catering is a real form: name, email, phone, event date, mouths-to-feed slider, details. The API writes a Convex \`cateringLeads\` row and fires Resend from \`Mack's Shack Bbq <notify@uncap.us>\` to \`macks.shack.bbq@gmail.com\` (CC me). Contact does the same with \`contactSubmissions\` and a “Message Chris” button next to Chris Lewallen’s photo and a Maps embed. Sentry on the error boundaries. PostHog on the pageviews. Reviews via a Jotform widget that cannot take the page down with it.
+Catering is a real form: name, email, phone, event date, mouths-to-feed slider, details. The API writes a Convex \`cateringLeads\` row and fires Resend from \`Mack's Shack Bbq <notify@uncap.us>\` to \`macks.shack.bbq@gmail.com\` (CC me). Contact does the same with \`contactSubmissions\` and a "Message Chris" button next to Chris Lewallen's photo and a Maps embed. Sentry on the error boundaries. PostHog on the pageviews. Reviews via a Jotform widget that cannot take the page down with it.
 
-![Brisket — bark and smoke ring](https://www.macksbbqshack.com/brisket.avif)
+![Brisket. Bark and smoke ring](https://www.macksbbqshack.com/brisket.avif)
 
 ## Where
 
@@ -582,7 +582,7 @@ Catering is a real form: name, email, phone, event date, mouths-to-feed slider, 
 
 Canonical URL is [www.macksbbqshack.com](https://www.macksbbqshack.com). Vercel also serves the project alias. Repo is private: [michaelmonetized/macksbbqshack-com](https://github.com/michaelmonetized/macksbbqshack-com).
 
-Footer socials hit Yelp, Instagram, Google Maps, Facebook. Footer credit names Hustle Launch for web design and app development. The audience for *this* write-up is builders who care how a local business site actually captures a wedding headcount — and anyone in WNC who already knows the Main Street pit.
+Footer socials hit Yelp, Instagram, Google Maps, Facebook. Footer credit names Hustle Launch for web design and app development. The audience for *this* write-up is builders who care how a local business site actually captures a wedding headcount, and anyone in WNC who already knows the Main Street pit.
 
 ![Pulled pork plate asset from the live site](https://www.macksbbqshack.com/pork.avif)
 
@@ -600,7 +600,7 @@ Footer socials hit Yelp, Instagram, Google Maps, Facebook. Footer credit names H
 
 **2026-07-12.** Dirty rice off the board.
 
-**2026-07-13.** SEO and custom error boundaries — twice, because the first pass lied. Google/Jotform reviews on about and the other pages. Script moved to the end of body so it stopped breaking the layout.
+**2026-07-13.** SEO and custom error boundaries, twice, because the first pass lied. Google/Jotform reviews on about and the other pages. Script moved to the end of body so it stopped breaking the layout.
 
 **2026-07-29.** Sitewide vacation dialog for the Aug 2–3 closure. Cookie dismiss. Sticky banner.
 
@@ -608,13 +608,13 @@ Footer socials hit Yelp, Instagram, Google Maps, Facebook. Footer credit names H
 
 **2026-08-30.** Ten commits titled \`[fix] convex + resend connections\`. HEAD settled. Sixty-seven commits from init. That is the clock.
 
-![Nutter Butter banana pudding — dessert Polaroid source](https://www.macksbbqshack.com/nana-puddin.avif)
+![Nutter Butter banana pudding. Dessert Polaroid source](https://www.macksbbqshack.com/nana-puddin.avif)
 
 ## Why
 
-A Main Street BBQ does not need a SaaS lander. It needs the board, the hours, the phone, and a catering form that still works when the dining room is loud.
+A Main Street BBQ needs the board, the hours, the phone, and a catering form that still works when the dining room is loud.
 
-I wanted the hero to feel wet and hot — condensation over real pit video — and the menu to feel like chalk on wood, not a CMS card grid. I wanted leads in Convex *and* in the inbox from a domain I control (\`notify@uncap.us\`), not a “we will get back to you” void. I wanted Schema.org to carry the same wings and family packs the chalkboard shows.
+I wanted the hero to feel wet and hot: condensation over real pit video. I wanted the menu to feel like chalk on wood. I wanted leads in Convex and in the inbox from a domain I control (\`notify@uncap.us\`). I wanted Schema.org to carry the same wings and family packs the chalkboard shows.
 
 So I linked the textures, wired the mutations, shipped the vacation banner before the holiday, and kept fixing the Resend path until August 30 stopped yelling. Operator stack. Local business. Own the notify domain.
 
@@ -4672,38 +4672,38 @@ const ANIMATED_GRADIENT_BORDER_CONTENT = `![Native demo frame](/blog/animated-gr
 
 ## Who
 
-I wanted the usual glass card with a rotating gradient border — and I wanted to see the video plate *through* the middle of the ring, not a filled conic disk sitting on top of the glass.
+I wanted the usual glass card with a rotating gradient border, and I wanted to see the video plate through the middle of the ring. A filled conic disk sitting on top of the glass was the wrong shape for the lab.
 
 For front-end operators who already know \`conic-gradient\` and still lose an afternoon when the border paints the whole card. Especially anyone comparing this lab to my Next.js glass-design-system \`AnimatedBorder\` and needing the bare CSS cut.
 
 ## What
 
-I built **animated-gradient-border-on-transparent-background** — public [\`michaelmonetized/animated-gradient-border-on-transparent-background\`](https://github.com/michaelmonetized/animated-gradient-border-on-transparent-background). HEAD \`5e9b611\`. **5** commits. **0** stars. Language **CSS**. License **GPL-3**. README is **empty** (0 bytes). No version tag. No GitHub Pages. No homepage.
+I built **animated-gradient-border-on-transparent-background**, public [\`michaelmonetized/animated-gradient-border-on-transparent-background\`](https://github.com/michaelmonetized/animated-gradient-border-on-transparent-background). HEAD \`5e9b611\`. **5** commits. **0** stars. Language **CSS**. License **GPL-3**. README is **empty** (0 bytes). No version tag. No GitHub Pages. No homepage.
 
 ![Card anatomy](/blog/animated-gradient-border-transparent-mask-composite/screenshots/glass-card-anatomy.png)
 
 Product is a static lab:
 
-- \`index.html\` — 31 lines. Title: Glass Animated Gradient Border. Card classes: \`glass rounded border-gradient border-glow animate-rotate-angle\`.
-- \`style.css\` — 448 lines (~8.9KB). The technique lives here.
+- \`index.html\`, 31 lines. Title: Glass Animated Gradient Border. Card classes: \`glass rounded border-gradient border-glow animate-rotate-angle\`.
+- \`style.css\`, 448 lines (~8.9KB). The technique lives here.
 - Plate: \`#hero\` + \`.video-bg\` pointing at a remote HustleLaunch webm (\`attraction-silent-backdrop.webm\`). Repo also carries local \`video.webm\` (~47MB) and \`bg.png\`.
 - Toggle: fixed darklight checkbox flips ☀️/🌙 via \`--scheme\` and \`:has()\`.
 
 The border trick:
 
 1. \`::after\` paints a full-box \`conic-gradient(from var(--conic-gradient-angle), …)\`.
-2. Dual masks — outer \`linear-gradient(#fff 0 0)\` + inner \`content-box\` — with \`padding: var(--border-width)\`.
+2. Dual masks, outer \`linear-gradient(#fff 0 0)\` plus inner \`content-box\`, with \`padding: var(--border-width)\`.
 3. \`mask-composite: exclude\` / \`-webkit-mask-composite: xor\` keeps **only the ring**.
 
 ![mask-composite exclude](/blog/animated-gradient-border-transparent-mask-composite/screenshots/mask-xor-diagram.png)
 
-Spin comes from CSS \`@property --conic-gradient-angle\` (syntax \`<angle>\`) and \`@keyframes background-spin\` 0→360deg, applied to both \`::before\` (glow) and \`::after\` (ring) at 3s linear infinite. Glow uses a larger inset, \`filter: blur\`, and \`--intensity-glow\` (0.4 light / 0.2 dark).
+Spin comes from CSS \`@property --conic-gradient-angle\` (syntax \`<angle>\`) and \`@keyframes background-spin\` 0deg to 360deg, applied to both \`::before\` (glow) and \`::after\` (ring) at 3s linear infinite. Glow uses a larger inset, \`filter: blur\`, and \`--intensity-glow\` (0.4 light / 0.2 dark).
 
 Same file also ships experimental CSS \`@function --transparency\` / \`--light-dark\` wrapping \`color-mix\` and scheme branching.
 
 ![ @property spin + layers ](/blog/animated-gradient-border-transparent-mask-composite/screenshots/css-property-spin.png)
 
-**Sibling fence:** [glass-design-system](https://github.com/michaelmonetized/glass-design-system) reuses the \`@property\` + mask border idea as \`AnimatedBorder\` inside a Next.js 16 Apple-SVG glass showcase. This repo is the bare static HTML/CSS lab — not that product spine, not twelveux WebGL glass.
+**Sibling fence:** [glass-design-system](https://github.com/michaelmonetized/glass-design-system) reuses the \`@property\` + mask border idea as \`AnimatedBorder\` inside a Next.js 16 Apple-SVG glass showcase. This repo is the bare static HTML/CSS lab. Separate from that product spine and from twelveux WebGL glass.
 
 ![Sibling vs glass-design-system](/blog/animated-gradient-border-transparent-mask-composite/screenshots/sibling-vs-glass-design.png)
 
@@ -4716,7 +4716,7 @@ Residue I am not papering over:
 
 ## Where
 
-Code: [github.com/michaelmonetized/animated-gradient-border-on-transparent-background](https://github.com/michaelmonetized/animated-gradient-border-on-transparent-background) — public. Open \`index.html\` locally (needs network for the remote webm plate).
+Code: [github.com/michaelmonetized/animated-gradient-border-on-transparent-background](https://github.com/michaelmonetized/animated-gradient-border-on-transparent-background), public. Open \`index.html\` locally (needs network for the remote webm plate).
 
 \`\`\`bash
 git clone git@github.com:michaelmonetized/animated-gradient-border-on-transparent-background.git
@@ -4725,9 +4725,11 @@ open index.html   # or any static server
 
 ## When
 
-**2024-08-24** — \`8eeb210\` mkproject scaffold (editorconfig, prettier, GPL-3 LICENSE, empty README).
-**2026-01-30** — \`95a48ad\` / \`de23de9\` "simplified": demo HTML/CSS + screenshot + bg + video; second commit empty.
-**2026-06-22** — \`d087699\` / \`5e9b611\` nightly: \`.hustlemc\` + \`.uncap\`; second nightly empty · HEAD.
+**2024-08-24.** \`8eeb210\` mkproject scaffold (editorconfig, prettier, GPL-3 LICENSE, empty README).
+
+**2026-01-30.** \`95a48ad\` / \`de23de9\` "simplified": demo HTML/CSS + screenshot + bg + video; second commit empty.
+
+**2026-06-22.** \`d087699\` / \`5e9b611\` nightly: \`.hustlemc\` + \`.uncap\`; second nightly empty. HEAD.
 
 Repo GitHub \`created_at\` is 2026-01-30; the mkproject commit timestamp is 2024-08-24 (history carried in).
 
@@ -4735,9 +4737,9 @@ Repo GitHub \`created_at\` is 2026-01-30; the mkproject commit timestamp is 2024
 
 ## Why
 
-Because a gradient border that fills the card is a different product than a ring you can see through. Because \`mask-composite: exclude\` is the honest sentence. Because the static lab should stay distinct from the Next.js glass design system that absorbed the same border pattern.
+A gradient border that fills the card is a different product than a ring you can see through. \`mask-composite: exclude\` is the sentence that makes the middle transparent. The static lab should stay distinct from the Next.js glass design system that absorbed the same border pattern.
 
-**Engagement Q:** Fill the empty README with the mask-xor recipe and retire the stale Fork/Download screenshot — or leave the repo as a raw lab and point operators at glass-design-system for the polished story?
+**Engagement Q:** Fill the empty README with the mask-xor recipe and retire the stale Fork/Download screenshot, or leave the repo as a raw lab and point operators at glass-design-system for the polished story?
 `;
 
 const SHAGENT_COVER =
@@ -5046,13 +5048,13 @@ const CANAVERAL_COVER =
 
 const CANAVERAL_CONTENT = `## Who
 
-I keep starting the same product spine: TanStack Start web, Electron shell, Expo screen, shared Zod/forms/state, Clerk–Convex–Stripe–Resend–Sentry–PostHog wiring — then re-deriving Caddy HTTPS and the lint gate.
+I keep starting the same product spine: TanStack Start web, Electron shell, Expo screen, shared Zod/forms/state, Clerk–Convex–Stripe–Resend–Sentry–PostHog wiring, then re-deriving Caddy HTTPS and the lint gate.
 
-For operators who want that monorepo launch pad as one private repo, not an empty hustlestack husk.
+For operators who want that monorepo launch pad as one private repo. An empty hustlestack husk is the wrong clone.
 
 ## What
 
-I built **Canaveral** — private https://github.com/HurleyUS/canaveral. HEAD \`df2c041\`. **11** commits. Version **0.1.0**. Bun **1.3.1** workspaces: web (TanStack Start), desktop (Electron), mobile (Expo), pub, shared/*.
+I built **Canaveral**, private https://github.com/HurleyUS/canaveral. HEAD \`df2c041\`. **11** commits. Version **0.1.0**. Bun **1.3.1** workspaces: web (TanStack Start), desktop (Electron), mobile (Expo), pub, shared/*.
 
 ![Workspace map](/blog/canaveral-bun-tanstack-start-web-desktop-mobile-caddy/screenshots/workspace-map.png)
 
@@ -5064,20 +5066,26 @@ house-checks ban any/unknown and useEffect/useState. gate.mts runs ten checks in
 
 ![Gate + freview](/blog/canaveral-bun-tanstack-start-web-desktop-mobile-caddy/screenshots/gate-freview.png)
 
-Gaps: package.json lint is oxlint-only while AGENTS.md sells Biome→house→freview; five OPEN manifesto issues still want loaders/useActionState/hydration fixes.
+Gaps: package.json lint is oxlint-only while AGENTS.md sells Biome to house to freview; five OPEN manifesto issues still want loaders/useActionState/hydration fixes.
 
 ## Where
 
-Code: [github.com/HurleyUS/canaveral](https://github.com/HurleyUS/canaveral) — private. No public deploy.
+Code: [github.com/HurleyUS/canaveral](https://github.com/HurleyUS/canaveral), private. No public deploy.
 
 \`\`\`bash
 bun install && cp .env.example .env && bun run env:check && bun run dev
-# → https://canaveral.localhost (Vite :5337 behind Caddy)
+# https://canaveral.localhost (Vite :5337 behind Caddy)
 \`\`\`
 
 ## When
 
-**2026-05-04** — init (+6074). **2026-05-14** — Blacksmith×7 + FReview RN observability + formatter → HEAD df2c041. **2026-06-09** — five manifesto issues (still OPEN). **2026-06-18** — queue pushed_at.
+**2026-05-04.** init (+6074).
+
+**2026-05-14.** Blacksmith×7 + FReview RN observability + formatter. HEAD df2c041.
+
+**2026-06-09.** five manifesto issues (still OPEN).
+
+**2026-06-18.** queue pushed_at.
 
 ![Commit arc](/blog/canaveral-bun-tanstack-start-web-desktop-mobile-caddy/screenshots/commit-arc.png)
 
@@ -5085,7 +5093,7 @@ bun install && cp .env.example .env && bun run env:check && bun run dev
 
 A launch pad should know its localhost slug, env contract, and which gates fail before the first feature branch.
 
-**Engagement Q:** Web + desktop + mobile on day one — wire Caddy HTTPS, freview, or Convex SSR loaders first?
+**Engagement Q:** Web + desktop + mobile on day one. Wire Caddy HTTPS, freview, or Convex SSR loaders first?
 `;
 
 const CONNECTEDIN_COVER =
@@ -5467,13 +5475,13 @@ const BOILERPLATE_COVER =
 
 const BOILERPLATE_CONTENT = `## Who
 
-I needed a reusable Next shell that already had Clerk protect, a subscriptions table, and a Stripe webhook — not another empty create-next-app and not a Convex payment library.
+I needed a reusable Next shell that already had Clerk protect, a subscriptions table, and a Stripe webhook. Empty create-next-app was the wrong starting line, and a Convex payment library was the wrong spine for this clone path.
 
-For operators cloning a private Hustle Launch starter onto Vercel, not buyers of a polished marketing site.
+For operators cloning a private Hustle Launch starter onto Vercel. Buyers of a polished marketing site can keep walking.
 
 ## What
 
-I shipped **boilerplate** — private https://github.com/michaelmonetized/boilerplate. HEAD \`6f2dd2f\`. **63** commits. package **0.1.0**.
+I shipped **boilerplate**, private https://github.com/michaelmonetized/boilerplate. HEAD \`6f2dd2f\`. **63** commits. package **0.1.0**.
 
 ![Auth + billing](/blog/boilerplate-clerk-drizzle-stripe-next16-cve/screenshots/auth-billing.png)
 
@@ -5485,11 +5493,11 @@ Honest day-one residue that is still at HEAD: about / blog / contact / docs / fa
 
 ![CVE bump](/blog/boilerplate-clerk-drizzle-stripe-next16-cve/screenshots/cve-bump.png)
 
-Feb 22 2026: fix(security) upgrade Next.js 14.2.8 to 16.1.6 for CVE-2025-55184 — package.json + bun.lockb only. Live: https://boilerplate-fawn-gamma.vercel.app and https://boilerplate.hustlelaunch.com both 200 with <title>Boilerplate</title>.
+Feb 22 2026: fix(security) upgrade Next.js 14.2.8 to 16.1.6 for CVE-2025-55184. package.json + bun.lockb only. Live: https://boilerplate-fawn-gamma.vercel.app and https://boilerplate.hustlelaunch.com both 200 with <title>Boilerplate</title>.
 
 ## Where
 
-Code: [github.com/michaelmonetized/boilerplate](https://github.com/michaelmonetized/boilerplate) — private MIT.
+Code: [github.com/michaelmonetized/boilerplate](https://github.com/michaelmonetized/boilerplate), private MIT.
 
 Clone requires michaelmonetized auth. README still expects mv .env.example .env (file not tracked). Edit data/app.ts, install deps, deploy Vercel.
 
@@ -5497,15 +5505,23 @@ Live shells: [boilerplate-fawn-gamma.vercel.app](https://boilerplate-fawn-gamma.
 
 ## When
 
-**2024-09-07 to 09-11 ET** — Create Next App, then Clerk middleware/redirect/color fights, then Stripe ready (~50 commits in four days). **2024-09-17** — shrug. **2026-01-08** — PLAN.md. **2026-01-31** — STRIPE.md sync. **2026-02-22 07:42 ET** — Next 16 CVE bump to HEAD \`6f2dd2f\`. Queue push **2026-02-22T12:42:54Z**.
+**2024-09-07 to 09-11 ET.** Create Next App, then Clerk middleware/redirect/color fights, then Stripe ready (~50 commits in four days).
+
+**2024-09-17.** shrug.
+
+**2026-01-08.** PLAN.md.
+
+**2026-01-31.** STRIPE.md sync.
+
+**2026-02-22 07:42 ET.** Next 16 CVE bump to HEAD \`6f2dd2f\`. Queue push **2026-02-22T12:42:54Z**.
 
 ![Commit arc](/blog/boilerplate-clerk-drizzle-stripe-next16-cve/screenshots/commit-arc.png)
 
 ## Why
 
-A SaaS starter is only honest if the auth boundary, the subscriptions row, and the webhook exist — and if you admit the marketing routes are still stubs when you CVE-bump sixteen months later.
+A SaaS starter is only honest if the auth boundary, the subscriptions row, and the webhook exist, and if you admit the marketing routes are still stubs when you CVE-bump sixteen months later.
 
-**Engagement Q:** Wire /pricing + /billing to createStripeUrl next, or replace the Postgres webhook with Theo single KV sync before cloning this into the next hustle*?
+**Engagement Q:** Wire /pricing + /billing to createStripeUrl next, or replace the Postgres webhook with Theo single KV sync before cloning this into the next hustle?
 `;
 
 const ILEAGUE_APP_COVER =
@@ -6336,7 +6352,7 @@ export const staticPosts: StaticPost[] = [
     title: "Boilerplate: Clerk + Drizzle + Stripe Next shell, CVE-bumped to 16",
     slug: "boilerplate-clerk-drizzle-stripe-next16-cve",
     excerpt:
-      "Private michaelmonetized/boilerplate is the Sep 2024 Hustle Launch Next.js SaaS app template \u2014 Clerk hash auth, Vercel Postgres/Drizzle subscriptions, Stripe Checkout/Portal webhook, Catppuccin + max fonts \u2014 live on Vercel and boilerplate.hustlelaunch.com. 63 commits. HEAD 6f2dd2f Next 14\u219216 CVE bump. Marketing/protected pages still stub <h1>Page</h1>; no .env.example.",
+      "boilerplate is a private michaelmonetized Next shell with Clerk, Drizzle/@vercel/postgres subscriptions, and a Stripe webhook, CVE-bumped to Next 16.1.6 at HEAD 6f2dd2f. Live on boilerplate-fawn-gamma.vercel.app and boilerplate.hustlelaunch.com; marketing routes are still ten-line stubs.",
     content: BOILERPLATE_CONTENT,
     coverImage: BOILERPLATE_COVER,
     tags: [
@@ -6715,7 +6731,7 @@ export const staticPosts: StaticPost[] = [
     title: "Canaveral: Bun TanStack Start launch pad \u2014 web, Electron, Expo, Caddy",
     slug: "canaveral-bun-tanstack-start-web-desktop-mobile-caddy",
     excerpt:
-      "Private HurleyUS/canaveral is a Bun monorepo launch pad: TanStack Start web + Electron + Expo + pub + shared packages, Caddy https://canaveral.localhost:5337 path, Clerk/Convex/Resend/Stripe/PostHog/Sentry stubs, house-checks + freview gate. 11 commits. HEAD df2c041. Not hustlestack husks, not freview itself, not bundx-init.",
+      "Canaveral is a private HurleyUS Bun monorepo launch pad (TanStack Start web, Electron, Expo, shared) with in-repo Caddy at canaveral.localhost:5337 and a ten-check freview gate. HEAD df2c041; eleven commits; AGENTS.md still oversells the Biome to house to freview path while package.json lint is oxlint-only.",
     content: CANAVERAL_CONTENT,
     coverImage: CANAVERAL_COVER,
     tags: [
@@ -6781,7 +6797,7 @@ export const staticPosts: StaticPost[] = [
     title: "animated-gradient-border: transparent glass with a spinning conic ring",
     slug: "animated-gradient-border-transparent-mask-composite",
     excerpt:
-      "Public michaelmonetized/animated-gradient-border-on-transparent-background is a static HTML/CSS lab: glassmorphism card, rotating conic border, interior punched transparent with mask-composite exclude/xor. CSS @property angle spin + @function helpers. 5 commits. HEAD 5e9b611. Empty README. Distinct from glass-design-system Next.js AnimatedBorder.",
+      "animated-gradient-border is a public CSS lab (HEAD 5e9b611, 5 commits, empty README) that keeps a spinning conic ring via mask-composite: exclude so the video plate shows through the middle. Sibling to glass-design-system AnimatedBorder; open index.html locally.",
     content: ANIMATED_GRADIENT_BORDER_CONTENT,
     coverImage: ANIMATED_GRADIENT_BORDER_COVER,
     tags: [
@@ -8618,7 +8634,7 @@ export const staticPosts: StaticPost[] = [
     title: "Mack's BBQ Shack: I built a Main Street site that still feels like the pit",
     slug: "macks-bbq-shack-canton-condensation-site",
     excerpt:
-      "Private Next.js 16 build for Mack's Shack BBQ in Canton \u2014 condensation hero, chalkboard menu, Convex + Resend catering leads. Sixty-seven commits. Live on Main Street.",
+      "Mack's Shack BBQ is a private Next 16 / Bun / Convex / Resend Canton pit site with a condensation-glass hero, skeuomorphic chalkboard menu, and catering leads from notify@uncap.us. Live on www.macksbbqshack.com; sixty-seven commits through the Aug 30 Resend fix.",
     content: MACKS_CONTENT,
     coverImage: MACKS_COVER,
     tags: [
