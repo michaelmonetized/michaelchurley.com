@@ -3,6 +3,7 @@ import { api } from "@/convex/_generated/api";
 import Link from "next/link";
 import { ContainerBoxedCenter } from "@/components/layout/containers";
 import { getStaticPosts, getStaticTags } from "@/lib/static-posts";
+import { TagFilter } from "@/components/blog/tag-filter";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -39,13 +40,17 @@ export default async function BlogPage({
     readingTime?: number;
   }[] = [];
   let remoteTags: string[] = [];
+  let remoteAllForCounts: { tags: string[] }[] = [];
   try {
-    const [posts, t] = await Promise.all([
+    const [posts, t, allRemote] = await Promise.all([
       fetchQuery(api.blog.list, {
         onlyPublished: true,
         tag: selectedTag || undefined,
       }),
       fetchQuery(api.blog.getAllTags),
+      selectedTag
+        ? fetchQuery(api.blog.list, { onlyPublished: true })
+        : Promise.resolve(null),
     ]);
     remotePosts = (posts ?? []).map((p) => ({
       _id: String(p._id),
@@ -59,15 +64,28 @@ export default async function BlogPage({
       readingTime: p.readingTime,
     }));
     remoteTags = t ?? [];
+    remoteAllForCounts = (allRemote ?? posts ?? []).map((p) => ({ tags: p.tags }));
   } catch {
     remotePosts = [];
     remoteTags = [];
+    remoteAllForCounts = [];
   }
   const seen = new Set(staticPosts.map((p) => p.slug));
   const blogPosts = [...staticPosts, ...remotePosts.filter((p) => !seen.has(p.slug))].sort(
     (a, b) => (b.publishedAt ?? 0) - (a.publishedAt ?? 0),
   );
   const tags = Array.from(new Set([...getStaticTags(), ...remoteTags])).sort();
+
+  const tagCounts = new Map<string, number>();
+  for (const post of [...getStaticPosts(), ...remoteAllForCounts]) {
+    for (const tag of post.tags) {
+      tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+    }
+  }
+  const tagsWithCounts = tags.map((tag) => ({
+    tag,
+    count: tagCounts.get(tag) ?? 0,
+  }));
 
   return (
     <section className="flex flex-col py-4xl bg-gradient-to-b from-Base to-Crust">
@@ -81,41 +99,8 @@ export default async function BlogPage({
           <p className="text-lg text-muted-foreground">Thoughts, tutorials, and insights</p>
         </div>
 
-        {/* Tags */}
-        {tags && tags.length > 0 && (
-          <div className="flex flex-wrap justify-center gap-2">
-            <Link
-              href="/blog"
-              className={`px-3 py-1 rounded-full text-sm transition-colors ${
-                !selectedTag ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
-              }`}
-            >
-              All
-            </Link>
-            {tags.map((tag) => (
-              <Link
-                key={tag}
-                href={`/blog?tag=${encodeURIComponent(tag)}`}
-                className={`px-3 py-1 rounded-full text-sm transition-colors ${
-                  selectedTag === tag
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted hover:bg-muted/80"
-                }`}
-              >
-                {tag}
-              </Link>
-            ))}
-          </div>
-        )}
-
-        {selectedTag && (
-          <div className="flex items-center justify-center gap-2">
-            <span className="text-muted-foreground">Showing posts tagged:</span>
-            <span className="font-medium">{selectedTag}</span>
-            <Link href="/blog" className="text-xs text-muted-foreground hover:text-foreground">
-              (clear)
-            </Link>
-          </div>
+        {tagsWithCounts.length > 0 && (
+          <TagFilter tags={tagsWithCounts} selectedTag={selectedTag} />
         )}
 
         {blogPosts.length === 0 ? (
