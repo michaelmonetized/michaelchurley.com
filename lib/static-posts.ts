@@ -2501,7 +2501,209 @@ Agent work without a shared thread is gossip, not ops. Humans and agents as firs
 Engagement: if your agents and your humans do not share a thread id, what exactly are you operating?
 `;
 
+const CITATION_MANAGER_COVER =
+  "/blog/citation-manager-uberall-competitor-958-directories/cover.png";
+
+const CITATION_MANAGER_CONTENT = `![Citation Manager dashboard mock — locations, submit, directories, submissions](/blog/citation-manager-uberall-competitor-958-directories/screenshots/dashboard.png)
+
+## Who
+
+I build operator tools for people who get paid when the NAP is right — agencies, multi-location owners, anyone tired of logging into Google, Yelp, and a dozen legacy directories by hand.
+
+Citation Manager is for that lane. Not for academic bibliography. Not for a WNC city guide. For pushing business listings out and tracking what stuck.
+
+If you care about local SEO plumbing, directory registries, or how a two-week SaaS sprint accumulates three auth stacks and a 500 on the homepage URL: these are the field notes.
+
+## What
+
+I shipped \`HurleyUS/citation-manager\` — public TypeScript repo, package **0.0.1**, **83** commits, HEAD \`78e9fb1\`.
+
+GitHub description is blunt: manage business listings across 1000+ directories. **Uberall competitor.** The README narrows it to **958+** directories and names Uberall, BrightLocal, and Yext as the alternatives it wants to undercut on price ($99 vs $500–2000/mo copy in the roadmap).
+
+Stack on the box: **Next.js 16.2**, React 19, **Convex**, Tailwind v4, Bun, Lucide, Puppeteer, Argon2. Clerk and \`@convex-dev/auth\` sit in \`package.json\`; Fallow marks both unused while the UI talks to \`/api/auth\` and \`localStorage\` tokens.
+
+![Directory registry mock — rank, method, API flags from directories.json](/blog/citation-manager-uberall-competitor-958-directories/screenshots/directories.png)
+
+The real artifact is \`data/directories.json\`: **958** rows. Rank 1 is Google Business Profile. Methods break down api 88 / form 773 / manual 70 / email 27. \`apiAvailable\` is true on 219. Convex schema mirrors that world — \`locations\`, \`directories\`, \`submissions\` with pending→submitted→verified→failed, plus \`verifications\`.
+
+Surfaces that exist: auth, dashboard, locations CRUD, directories browser with “View All 958”, bulk submit with search/filter, submissions tracker, seed-directories API, google/yelp/facebook API routes.
+
+What is also true:
+
+- \`bulkSubmit\` inserts \`pending\` rows. The schedule helpers flip to \`submitted\` only if env keys exist — they do **not** call the fetch helpers in that path.
+- \`generateGoogleJWT\` is a documented **placeholder**.
+- Login hashes the password with Argon2 again and string-compares to the stored hash. New salt → verify cannot work as written.
+- Dashboard copy still says “100+ directories” while the registry is 958.
+
+![Bulk submit mock — location + directory multi-select](/blog/citation-manager-uberall-competitor-958-directories/screenshots/submit.png)
+
+## Where
+
+It is supposed to run on Vercel against Convex. Dev uses Caddy \`cm.localhost:8080\` → Next on 3000.
+
+Probed 2026-09-08:
+
+- **https://citation-manager-pi.vercel.app** (GitHub homepageUrl) → **500** \`MIDDLEWARE_INVOCATION_FAILED\`
+- **https://citation-manager.vercel.app** → **200**, but it is a different “research workflow” citation app with Admin/User portals — **name collision, not this product**
+
+Audience: local-SEO operators, agencies replacing BrightLocal/Yext spend, builders watching auth and integration honesty in a Convex/Next SaaS.
+
+![Deploy reality mock — 500 homepage vs name-collision 200](/blog/citation-manager-uberall-competitor-958-directories/screenshots/deploy-reality.png)
+
+## When
+
+Created **2026-03-22**. Same day: scaffold, directory research, API skeletons, Clerk blank-page fix, Convex Auth swap, “FULL PHASE 2 READY FOR 6PM SHIP,” Google Maps submission claim, locations wired to Convex.
+
+Late March: Argon2, push-to-directories UI, View All 958, submissions dashboard.
+
+**2026-04-01–02:** registry expanded 100→958, Issue #12 Google/Yelp/Facebook modules, Clerk middleware returns, Phase 2B bypass + test infra, form validation, GBP PR.
+
+**2026-05-14–15:** seven “Standardize Blacksmith CI gates” commits (same batch pattern as sibling repos) plus deploy verification fixes.
+
+**2026-08-08:** HEAD sets \`X-Robots-Tag: index, follow\` — same day pattern as other HurleyUS pushes.
+
+README still says Phase 2A 100% complete and Phase 2B “current” as of early April. Stripe is still Phase 4 fiction.
+
+![Auth whiplash timeline — Clerk → Convex Auth → Argon2 → Clerk middleware → bypass](/blog/citation-manager-uberall-competitor-958-directories/screenshots/auth-whiplash.png)
+
+## Why
+
+Local citations are still a grind. The expensive tools win on coverage and integrations, not on elegance. I wanted an API-first Convex backend, a ranked directory registry I own as JSON, and a submit queue I can reason about in one schema.
+
+I also wanted to ship before the story was clean. That is why the homepage 500s, why login verify is wrong, why Clerk middleware and a bypass flag coexist, and why the integration modules look finished while bulkSubmit mostly writes \`pending\`.
+
+The registry is real. The competitor framing is real. The production URL on the GitHub homepage is not a product yet — it is an error page.
+
+## Engagement
+
+If you run citations for clients: would you trust a 958-row registry with honest \`pending\` states more than a vendor dashboard that always says “submitted”? What is the minimum live integration — Google only — before this is worth putting a real domain on?
+`;
+
+const BARBQUEWAGON_COVER =
+  "/blog/barbquewagon-bryson-city-hickory-smokehouse-site/cover.png";
+
+const BARBQUEWAGON_CONTENT = `![Bar-B-Que Wagon homepage — Slow Smoked / Hand Pulled / Soul Fed over the Main Street sign](/blog/barbquewagon-bryson-city-hickory-smokehouse-site/screenshots/home.png)
+
+## Who
+
+I build for operators. Sometimes that operator is me. Sometimes it is a pitmaster on Main Street in Bryson City, North Carolina.
+
+Bar-B-Que Wagon needed a site that smelled like hickory — not a beige restaurant theme with a stock smoke PNG — and a catering path that did not die in a “we will call you back” void. Guests needed hours, address, phone, and a board that matched what Pat Monteith actually smokes. Planners needed guest count and event type without playing phone tag first.
+
+I am the builder. The food is theirs. The repo is public under HurleyUS. The stack is mine to keep honest.
+
+## What
+
+I shipped a Next.js 16 App Router site. React 19. Bun. Tailwind 4. Biome and oxlint. Phosphor icons. Playfair Display for the smokehouse voice. DM Sans for the rest. Dark tokens: deep-smoke background, amber accents, cream type.
+
+The homepage hero stacks three lines — Slow Smoked. Hand Pulled. Soul Fed. — over the exterior sign photo with a charcoal gradient. Nav is sticky and blurred. Logo mark on warm-white tile. Tagline Smoke • Soul • Flavor. Amber Order Now button that routes to \`/contact\` because there is no DoorDash integration pretending to be hospitality.
+
+![Brisket plate — Yelp-sourced food photography in the repo](/blog/barbquewagon-bryson-city-hickory-smokehouse-site/screenshots/brisket-plate.jpg)
+
+The menu is a real board in the page: smoked meat plates with two sides and cornbread, sandwiches including The Wagon Burger, sides made from scratch. Featured cards and a gallery pull Yelp food and exterior shots that landed in the repo on February 15. About is Pat’s story — twenty-plus years, 610 Main Street, no franchise fiction.
+
+Catering is a real form: name, email, phone, event date, guest-count select, event-type select, optional message. The API validates with Zod, writes a Convex \`leads\` row when Convex is configured, and fires Resend to the owner inbox. Contact does the same twin path. Sentry on the edges. PostHog on the pageviews. Restaurant, Menu, and FoodService JSON-LD from one business-info object.
+
+![Pork ribs plate asset](/blog/barbquewagon-bryson-city-hickory-smokehouse-site/screenshots/pork-ribs.jpg)
+
+## Where
+
+610 Main St. Bryson City, NC 28713. Phone 828-488-9521. Hours Tue–Sat 11–8, Sunday 11–6, closed Monday.
+
+The URL that answers today is [barbquewagoncom.vercel.app](https://barbquewagoncom.vercel.app) — that is what GitHub lists as the homepage. Schema and copy still say \`barbquewagon.com\`. At pack time that apex has no DNS. Facebook is wired in the footer. Instagram is still a dead pound-sign href. Repo is public: [HurleyUS/barbquewagon.com](https://github.com/HurleyUS/barbquewagon.com).
+
+The audience for *this* write-up is builders who care how a local BBQ site actually captures a wedding headcount — and anyone in the Smokies who already knows the wagon on Main.
+
+![Exterior — building hero source](/blog/barbquewagon-bryson-city-hickory-smokehouse-site/screenshots/building-1.jpg)
+
+## When
+
+**2026-02-13.** Create Next App. Same night: full restaurant website. Same night again: throw out the placeholder details for real Bar-B-Que Wagon facts.
+
+**2026-02-15.** Zod on the contact form. Yelp photos across the homepage — food gallery, menu cards, exterior. Hero background with gradient overlay.
+
+**2026-02-21.** Lexington was wrong. Bryson City is right. That correction shipped across metadata and catering copy. Then full try/catch and Zod on both forms.
+
+**2026-02-22.** next.config. Drop unused ThemeProvider. PLAN and CHANGELOG. Wire contact and catering to Resend. JSON-LD for Google rich results.
+
+**2026-03-01.** TODO.md. It still lists “wire Convex/Resend” as unchecked. The commits disagree.
+
+**2026-05-13 through 15.** Shipprep. Logo assets. Bun on Vercel. Form refactor and Fallow cleanup. Roadmap. A string of Blacksmith CI gate commits. Observability scaffolding. Deploy URL verification until Blacksmith stopped lying.
+
+**2026-08-08.** \`X-Robots-Tag: index, follow\` in Vercel headers. HEAD settled. Thirty-eight commits from init. That is the clock.
+
+![Pulled pork platter](/blog/barbquewagon-bryson-city-hickory-smokehouse-site/screenshots/pulled-pork-platter.jpg)
+
+## Why
+
+A Main Street BBQ does not need a SaaS lander. It needs the board, the hours, the phone, and a catering form that still works when the dining room is loud.
+
+I wanted the hero to feel like the sign on Main — not a stock smoke stock photo. I wanted leads in Convex *and* in the inbox, from Zod-validated routes, not a mailto cosplay. I wanted Schema.org to carry the same brisket and pulled pork the menu page shows. I wanted the city name to be Bryson City everywhere a crawler looks.
+
+So I pulled the Yelp plates into the public folder, wired Resend, added JSON-LD, fixed the geography, ran the May ops gauntlet, and locked the robots header in August. Operator stack. Local business. Public repo.
+
+The custom domain is still dark. The Vercel alias is live. The Instagram link is still a pound sign. PLAN.md still thinks the forms are unwired.
+
+If you were standing at 610 Main tonight, which plate would you order before the kitchen sells out?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:citation-manager-uberall-competitor-958-directories",
+    title: "Citation Manager: I built an Uberall competitor with 958 directories — and left auth on three stacks",
+    slug: "citation-manager-uberall-competitor-958-directories",
+    excerpt:
+      "HurleyUS/citation-manager is my NAP citation SaaS — Next.js 16, Convex, 958-directory registry, Google/Yelp/Facebook integration modules. 83 commits, v0.0.1. GitHub homepage Vercel 500s; login re-hashes Argon2; Clerk middleware still bypassable.",
+    content: CITATION_MANAGER_CONTENT,
+    coverImage: CITATION_MANAGER_COVER,
+    tags: [
+      "citation-manager",
+      "citations",
+      "local-seo",
+      "nap",
+      "uberall",
+      "brightlocal",
+      "yext",
+      "directories",
+      "convex",
+      "nextjs",
+      "clerk",
+      "hurleyus",
+      "saas",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T04:00:00Z"),
+    readingTime: 4,
+  },
+
+  {
+    _id: "static:barbquewagon-bryson-city-hickory-smokehouse-site",
+    title: "Bar-B-Que Wagon: I built a Bryson City Main Street smokehouse site",
+    slug: "barbquewagon-bryson-city-hickory-smokehouse-site",
+    excerpt:
+      "Public Next.js 16 build for Bar-B-Que Wagon on 610 Main St, Bryson City — amber smokehouse theme, Yelp food gallery, Convex + Resend catering/contact leads, Restaurant JSON-LD. Thirty-eight commits. Live on the Vercel alias; custom domain still dark.",
+    content: BARBQUEWAGON_CONTENT,
+    coverImage: BARBQUEWAGON_COVER,
+    tags: [
+      "barbquewagon",
+      "bar-b-que-wagon",
+      "nextjs",
+      "convex",
+      "resend",
+      "catering",
+      "local-business",
+      "bryson-city-nc",
+      "martech",
+      "json-ld",
+      "smokehouse",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T03:30:00Z"),
+    readingTime: 4,
+  },
+
   {
     _id: "static:hurley-mission-control-human-agent-comms",
     title: "hurley-mission-control: I put humans and agents in the same thread model",
