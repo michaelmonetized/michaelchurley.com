@@ -1148,7 +1148,185 @@ If your current "game idea" folder has a repo and no GDD, or a GDD and no way fo
 Would you lock the Christmas 2026 preorder first — or open the engine folder and refuse to write another fatality until Bertie's bottle timing feels true?
 `;
 
+
+const HMS_COVER =
+  "/blog/hms-hustle-management-system-live-editor/cover.png";
+
+const HMS_CONTENT = `![HMS public home mock — ship the site, edit the site](/blog/hms-hustle-management-system-live-editor/screenshots/public-home.png)
+
+## Who
+
+I kept paying the WordPress tax.
+
+Not the hosting bill. The other tax: Elementor for layout, Dynamic.ooo when Elementor ran out of road, WooCommerce when something had to sell, a pile of PHP templates that only one agency intern understood, and a publish button that still felt like deploying a missile.
+
+HMS is for operators who already know that stack and are done leasing their content model from it. Marketing teams that need a revision trail and a split-test variant without forking a theme. Builders who are happier in Convex + Clerk + Vite+ than in another page-builder SaaS seat.
+
+If you have ever opened a live URL, winced, and opened a totally different admin URL to fix one sentence — you are in the room.
+
+## What
+
+I shipped **HMS — Hustle Management System**. The public site is the product. Pages, posts, products, forms, and templates are **block trees** stored as JSON. Signed-in, you append \`?edit=1\` and edit in place. Visitors keep the same URL. That is the whole thesis.
+
+Stack facts from the lockfile, not the README brochure: **Vite+** (\`vp\` for dev/build/lint/test), **React 19**, **react-router-dom 7**, **Tailwind 4**, shadcn + Base UI, **Zod 4** schemas driving **Convex** tables through \`zodToConvexFields\`, **Clerk** for auth, **Resend** as a Convex email action. Package version **0.0.0**. Public repo under michaelmonetized. Six commits. HEAD \`6f8fa73\`.
+
+![Live editor three-panel mock](/blog/hms-hustle-management-system-live-editor/screenshots/live-editor.png)
+
+The catalog is blunt: Basics, Media, Layout, Proof, Dynamic. Hero, CTA, features, columns, stats, testimonials, FAQ, pricing, logos, collections, menu, search, add-to-cart, cart, forms, document-body. Collections pull pages, posts, products, or media into grid, table, carousel, gallery, or list — and can paint each row with a **loop item** blueprint.
+
+**Blueprints** are one kinded table (ADR 0001): component, form, loop-item, template. Templates carry \`appliesTo\` — header, footer, 404, search, blog archive/single, shop archive, product single. Tokens like \`{{site.name}}\`, \`{{doc.title}}\`, \`{{cart.count}}\` resolve with modifiers. Visibility groups AND/OR on field, schedule, role, referrer, cookie. Revisions snapshot on content update. Variants sit ready for split tests.
+
+Data layer: local store with seed data for offline/dev; Convex when Clerk + Convex env are real (\`isLive\`). Cart lines live in localStorage. Commerce key fields exist on site settings and products — treat full checkout as schema-ready, not a finished money path in this window.
+
+![Manage pages workspace mock](/blog/hms-hustle-management-system-live-editor/screenshots/manage-pages.png)
+
+## Where
+
+Code lives at [github.com/michaelmonetized/hms](https://github.com/michaelmonetized/hms). No homepage URL is set on the GitHub repo — this pack does not invent a marketing domain. Local path is \`vp install\` then \`vp dev\`. Manage workspace under \`/manage/*\`. Public surfaces: \`/\`, \`/blog\`, \`/shop\`, \`/search\`, plus typed entries and slugs.
+
+Audience sits next to every thread still arguing Elementor vs Webflow while the real cost is “two URLs for one sentence.” Sibling mail default in the Resend action points at the \`uncap.us\` from-address — same operator family.
+
+![Shop archive mock](/blog/hms-hustle-management-system-live-editor/screenshots/shop.png)
+
+## When
+
+**2026-08-12, 11:17 ET.** \`a62d31d\` initialize. Vite+ scaffold, Max fonts, a full shadcn dump, hero PNG. Two hours later \`07e6672\` configured.
+
+**2026-08-13, 09:40 ET.** \`d95789a\` needs work. Convex pages, posts, products, media, sites, users. First page-builder. Manage shell routes. The CMS bones.
+
+**That evening, 20:57 ET.** \`2404b20\` Ship public site, live editor, revisions, and manage workspace. The thesis lands: the site is the editor.
+
+**2026-08-14, 10:34 ET.** \`12835c6\` new page builder. Catalog depth, finder, blueprints, collections, cart, theme templates. Four minutes later \`6f8fa73\` documents theme templates, search, cart, and library in the changelog. HEAD. Six commits total. Two per day for three days.
+
+![Blueprint library mock](/blog/hms-hustle-management-system-live-editor/screenshots/library-blueprints.png)
+
+## Why
+
+I did not want another theme marketplace. I wanted the visitor URL to be the edit surface, with block JSON on Convex, revisions you can restore, and variants you can assign — without opening a separate Elementor canvas that lies about the front end.
+
+So I compressed the escape into six commits: scaffold, configure, Convex bones, ship public+editor, deepen the builder, write the changelog. Version 0.0.0 on purpose. The README still talks like tanstack-start and zustand are in the room; the lockfile says Vite+ and react-router-dom. I would rather say that out loud than ship a brochure.
+
+If your publish flow still requires a different hostname than your customers use, you already know the hole I was staring at.
+
+What would you put on the first HMS page — the home hero, the shop archive, or the form that finally emails without a PHP plugin?
+`;
+
+const TWELVEUX_COVER =
+  "/blog/twelveux-hosted-shadcn-registry-glass/cover.png";
+
+const TWELVEUX_CONTENT = `![twelveux Glass playground — circle and NEW MATERIAL card](/blog/twelveux-hosted-shadcn-registry-glass/screenshots/playground.png)
+
+## Who
+
+I still install UI the shadcn way. Copy the files. Own the code. The default face is still Inter. The default kit is still New York.
+
+That is fine for a starter. It is not the system I already run on uncap.us and hms — Max type, phi type scale, Catppuccin surfaces.
+
+twelveux is for the operator who wants that system as a registry namespace, not a Figma moodboard. Frontend builders who already type npx shadcn add. People who remember twelve.ux from the WHATWG-era chrome. Anyone who wants liquid glass that is the actual shader, not a blur filter wearing a trench coat.
+
+## What
+
+I built a hosted shadcn/ui registry. Next.js 15. React 19. Tailwind 4. Package version 0.1.0.
+
+Three installable items ship in public/r today: **max**, **theme**, **glass**.
+
+**Max** is the typeface — local woff faces, weights 100 through 900, roman and italic.
+
+**theme** is phi type and spacing, Catppuccin light and dark CSS variables, Max as sans. Same grammar as uncap.us and hms.
+
+**Glass** is the first real component. Official pen.dev glass.glsl. Wrapper. Circle defaults baked in. GlassText is a second path with softer defaults for type.
+
+The playground is the product surface. Live circle. Live card. CIRCLE PROPS sliders. Same wrapper on a shadcn button and a navbar over a photo.
+
+![2012 twelve.ux chrome mock](https://raw.githubusercontent.com/michaelmonetized/twelveux/main/public/og/mock-full.jpg)
+
+/og is the archive. Exact 2009-2012 twelve.ux chrome. /kit is the same chrome under glass.
+
+![glass kit](/blog/twelveux-hosted-shadcn-registry-glass/screenshots/kit-page.png)
+
+## Where
+
+Live on Vercel: https://twelveux.vercel.app — playground, /og, /kit, and /r JSON.
+
+Repo: https://github.com/michaelmonetized/twelveux
+
+registry.json still says homepage https://twelveux.com. That name has no public DNS as of this writing. The host that answers is the Vercel app.
+
+![scene backdrop](https://raw.githubusercontent.com/michaelmonetized/twelveux/main/public/scene.jpg)
+
+## When
+
+**2009-2012.** twelve.ux chrome. The mock on /og still wears that date.
+
+**2026-08-15, 4:42 PM ET.** Initial commit — registry, Glass playground, Max fonts, og/kit mocks, built public/r.
+
+**4:44.** Vercel install freeze fix. **4:46.** Production typecheck fix for Glass. **4:58.** Phone playground. **5:15.** Accordion panes + price ribbon. HEAD 8b9773b.
+
+Five Production deploys the same evening. Five commits. One afternoon.
+
+## Why
+
+I already had a visual system. Max. Phi. Catppuccin. It lived on uncap.us and hms as CSS and fonts, not as something you could npx into a fresh app.
+
+I wanted Glass as a file you install, with the real shader and the circle props, not a screenshot of someone else glassmorphism.
+
+I also still have the 2012 chrome in my head. studioTWELVE. twelve.ux. Putting /og and /kit next to the 2026 playground keeps the arc honest — same operator, longer timeline.
+
+So the registry is the portable form. The playground is the proof. The archive is the scar that stayed.
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:hms-hustle-management-system-live-editor",
+    title: "HMS: I replaced WordPress + Elementor with a live site that is the editor",
+    slug: "hms-hustle-management-system-live-editor",
+    excerpt:
+      "I built HMS — Hustle Management System — so pages, blog, shop, and blueprints are block trees on Vite+ + Convex + Clerk. Append ?edit=1. The public site is the editor.",
+    content: HMS_CONTENT,
+    coverImage: HMS_COVER,
+    tags: [
+      "hms",
+      "hustle-management-system",
+      "page-builder",
+      "convex",
+      "clerk",
+      "vite-plus",
+      "wordpress-alternative",
+      "elementor",
+      "woocommerce",
+      "martech",
+      "blocks",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T00:10:00Z"),
+    readingTime: 4,
+  },
+  {
+    _id: "static:twelveux-hosted-shadcn-registry-glass",
+    title: "twelveux: I hosted a shadcn registry and shipped Glass in one afternoon",
+    slug: "twelveux-hosted-shadcn-registry-glass",
+    excerpt:
+      "I stood up twelveux — a hosted shadcn registry with Max, a phi Catppuccin theme, and pen.dev Glass. Playground on Vercel. Five commits. Same day.",
+    content: TWELVEUX_CONTENT,
+    coverImage: TWELVEUX_COVER,
+    tags: [
+      "twelveux",
+      "shadcn",
+      "glass",
+      "webgl",
+      "nextjs",
+      "catppuccin",
+      "max",
+      "martech",
+      "registry",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T00:00:00Z"),
+    readingTime: 3,
+  },
+
   {
     _id: "static:best-jeep-decals-convex-stripe-storefront",
     title: "Best Jeep Decals: I shipped a dark-first vinyl storefront for Jeep identity",
