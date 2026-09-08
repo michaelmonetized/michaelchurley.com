@@ -7348,7 +7348,7 @@ export const staticPosts: StaticPost[] = [
     title: "nvibe: I wired Cursor Agent + CodeRabbit into Neovim, then fought the window manager until \"it works!\"",
     slug: "nvibe-neovim-cursor-coderabbit-layout-until-it-works",
     excerpt:
-      "nvibe is a public Lua Neovim plugin (HEAD 56d0152, 35 commits) that auto-lays out Cursor Agent + CodeRabbit on the left and LazyGit/shells on the bottom with a hard NvChad dependency. Arc runs from Product Hunt README through it works window hell, NvimTree #4/#5 fixes, and a GitHub Actions gate deleted for Vercel is our only CI/CD."it works!\" window-management hell, NvimTree #4/#5 fixes, a GitHub Actions gate that got deleted for \"Vercel is our only CI/CD,\" and June 22 nightlies. HEAD 56d0152.",
+      "nvibe is a public Lua Neovim plugin (HEAD 56d0152, 35 commits) that auto-lays out Cursor Agent + CodeRabbit on the left and LazyGit/shells on the bottom with a hard NvChad dependency. Arc runs from Product Hunt README through \"it works!\" window-management hell, NvimTree #4/#5 fixes, a GitHub Actions gate that got deleted for \"Vercel is our only CI/CD,\" and June 22 nightlies. HEAD 56d0152.",
     content: NVIBE_CONTENT,
     coverImage: NVIBE_COVER,
     tags: [
