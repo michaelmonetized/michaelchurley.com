@@ -924,7 +924,7 @@ Fork Thursday night. Unlock and U-Boot twelve minutes later. Slim JPEG distribut
 const REAFERAL_COVER =
   "/blog/reaferral-agent-referral-platform/cover.png";
 
-const REAFERAL_CONTENT = `![Reaferral Inman-style landing — BREAKING referral tracking hero](/blog/reaferral-agent-referral-platform/screenshots/home.png)
+const REAFERAL_CONTENT = `![Reaferral Inman-style landing. BREAKING referral tracking hero](/blog/reaferral-agent-referral-platform/screenshots/home.png)
 
 ## Who
 
@@ -934,7 +934,7 @@ That is not a CRM problem. That is a **referral accountability** problem. Who se
 
 Reaferral is for licensed agents who are tired of losing money to ambiguity. Solo producers who want a link in the email signature that actually attributes. Team leads who need roles and a shared pipeline. Builders who already speak Next.js, Convex, and Clerk and want the vertical product without another Electron tray.
 
-If your week includes “did that referral ever close” and a half-finished Google Sheet — that is the room.
+If your week includes "did that referral ever close" and a half-finished Google Sheet. that is the room.
 
 ## What
 
@@ -942,29 +942,29 @@ I built **Reaferral**: an agent-to-agent real estate referral platform.
 
 Stack on the wire: **Next.js 16.1.6** (App Router, Turbopack), **Convex** for the reactive backend, **Clerk** for auth, Tailwind v4, Radix/shadcn-style UI, Recharts, PostHog, Sentry configs, Resend, Stripe Connect routes. Bun monorepo. Workspaces: \`web\` (\`reaferral-web\` 0.1.0) and \`mobile\` (Expo \`reaferral-app\` 1.0.0). Hosted at [reaferral.vercel.app](https://reaferral.vercel.app). GitHub repo private under HurleyUS.
 
-![Features page — product surfaces and mockups](/blog/reaferral-agent-referral-platform/screenshots/features.png)
+![Features page: product surfaces and mockups](/blog/reaferral-agent-referral-platform/screenshots/features.png)
 
 What ships in the product surface:
 
-**Referral tracking** — create, send, receive; fee percent or flat; status through the deal.
+**Referral tracking**. create, send, receive; fee percent or flat; status through the deal.
 
-**Trackable links** — short codes under \`/r/[code]\`, click analytics, campaign names.
+**Trackable links**. short codes under \`/r/[code]\`, click analytics, campaign names.
 
-**Pipeline** — lead → active → under contract → closed (and payout adjacency in schema).
+**Pipeline**. lead to active to under contract to closed (and payout adjacency in schema).
 
-**Teams** — slugs, invites, roles (owner/admin/financial/assistant/member), pending joins that survive signup.
+**Teams**. slugs, invites, roles (owner/admin/financial/assistant/member), pending joins that survive signup.
 
-**Messaging** — per-referral threads in Convex.
+**Messaging**. per-referral threads in Convex.
 
-**Twelve dashboard themes** — neumorphism, gradient-wave, dark-pro, inman-style, minimal-light, plus brokerage-inspired skins (Keller Williams, RE/MAX, Zillow, eXp, Trulia), Raycast, Brutalist.
+**Twelve dashboard themes**. neumorphism, gradient-wave, dark-pro, inman-style, minimal-light, plus brokerage-inspired skins (Keller Williams, RE/MAX, Zillow, eXp, Trulia), Raycast, Brutalist.
 
-**Content engine** — **423** MDX files under \`web/content/stories/\`. Linguist says MDX is ~76% of the repo by bytes. The landing still says “66+ Expert Articles.” The filesystem disagrees in the agent’s favor.
+**Content engine**. **423** MDX files under \`web/content/stories/\`. Linguist says MDX is ~76% of the repo by bytes. The landing still says "66+ Expert Articles." The filesystem disagrees in the agent's favor.
 
 ![Stories journal index](/blog/reaferral-agent-referral-platform/screenshots/stories.png)
 
-![Example story — 47-second setup](/blog/reaferral-agent-referral-platform/screenshots/story-47.png)
+![Example story. 47-second setup](/blog/reaferral-agent-referral-platform/screenshots/story-47.png)
 
-Public GTM pages: Inman-style editorial landing (orange LIVE strip, green REA**FERRAL** wordmark, navy stats band), Features, Stories, Investors. Auth: Clerk sign-in/up → \`/dashboard\`.
+Public GTM pages: Inman-style editorial landing (orange LIVE strip, green REA**FERRAL** wordmark, navy stats band), Features, Stories, Investors. Auth: Clerk sign-in/up to \`/dashboard\`.
 
 ![Clerk sign-up](/blog/reaferral-agent-referral-platform/screenshots/sign-up.png)
 
@@ -972,17 +972,17 @@ Public GTM pages: Inman-style editorial landing (orange LIVE strip, green REA**F
 
 Positioning in the ProductHunt/HN drafts on disk: core tracking **free forever**; premium later (follow-ups, agreements, payment tracking). I am not pretending the Stripe Connect routes mean the billing story is finished.
 
-![Illustrative pipeline mock — not a live authenticated dashboard](/blog/reaferral-agent-referral-platform/screenshots/pipeline-mock.png)
+![Illustrative pipeline mock, not a live authenticated dashboard](/blog/reaferral-agent-referral-platform/screenshots/pipeline-mock.png)
 
 ## Where
 
-It runs on Vercel at **reaferral.vercel.app**. Clerk on the live deploy is still a **dev** instance (\`pk_test_…\`) — the marketing pages render signed-out; the dashboard sits behind auth.
+It runs on Vercel at **reaferral.vercel.app**. Clerk on the live deploy is still a **dev** instance (\`pk_test_…\`), the marketing pages render signed-out; the dashboard sits behind auth.
 
 Repo: [HurleyUS/reaferral](https://github.com/HurleyUS/reaferral). Private. Branch \`main\`. HEAD at pack time \`8ba157a\`. **501** commits. Zero GitHub Releases. MIT license file present (copyright line dated 2021).
 
 ![Monorepo map](/blog/reaferral-agent-referral-platform/screenshots/repo-structure.png)
 
-The audience sits next to agent networks, Inman-shaped media, and the same Convex/Clerk/Vercel family I use elsewhere — not next to “what is a referral fee” explainers.
+The audience sits next to agent networks, Inman-shaped media, and the same Convex/Clerk/Vercel family I use elsewhere, not next to "what is a referral fee" explainers.
 
 Chrome extension lives in a **sibling** repo (\`michaelmonetized/reaferral-chrome-extension\`). Not this pack.
 
@@ -990,21 +990,21 @@ Chrome extension lives in a **sibling** repo (\`michaelmonetized/reaferral-chrom
 
 **2024-08-07.** \`init\`.
 
-**2026-01-08.** Docs snap into focus: OPPORTUNITIES, PLAN, README — this is a real-estate referral platform, not a vague hustle.
+**2026-01-08.** Docs snap into focus: OPPORTUNITIES, PLAN, README. this is a real-estate referral platform, a tracked referral pipeline.
 
-**2026-02-04.** The real ship week. \`feat: complete Convex backend and core web app\`. GitHub repo created. Landing design variants. Vercel monorepo wiring. Clerk → Convex user sync.
+**2026-02-04.** The real ship week. \`feat: complete Convex backend and core web app\`. GitHub repo created. Landing design variants. Vercel monorepo wiring. Clerk to Convex user sync.
 
 **2026-02-05–06.** Theme system expands. Features + Stories infrastructure. Investors, privacy, terms. Shared chrome. Mobile-friendly dashboard.
 
 **Late February through April.** The content firehose. Hundreds of \`content: add new story\` commits. 413 of them by pack count. Journal becomes the bulk of the tree.
 
-**2026-02-27 onward.** Security passes — auth checks on mutations, collect bounds, Svix verification on Clerk webhooks, console cleanup for production.
+**2026-02-27 onward.** Security passes. auth checks on mutations, collect bounds, Svix verification on Clerk webhooks, console cleanup for production.
 
 **2026-05–06.** CI thrash (Blacksmith) then removal; promo banner overlap fix; nightly commits.
 
 **2026-08-08, morning Eastern.** X-Robots-Tag set to \`index, follow\`, then three unblock fixes so production deploy stops choking. Last push. That is the clock stop for this pack.
 
-**2026-09-08.** Pack day. Site up. \`og-image.png\` 404s. Draft only — no blog publish, no social blast, no git push from this task.
+**2026-09-08.** Pack day. Site up. \`og-image.png\` 404s. Draft only. no blog publish, no social blast, no git push from this task.
 
 ## Why
 
@@ -1012,11 +1012,12 @@ Because referral income is real and the tooling agents use for it is mostly impr
 
 Because I already had the Convex/Clerk/Next pattern and the missing piece was the vertical: links, fees, stages, teams, and a journal that attracts the people who feel the spreadsheet tax.
 
-Because shipping 423 MDX stories into a private monorepo is a weird flex and also a concrete SEO loop — even when the hero still says 66+.
+Because shipping 423 MDX stories into a private monorepo is a weird flex and also a concrete SEO loop, even when the hero still says 66+.
 
-Because the badge of honesty here is the timeline: February MVP, spring content factory, August robots unblock — still private, still free-forever core, still no tagged release.
+Because the badge of honesty here is the timeline: February MVP, spring content factory, August robots unblock, still private, still free-forever core, still no tagged release.
 
-What dashboard or sheet are you still using to remember who owes whom on a referral?`;
+What dashboard or sheet are you still using to remember who owes whom on a referral?
+`;
 
 const BESTJEEP_COVER =
   "/blog/best-jeep-decals-convex-stripe-storefront/cover.png";
@@ -1275,7 +1276,7 @@ What would you install first on a greenfield Next app: \`@twelveux/max\`, \`@twe
 const GETFARMIN_COVER =
   "/blog/getfarmin-farm-equipment-marketplace-scaffold/cover.png";
 
-const GETFARMIN_CONTENT = `![GetFarmin home mock — Find. Buy. Farm.](/blog/getfarmin-farm-equipment-marketplace-scaffold/screenshots/home.png)
+const GETFARMIN_CONTENT = `![GetFarmin home mock. Find. Buy. Farm.](/blog/getfarmin-farm-equipment-marketplace-scaffold/screenshots/home.png)
 
 ## Who
 
@@ -1283,13 +1284,13 @@ I got tired of watching six-figure iron move on hope and a Facebook comment thre
 
 Farm equipment is not a $49 SaaS seat. A 2022 John Deere 8R 370 placeholder in this repo lists at **$385,000**. A Case IH 9250 combine sits at **$425,000**. That is not "add to cart and pray." That is escrow, hours, condition enums, oversize permits, and a seller who might be a dealer with a storefront slug.
 
-GetFarmin is for operators who want that marketplace shape on a real stack — Next, Convex, Clerk, Stripe Connect — before they pretend they have 10,000 live listings. Ag buyers and dealers who are done leasing trust from a local classifieds culture. Builders who would rather ship fee constants in a Convex mutation than wait for the perfect deploy key.
+GetFarmin is for operators who want that marketplace shape on a real stack. Next, Convex, Clerk, Stripe Connect. before they pretend they have 10,000 live listings. Ag buyers and dealers who are done leasing trust from a local classifieds culture. Builders who would rather ship fee constants in a Convex mutation than wait for the perfect deploy key.
 
-If you have ever tried to move a center pivot across state lines with a spreadsheet and a handshake, you are in the room.
+If you have ever tried to move a center pivot across state lines with a spreadsheet and a handshake, this is for you.
 
 ## What
 
-I built **GetFarmin** — package name \`getfarmin\`, version **0.1.0**, private under **HurleyUS/getfarmin.com**. Metadata line: *Global Farm Equipment Marketplace*. Hero line: **Find. Buy. Farm.**
+I built **GetFarmin**. package name \`getfarmin\`, version **0.1.0**, private under **HurleyUS/getfarmin.com**. Metadata line: *Global Farm Equipment Marketplace*. Hero line: **Find. Buy. Farm.**
 
 Stack facts from the lockfile and tree, not the stale sitrep: **Next.js 16.2.6**, **React 19.2.6**, **Tailwind 4.3**, Bun, **Convex** schema + queries/mutations, **Clerk** auth surfaces, **Stripe** webhook route + Connect escrow scaffolding, Catppuccin Mocha default with green primary, Resend/Sentry/PostHog wired in \`.env.example\`. Thirty-six commits. HEAD \`4b5df30\`.
 
@@ -1297,17 +1298,17 @@ Stack facts from the lockfile and tree, not the stale sitrep: **Next.js 16.2.6**
 
 Surfaces that exist in \`app/\`: \`/\` marketing, \`/browse\` with URL \`searchParams\` filters and placeholder cards from \`lib/placeholder-data.ts\`, \`/about\`, \`/dashboard\`, \`/listing/new\` multi-step form, \`/dealers/[slug]\`, Clerk sign-in/up catch-alls, \`POST /api/shipping/estimate\`, Stripe webhook route.
 
-Convex tables: \`listings\`, \`categories\`, \`users\`, \`dealerProfiles\`, \`messages\`, \`savedListings\`, \`payments\`. Listing tiers: basic / enhanced / dealer. Conditions: new through salvage. Escrow math in \`convex/payments.ts\`: platform **2.9% + $0.30**, escrow **1.5%**, optional buyer protection **+2%**. Comments say PaymentIntent creation is deferred — schema-ready money path, not a finished Connect onboarding wizard.
+Convex tables: \`listings\`, \`categories\`, \`users\`, \`dealerProfiles\`, \`messages\`, \`savedListings\`, \`payments\`. Listing tiers: basic / enhanced / dealer. Conditions: new through salvage. Escrow math in \`convex/payments.ts\`: platform **2.9% + $0.30**, escrow **1.5%**, optional buyer protection **+2%**. Comments say PaymentIntent creation is deferred. schema-ready money path, not a finished Connect onboarding wizard.
 
 Shipping estimator in \`lib/shipping-estimate.ts\`: base **$250**, **$2.10**/mile, **$38**/1000 lb, oversize and expedite flags, honest notes about permits and long-haul variance.
 
-![Dashboard mock — inbox + escrow](/blog/getfarmin-farm-equipment-marketplace-scaffold/screenshots/dashboard.png)
+![Dashboard mock. inbox + escrow](/blog/getfarmin-farm-equipment-marketplace-scaffold/screenshots/dashboard.png)
 
 ## Where
 
-Code lives at [github.com/HurleyUS/getfarmin.com](https://github.com/HurleyUS/getfarmin.com) — **private**. GitHub homepage points at [getfarmin-com.vercel.app](https://getfarmin-com.vercel.app). At pack time that URL returned **HTTP 500** with \`X-Robots-Tag: index, follow\` (the Aug 8 header fix). This pack does not invent a healthy production story.
+Code lives at [github.com/HurleyUS/getfarmin.com](https://github.com/HurleyUS/getfarmin.com). **private**. GitHub homepage points at [getfarmin-com.vercel.app](https://getfarmin-com.vercel.app). At pack time that URL returned **HTTP 500** with \`X-Robots-Tag: index, follow\` (the Aug 8 header fix). This pack does not invent a healthy production story.
 
-Audience sits next to MachineryTrader / TractorHouse energy, with a builder twist: Catppuccin dark-first UI, compound Convex indexes, issue-driven February feature closeout. Sibling operator furniture is present — \`.hustlemc\`, Blacksmith ship workflow, fallow REVIEW, Stripe sanity rule file.
+Audience sits next to MachineryTrader / TractorHouse energy, with a builder twist: Catppuccin dark-first UI, compound Convex indexes, issue-driven February feature closeout. Sibling operator furniture is present. \`.hustlemc\`, Blacksmith ship workflow, fallow REVIEW, Stripe sanity rule file.
 
 ![New listing multi-step mock](/blog/getfarmin-farm-equipment-marketplace-scaffold/screenshots/listing-new.png)
 
@@ -1321,7 +1322,7 @@ Audience sits next to MachineryTrader / TractorHouse energy, with a builder twis
 
 **2026-02-13.** \`0afe002\` dark mode, Catppuccin theme system, browse/about pages, Convex schema.
 
-**2026-02-21–22.** Standards debt burned down — error/loading/not-found, env validation, Zod validations, providers, schema foreign keys as \`v.id("users")\`, merged fix PRs.
+**2026-02-21–22.** Standards debt burned down. error/loading/not-found, env validation, Zod validations, providers, schema foreign keys as \`v.id("users")\`, merged fix PRs.
 
 **2026-02-23–24.** The marketplace week. Search and filtering. Clerk buyer/seller dashboard. Listing creation flow. In-app messaging. Stripe Connect + escrow scaffolding. Dealer storefronts + tiers. Convex bootstrap scripts. Heavy-equipment shipping estimate API. Issues **#1–#8** closed with matching PRs.
 
@@ -1329,7 +1330,7 @@ Audience sits next to MachineryTrader / TractorHouse energy, with a builder twis
 
 **2026-08-08, 06:54 ET.** \`4b5df30\` set X-Robots-Tag to index, follow on Vercel. HEAD. Thirty-six commits total.
 
-**Pack day 2026-09-08.** Draft and assets only. Live preview still 500s. \`sitrep.md\` still claims purpose unclear and last commit February 5 — treat it as drift, not truth.
+**Pack day 2026-09-08.** Draft and assets only. Live preview still 500s. \`sitrep.md\` still claims purpose unclear and last commit February 5. treat it as drift, not truth.
 
 ![Shipping estimate mock](/blog/getfarmin-farm-equipment-marketplace-scaffold/screenshots/shipping-estimate.png)
 
@@ -1337,11 +1338,9 @@ Audience sits next to MachineryTrader / TractorHouse energy, with a builder twis
 
 I did not want another "agriculture somehow" landing page with emoji tractors.
 
-I wanted fee constants next to listing status enums. I wanted a shipping function that admits a 22-foot load needs permits. I wanted dealer slugs and message threads on the same Convex deployment shape as the browse grid — even while the browse grid still reads placeholder data and the Vercel deployment throws 500s.
+I wanted fee constants next to listing status enums. I wanted a shipping function that admits a 22-foot load needs permits. I wanted dealer slugs and message threads on the same Convex deployment shape as the browse grid, even while the browse grid still reads placeholder data and the Vercel deployment throws 500s.
 
 So the February issue board became the product: close search, auth, listing form, chat, escrow, dealers, shipping, bootstrap. May hardened the gates. August flipped robots headers on a site that still needs a living Convex URL.
-
-If your marketplace README promises 10,000 listings and your \`payments\` table cannot say \`in_escrow\`, you already know the hole I was staring at.
 
 Would you price a six-figure tractor listing as free basic inventory, or charge the $49 enhanced tier before the first escrow release clears?
 `;
@@ -1349,29 +1348,29 @@ Would you price a six-figure tractor listing as free basic inventory, or charge 
 const MERCHWINNER_COVER =
   "/blog/merchwinner-pod-course-marketplace/cover.png";
 
-const MERCHWINNER_CONTENT = `![MerchWinner live home — Start Learning / Become an Instructor](/blog/merchwinner-pod-course-marketplace/screenshots/home.png)
+const MERCHWINNER_CONTENT = `![MerchWinner live home. Start Learning / Become an Instructor](/blog/merchwinner-pod-course-marketplace/screenshots/home.png)
 
 ## Who
 
-I kept meeting people who wanted Amazon Merch, Etsy POD, and Shopify print-on-demand to pay rent — and who were buying theory courses from people who had not shipped a design in years.
+I kept meeting people who wanted Amazon Merch, Etsy POD, and Shopify print-on-demand to pay rent, and who were buying theory courses from people who had not shipped a design in years.
 
 MerchWinner is for aspiring merch sellers who want practitioners. It is for active sellers who will teach if the split and the platform are not a second job. It is for operators who want to see a full Clerk + Convex + Stripe course-marketplace shape on Next.js 16 without pretending the catalog is full.
 
-If you have ever built the checkout before the first SKU, you are in the room.
+If you have ever built the checkout before the first SKU, this is for you.
 
 ## What
 
-I shipped **MerchWinner.com** — a user-contributed course marketplace for learning how to sell merch online. Public surfaces: home, \`/courses\` with search/category/sort, course detail + lesson player, \`/instructors\`, \`/about\`. Instructor workspace for create/edit/publish, lesson reorder, earnings, analytics, profile. Student enrollment dashboard. Money path on Stripe: one-time course and bundle checkout, Pro/Unlimited memberships, webhook → Convex purchases/subscriptions, Resend mail for enrollment, invoice, renewal, review reminders.
+I shipped **MerchWinner.com**: a user-contributed course marketplace for learning how to sell merch online. Public surfaces: home, \`/courses\` with search/category/sort, course detail + lesson player, \`/instructors\`, \`/about\`. Instructor workspace for create/edit/publish, lesson reorder, earnings, analytics, profile. Student enrollment dashboard. Money path on Stripe: one-time course and bundle checkout, Pro/Unlimited memberships, webhook to Convex purchases/subscriptions, Resend mail for enrollment, invoice, renewal, review reminders.
 
 Stack from the lockfile, not the stale README line: **Next.js ^16.2.6**, **React ^19.2.6**, **Convex ^1.38.0**, **Clerk**, **Stripe ^22.1.1**, **Resend**, PostHog, Sentry, Tailwind v4, Radix, Catppuccin Mocha default. Package **0.1.0**, private under HurleyUS. **86** commits. HEAD \`65c4413\`.
 
-![Live courses page — search UI with empty catalog](/blog/merchwinner-pod-course-marketplace/screenshots/courses-live.png)
+![Live courses page: search UI with empty catalog](/blog/merchwinner-pod-course-marketplace/screenshots/courses-live.png)
 
-Billing facts in \`lib/billing.ts\`: \`PLATFORM_FEE_PERCENT = 20\` (creator net 80%). Plans: Pro **$29/mo** / **$278/yr** (3 courses/month) and Unlimited **$49/mo** / **$470/yr**. Homepage marketing still says “Earn 70% of every course sale.” I would rather name the mismatch than paper it over.
+Billing facts in \`lib/billing.ts\`: \`PLATFORM_FEE_PERCENT = 20\` (creator net 80%). Plans: Pro **$29/mo** / **$278/yr** (3 courses/month) and Unlimited **$49/mo** / **$470/yr**. Homepage marketing still says "Earn 70% of every course sale." I would rather name the mismatch than paper it over.
 
 Convex schema covers users (student/instructor/admin), instructorProfiles, courses, lessons, enrollments with progress, subscriptions, coursePurchases, bundlePurchases, payoutRequests, reviews. Eighteen App Router pages. Fourteen API routes. Bun + Biome + ship script.
 
-![About page — practitioner POD curriculum](/blog/merchwinner-pod-course-marketplace/screenshots/about.png)
+![About page: practitioner POD curriculum](/blog/merchwinner-pod-course-marketplace/screenshots/about.png)
 
 ## Where
 
@@ -1379,17 +1378,17 @@ Code lives at [github.com/HurleyUS/merchwinner.com](https://github.com/HurleyUS/
 
 Audience sits next to every POD Discord still arguing Redbubble vs Merch while nobody ships curriculum. Contact in README: michael@hustlelaunch.com. Same operator family as the other HurleyUS Next/Convex products.
 
-![Instructors page — shell loaded, no profiles yet](/blog/merchwinner-pod-course-marketplace/screenshots/instructors-live.png)
+![Instructors page: shell loaded, no profiles yet](/blog/merchwinner-pod-course-marketplace/screenshots/instructors-live.png)
 
 ## When
 
 **2026-01-08.** \`91c1e8e\` Initial commit: Next.js, Convex, Tailwind. Same day: opportunities doc and homepage pass.
 
-**February.** Next 16 + React 19. Catppuccin dark mode, layout variants, stub \`/courses\` and \`/about\`. Feb 21 standards mega-fix closes a pile of issues — middleware, providers, schema, icons, fonts, email docs.
+**February.** Next 16 + React 19. Catppuccin dark mode, layout variants, stub \`/courses\` and \`/about\`. Feb 21 standards mega-fix closes a pile of issues. middleware, providers, schema, icons, fonts, email docs.
 
 **March 20–22.** Stripe checkout patterns, instructor profile and earnings, webhook typing. Money enters the building.
 
-**March 25.** Fourteen commits. Resend templates. Phase 2 webhook→email. Phase 3a–3c: instructor course creation, lesson manage UI, student enrollment and lesson player.
+**March 25.** Fourteen commits. Resend templates. Phase 2 webhook to email. Phase 3a–3c: instructor course creation, lesson manage UI, student enrollment and lesson player.
 
 **March 26.** Nineteen commits. Phase 4 search/filters/SEO/schema markup. Phase 5 reviews UI + reminders. Phase 6a/6b earnings and analytics merges. Production-ready checklist docs.
 
@@ -1399,19 +1398,17 @@ Audience sits next to every POD Discord still arguing Redbubble vs Merch while n
 
 **2026-08-08, 06:55 ET.** \`65c4413\` set X-Robots-Tag to index, follow on Vercel. HEAD. Eighty-six commits total.
 
-On September 8, 2026 the live \`/courses\` page still reads **“No courses available yet.”** The marketplace shipped. The catalog did not.
+On September 8, 2026 the live \`/courses\` page still reads **"No courses available yet."** The marketplace shipped. The catalog did not.
 
-![Illustrative instructor earnings mock — 20% platform fee math](/blog/merchwinner-pod-course-marketplace/screenshots/instructor-earnings-mock.png)
+![Illustrative instructor earnings mock. 20% platform fee math](/blog/merchwinner-pod-course-marketplace/screenshots/instructor-earnings-mock.png)
 
 ## Why
 
-I did not want another “courses coming soon” landing page with a Mailchimp box. I wanted the boring spine: auth roles, course/lesson tables, Stripe sessions, webhooks that enroll, email that confirms, instructor earnings that know the fee, student progress that is not a Google Sheet.
+I did not want another "courses coming soon" landing page with a Mailchimp box. I wanted the boring spine: auth roles, course/lesson tables, Stripe sessions, webhooks that enroll, email that confirms, instructor earnings that know the fee, student progress that is not a Google Sheet.
 
 So I compressed the spine across six phases and left the honesty visible: empty catalog, empty instructors grid, README still claiming Next 15.5.6 and Payments N/A while Stripe and Next 16 are in the lockfile. Version 0.1.0. Private on purpose until the first real courses earn the public launch.
 
-If your marketplace admin is prettier than your course list, you already know the hole I was staring at.
-
-What would you publish first on MerchWinner — Amazon Merch niche research, Etsy POD ops, or TikTok ads that actually sell shirts?
+What would you publish first on MerchWinner: Amazon Merch niche research, Etsy POD ops, or TikTok ads that actually sell shirts?
 `;
 
 const OMNUX_REPORT_COVER =
@@ -1837,15 +1834,15 @@ When the comparison model finally ships, which NC story do you want side-by-side
 const ILEAGUE_COVER =
   "/blog/ileague-golf-patreon-meets-18birdies/cover.png";
 
-const ILEAGUE_CONTENT = `![iLeague.golf homepage mock — Patreon meets 18birdies, Top 54 qualify for iTour](/blog/ileague-golf-patreon-meets-18birdies/screenshots/home.png)
+const ILEAGUE_CONTENT = `![iLeague.golf homepage mock. Patreon meets 18birdies, Top 54 qualify for iTour](/blog/ileague-golf-patreon-meets-18birdies/screenshots/home.png)
 
 ## Who
 
 I build products in public for operators, not for pitch decks. Golf creators already duct-tape a scorecard app to a Patreon to a tip jar. Fans already bounce between three tabs to follow a round and pay for the good stuff.
 
-iLeague.golf is for those creators and those fans — and for anyone shipping a Bun monorepo that has to hold a Next.js web app, an Expo companion, and a Convex backend without lying about what is finished.
+iLeague.golf is for those creators and those fans, and for anyone shipping a Bun monorepo that has to hold a Next.js web app, an Expo companion, and a Convex backend without lying about what is finished.
 
-If you care about creator-economy plumbing, Stripe tier math, or how a generic “influencer” scaffold gets rebranded into a sport vertical: this is the field notes.
+If you care about creator-economy plumbing, Stripe tier math, or how a generic "influencer" scaffold gets rebranded into a sport vertical: this is the field notes.
 
 ## What
 
@@ -1855,20 +1852,20 @@ The README line is blunt: **Patreon meets 18birdies**. The live lander says the 
 
 Stack on the box: **Next.js 15.5.9**, React 18.3.1, **Convex**, **Clerk**, **Stripe**, PostHog, Sentry, Resend, Tailwind v4, Bun workspaces, Expo 52 mobile, Phosphor icons via react-icons, Vercel. Package version **1.0.0**. Repo is private. Site is public at [ileague.golf](https://ileague.golf).
 
-![Creator profile mock — followers, subscribers, earnings, content grid](/blog/ileague-golf-patreon-meets-18birdies/screenshots/creator-profile.png)
+![Creator profile mock. followers, subscribers, earnings, content grid](/blog/ileague-golf-patreon-meets-18birdies/screenshots/creator-profile.png)
 
 Monetization is not a slide. It is \`apps/web/src/lib/billing.ts\`:
 
 - Platform fee **15%**
 - Tip presets **$5 / $10 / $20 / $50 / $100**
-- Suggested creator tiers — Bronze $4.99, Silver $9.99, Gold $24.99 monthly (yearly suggested too)
+- Suggested creator tiers. Bronze $4.99, Silver $9.99, Gold $24.99 monthly (yearly suggested too)
 - Real tiers live in Convex \`subscriptionTiers\` and check out through dynamic Stripe \`price_data\` (web API + Convex actions)
 
-Content model covers video, shorts, images, links, text, and **round recaps** tied to scorecards. Visibility: public / followers / subscribers. Courses, course reviews, rounds (FIR/GIR/putts), standings, leagues, notifications — all in \`convex/schema.ts\`.
+Content model covers video, shorts, images, links, text, and **round recaps** tied to scorecards. Visibility: public / followers / subscribers. Courses, course reviews, rounds (FIR/GIR/putts), standings, leagues, notifications. all in \`convex/schema.ts\`.
 
-What is also true: the dashboard still says **influencers**. Explore still calls \`getInfluencers\`. The README still says **Top 36** while the live hero says **Top 54**. Production HTML still loads Clerk **\`pk_test\`** from a \`*.clerk.accounts.dev\` instance. The scorecard schema is ahead of the hole-entry UI. That is the product, not a footnote.
+What is also true: the dashboard still says **influencers**. Explore still calls \`getInfluencers\`. The README still says **Top 36** while the live hero says **Top 54**. Production HTML still loads Clerk **\`pk_test\`** from a \`*.clerk.accounts.dev\` instance. The scorecard schema is ahead of the hole-entry UI. That is the product, part of the story.
 
-![Billing mock — Bronze / Silver / Gold + tip presets](/blog/ileague-golf-patreon-meets-18birdies/screenshots/billing-tiers.png)
+![Billing mock. Bronze / Silver / Gold + tip presets](/blog/ileague-golf-patreon-meets-18birdies/screenshots/billing-tiers.png)
 
 ## Where
 
@@ -1876,29 +1873,29 @@ It runs on Vercel against Convex. Auth is Clerk. Money is Stripe. Mail is Resend
 
 Surfaces that matter:
 
-- Public lander — emerald/slate hero, feature grid, creator/fan columns, ecosystem footer
-- Auth + onboarding — Clerk sign-in/up, role/profile setup
-- App shell — dashboard, explore, leagues, notifications
-- Creator profile — \`/creator/[id]\` with hero, featured courses, content grid
-- Payments — \`/api/stripe/checkout\`, portal, webhook; Convex \`/stripe-webhook\`
+- Public lander. emerald/slate hero, feature grid, creator/fan columns, ecosystem footer
+- Auth + onboarding. Clerk sign-in/up, role/profile setup
+- App shell. dashboard, explore, leagues, notifications
+- Creator profile. \`/creator/[id]\` with hero, featured courses, content grid
+- Payments. \`/api/stripe/checkout\`, portal, webhook; Convex \`/stripe-webhook\`
 
 Audience sits with golf creators, golf fans, and builders watching a sport vertical on a creator-economy stack. Sibling properties: iTour.golf and iConference.golf under the HurleyUS lane.
 
-![Scorecard / schema mock — hole-by-hole model vs missing UI](/blog/ileague-golf-patreon-meets-18birdies/screenshots/scorecard.png)
+![Scorecard / schema mock. hole-by-hole model vs missing UI](/blog/ileague-golf-patreon-meets-18birdies/screenshots/scorecard.png)
 
 ## When
 
-**2026-01-09.** Initial monorepo — web + mobile. Convex stubs. React 19 downgraded to 18 for Clerk/Convex. Vercel monorepo config. First production deploy on a hustle-launch Vercel URL. CHANGELOG also remembers the earlier \`michaelmonetized/ileague-app\` GitHub link.
+**2026-01-09.** Initial monorepo. web + mobile. Convex stubs. React 19 downgraded to 18 for Clerk/Convex. Vercel monorepo config. First production deploy on a hustle-launch Vercel URL. CHANGELOG also remembers the earlier \`michaelmonetized/ileague-app\` GitHub link.
 
 **January 31.** Chore sync.
 
 **February 4.** Mobile leagues pushed toward Convex. EAS config. Roadmap honesty about hardcoded mobile screens.
 
-**February 11.** HurleyUS repo created. Golf schema and plan. Golf-focused homepage, header, footer, Convex functions. This is the rebrand day — influencer scaffold becomes iLeague.golf.
+**February 11.** HurleyUS repo created. Golf schema and plan. Golf-focused homepage, header, footer, Convex functions. This is the rebrand day: influencer scaffold becomes iLeague.golf.
 
-**February 12–28.** Stripe API version bump. Search indexes. Metadata rewritten for golf. Golf category. lucide → react-icons. Root \`/convex\` consolidation. CI experiments. Mobile TypeScript cleanup. Vercel as the only CI/CD.
+**February 12–28.** Stripe API version bump. Search indexes. Metadata rewritten for golf. Golf category. lucide to react-icons. Root \`/convex\` consolidation. CI experiments. Mobile TypeScript cleanup. Vercel as the only CI/CD.
 
-**March.** Security headers. Middleware runtime fights. **www vs apex redirect loop** — normalize middleware, dual aliases, then disable middleware so Vercel stops bouncing. robots.txt, sitemap, trending creators carousel. Stripe checkout patterns standardized. **Creator profile page** ships. Dashboard starts showing real follower/subscriber/earnings stats. Convex package versions aligned.
+**March.** Security headers. Middleware runtime fights. **www vs apex redirect loop**. normalize middleware, dual aliases, then disable middleware so Vercel stops bouncing. robots.txt, sitemap, trending creators carousel. Stripe checkout patterns standardized. **Creator profile page** ships. Dashboard starts showing real follower/subscriber/earnings stats. Convex package versions aligned.
 
 **May 14–15.** Blacksmith CI gate spam, then removed.
 
@@ -1906,11 +1903,11 @@ Audience sits with golf creators, golf fans, and builders watching a sport verti
 
 **June 22.** Nightly commits.
 
-**August 8, 6:55 AM ET.** HEAD \`508df8e\` — set \`X-Robots-Tag\` to \`index, follow\` on Vercel. Fifty-four commits on \`main\`.
+**August 8, 6:55 AM ET.** HEAD \`508df8e\`. set \`X-Robots-Tag\` to \`index, follow\` on Vercel. Fifty-four commits on \`main\`.
 
 **September 8 pack day.** Live site returns 200. Robots tag present. Clerk still on test keys. Draft only.
 
-![Ecosystem mock — iLeague → iTour → iConference](/blog/ileague-golf-patreon-meets-18birdies/screenshots/ecosystem.png)
+![Ecosystem mock. iLeague to iTour to iConference](/blog/ileague-golf-patreon-meets-18birdies/screenshots/ecosystem.png)
 
 ## When (clock)
 
@@ -1918,13 +1915,13 @@ Fifty-four commits. January 9 to August 8. HEAD \`508df8e\`. Private monorepo. P
 
 ## Why
 
-Creator tools fail in two directions: beautiful landers with no money path, or Stripe dashboards with no sport-specific object model. I wanted both — scorecards that can become content, tiers that can become iTour qualification, tips that are not a third-party link-in-bio.
+Creator tools fail in two directions: beautiful landers with no money path, or Stripe dashboards with no sport-specific object model. I wanted both. scorecards that can become content, tiers that can become iTour qualification, tips that are not a third-party link-in-bio.
 
 I also refused to pretend the rebrand was complete. Influencer function names, Top 36 vs Top 54, and \`pk_test\` on a real domain are operator signals. They tell you where the product still is.
 
 The ecosystem bet is explicit: iLeague feeds iTour feeds iConference. This pack is only the first node.
 
-If you create golf content today, what would you rather ship next on iLeague — a real hole-by-hole entry flow, or flipping Clerk to live keys so the first paying subscriber is not on test mode?
+If you create golf content today, what would you rather ship next on iLeague: a real hole-by-hole entry flow, or flipping Clerk to live keys so the first paying subscriber is not on test mode?
 `;
 
 const HURLEYUS_COM_COVER =
@@ -8163,7 +8160,7 @@ export const staticPosts: StaticPost[] = [
     title: "iLeague.golf: I built Patreon meets 18Birdies for golf creators — and left Clerk on pk_test",
     slug: "ileague-golf-patreon-meets-18birdies",
     excerpt:
-      "iLeague.golf is my golf creator economy — Next.js 15, Convex, Clerk, Stripe, Expo. Scorecards, creator tiers, tips, Top 54 → iTour. Live domain, private HurleyUS monorepo, 54 commits, production still on Clerk test keys.",
+      "iLeague.golf is the HurleyUS golf creator platform: Patreon-meets-18Birdies with Stripe tiers and a fifteen percent fee. Distinct from the iTour national tour lander.",
     content: ILEAGUE_CONTENT,
     coverImage: ILEAGUE_COVER,
     tags: [
@@ -8192,7 +8189,7 @@ export const staticPosts: StaticPost[] = [
     title: "GetFarmin: I scaffolded a farm equipment marketplace with escrow math first",
     slug: "getfarmin-farm-equipment-marketplace-scaffold",
     excerpt:
-      "I built GetFarmin — a Next.js 16 + Convex + Clerk farm equipment marketplace — with listing search, Stripe Connect escrow fee math, dealer storefronts, messaging, and a heavy-equipment shipping estimator before the live Vercel deploy stopped 500ing.",
+      "I scaffolded GetFarmin as a Next.js farm-equipment marketplace with Convex listings and Clerk: tractor/implement catalog path, not a $49 SaaS seat. Honest about Connect onboarding still unfinished.",
     content: GETFARMIN_CONTENT,
     coverImage: GETFARMIN_COVER,
     tags: [
@@ -8218,7 +8215,7 @@ export const staticPosts: StaticPost[] = [
     title: "MerchWinner: I shipped a POD course marketplace before the catalog had courses",
     slug: "merchwinner-pod-course-marketplace",
     excerpt:
-      "I built MerchWinner.com — a Next.js 16 + Convex + Clerk + Stripe course marketplace for selling merch online — through six phases and 86 commits. Live catalog still says no courses available yet.",
+      "I shipped MerchWinner as a POD course marketplace on Next.js + Convex + Clerk + Stripe: catalog, checkout, and course rails in one stack, not a Google Sheet.",
     content: MERCHWINNER_CONTENT,
     coverImage: MERCHWINNER_COVER,
     tags: [
@@ -8398,7 +8395,7 @@ export const staticPosts: StaticPost[] = [
     title: "reaferral: I built a free referral tracker so agents stop bleeding commissions into spreadsheets",
     slug: "reaferral-agent-referral-platform",
     excerpt:
-      "I built Reaferral \u2014 a Next.js 16 + Convex + Clerk platform for agent-to-agent real estate referrals: trackable links, pipeline, teams, 12 dashboard themes, and a 423-article MDX journal. Live on Vercel. Repo private. Core pitched free forever.",
+      "Reaferral is an agent referral platform: who sent it, what fee attaches, where it sits in the pipeline. Accountability, not a CRM dump.",
     content: REAFERAL_CONTENT,
     coverImage: REAFERAL_COVER,
     tags: [
