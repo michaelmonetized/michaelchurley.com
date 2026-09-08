@@ -148,7 +148,117 @@ If you moved to Linux and your creative suite stayed behind, you already know th
 What would you put in the first \`.oma\` file if you sat down on a fresh Omarchy box tonight?
 `;
 
+const NAARCHY_04_COVER =
+  "/blog/naarchy-0-4-preferences-privacy/cover.png";
+
+const NAARCHY_04_CONTENT = `After the [Sep 3 island post](https://www.michaelchurley.com/blog/naarchy-linux-dynamic-island), I hardened Naarchy locally to **0.4.0** — native Preferences, \`naarchy doctor\`, atomic stores, travel opt-in, IPC cleanup. Validated on three machines. **Not pushed / not tagged yet.** GitHub tip remains **v0.3.3**.
+
+![Naarchy 0.4 Home — Focus Timer and Now Playing, gear for Preferences](/blog/naarchy-0-4-preferences-privacy/screenshots/home.png)
+
+## Who
+
+This one is for people already living in the island — Omarchy / Hyprland operators who installed Naarchy after the Sep 3 post and started trusting it with clipboard history, file drops, and calendar feeds.
+
+If you care whether state files are written atomically, whether the socket is mode 0600, whether travel estimates ask before they phone Nominatim, and whether \`doctor\` can tell you the session is sane without opening a GUI — you are the audience.
+
+Builders who ship local-first GTK tools. Multi-machine QA types who refuse to call a release “done” until it runs on more than the laptop that authored it.
+
+Not for anyone still deciding whether Linux needs a notch overlay. That story is already live. This post assumes you know what Naarchy is.
+
+## What
+
+Local tip is **0.4.0**. GitHub tip is still **v0.3.3**. Say that out loud before anything else.
+
+0.4 is the overhaul I validated on September 5 and have been running since — Preferences window, reduced motion, \`naarchy --version\`, read-only \`naarchy doctor\`, stricter CLI rejection, atomic clipboard/Inbox/Home state, feature-gated services, travel estimates behind an explicit opt-in, IPC/CLI cleanup, CI that drafts releases with checksums. Roughly fifty-one files, +4937/−4096 against \`origin/main\` @ \`ef9cf87\`. Uncommitted. Unpushed. No \`v0.4.0\` tag.
+
+![Clipboard 0.4 — newest-first history, pin, Clear history, gear for Preferences](/blog/naarchy-0-4-preferences-privacy/screenshots/clipboard.png)
+
+Concrete deltas that matter day-to-day:
+
+- **Native Preferences.** Gear opens a bounded floating window for appearance, motion, behavior, and feature controls. Advanced bits stay in \`~/.config/naarchy/config.toml\`. Appearance reloads live; feature flags and calendar feeds still want a restart.
+- **\`naarchy doctor\`.** Read-only desktop check — Wayland, Hyprland, session bus, daemon, config, timer sound, volume/brightness HUD detection. On this box it prints nine OKs and points at the config path.
+- **IPC honesty.** Second process talks JSON over \`$XDG_RUNTIME_DIR/naarchy.sock\` (mode 0600), waits for a bounded ack that the command entered the queue — not that the UI finished. Single-instance lock. Malformed durations exit 2.
+- **Privacy pass.** No telemetry (unchanged). Clipboard + shelf stay owner-only on disk; history is still **not encrypted** while capture is on — disabling Clipboard stops the watcher. Travel estimates (Nominatim / IPinfo|ipapi / OSRM) require opt-in. Clear Inbox does not delete originals. Duplicate drops rejected. Corrupt JSON gets a backup instead of a silent wipe.
+- **Atomic stores.** Clipboard, Inbox, and Home preferences write privately and atomically. Failed write keeps previous state.
+- **Perf sample (directional, 8s):** collapsed CPU 0.125% → below sample; expanded 0.625% → 0.375%; RSS roughly flat (~82→84 MiB collapsed, ~102→101 MiB expanded) vs installed 0.3.3.
+- **86 Rust tests.** fmt, Clippy \`-D warnings\`, debug + opt builds, smoke. Fixed a GTK 4.22.4 crash disposing a never-realized hidden window during monitor hotplug / prefs rebuild.
+
+Battery widget is already gone as of 0.3.3 — bar shows %, \`hud battery\` remains. 0.4 does not bring it back.
+
+![Inbox 0.4](/blog/naarchy-0-4-preferences-privacy/screenshots/inbox.png)
+
+![Widgets 0.4](/blog/naarchy-0-4-preferences-privacy/screenshots/widgets.png)
+
+![Calendar 0.4](/blog/naarchy-0-4-preferences-privacy/screenshots/calendar.png)
+
+## Where
+
+Same seat: Asahi Omarchy / Hyprland on the 16" M1 Pro (\`m1pro16\`), plus QA on \`hpeliteclient\` and \`intelpro\`. Local binary: \`naarchy 0.4.0\` via \`~/.cargo/bin\`. Local aarch64 dist archive exists under \`target/release/dist/\` with SHA256SUMS; that archive wants **glibc 2.39+**. Public GitHub Releases are still the 0.3.3 tarballs until push + remote CI succeed.
+
+Repo: [michaelmonetized/naarchy](https://github.com/michaelmonetized/naarchy). Origin story (Sep 3): [Naarchy: a Dynamic Island for Linux that owns the notch](https://www.michaelchurley.com/blog/naarchy-linux-dynamic-island).
+
+\`doctor\` on the machine that wrote this draft:
+
+\`\`\`
+Naarchy 0.4.0 · desktop check
+
+OK    Wayland session
+OK    Hyprland integration
+OK    Session bus
+OK    Daemon
+OK    Configuration
+OK    File opening
+OK    Timer sound
+OK    Volume HUD detection
+OK    Brightness HUD detection
+\`\`\`
+
+## When
+
+**2026-09-03.** Shipped 0.3.0–0.3.3 and published the island post. GitHub tip froze at \`ef9cf87\` / tag \`v0.3.3\`.
+
+**2026-09-05 (local).** 0.4.0 overhaul + \`docs/VALIDATION.md\`. Native prefs, doctor, atomic state, travel opt-in, IPC/CLI refactor. Desktop checks: calendar nav, 48h timer, prefs rebuild, 3× monitor hotplug, fullscreen hide/restore, notification queue. Three-machine QA: m1pro16, hpeliteclient, intelpro.
+
+**2026-09-08.** Still running 0.4.0 locally. Still dirty vs \`origin/main\`. Still no public release. This EXTEND draft is the trail for when that push lands — or for saying “RC on my boxes” if the story publishes first.
+
+## Why
+
+The Sep 3 post proved the island. 0.4 is about trusting it with operator data.
+
+I did not want Preferences buried in a TOML file only. I did not want a second process that could hang forever waiting for UI. I did not want travel estimates quietly enriching a calendar event. I did not want a crash when a hidden GTK window got disposed during hotplug. I wanted \`doctor\` to answer “is this session actually wired?” without expanding the panel.
+
+So I hardened the stores, gated the network, measured CPU against 0.3.3, ran eighty-six tests, and installed the same binary on three machines before calling the overhaul validated. Release gates that remain: push, remote GHA with Rust 1.92 pin, sustained everyday use, physical multi-monitor on the targets that matter.
+
+0.4.0 is real on my desktops. It is not on GitHub until I push it. That gap is the whole reason this post exists as an EXTEND, not a rewrite.
+
+If your island already sits in the camera hole — what should \`naarchy doctor\` check next that it does not check today?`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:naarchy-0-4-preferences-privacy",
+    title: "Naarchy 0.4.0: Preferences, doctor, and the privacy pass",
+    slug: "naarchy-0-4-preferences-privacy",
+    excerpt:
+      "After the Sep 3 island post, I hardened Naarchy locally to 0.4.0 — native Preferences, naarchy doctor, atomic stores, travel opt-in, IPC cleanup. Validated on three machines. Not pushed yet.",
+    content: NAARCHY_04_CONTENT,
+    coverImage: NAARCHY_04_COVER,
+    tags: [
+      "naarchy",
+      "linux",
+      "hyprland",
+      "omarchy",
+      "gtk4",
+      "rust",
+      "privacy",
+      "preferences",
+      "clipboard",
+      "open-source",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-08T12:00:00Z"),
+    readingTime: 5,
+  },
   {
     _id: "static:omadesign-native-linux-studio-13-days",
     title: "omadesign: I shipped a native Linux design suite in 13 days",
