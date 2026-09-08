@@ -3209,19 +3209,19 @@ Would you rather run scrollable tiling as **native Swift + Accessibility + skhd*
 const CODEFOLIO_COVER =
   "/blog/codefolio-spec-first-github-portfolio-saas/cover.png";
 
-const CODEFOLIO_CONTENT = `![Codefolio marketing hero — Public Beta + Get started free](/blog/codefolio-spec-first-github-portfolio-saas/screenshots/marketing-hero.png)
+const CODEFOLIO_CONTENT = `![Codefolio marketing hero: Public Beta + Get started free](/blog/codefolio-spec-first-github-portfolio-saas/screenshots/marketing-hero.png)
 
 ## Who
 
-I wanted a **developer portfolio platform** — not another personal homepage. Multi-tenant. GitHub sync. Pin six projects on free. Custom domain on Pro. Analytics that tell you whether recruiters came from Twitter or a blog referral.
+I wanted a **developer portfolio platform** (multi-tenant, GitHub sync, pin six projects on free, custom domain on Pro, analytics that tell you whether recruiters came from Twitter or a blog referral) instead of another personal homepage.
 
-Who this is for: operators who will read \`DESIGN.md\` and \`CONTRACTS.md\` before they trust a launch tweet, and people who have watched a SaaS invent “10K+ developers” before the Vercel project exists.
+Who this is for: operators who will read \`DESIGN.md\` and \`CONTRACTS.md\` before they trust a launch tweet, and people who have watched a SaaS invent 10K+ developers before the Vercel project exists.
 
-If you have ever claimed a \`.dev\` domain in \`openGraph.url\` and then discovered the hostname already belongs to someone else's portfolio — stay in the room.
+If you have ever claimed a \`.dev\` domain in \`openGraph.url\` and then discovered the hostname already belongs to someone else's portfolio, this brief is for you.
 
 ## What
 
-I built **Codefolio** — package \`codefolio\` **0.1.0**, **private** under **michaelmonetized/codefolio**. Layout title: **Codefolio - Developer Portfolio Platform**. Description: **Showcase your code. Build your reputation. The modern portfolio platform for developers.**
+I built **Codefolio**, package \`codefolio\` **0.1.0**, **private** under **michaelmonetized/codefolio**. Layout title: **Codefolio - Developer Portfolio Platform**. Description: Showcase your code. Build your reputation. The modern portfolio platform for developers.
 
 Stack from package.json: **Next.js 16.2.6**, **React 19.2.6**, Tailwind **4.3**, Bun, **Clerk** (\`@clerk/nextjs\` ^7.3.3), **Convex** ^1.38.0, \`stripe\` + \`@stripe/stripe-js\`, \`resend\`, \`posthog-js\`, \`@sentry/nextjs\`, radix-ui, next-themes (dark default). Three commits. HEAD \`c499a72\`.
 
@@ -3233,7 +3233,7 @@ Surfaces that exist in the tree:
 - Public portfolio: \`/:username\`, \`/:username/:project\`, \`/:username/resume\`
 - Dashboard (Clerk-protected via \`proxy.ts\`): \`/dashboard\`, \`/dashboard/projects\`, \`/dashboard/projects/[id]\`, \`/dashboard/analytics\`, \`/dashboard/settings\`
 
-Convex schema is five tables — \`profiles\`, \`projects\`, \`analytics\`, \`subscriptions\`, \`githubSyncs\`. GitHub sync action pulls \`api.github.com/users/{username}/repos?per_page=100&sort=updated&type=owner\` and upserts. Plan limits in \`lib/types.ts\`: Free 6 pins / 7-day analytics; Pro unlimited + custom domain + 90 days + case studies + remove branding; Team 5 members + 365-day analytics.
+Convex schema is five tables: \`profiles\`, \`projects\`, \`analytics\`, \`subscriptions\`, \`githubSyncs\`. GitHub sync action pulls \`api.github.com/users/{username}/repos?per_page=100&sort=updated&type=owner\` and upserts. Plan limits in \`lib/types.ts\`: Free 6 pins / 7-day analytics; Pro unlimited + custom domain + 90 days + case studies + remove branding; Team 5 members + 365-day analytics.
 
 Pricing cards match: **Free**, **Pro $9/mo**, **Team $29/mo**.
 
@@ -3245,45 +3245,39 @@ Hero badge: **Now in Public Beta**. Social proof strip: **10K+ Developers / 50K+
 
 ## Where
 
-Code: [github.com/michaelmonetized/codefolio](https://github.com/michaelmonetized/codefolio) — **private**. Live app URL: **none** at pack time (\`codefolio.vercel.app\` → 404).
+Code: [github.com/michaelmonetized/codefolio](https://github.com/michaelmonetized/codefolio), **private**. Live app URL: **none** at pack time (\`codefolio.vercel.app\` returns 404).
 
 ![Five Convex tables vs Stripe/Resend unused deps](/blog/codefolio-spec-first-github-portfolio-saas/screenshots/schema-five-tables.png)
 
-Layout \`openGraph.url\` and feature copy talk about **codefolio.dev**. Probe on 2026-09-08: \`https://www.codefolio.dev\` returns **HTTP 200** for **Abdel Ahzab, Full-Stack Engineer shipping Applied AI** — unrelated personal site on Cloudflare/Vercel. That is a **name collision**, not my deploy.
+Layout \`openGraph.url\` and feature copy talk about **codefolio.dev**. Probe on 2026-09-08: \`https://www.codefolio.dev\` returns **HTTP 200** for Abdel Ahzab, Full-Stack Engineer shipping Applied AI: unrelated personal site on Cloudflare/Vercel. That is a **name collision**, not my deploy.
 
 ![codefolio.dev claimed in OG vs live third-party portfolio](/blog/codefolio-spec-first-github-portfolio-saas/screenshots/domain-collision.png)
 
-Audience sits next to every “portfolio SaaS” that ships specs + dashboard chrome before billing webhooks and a domain you actually control.
+Audience sits next to every portfolio SaaS that ships specs + dashboard chrome before billing webhooks and a domain you actually control.
 
 ## When
 
-**2026-02-07** — \`531f712\` Create Next App. Bootstrap wrap-up in \`.work/\` claims Convex project \`codefolio\`, schema complete (5 tables / 16 indexes), CONTRACTS.md, shadcn button/card/input, build passes.
+**2026-02-07.** \`531f712\` Create Next App. Bootstrap wrap-up in \`.work/\` claims Convex project \`codefolio\`, schema complete (5 tables / 16 indexes), CONTRACTS.md, shadcn button/card/input, build passes.
 
-**2026-06-22 ~5:44 PM ET** — \`01aa6cc\` **nightly**. The product and the essay-length docs land together: marketing, dashboard, public portfolio/resume, Fallow gate hooks, DESIGN/COMPLIANCE/TECH-REQ/REVIEW.
+**2026-06-22 ~5:44 PM ET.** \`01aa6cc\` **nightly**. The product and the essay-length docs land together: marketing, dashboard, public portfolio/resume, Fallow gate hooks, DESIGN/COMPLIANCE/TECH-REQ/REVIEW.
 
-**2026-06-22 ~6:19 PM ET** — \`c499a72\` **nightly** HEAD.
+**2026-06-22 ~6:19 PM ET.** \`c499a72\` **nightly** HEAD.
 
-GitHub \`created_at\` / \`pushed_at\` both sit on **2026-06-22** even though the first commit is February — private repo timing vs local history.
+GitHub \`created_at\` / \`pushed_at\` both sit on **2026-06-22** even though the first commit is February (private repo timing vs local history).
 
-![Three-commit arc Feb → June nightlies](/blog/codefolio-spec-first-github-portfolio-saas/screenshots/commit-arc.png)
+![Three-commit arc Feb to June nightlies](/blog/codefolio-spec-first-github-portfolio-saas/screenshots/commit-arc.png)
 
 ## Why
 
-Because a portfolio platform is a different product from a personal site, and I wanted the contracts written before the launch thread.
+A portfolio platform is a different product from a personal site, and I wanted the contracts written before the launch thread. Clerk + Convex + a real \`/:username\` surface is useful even when Stripe checkout is still schema fiction. Claiming \`codefolio.dev\` in metadata while the hostname serves another engineer is the kind of fact you put in the brief before you buy ads. Three commits can still carry nine thousand lines, and Fallow will still tell you stripe and resend never got imported.
 
-Because Clerk + Convex + a real \`/:username\` surface is useful even when Stripe checkout is still schema fiction.
-
-Because claiming \`codefolio.dev\` in metadata while the hostname serves another engineer is the kind of fact you put in the brief **before** you buy ads.
-
-Because three commits can still carry nine thousand lines — and Fallow will still tell you stripe and resend never got imported.
-
-**Engagement Q:** When your OG URL names a \`.dev\` you do not control and your Hero invents 10K users — do you fix the domain story first, or the fake social proof?
+**Engagement Q:** When your OG URL names a \`.dev\` you do not control and your Hero invents 10K users, do you fix the domain story first, or the fake social proof?
 `;
 
 const STRIPE_CONVEX_COVER =
   "/blog/stripe-convex-email-payments-theo-unpublished/cover.png";
 
-const STRIPE_CONVEX_CONTENT = `![stripe-convex API surface — Pay, Cart, Checkout, Has, Convex exports](/blog/stripe-convex-email-payments-theo-unpublished/screenshots/api-surface.png)
+const STRIPE_CONVEX_CONTENT = `![stripe-convex API surface: Pay, Cart, Checkout, Has, Convex exports](/blog/stripe-convex-email-payments-theo-unpublished/screenshots/api-surface.png)
 
 ## Who
 
@@ -3293,15 +3287,15 @@ Who it is for now: operators who bill by **email** before they finish auth bindi
 
 ## What
 
-I built **stripe-convex** — public under **michaelmonetized/stripe-convex**, package **0.1.0**, MIT on paper. Peer deps: Convex ≥1, Stripe ≥14, React ≥18. Built with tsup + Bun. Exports: root types/components, \`stripe-convex/convex\`, \`stripe-convex/components\`.
+I built **stripe-convex**, public under **michaelmonetized/stripe-convex**, package **0.1.0**, MIT on paper. Peer deps: Convex ≥1, Stripe ≥14, React ≥18. Built with tsup + Bun. Exports: root types/components, \`stripe-convex/convex\`, \`stripe-convex/components\`.
 
 React surface: \`StripeConvexProvider\`, \`Pay\`, compound \`AddToCart\` (with \`CartItemPlan\`), \`Cart\`, \`Checkout\`, \`Has\`. Hooks: \`useStripeConvex\`, \`useCart\`, \`useCoupon\`, \`useCheckout\`, \`useHasAccess\`.
 
 ![sc_* Convex schema tables](/blog/stripe-convex-email-payments-theo-unpublished/screenshots/schema-sc-tables.png)
 
-Convex schema spreads six tables: \`sc_customers\`, \`sc_payments\`, \`sc_subscriptions\`, \`sc_orders\`, \`sc_coupon_usage\`, \`sc_webhook_events\`. Customers are indexed by **email**. \`TRACKED_EVENTS\` lists **19** Stripe types — checkout.session.completed through charge.refunded.
+Convex schema spreads six tables: \`sc_customers\`, \`sc_payments\`, \`sc_subscriptions\`, \`sc_orders\`, \`sc_coupon_usage\`, \`sc_webhook_events\`. Customers are indexed by **email**. \`TRACKED_EVENTS\` lists **19** Stripe types, checkout.session.completed through charge.refunded.
 
-Theo lane (t3dotgg/stripe-recommendations): \`getOrCreateStripeCustomer\`, \`syncCustomerData\`, \`createPortalSession\`, brand/last4 on subscription payment method fields. Commit \`77812a0\` on 2026-02-06 is \`feat: implement Theo's Stripe recommendations\`. The compliance report file still opens with a summary table that marks several of those items Missing — stale header, live code.
+Theo lane (t3dotgg/stripe-recommendations): \`getOrCreateStripeCustomer\`, \`syncCustomerData\`, \`createPortalSession\`, brand/last4 on subscription payment method fields. Commit \`77812a0\` on 2026-02-06 is \`feat: implement Theo's Stripe recommendations\`. The compliance report file still opens with a summary table that marks several of those items Missing: stale header, live code.
 
 ![Theo helpers vs stale report header](/blog/stripe-convex-email-payments-theo-unpublished/screenshots/theo-compliance.png)
 
@@ -3315,7 +3309,7 @@ PENDING_ISSUES.md parks twelve real notes: Pay clearCart/addToCart race, unused 
 
 ## Where
 
-Code: [github.com/michaelmonetized/stripe-convex](https://github.com/michaelmonetized/stripe-convex) — **public**. No homepage / demo URL. Intended consumers named in ROADMAP: getat.me, hustlelaunch, other SaaS products. Revenue note in ROADMAP: **INDIRECT**.
+Code: [github.com/michaelmonetized/stripe-convex](https://github.com/michaelmonetized/stripe-convex), **public**. No homepage / demo URL. Intended consumers named in ROADMAP: getat.me, hustlelaunch, other SaaS products. Revenue note in ROADMAP: **INDIRECT**.
 
 ![Badge vs registry 404](/blog/stripe-convex-email-payments-theo-unpublished/screenshots/registry-gap.png)
 
@@ -3323,35 +3317,29 @@ Local clone used for the pack: \`/home/michael/Projects/_site-map/stripe-convex\
 
 ## When
 
-**2026-02-04** — \`1a3d250\` Initial commit: stripe-convex payment package. Same day \`0f5b81c\` comprehensive docs.
+**2026-02-04.** \`1a3d250\` Initial commit: stripe-convex payment package. Same day \`0f5b81c\` comprehensive docs.
 
-**2026-02-06** — \`c38c209\` full type system + Convex functions. \`f608a74\` roadmap + license year. \`77812a0\` Theo recommendations.
+**2026-02-06.** \`c38c209\` full type system + Convex functions. \`f608a74\` roadmap + license year. \`77812a0\` Theo recommendations.
 
-**2026-02-11** — \`635c61c\` repo URLs + document all 19 webhook events.
+**2026-02-11.** \`635c61c\` repo URLs + document all 19 webhook events.
 
-**2026-02-21** — PR **#8** \`cd172db\`: dep conflicts, processRefund index, replace \`v.any()\`.
+**2026-02-21.** PR **#8** \`cd172db\`: dep conflicts, processRefund index, replace \`v.any()\`.
 
-**2026-02-28** — PR **#11** CI/CD testing + publishing. Eight minutes later \`c1e4a39\`: remove GitHub Actions workflows — Vercel is our CI. \`publish.yml\` is still in the tree at HEAD.
+**2026-02-28.** PR **#11** CI/CD testing + publishing. Eight minutes later \`c1e4a39\`: remove GitHub Actions workflows; Vercel is our CI. \`publish.yml\` is still in the tree at HEAD.
 
-**2026-03-01** — PR **#12** prep for registry publish.
+**2026-03-01.** PR **#12** prep for registry publish.
 
-**2026-03-20** — PR **#13** AddToCart subscription support → HEAD \`22e099e\`.
+**2026-03-20.** PR **#13** AddToCart subscription support. HEAD \`22e099e\`.
 
-**2026-06-22** — GitHub \`pushed_at\` 22:20:53Z with no newer main commit beyond HEAD.
+**2026-06-22.** GitHub \`pushed_at\` 22:20:53Z with no newer main commit beyond HEAD.
 
 ![Commit arc Feb to Mar 2026](/blog/stripe-convex-email-payments-theo-unpublished/screenshots/commit-arc.png)
 
 ## Why
 
-Because every monetized Convex app was going to need the same Stripe spine, and copying webhook handlers is how you get drift.
+Every monetized Convex app was going to need the same Stripe spine, and copying webhook handlers is how you get drift. Email-first customers match the products that take payment before they finish auth. Theo recommendations are a checklist I wanted encoded as exports, not a blog tab I reopen under pressure. The honest scar is the unpublished registry: badge, workflow, prep PR, sitrep SHIPPED, and a 404.
 
-Because email-first customers match the products that take payment before they finish auth.
-
-Because Theo recommendations are a checklist I wanted encoded as exports, not a blog tab I reopen under pressure.
-
-Because the honest scar is the unpublished registry: badge, workflow, prep PR, sitrep SHIPPED — and a 404.
-
-**Engagement Q:** When sitrep says SHIPPED and the registry returns Not found — which status do you put in the blog title?
+**Engagement Q:** When sitrep says SHIPPED and the registry returns 404, which status do you put in the blog title?
 `;
 
 const BUNDX_INIT_COVER =
@@ -4403,13 +4391,13 @@ Because a lander that prices against Typeform still needs a resolvable product s
 const NEOVIM_IDE_COVER =
   "/blog/neovim-ide-tmux-gigachad-layout-cursor-agent/cover.png";
 
-const NEOVIM_IDE_CONTENT = `![tmux IDE grid — Agent | Neovim | Tasks/Git + Console/Terminal](/blog/neovim-ide-tmux-gigachad-layout-cursor-agent/screenshots/layout-ascii.png)
+const NEOVIM_IDE_CONTENT = `![tmux IDE grid: Agent | Neovim | Tasks/Git + Console/Terminal](/blog/neovim-ide-tmux-gigachad-layout-cursor-agent/screenshots/layout-ascii.png)
 
 ## Who
 
 I wanted a **project IDE** without buying another Electron shell: open a folder, get Neovim in the middle, and already have an agent, Taskwarrior, LazyGit, and spare shells in panes around it.
 
-If you live in tmux + NvChad, you already know the ritual — split, title, send-keys, forget which pane had lazygit. I wanted that ritual to be one command.
+If you live in tmux + NvChad, you already know the ritual: split, title, send-keys, forget which pane had lazygit. I wanted that ritual to be one command.
 
 This is the **outer** layout story. The sibling **nvibe** pack is the **inner** Neovim one (Lua + \`nvchad.term\`). Different repos. Different layers. Same operator itch.
 
@@ -4427,9 +4415,9 @@ The banner at the top of that file still draws the intended grid:
           |- Console ----|- Terminal - |
 \`\`\`
 
-\`src/neovim-ide-layout.sh\` splits and titles panes: Agent, Cheatsheet, Neovim, Tasks, Git, Console, Terminal. It aliases \`tmux\` to **\`/opt/homebrew/bin/tmux\`** — Homebrew-shaped, not portable.
+\`src/neovim-ide-layout.sh\` splits and titles panes: Agent, Cheatsheet, Neovim, Tasks, Git, Console, Terminal. It aliases \`tmux\` to **\`/opt/homebrew/bin/tmux\`** (Homebrew-shaped, not portable).
 
-\`src/neovim-ide-init.sh\` is where the honesty check bites: it \`send-keys\` **\`cursor-agent\`** into the Agent pane (not ollama), starts \`nvim\` on pane 2, \`task list && tasksh\` on Tasks, \`lazygit\` on Git when \`.git\` exists, then sleeps and punches \`:Minimap\` + \`C-n\` for nvim-tree.
+\`src/neovim-ide-init.sh\` is where the honesty check bites: it \`send-keys\` **\`cursor-agent\`** into the Agent pane (banner still says ollama), starts \`nvim\` on pane 2, \`task list && tasksh\` on Tasks, \`lazygit\` on Git when \`.git\` exists, then sleeps and punches \`:Minimap\` + \`C-n\` for nvim-tree.
 
 ![MIT vs GPL-3.0 vs ISC](/blog/neovim-ide-tmux-gigachad-layout-cursor-agent/screenshots/license-gap.png)
 
@@ -4441,41 +4429,37 @@ License stack at HEAD \`38ed773\`:
 
 \`install.sh\` is **0 bytes**. README still says it moves \`src/\` to \`~/bin/\`, config to \`~/.config/neovim-ide/\`, and links \`nvide-*\` into \`~/.local/bin\`. Without that, the entry script's \`nvide-layout\` / \`nvide-init\` calls are wishful.
 
-TypeScript side: \`ts/cli.tsx\` is an Ink path wizard (123 lines). It can \`mkdir\` or \`execa('mkproject', …)\`. It **never** calls \`tmux\`. On success it prints “Project path ready” and exits. \`ts/neovim-ide.mjs\` is a **1.7MB** React/Ink-style bundle. \`ts/REVIEW.md\` is a FALLOW dump over that bundle (Total LOC 39772, Dead Files 100%, CRAP scores in the tens of thousands on React internals). About **4095** tracked paths live under \`ts/node_modules/\`; only **29** tracked files sit outside it.
+TypeScript side: \`ts/cli.tsx\` is an Ink path wizard (123 lines). It can \`mkdir\` or \`execa('mkproject', …)\`. It never calls \`tmux\`. On success it prints Project path ready and exits. \`ts/neovim-ide.mjs\` is a **1.7MB** React/Ink-style bundle. \`ts/REVIEW.md\` is a FALLOW dump over that bundle (Total LOC 39772, Dead Files 100%, CRAP scores in the tens of thousands on React internals). About **4095** tracked paths live under \`ts/node_modules/\`; only **29** tracked files sit outside it.
 
-\`PLAN.md\` (Jan 2026) lists Critical “Core IDE Features” — LSP, nvim-cmp, Treesitter, neo-tree, Telescope — as if this repo were a Neovim config. It is not. \`sitrep.md\` says Status **SHIPPED**, stack “Shell, Lua”, last commit **2026-01-31**, “Fully functional.” HEAD is a June 22 nightly.
+\`PLAN.md\` (Jan 2026) lists Critical Core IDE Features (LSP, nvim-cmp, Treesitter, neo-tree, Telescope) as if this repo were a Neovim config. It is not. \`sitrep.md\` says Status **SHIPPED**, stack Shell, Lua, last commit **2026-01-31**, Fully functional. HEAD is a June 22 nightly.
 
-![docs vs shipped — PLAN / install / CLI](/blog/neovim-ide-tmux-gigachad-layout-cursor-agent/screenshots/docs-vs-shipped.png)
+![docs vs shipped: PLAN / install / CLI](/blog/neovim-ide-tmux-gigachad-layout-cursor-agent/screenshots/docs-vs-shipped.png)
 
 \`src/neovim-ide-tmux.sh\` is the fzf project picker over \`$HOME/Projects/\` with a shebang typo: \`#1/usr/bin/env zsh\`. Config default: \`ide_project_path="$HOME/Projects/"\`.
 
 ## Where
 
-Code: [github.com/michaelmonetized/neovim-ide](https://github.com/michaelmonetized/neovim-ide) — **public**. Stars: 0. No homepage URL. No hosted demo.
+Code: [github.com/michaelmonetized/neovim-ide](https://github.com/michaelmonetized/neovim-ide), **public**. Stars: 0. No homepage URL. No hosted demo.
 
 Runtime expectations from the tree/header: tmux, jq, mkproject, lazygit, ollama (still listed), tasksh, Neovim 0.9+ / NvChad, optional minimap + nvim-tree. Bun only if you insist on the Ink CLI.
 
-Screenshots section in README is still \`> TODO\`.
+Screenshots section in README is still a TODO stub.
 
 ## When
 
-- **2024-08-25–28** — \`2b79f59\` mkproject scaffold → \`57e0164\` initial commit → \`.neovim\` session-name support (\`f159d67\`, “retrievin”) → \`5290d69\` tmux support. Four commits; the shell layout product lands.
-- **2026-01-08** — \`d81f21b\` PLAN.md improvement opportunities (LSP wishlist).
-- **2026-01-31** — \`52f0e4a\` chore sync (sitrep still points here).
-- **2026-02-27** — \`915f5d6\` README install instructions + structure (still describing empty \`install.sh\`).
-- **2026-06-22** — \`2976b7e\` / HEAD \`38ed773\` nightlies. Last push \`2026-06-22T21:56:52Z\`. **9** commits total.
+- **2024-08-25–28.** \`2b79f59\` mkproject scaffold, then \`57e0164\` initial commit, then \`.neovim\` session-name support (\`f159d67\`, retrievin), then \`5290d69\` tmux support. Four commits; the shell layout product lands.
+- **2026-01-08.** \`d81f21b\` PLAN.md improvement opportunities (LSP wishlist).
+- **2026-01-31.** \`52f0e4a\` chore sync (sitrep still points here).
+- **2026-02-27.** \`915f5d6\` README install instructions + structure (still describing empty \`install.sh\`).
+- **2026-06-22.** \`2976b7e\` / HEAD \`38ed773\` nightlies. Last push \`2026-06-22T21:56:52Z\`. **9** commits total.
 
 ![9-commit arc](/blog/neovim-ide-tmux-gigachad-layout-cursor-agent/screenshots/commit-arc.png)
 
 ## Why
 
-Because my “IDE” was already panes I pay for — tmux, nvim, lazygit, an agent CLI — and I wanted one command that refuses to start a project session half-empty.
+My IDE was already panes I pay for: tmux, nvim, lazygit, an agent CLI. I wanted one command that refuses to start a project session half-empty. Keep the diary honest: the ASCII still says ollama while init starts cursor-agent; the license badges disagree; the installer file is empty; the Ink CLI is a path form, not a launcher; PLAN.md dreams of an LSP IDE this repo is not. Leave those in the draft next to the GIGACHAD one-liner.
 
-I also want the diary to stay honest: the ASCII still says ollama while init starts cursor-agent; the license badges disagree; the installer file is empty; the Ink CLI is a path form, not a launcher; PLAN.md dreams of an LSP IDE this repo is not. Leave those in the draft next to the GIGACHAD one-liner.
-
-## Engagement Q
-
-Would you trust a “GIGACHAD of NvChad” launcher whose banner still says **ollama**, whose init starts **cursor-agent**, whose README says **MIT** while \`LICENSE.md\` is **GPL-3.0** — and do you want that layout **outside** Neovim in tmux, or **inside** via something like nvibe?
+**Engagement Q:** Would you trust a GIGACHAD of NvChad launcher whose banner still says **ollama**, whose init starts **cursor-agent**, whose README says **MIT** while \`LICENSE.md\` is **GPL-3.0**, and do you want that layout **outside** Neovim in tmux, or **inside** via something like nvibe?
 `;
 
 const NEW_DESIGN_GALLERY_COVER =
@@ -5235,47 +5219,54 @@ Agents without a written operating contract repeat the same expensive mistakes: 
 const CODEMAIL_COVER =
   "/blog/codemail-mail-config-as-code-founder-email-infra/cover.png";
 
-const CODEMAIL_CONTENT = `
+const CODEMAIL_CONTENT = `![Config as code](/blog/codemail-mail-config-as-code-founder-email-infra/screenshots/config-as-code.png)
+
+## Who
+
 I wanted company email on day 1 of an idea without paying Google or Microsoft per seat while the product was still a maybe.
 
-For founders who think \`mail.config.ts\` in git should be law — not another admin dashboard.
+For founders who think \`mail.config.ts\` in git should be law, ahead of another admin dashboard.
 
 ## What
 
-I built **codemail** — private https://github.com/michaelmonetized/codemail (selection label HurleyUS/codemail; origin is michaelmonetized). HEAD \`e9fece4\`. **27** commits. Default **main**. Version **0.1.0**.
+I built **codemail**, private https://github.com/michaelmonetized/codemail (selection label HurleyUS/codemail; origin is michaelmonetized). HEAD \`e9fece4\`. **27** commits. Default **main**. Version **0.1.0**.
 
-**Thesis:** email infrastructure for founders — config as code, per-domain pricing, unlimited mailboxes. Not “replace Gmail.”
-
-![Config as code](/blog/codemail-mail-config-as-code-founder-email-infra/screenshots/config-as-code.png)
+**Thesis:** email infrastructure for founders: config as code, per-domain pricing, unlimited mailboxes. Adjacent to Gmail, not a seat-for-seat swap.
 
 ![Day-1 workflow](/blog/codemail-mail-config-as-code-founder-email-infra/screenshots/day1-workflow.png)
 
-**Shipped (weekend MVP arc):** Turborepo monorepo · \`@codemail/config\` (Zod + \`defineMailConfig\`) · \`@codemail/cli\` (setup/deploy/status/dns/logs/users) · \`@codemail/smtp\` on Fly · Convex backend · Next 15 web mail + dashboard · Clerk · Resend outbound · marketing Free Forever / Simple $8 / Managed $80 / Self-Hosted.
+**Shipped (weekend MVP arc):** Turborepo monorepo; \`@codemail/config\` (Zod + \`defineMailConfig\`); \`@codemail/cli\` (setup/deploy/status/dns/logs/users); \`@codemail/smtp\` on Fly; Convex backend; Next 15 web mail + dashboard; Clerk; Resend outbound; marketing Free Forever / Simple $8 / Managed $80 / Self-Hosted.
 
 ![Architecture](/blog/codemail-mail-config-as-code-founder-email-infra/screenshots/architecture-stack.png)
 
-**Gaps:** PLAN still ❌ IMAP while README + Simple tier market IMAP; GitHub public probe 404 (private) despite OSS CTA; \`codemail.vercel.app\` MIDDLEWARE 500 vs \`codemail-web.vercel.app\` 200; root \`mail.config.ts\` is informal t3.chat demo shape; \`codemail.dev\` unchecked.
+**Gaps:** PLAN still marks IMAP out while README + Simple tier market IMAP; GitHub public probe 404 (private) despite OSS CTA; \`codemail.vercel.app\` MIDDLEWARE 500 vs \`codemail-web.vercel.app\` 200; root \`mail.config.ts\` is informal t3.chat demo shape; \`codemail.dev\` unchecked.
 
 ![Docs vs shipped](/blog/codemail-mail-config-as-code-founder-email-infra/screenshots/docs-vs-shipped-gap.png)
 
 ## Where
 
-Code: https://github.com/michaelmonetized/codemail — private.
+Code: https://github.com/michaelmonetized/codemail (private).
+
 Live marketing/app: https://codemail-web.vercel.app
+
 SMTP: codemail-smtp.fly.dev (per TODO)
 
 ## When
 
-**2026-02-12** — SMTP → web mail → dashboard → Convex → API → auth/SEO → Fly SMTP fixes → marketing rewrite to business-plan thesis (same-day blast).
-**2026-02-13** — public marketing routes + \`(private)\` auth route group.
-**2026-02-15** — 62fcaed better sales positioning (#1).
-**2026-02-18** — e9fece4 design updates → HEAD.
+**2026-02-12.** SMTP, then web mail, then dashboard, then Convex, then API, then auth/SEO, then Fly SMTP fixes, then marketing rewrite to business-plan thesis (same-day blast).
 
-## Why
+**2026-02-13.** public marketing routes + \`(private)\` auth route group.
+
+**2026-02-15.** \`62fcaed\` better sales positioning (#1).
+
+**2026-02-18.** \`e9fece4\` design updates. HEAD.
 
 ![Commit arc](/blog/codemail-mail-config-as-code-founder-email-infra/screenshots/commit-arc.png)
 
-Because day-1 company email should be a \`git push\`, not a $600/year seat tax.
+## Why
+
+Day-1 company email should be a \`git push\`, not a $600/year seat tax. Config in the repo beats another dashboard click-path when the product is still a maybe.
+
 **Engagement Q:** Ship IMAP before opening the repo public, or cut IMAP from the landing first?
 `;
 
@@ -6612,7 +6603,7 @@ export const staticPosts: StaticPost[] = [
     title: "codemail: mail.config.ts founder email \u2014 per-domain, not per-seat",
     slug: "codemail-mail-config-as-code-founder-email-infra",
     excerpt:
-      "Private michaelmonetized/codemail: Turborepo mail stack where mail.config.ts is law \u2014 Convex + Clerk + Resend + Fly SMTP + Next web mail/dashboard. Free Forever BYO keys / $8 Simple / $80 Managed. README still lists IMAP; PLAN marks IMAP out of MVP. Live codemail-web.vercel.app 200; codemail.vercel.app 500. 27 commits. HEAD e9fece4.",
+      "Private michaelmonetized/codemail: Turborepo mail stack where mail.config.ts is law (Convex + Clerk + Resend + Fly SMTP + Next web mail/dashboard). Pricing Free Forever BYO keys / $8 Simple / $80 Managed. README still lists IMAP; PLAN marks IMAP out of MVP. Live codemail-web.vercel.app 200; codemail.vercel.app 500. 27 commits. HEAD e9fece4.",
     content: CODEMAIL_CONTENT,
     coverImage: CODEMAIL_COVER,
     tags: [
@@ -7497,7 +7488,7 @@ export const staticPosts: StaticPost[] = [
     title: "Codefolio: I shipped a GitHub-sync portfolio SaaS with 4k lines of specs \u2014 and claimed a domain that isn't mine",
     slug: "codefolio-spec-first-github-portfolio-saas",
     excerpt:
-      "michaelmonetized/codefolio is a private Next.js 16 + Clerk + Convex developer portfolio platform: /:username public pages, resume, dashboard analytics, Free/$9 Pro/$29 Team. Three commits. Marketing OG points at codefolio.dev \u2014 which currently serves someone else's portfolio.",
+      "Private michaelmonetized/codefolio is a Next.js 16 + Clerk + Convex developer portfolio platform: /:username public pages, resume, dashboard analytics, Free/$9 Pro/$29 Team. Three commits. Marketing OG points at codefolio.dev, which currently serves someone else's portfolio. HEAD c499a72.",
     content: CODEFOLIO_CONTENT,
     coverImage: CODEFOLIO_COVER,
     tags: [
@@ -7526,7 +7517,7 @@ export const staticPosts: StaticPost[] = [
     title: "stripe-convex: I shipped a Theo-compliant Stripe+Convex library \u2014 and never published the package",
     slug: "stripe-convex-email-payments-theo-unpublished",
     excerpt:
-      "michaelmonetized/stripe-convex is a TypeScript Stripe + Convex payment library (email tracking, cart, coupons, Pay/AddToCart/Checkout/Has, 19 webhook events, Theo sync/portal helpers). package.json 0.1.0, release workflow ready, README version badge on \u2014 registry 404, zero releases, LICENSE still says Michael Shilman.",
+      "Public michaelmonetized/stripe-convex is a TypeScript Stripe + Convex payment library (email-indexed sc_* tables, cart/coupons, Pay/AddToCart/Checkout/Has, 19 webhook events, Theo sync/portal helpers). package.json 0.1.0 with a release workflow and README version badge, yet zero GitHub Releases and registry 404; LICENSE still says Michael Shilman. HEAD 22e099e (PR #13). 11 commits.",
     content: STRIPE_CONVEX_CONTENT,
     coverImage: STRIPE_CONVEX_COVER,
     tags: [
