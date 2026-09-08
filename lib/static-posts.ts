@@ -1933,7 +1933,281 @@ The ecosystem bet is explicit: iLeague feeds iTour feeds iConference. This pack 
 If you create golf content today, what would you rather ship next on iLeague — a real hole-by-hole entry flow, or flipping Clerk to live keys so the first paying subscriber is not on test mode?
 `;
 
+const HURLEYUS_COM_COVER =
+  "/blog/hurleyus-com-membership-growth-parent-site/cover.png";
+
+const HURLEYUS_COM_CONTENT = `![Hurley US homepage — Membership Growth for Private & Resort Golf Clubs](/blog/hurleyus-com-membership-growth-parent-site/screenshots/home.png)
+
+## Who
+
+I run Hurley US as the parent company for a golf-media and SaaS portfolio. Clubs do not buy a story about the future of golf. They buy membership revenue.
+
+This site is for private and resort club operators who treat acquisition as a lever, and for builders who want to see how a parent domain can stop performing brand theater and still keep the ecosystem pages in the repo.
+
+## What
+
+I shipped hurleyus.com — private repo under HurleyUS, public site on Vercel.
+
+Live \`/\` mounts **HomeA**: membership growth for private and resort golf clubs. Compensation tied to incremental revenue. No upfront fees. Call CTA to (828) 269-8280. Named proof: Linville Land Harbor Golf Club and Laurel Ridge Resort & Country Club. Sticky mobile call bar.
+
+Stack at HEAD (\`ac2327f\`, package.json **0.1.0**): **Next.js 16.1.6**, React 19, Bun, Tailwind v4, shadcn/Radix, Resend, Sentry, Convex client that no-ops without a real \`NEXT_PUBLIC_CONVEX_URL\`, PostHog that no-ops without a key. README still says Next 15 — deps say 16.
+
+![About — Hurley US](/blog/hurleyus-com-membership-growth-parent-site/screenshots/about.png)
+
+Still in the tree: **HomeB** — Growing the game together, iLeague / iTour / iCon pillars. Not what \`/\` renders today.
+
+Lead forms on partners / sponsors / investors / contact hit \`/api/email\` with Zod validation and an in-memory IP rate limit (5/min). Booking hits \`/api/booking\` and emails an ICS. From: \`notify@uncap.us\`. Owner: \`contact@hurleyus.com\`.
+
+Clerk routes \`/sign-in\` \`/sign-up\` are TODO stubs — **no \`@clerk/*\` in package.json**. Stripe exists as a cursor rule doc, not a dependency.
+
+![Partners](/blog/hurleyus-com-membership-growth-parent-site/screenshots/partners.png)
+
+## Where
+
+Production: [www.hurleyus.com](https://www.hurleyus.com). Apex 301 to www. Verified 2026-09-08: \`X-Robots-Tag: index, follow\`, CSP, HSTS, sitemap for home + partners/investors/sponsors/about/contact.
+
+Quirk: root layout metadata still titles the site Growing the game together while the body is HomeA — \`page.tsx\` imports HomeA without re-exporting its metadata.
+
+![Contact](/blog/hurleyus-com-membership-growth-parent-site/screenshots/contact.png)
+
+## When
+
+**2025-11-25.** Create Next App.
+
+**December 2025.** Theme, copy, A/B homepage (membership lander vs media ecosystem).
+
+**2026-02-05.** Page-B set as permanent homepage. Within two weeks the split collapses; \`/\` is HomeA only. Resend from notify@uncap.us. Booking form. Static/ISR pass.
+
+**2026-02-22 → 04-03.** Convex schema typed. Messaging Phases 1–3 through real-time subscriptions.
+
+**2026-05-13 → 15.** shipprep + Blacksmith CI + deploy health.
+
+**2026-08-08.** \`ac2327f\` — X-Robots-Tag index, follow. 109 commits total.
+
+## Why
+
+A parent domain that only tells the influencer story leaves club operators with nothing to buy. HomeA is the commercial door: own the acquisition pipeline, get paid on incremental membership revenue, stay discreet.
+
+I kept HomeB in the repo because iLeague / iTour / iCon are real product mythology — just not the \`/\` bet right now. The A/B history is on the record: we tried always-B, then shipped always-A.
+
+The stack is honest: Convex and PostHog degrade. Clerk is a TODO. Stripe is a doc. Indexing was the last commit because a public site still needs to be findable.
+`;
+
+const WAYNESVILLE_ZAXBYS_COVER =
+  "/blog/waynesville-zaxbys-single-store-ops-portal/cover.png";
+
+const WAYNESVILLE_ZAXBYS_CONTENT = `![Waynesville public lander composite from repo event assets](/blog/waynesville-zaxbys-single-store-ops-portal/screenshots/landing-composite.png)
+
+## Who
+
+I kept watching one store — 424 Russ Avenue, Waynesville, NC — try to be three products at once: a community lander for locals and tourists, a hiring funnel, and a shift office that still lived in spreadsheets, Steritech PDFs, and whoever answered the group text first.
+
+Not the multi-unit franchise SaaS story. That sibling already has its own pack. This one is for the GM and shift leaders who need lunch daypart labor against a ≤17% goal before the dinner rush, and for the parent looking up Kids Night on the same domain.
+
+If you run MarTech by day and still care whether a CAP finding has an observation → cause → prevention trail, you are in the room. If you only want a pricing page with fake “500+ locations,” go read the other post.
+
+## What
+
+I built a **single-store** Zaxby's management and customer portal.
+
+Public surface (\`app/(public)\`): home with local events (Wheelin' Wednesdays, bounce party, Kids Night), about, careers + apply, catering (redirects to corporate catering), community, events, menu (redirects to zaxbys.com menu), contact. Store truth lives in \`_project.ts\` — **424 Russ Avenue**, Waynesville NC 28786, phone **828-456-2888**, email \`eat@waynesville.yourzaxbys.com\`, hours 10:30–21:00, dayparts lunch / snack / dinner / late.
+
+![Ops map — public, shift, people, numbers](/blog/waynesville-zaxbys-single-store-ops-portal/screenshots/ops-map-composite.png)
+
+Private surface: \`/dashboard\` with live shift, performance, metrics (including SOS and SMG pages), goals and 6-week trends, hiring Kanban, schedule + swaps + time-off, daypart checklists, Steritech CAP reports, training sessions + Zaxby's University tracking, attendance + points, leadership scores, maintenance, uniforms/smallwares orders, announcements, events CRUD, and CSV ingest under \`/dashboard/injest\`.
+
+Convex is the spine — thirty-plus modules, not a toy schema. Employees, applicants, shifts, metrics daily/weekly/periodic, caps, checklists, training/ZU progress, attendance points, orders. Package name matches the host: **\`waynesville.yourzaxbys.com\` \`0.1.0\`**. Stack: Next **16.1.6**, React 19, Convex, Clerk, Resend + React Email, Sentry, PostHog, Radix + Tailwind 4, Bun, Blacksmith \`ship.yml\`.
+
+![Illustrative live-shift dashboard composite](/blog/waynesville-zaxbys-single-store-ops-portal/screenshots/dashboard-composite.png)
+
+Honesty checks: sitrep still whispers WIP and “maybe superseded by www.” HEAD has more store-ops depth than the franchise sibling. Custom domain \`waynesville.yourzaxbys.com\` did **not** resolve from pack hosts. Vercel alias answered with a **429 bot challenge** — no clean live screenshot, so composites are labeled. README growth notes and franchise-purchase storytelling are provenance in the repo, not a title search I ran. AUTOPSY roasted missing SEO files; HEAD has \`manifest.ts\`, \`sitemap.ts\`, \`robots.ts\`.
+
+## Where
+
+Code: [github.com/HurleyUS/waynesville.yourzaxbys.com](https://github.com/HurleyUS/waynesville.yourzaxbys.com). **Private.** Empty description. Empty topics. Zero stars.
+
+GitHub homepage field: [waynesvilleyourzaxbyscom.vercel.app](https://waynesvilleyourzaxbyscom.vercel.app). Alias host resolves; HTTPS challenged at pack time. Canonical claim \`https://waynesville.yourzaxbys.com/\` sits in \`_project.ts\` and README — DNS unresolved here.
+
+Sibling franchise platform (already packed): [www.yourzaxbys.com](https://github.com/HurleyUS/www.yourzaxbys.com). Same family. Different job. Platform sells above-store; this repo runs **one** store’s public face and back-office.
+
+The audience sits next to every independent franchisee who needs store software that knows Russ Avenue dayparts — and next to every builder who can smell a “restaurant dashboard” template that never met a Steritech CAP form.
+
+## When
+
+**2025-05-02.** Create Next App → init → first Vercel deploy. Repo created on GitHub the same day. Package starts as a location product, not a SaaS brochure.
+
+**2025-05 → 08.** Fonts, navbar, employee headway, image upload fights, ranking UI. The slow work of making a store site feel like a store.
+
+**2025-10-16 → 10-21.** Security and Convex hardening week. Secure server-side SSN verification. External-link \`rel\` discipline. Full-text employee search. Build compilation fixes for production.
+
+**2026-01-03 → 01-04.** Dashboard redesign — Spotify Wrapped energy, scroll snap, metrics tables that calculate labor %, LY comparisons, placeholder rows for the current week, double-click cell edits, charts with 6-week averages and goals.
+
+**2026-01-08 → 01-09.** The suite ships in a day: CSV import/reporting, employee onboarding/self-registration, Indeed hiring Kanban, live shift dashboard, shift checklists, announcements, scheduling, uniforms/smallwares, Steritech CAP, training agendas, attendance tracker — then a training rebuild with scheduled sessions and ZU course tracking.
+
+**2026-01-12.** Delete buttons and missing-week detection on metrics. Practical GM requests.
+
+**2026-02-15 → 02-26.** Security that matters: remove hardcoded encryption key fallback; fix proxy middleware that had made routes public; encrypt SSN at rest AES-256-GCM (#34/#41); strip SSN context from console logs (#43/#50); enforce auth on Convex public mutations (#42/#51).
+
+**2026-03-21.** Remaining \`console.*\` → Sentry logging (#53).
+
+**2026-05-14.** Blacksmith CI gates standardized across a stack of commits. Clerk/email client check fixes. Lazy Resend. Skip Convex provider without public env.
+
+**2026-08-08.** \`fix: set X-Robots-Tag to index, follow on Vercel\`. HEAD **\`c9f97b7\`**. Two hundred thirty-five commits on the ledger. Pack day is September 8, 2026.
+
+That is the journey from a May Create-Next-App on Russ Avenue to a versioned single-store ops portal that still wears package **0.1.0** like an honest scar.
+
+## Why
+
+I did not want one location’s public community face and its shift office to keep living on different planets.
+
+So I put events and careers on the same origin as live dayparts, Steritech CAPs, hiring, training, and attendance. I put Clerk on the door and Convex under the floor. I left package **0.1.0** because “store software that GMs touch” is not the same milestone as a franchise SaaS **1.0.0** marketing claim. I left the sibling relationship explicit: www is the platform pack; this is the store pack.
+
+sitrep can keep saying LOW priority. The git log disagrees with “empty.” The schema disagrees with “template.”
+
+If your current “location site” folder has a hero image and no checklist submission table — or a dashboard route and a proxy that accidentally made everything public — you already know which hole I was staring at.
+
+Would you point real DNS at this alias and run a week of live shift entry next — or keep the franchise platform and the store portal honest as two products with two jobs?
+`;
+
+const MODERN_DESIGN_PLAYGROUND_COVER =
+  "/blog/modern-design-playground-afk-webgl-nine-worlds/cover.png";
+
+const MODERN_DESIGN_PLAYGROUND_CONTENT = `![Modern Design Playground — WebGL home instrument](/blog/modern-design-playground-afk-webgl-nine-worlds/screenshots/home.png)
+
+## Who
+
+I do not want another marketing landing that scrolls like a PDF with bounce.
+
+I want an instrument. Pointer gravity. Camera dolly. A stage that listens when you strike it.
+
+modern-design-playground is for operators who already live in Max type, Catppuccin surfaces, and shadcn primitives — and who have watched a WebGL canvas go black after an HDRI 404 and refused to ship the apology screenshot.
+
+It is also for anyone curious what happens when you leave agents AFK with a Playwright density score and a mandate to polish the weakest PNG.
+
+## What
+
+I built **Modern Design Playground** — Vite 8, React 19, TanStack Router, Three.js + R3F, GSAP, Lenis, Motion, Tailwind 4, shadcn base-nova, Max fonts. Private package, unversioned. Nine commits. HEAD \`d16a7e3\`.
+
+Home \`/\` is one continuous WebGL field. Liquid core. Cosmic backdrop. Helix of archive plates that becomes a tunnel. Strike the field. Hold to resonate. Glass / metal / matte. Case study sheet. \`Stage.tsx\` ~1k lines. \`Chapters.tsx\` ~1.4k.
+
+![Landing gallery — nine instruments, zero templates](/blog/modern-design-playground-afk-webgl-nine-worlds/screenshots/landings-gallery.png)
+
+\`/landings\` is nine worlds, not nine templates: editorial, brutalist, noir, zen, neon, paper, atlas, pulse, prism. \`pages.tsx\` is **10,682 lines** of CSS micro-theaters. Immersive routes hide the site chrome.
+
+The honest middle of the story: on July 12 the homepage WebGL died. Remote HDRI Environment suspended the scene. CDN 404s. Postprocessing wiped alpha to zero. I did not hand-paint a hero. I left a marathon — iterate-loop, marathon-forever, smoke-interact — screenshot every surface, score by PNG density, upgrade the weakest, repeat for ~10 hours while I was AFK. STATUS-MARATHON.md is the log. Opaque clear \`#11111b\`. Local lights. No EffectComposer on the home stage. Liquid core came back.
+
+![Brutalist world — paint floor instrument](/blog/modern-design-playground-afk-webgl-nine-worlds/screenshots/landing-brutalist.png)
+
+July 14 I shoved it onto Vercel as a static SPA, ripped Clerk, stripped Convex/PostHog providers for performance. August 8 I set \`X-Robots-Tag: index, follow\`. Live host: **https://mdp-seven.vercel.app**.
+
+## Where
+
+Live on Vercel: https://mdp-seven.vercel.app — home instrument, \`/landings\`, \`/landings/{slug}\`.
+
+Repo: https://github.com/michaelmonetized/modern-design-playground
+
+This is not twelveux (hosted shadcn registry + Glass). Not HMS (live-edit CMS). Sibling energy to uncap stills in the helix — different product surface.
+
+## When
+
+**2026-07-12, 10:39 ET.** \`baa3c67\` init.
+
+**That afternoon into night.** Marathon AFK ~12:00 → ~23:00 ET. Passes A–I. WebGL repaired. Nine worlds densified. Commit \`06d6555\` next morning: *speechless, requires a full case study and log analysis*.
+
+**2026-07-14.** Push fixes. \`.debug-screenshots\` gitignored. Deploy to Vercel. SSR → static SPA. Clerk out. Performance strip.
+
+**2026-08-08, 06:55 ET.** \`d16a7e3\` robots index/follow. HEAD. Nine commits total.
+
+## Why
+
+I wanted proof that scroll can be an instrument and that an agent loop with screenshot density as the scoreboard can recover a dead WebGL stage without me babysitting every frame.
+
+So the pack is the playground plus the marathon scar. The live URL is the proof. The STATUS log is the receipt.
+
+If your hero is still a paused MP4 pretending to be 3D, you already know the hole I was staring at.
+
+Which world would you open first after the instrument — brutalist, neon, or zen?
+`;
+
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:hurleyus-com-membership-growth-parent-site",
+    title: "hurleyus.com: I shipped the parent site as a performance-pay membership lander",
+    slug: "hurleyus-com-membership-growth-parent-site",
+    excerpt:
+      "HurleyUS.com is live as a membership-growth revenue partner lander for private and resort golf clubs \u2014 Next.js 16, Resend, Sentry, optional Convex \u2014 after an A/B flip that kept HomeA.",
+    content: HURLEYUS_COM_CONTENT,
+    coverImage: HURLEYUS_COM_COVER,
+    tags: [
+      "hurleyus",
+      "golf",
+      "membership",
+      "nextjs",
+      "convex",
+      "resend",
+      "sentry",
+      "martech",
+      "vercel",
+      "parent-company",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:10:00Z"),
+    readingTime: 2,
+  },
+  {
+    _id: "static:waynesville-zaxbys-single-store-ops-portal",
+    title: "Waynesville Zaxby's: I built the single-store ops portal so Russ Avenue does not run on group texts",
+    slug: "waynesville-zaxbys-single-store-ops-portal",
+    excerpt:
+      "I shipped waynesville.yourzaxbys.com as a Next.js 16 + Convex + Clerk single-store portal for 424 Russ Ave \u2014 public events/careers/community out front, live shift metrics, Steritech CAPs, hiring, training, and attendance behind the door \u2014 package 0.1.0, 235 commits, HEAD c9f97b7. Not the franchise SaaS sibling.",
+    content: WAYNESVILLE_ZAXBYS_CONTENT,
+    coverImage: WAYNESVILLE_ZAXBYS_COVER,
+    tags: [
+      "waynesville",
+      "yourzaxbys",
+      "zaxbys",
+      "single-store",
+      "nextjs",
+      "convex",
+      "clerk",
+      "steritech",
+      "ops",
+      "martech",
+      "wnc",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:00:00Z"),
+    readingTime: 5,
+  },
+  {
+    _id: "static:modern-design-playground-afk-webgl-nine-worlds",
+    title: "modern-design-playground: I left agents running for ten hours and they rebuilt nine worlds",
+    slug: "modern-design-playground-afk-webgl-nine-worlds",
+    excerpt:
+      "I shipped a WebGL instrument homepage and nine landing worlds \u2014 then left a marathon agent loop overnight after WebGL went blank. Live on mdp-seven.vercel.app.",
+    content: MODERN_DESIGN_PLAYGROUND_CONTENT,
+    coverImage: MODERN_DESIGN_PLAYGROUND_COVER,
+    tags: [
+      "modern-design-playground",
+      "webgl",
+      "threejs",
+      "tanstack",
+      "vite",
+      "shadcn",
+      "max",
+      "martech",
+      "vercel",
+      "afk",
+      "agents",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T01:50:00Z"),
+    readingTime: 3,
+  },
   {
     _id: "static:yourzaxbys-franchise-management-platform",
     title: "Your ZAXBYS: I built a franchise ops platform so the store and the above-store stop living in different spreadsheets",
