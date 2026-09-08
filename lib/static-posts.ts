@@ -2831,7 +2831,201 @@ Perf demos that force SQL as destiny are a tax. A Convex cart with expiry beats 
 Who else stars templates that document routes they never created?
 `;
 
+const MISSION_CONTROL_TUI_COVER =
+  "/blog/mission-control-go-tui-p10k-portfolio-ops/cover.png";
+
+const MISSION_CONTROL_TUI_CONTENT = `![p10k-style TUI zones — status, search, project list, chat, totals](/blog/mission-control-go-tui-p10k-portfolio-ops/screenshots/tui-p10k-layout.png)
+
+## Who
+
+I keep too many projects hot at once. Vercel rows. Swift builds. git dirt. GitHub issues and PRs. Browser tabs do not scale.
+
+Hurley Mission Control is a different product — humans and agents on one Convex thread model with deliveries. mission-control-os is another name. This pack is the local operator strip: a p10k-inspired Go TUI named Mission Control under michaelmonetized.
+
+If you want one \`mc\` binary, a Nerd Font, and a scrollable portfolio instead of five CLIs in five tabs — you are in the room.
+
+## What
+
+I built **Mission Control** — public **michaelmonetized/mission-control**. README: a p10k-inspired TUI for managing all your projects. Phase 1 complete badge. 18 tests. Go.
+
+Shipped local stack: **Go 1.25.4**, Charm **Bubble Tea** + Lipgloss, \`cmd/mc\` → \`mc\`, discovery + \`~/.hustlemc/\` cache, OpenClaw client foundation. Shell suite under \`bin/\`: discover, git/gh/vercel/swift status, stats, cache, dev, caddy, chat, deploy, and more — with \`--json\`.
+
+![Shell suite mc-* with --json](/blog/mission-control-go-tui-p10k-portfolio-ops/screenshots/shell-suite-json.png)
+
+Phase 2 scaffold: \`apps/web\` \`@mission-control/web@2.0.0\` — Next **16.1.0**, React 19, Clerk, Convex on port **3410**. Schema: users (GitHub + BYO Claude key + Stripe customer + free minutes), repos, workspaces (Fly VM lifecycle), usageRecords, threads/messages (**sender user|openclaw**), webhookEvents. \`services/vm-manager\` Go service for Fly Machines, terminal WebSocket relay, $0.02/min, idle kill.
+
+![Phase 2 cloud — repos workspaces usage Fly VMs](/blog/mission-control-go-tui-p10k-portfolio-ops/screenshots/phase2-cloud-vm.png)
+
+Not the HurleyUS human|agent deliveries plane. PLAN.md still mentions Ink/React — the entrypoint is Bubble Tea. March 21 “Phases 3–7 Complete” is mostly docs + scaffold burst. No dedicated public homepage on this repo; \`vercel.json\` only sets robots index,follow. HEAD **fd25166**. **22** commits.
+
+![Three Mission Control names cut apart](/blog/mission-control-go-tui-p10k-portfolio-ops/screenshots/name-cut.png)
+
+## Where
+
+Code: [github.com/michaelmonetized/mission-control](https://github.com/michaelmonetized/mission-control) — **public** — **main**.
+Contrast: [hurley-mission-control.vercel.app](https://hurley-mission-control.vercel.app) is the other product.
+Install: \`go build -o mc-tui ./cmd/mc\` · symlink \`~/.local/bin/mc\`. Config: \`~/.hustlemc/\`.
+
+## When
+
+**2026-02-16** — initial TUI, tests, Phase 2 plan, OpenClaw foundation.
+**2026-02-21** — TUI redesign matching original spec (#2).
+**2026-02-27–28** — CI gate; Vercel-only; drop GH Actions config.
+**2026-03-20** — LOCATIONS.md; relay/webhook/daemon/E2E.
+**2026-03-21** — Phases 3–7 claim + Phase 2 Convex/docs/go-live stack.
+**2026-08-08** — HEAD fd25166 robots tag.
+**2026-09-08** — draft pack; slug unused.
+
+## Why
+
+One keyboard surface for deploy + git + issues beats gossip across tabs. \`--json\` scripts keep the TUI accountable. Phase 2’s bet is BYO Claude + metered VMs. Say the three Mission Control names so they stay separate.
+
+Engagement: if deploy state and git dirt only live in browser tabs — what are you actually controlling?
+`;
+
+const GLASS_DESIGN_SYSTEM_COVER =
+  "/blog/glass-design-system-apple-svg-refraction-showcase/cover.png";
+
+const GLASS_DESIGN_SYSTEM_CONTENT = `![Glass Design System home — video hero and glass contact form](/blog/glass-design-system-apple-svg-refraction-showcase/screenshots/home.png)
+
+## Who
+
+I needed liquid glass on the web that bent the photograph behind it — not a CSS blur wearing a trench coat, and not a WebGL sphere I install from a registry.
+
+That operator is me on a March afternoon with a BRIEF.md that names five effects and hard rules: real Catppuccin \`dark:\` classes, no \`filter: invert()\`, Tailwind v4 only, Next 16.
+
+It is also anyone comparing two glass paths in my queue. twelveux ships pen.dev **glass.glsl** as a hosted shadcn item. This repo is the other path: SVG \`feDisplacementMap\`, animated conic borders, jelly nav, Apple-style sidebar — a full demo site over HustleLaunch photo and video plates.
+
+Frontend builders who live in shadcn New York primitives but want the chrome to refract. Catppuccin people who refuse grayscale hacks. MarTech / indie product people who need cards, forms, dialogs, and a contact sidebar that still read when the backdrop is a real campaign still.
+
+## What
+
+I built **glass-design-system** — Next.js 16.2.6, React 19.2.6, Tailwind 4.3, shadcn New York, package \`0.1.0\` private. Bun lockfile. Live title: Glass Design System.
+
+Five effects from the project brief, all in the tree:
+
+1. **Apple Liquid Glass** — \`GlassPanel\` + \`src/lib/displacement.ts\`. SVG displacement map, chromatic aberration, strength/depth/radius props, \`backdropFilter: url(...)\`.
+2. **AnimatedBorder** — \`@property --conic-gradient-angle\`, mask compositing, optional glow. Pink→Blue Catppuccin conic.
+3. **Glass morphism** — layered \`color-mix\` gradients + blur. Opacity got walked down hard so the displacement stays visible.
+4. **GlassNav** — framer-motion jelly indicator that follows the active route.
+5. **Catppuccin Mocha / Latte** — real tokens in \`globals.css\`. Geist on the page (Max stays on twelveux / uncap / hms).
+
+Glass barrel at \`src/components/glass/\`: panel, border, card, nav, button, dialog, sheet, sidebar (+ provider), form controls, \`use-glass-surface\`.
+
+Routes:
+
+- \`/\` — video hero, YouTube embed, glass contact form in AnimatedBorder, value copy, CTA.
+- \`/components\` — ~3,215 lines. Commit message says 80+ example variations across commerce, auth, analytics, productivity, messaging, and states.
+- \`/about\` — content page using the system.
+
+Layout shell: sticky GlassNav + non-modal right **GlassSidebar** titled Quick Contact.
+
+Backgrounds under \`public/bg/\` — hero-video.webm, hero-michael.jpg, campaign-monitoring.webp, web-designer.png, and the rest of the HustleLaunch stills. March 21 replaced flat gradient section shells with full-width photographic plates so the glass has something to bend.
+
+Reference originals stay in-tree (\`reference-apple-glass/\`, \`reference-animated-border.css\`). Fallow marks them unused. That is honest — they are the port sources, not runtime.
+
+Fallow REVIEW snapshot: ~10,194 LOC, dead files 11.1%, dead exports 24.9%, one circular dep. GlassSheet / GlassButton / GlassSidebar sit in the high-CRAP table. Live response sends \`X-Robots-Tag: index, follow\`.
+
+![Components showcase — glass cards over photographic backdrop](/blog/glass-design-system-apple-svg-refraction-showcase/screenshots/components-loaded.png)
+
+## Where
+
+Live: https://glass-design-system.vercel.app
+
+Repo: https://github.com/michaelmonetized/glass-design-system
+
+Homepage field on GitHub points at that Vercel app. Adjacent systems in the same operator map: twelveux (WebGL registry Glass), modern-design-playground (WebGL instrument + nine worlds), uncap.us and hms (Max + Catppuccin product surfaces — different jobs).
+
+## When
+
+**2026-03-05, 1:41 PM ET.** Brief + reference files.
+
+**2:12.** Core feat: apple glass refraction, animated borders, jelly nav, Catppuccin.
+
+**2:30–3:14.** Photo/video sections, HustleLaunch assets, local webm instead of a dead WordPress URL, fixed parallax plates.
+
+**3:23–3:53.** Opacity and contrast wars — glass-morphism thin enough for displacement, Tailwind utility backgrounds overridden, nav readable, gradient repeat tuned, button/dialog/sheet contrast fixed.
+
+**4:01–4:31.** Apple-style non-modal glass sidebar, glass form components, hero wireframe iterations until video left + form right matched the layout.
+
+Sixteen commits the same afternoon.
+
+**2026-03-21, 7:25–9:35 AM ET.** Comprehensive showcase (80+), mobile 375px stacking, animated gradients then real \`/public/bg/\` assets, full-width absolute section shells.
+
+**2026-06-22.** Two \`nightly\` commits.
+
+**2026-08-08, 6:49 AM ET.** HEAD \`0814e1f\` — X-Robots-Tag index, follow. Same robots batch as several sibling Vercel repos that morning. **24** commits on main.
+
+## Why
+
+I already had Apple-glass and animated-border references sitting as ports. I wanted them inside Next 16 / Tailwind 4 / shadcn with Catppuccin that does not cheat.
+
+Glass only proves itself against a photograph or a video plate. Gradients flatter. The March 21 backdrop swap is the reason the showcase exists at that density.
+
+twelveux answers a different question — can I \`npx\` Max, theme, and a real WebGL Glass shader. This repo answers: can the whole chrome stack refract with SVG displacement and still ship a contact sidebar and an 80-variation gallery.
+
+## Engagement
+
+If you already run twelveux Glass, what breaks first when you try SVG displacement over a busy campaign still instead — chromatic fringe, text contrast, or the nav jelly fighting the sidebar?
+
+![About page on Glass Design System](/blog/glass-design-system-apple-svg-refraction-showcase/screenshots/about.png)
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:mission-control-go-tui-p10k-portfolio-ops",
+    title: "mission-control: I built a p10k Go TUI for the whole portfolio \u2014 not the agent thread plane",
+    slug: "mission-control-go-tui-p10k-portfolio-ops",
+    excerpt:
+      "michaelmonetized/mission-control is the Go + Bubble Tea p10k-style mc TUI for Vercel/Swift/git/GitHub across ~/Projects, plus a Phase 2 cloud scaffold (Convex repos/workspaces + Fly VM manager + BYO Claude). Not HurleyUS/hurley-mission-control human|agent deliveries. Not mission-control-os.",
+    content: MISSION_CONTROL_TUI_CONTENT,
+    coverImage: MISSION_CONTROL_TUI_COVER,
+    tags: [
+      "mission-control",
+      "go",
+      "bubbletea",
+      "tui",
+      "p10k",
+      "vercel",
+      "openclaw",
+      "convex",
+      "flyio",
+      "portfolio-ops",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T05:00:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:glass-design-system-apple-svg-refraction-showcase",
+    title: "glass-design-system: I shipped Apple SVG refraction, not the WebGL registry",
+    slug: "glass-design-system-apple-svg-refraction-showcase",
+    excerpt:
+      "March 2026 I built a Next.js 16 glass design system with SVG feDisplacementMap Apple Liquid Glass, animated conic borders, jelly nav, and an 80+ Catppuccin showcase \u2014 live on Vercel. Distinct from twelveux WebGL Glass.",
+    content: GLASS_DESIGN_SYSTEM_CONTENT,
+    coverImage: GLASS_DESIGN_SYSTEM_COVER,
+    tags: [
+      "glass-design-system",
+      "apple-glass",
+      "svg",
+      "displacement",
+      "catppuccin",
+      "nextjs",
+      "tailwind",
+      "shadcn",
+      "martech",
+      "design-system",
+      "twelveux-sibling",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T04:50:00Z"),
+    readingTime: 4,
+  },
+
   {
     _id: "static:santabox-charity-lootbox-rebuild",
     title: "SantaBox.org: I rebuilt a BestWNC copy-paste into a Christmas charity lootbox platform",
