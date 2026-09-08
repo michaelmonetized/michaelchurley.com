@@ -4865,7 +4865,97 @@ The factory story belongs on the scaffolder, not the empty children. Dotenv-safe
 **Engagement Q:** Align template LICENSE with MIT, or document the GPL default as intentional?
 `;
 
+const NFGLYPH_COVER =
+  "/blog/nfglyph-bun-ansi-nerd-font-picker-linux-quit/cover.png";
+
+const NFGLYPH_CONTENT = `## Who
+
+I wanted a glyph picker that stays in the TTY — vim motions, alt-buffer, Enter copies the character — without dragging in Ink, Blessed, or Bubble Tea.
+
+For people who already installed a Nerd Font and are tired of opening a browser just to steal a powerline arrow.
+
+
+## What
+
+I built **nfglyph** — public https://github.com/michaelmonetized/nfglyph. HEAD \`1dfdc82\`. **4** commits. **0** stars. Default **main**. Version **Unreleased** (sitrep still says **SHIPPED**). CLI/TTY only. Single file \`nfglyph\` (~431 LOC) on Bun. **No** package.json.
+
+**v1 (\`0c91b0d\`, Jan 30):** walk hard-coded Unicode ranges (emojis + Nerd PUA), filter by **hex** only, copy via **pbcopy**, shebang pinned to \`/Users/michael/.bun/bin/bun\`, cleanup called \`process.exit(0)\`.
+
+![Repo screenshot](/blog/nfglyph-bun-ansi-nerd-font-picker-linux-quit/screenshots/repo-screenshot.png)
+
+**Upgrade (\`047b54c\`, Jun 1):** commit \`.nfglyph-data/glyphs.json\` from ryanoasis **glyphnames** — METADATA **3.4.0** / **50,174** named glyphs. \`loadGlyphs()\` + \`fuzzyMatch\` on \`g.name\` (hex path still works). Footer shows \`name\` + \`U+XXXX\`. \`y\` yanks the hex code. Shebang -> \`#!/usr/bin/env bun\`.
+
+![glyphs.json pipeline](/blog/nfglyph-bun-ansi-nerd-font-picker-linux-quit/screenshots/glyphs-json-pipeline.png)
+
+
+**Linux quit (\`1dfdc82\`, Jun 3):** cleanup resolves a \`keepAlive\` promise instead of \`process.exit\`; detaches stdin listeners and \`pause()\`s; quit matches \`input.includes("q")\`; \`write\` uses \`process.stdout.write\`; clipboard tries \`pbcopy\` -> \`wl-copy\` -> \`xclip\` -> \`xsel\`.
+
+![Linux quit fix](/blog/nfglyph-bun-ansi-nerd-font-picker-linux-quit/screenshots/linux-quit-fix.png)
+
+Residue: README still markets **15k+** and **hex** search; PLAN Phase 1 still has **Fuzzy name search** unchecked; error string still curls into \`~/.nfglyph-data\` while code loads next to \`argv[1]\`; \`.uncap\` \`headSha\` empty; sitrep last-commit date stuck on Jan 30.
+
+![README / PLAN gap](/blog/nfglyph-bun-ansi-nerd-font-picker-linux-quit/screenshots/readme-plan-gap.png)
+
+## Where
+
+Code: [github.com/michaelmonetized/nfglyph](https://github.com/michaelmonetized/nfglyph) — public. No live web app.
+
+\`\`\`bash
+git clone https://github.com/michaelmonetized/nfglyph.git
+cd nfglyph
+chmod +x nfglyph
+ln -s "$(pwd)/nfglyph" ~/.local/bin/nfglyph
+nfglyph
+\`\`\`
+
+tmux popup from README: \`bind-key g display-popup -E -w 80% -h 80% -T "Glyph Picker" "nfglyph"\`.
+
+
+## When
+
+**2026-01-30** — Initial release (\`0c91b0d\`) — range-scan TUI + screenshot + MIT.
+**2026-06-01** — init docs/tooling (\`1d15ef5\`); **upgraded** named JSON + fuzzy (\`047b54c\`).
+**2026-06-03** — fixed quit on linux (\`1dfdc82\`) -> HEAD. Queue \`pushed_at\` 2026-06-03T13:54:06Z.
+
+![Commit arc](/blog/nfglyph-bun-ansi-nerd-font-picker-linux-quit/screenshots/commit-arc.png)
+
+## Why
+
+Because a picker that only filters hex forces me to already know the codepoint. Because \`process.exit\` from an alt-buffer raw-mode loop is how Linux sessions feel stuck. Because shipping glyphs.json next to the binary beats pretending 15k range-scan glyphs are named.
+
+**Engagement Q:** Update README/PLAN to match the fuzzy+50k HEAD, or leave the stale 15k/hex story as a museum label next to the working binary?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:nfglyph-bun-ansi-nerd-font-picker-linux-quit",
+    title: "nfglyph: Bun raw-ANSI Nerd Font picker \u2014 fuzzy names, Linux quit fixed",
+    slug: "nfglyph-bun-ansi-nerd-font-picker-linux-quit",
+    excerpt:
+      "Public michaelmonetized/nfglyph: zero-dep Bun TUI glyph picker with vim motions. Jan 30 shipped Unicode range-scan + hex search; Jun 1 upgraded to Nerd Fonts 3.4.0 glyphs.json (50,174 named) + fuzzyMatch; Jun 3 fixed Linux quit (keepAlive vs process.exit) and clipboard cascade pbcopy->wl-copy->xclip->xsel. README still says 15k+ / hex-only. 4 commits. HEAD 1dfdc82.",
+    content: NFGLYPH_CONTENT,
+    coverImage: NFGLYPH_COVER,
+    tags: [
+      "nfglyph",
+      "nerd-fonts",
+      "glyph-picker",
+      "tui",
+      "bun",
+      "typescript",
+      "ansi",
+      "vim",
+      "clipboard",
+      "linux",
+      "fuzzy-search",
+      "cli",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T09:50:00Z"),
+    readingTime: 2,
+  },
+
   {
     _id: "static:animated-gradient-border-transparent-mask-composite",
     title: "animated-gradient-border: transparent glass with a spinning conic ring",
