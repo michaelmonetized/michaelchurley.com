@@ -627,7 +627,706 @@ The repo is still private. The site is live. The Polaroids are still taped to th
 If you were standing at 366 Main tonight, which section of that chalkboard would you photograph first?
 `;
 
+const UNCAP_COVER =
+  "/blog/uncap-us-repo-native-social-layer/cover.png";
+
+const UNCAP_CONTENT = `![uncap.us Raycast-style signed-out landing — Your shortcut to shipped work](/blog/uncap-us-repo-native-social-layer/screenshots/landing-raycast.png)
+
+## Who
+
+I ship software for a living. The repo is where the truth should live. It usually does not.
+
+Code sits in GitHub. Launch posts sit in a thread that dies in three days. Design decisions live as screenshots in Slack. Hiring signal is a PDF from last year. CI cost hides in a vendor dashboard. AI review output never becomes part of the project graph.
+
+uncap.us is for maintainers and operators who want that whole graph attached to the repository — not for people who need another place to perform. If you already think in owner/repo, org routes, and what shipped this week, you are the room.
+
+I also wrote the manifesto out loud: open source should not mean every byte is public every minute. Commits and branches are a bad primary primitive. Worktrees as we inherited them are an abomination. Agents and humans deserve a VFS that tracks work as it happens.
+
+## What
+
+I built a repo-native social layer. Live site: www.uncap.us. App version in package.json: 0.2.0. Private product repo under HurleyUS.
+
+README-first repo pages at /:owner/:repo. Organizations that own repos. Issues and PRs. Explore. Dashboard. A Lens feed for launches, releases, jobs, design updates, and links tied to the project (Lens replaced the earlier wall naming). Pricing and docs. A downloadable Uncap CLI (UnGit) with device-flow login.
+
+![README-first repository home from launch gallery](/blog/uncap-us-repo-native-social-layer/screenshots/repo-home.png)
+
+Origin sync connects public Git origins (GitHub, GitLab, Bitbucket, Codeberg, Forgejo, Gitea), caches shape, and reads files on demand. Native Uncap-hosted Git remotes are a separate rollout; empty states say that out loud instead of faking clone URLs.
+
+The CLI is the manifesto as a tool. uncap watch auto-tracks. Snapshots and virtual worktrees. Visibility flags for private/staging/public artifacts. Maintainer commands cover issues, pull requests, and continuous integration.
+
+Backend is Convex with Clerk auth.
+
+Stack at HEAD includes TanStack Start, Vite, pnpm, React 19, Convex, Clerk. Production deploys as tanstack-start on Vercel. That replaced an earlier Next.js plus Bun era; README badges lag the real stack.
+
+![Origin code browser from launch gallery](/blog/uncap-us-repo-native-social-layer/screenshots/repo-code.png)
+
+## Where
+
+Production is public even though the GitHub repo is private: www.uncap.us. Health at /api/health reports Clerk, Convex, PostHog, Resend, Sentry, and Stripe ready, with origin imports, native Git refs capability flags, and production telemetry enabled — verified 2026-09-08.
+
+Local clone on this machine: /home/michael/Projects/uncap.us @ ce53c96. CLI install assets under /cli. Brand kit under public/ including the u mark.
+
+The audience sits next to maintainers who already connect forges, and builders who read MANIFESTO.md before the pricing page.
+
+![Explore — What's shipping today?](/blog/uncap-us-repo-native-social-layer/screenshots/explore.png)
+
+## When
+
+**2026-01-08.** Init: Next.js, Convex, Tailwind. Early product was closer to a job-seeker platform loop than a forge.
+
+**2026-02.** Schema, Clerk auth, onboarding, job matching, then a hard security and auth hardening pass.
+
+**2026-05-04 to 06.** Rebuild as a social forge. Real services. Auth and repository creation.
+
+**2026-05-14 to 15.** Launch pack: screenshots, announcement drafts, runbook, health gates. Target drop May 15, 8:00 AM ET. Positioning locked.
+
+**2026-06-09 to 12.** Full app migration across nine phases. Legacy Next tree deleted. Downloadable CLI with device auth. Origin sync and Convex file cache. GTM integrations at the code layer.
+
+**2026-06-13 to 16.** Terminology: lens and repo. Marketing docs and signed-out home. Commit graph redesign. u mark lands in the brand set.
+
+**2026-08-08.** X-Robots-Tag set to index, follow on Vercel.
+
+**2026-08-30 to 31.** Signed-out landing redesigned like raycast.com. Command palette hero. Your shortcut to shipped work. Mobile signup overflow fixed. Duplicate Log in removed. AI-slop highlight pill removed. HEAD ce53c96. 338 commits from init to that tip.
+
+![Historical May social-forge home from launch assets](/blog/uncap-us-repo-native-social-layer/screenshots/home.png)
+
+## Why
+
+Git hosts optimized for storing files. The work I actually do spills sideways — launches, design versions, hiring signal, review output, deploy state. I wanted the repository to be the hub that holds that graph without turning the feed into performative noise.
+
+I also wanted source control primitives that match how I work now: auto-tracking instead of nagging myself to commit, granular visibility instead of all-or-nothing public, virtual worktrees instead of copying trees by hand for agents.
+
+So uncap.us is live with origin-aware repo pages, Lens, orgs, and a CLI on the site. Native hosted remotes are still a rollout, not a pretend clone button. The frame under the product changed once while shipping stayed continuous.
+
+Eight months. Three product shapes. One domain. The file cabinet was never going to grow the graph I needed.
+`;
+
+const OMARCHYSITE_COVER =
+  "/blog/omarchy-site-tanstack-start-rebuild/cover.png";
+
+const OMARCHYSITE_CONTENT = `![Omarchy hero end plate](https://raw.githubusercontent.com/michaelmonetized/omarchy-site-tanstack-start/master/public/assets/images/bg/home/hero-end.jpeg)
+
+## Who
+
+I run Omarchy. Asahi. Hyprland. Quickshell draws the bar. Naarchy sits in the camera hole. The creative suite became omadesign. The public Omarchy site was still a static tree I had forked as omarchy-site.
+
+I ship other properties in TypeScript and TanStack. When the site I point people at does not match the stack I build in, I feel the seam every time I open a PR.
+
+This rewrite is for the operator who already lives on Omarchy and wants install, manual, news, and foundation raise inside a TanStack Start app. Also for anyone evaluating Start on a real content-heavy surface.
+
+I did not invent Omarchy. DHH and Omacom did. I rebuilt the site shell.
+
+## What
+
+Repo on GitHub: michaelmonetized/omarchy-site-tanstack-start
+Live vercel.app deploy named after the repo.
+
+Stack is TanStack Start plus Router and React 19.
+
+Also Tailwind v4 and the shadcn UI kit.
+
+Root title stays the Omarchy brand line.
+
+![Tokyo Night](https://raw.githubusercontent.com/michaelmonetized/omarchy-site-tanstack-start/master/public/assets/images/mocks/tokyo-night-preview.webp)
+
+Home plays Quattro first-boot, holds empty sky, then etches the mark.
+Below that: foundation raise chart, patrons, menu, themes, Hyprland, Quickshell, plugins.
+
+Manual: 52 chapters as typed modules. News: 16 posts. Install for PC, Intel Mac, and Apple Silicon community builds.
+ISO constant is 4.0.2. Import helpers pull HTML from the sibling static site checkout.
+
+![Quickshell bar](https://raw.githubusercontent.com/michaelmonetized/omarchy-site-tanstack-start/master/public/assets/images/mocks/shell-bar.webp)
+
+Deploy config turns off git auto-deploy for main and master. Ship is deliberate.
+
+## Where
+
+It runs on the Vercel preview URL. OS truth remains omarchy.org and omacom/omarchy.
+Import sibling on this machine: Projects/omarchy-site. App clone: Projects/omarchy-site-tanstack-start at d98a362.
+
+![Four-way tiling](https://raw.githubusercontent.com/michaelmonetized/omarchy-site-tanstack-start/master/public/assets/images/mocks/navigation-fourway-tiling.webp)
+
+Audience sits next to Omarchy and Asahi people and next to builders already on TanStack Router.
+
+## When
+
+**2026-08-31.** init scaffold.
+
+**2026-09-01.** Landing, layout, shell. Full manual chapters. Rest of site including PC and Mac install. Hero mark and empty sky etch.
+
+**2026-09-02.** Square patrons, 13M raise, Quickshell on home. Three commits on Safari etch. CTAs to install, manual, repo. Nav pinned right.
+
+**2026-09-03.** README plays the desktop walkthrough. Fifteen commits. About three days from scaffold to the URL that still answers.
+
+![Clipboard history](https://raw.githubusercontent.com/michaelmonetized/omarchy-site-tanstack-start/master/public/assets/images/mocks/clipboard-history.webp)
+
+## Why
+
+I needed the Omarchy public face in the same toolchain I use for everything else I ship. Static HTML is fine for the upstream project. My working copy wanted file routes, typed content modules, and a deploy I control.
+
+So I imported the manual and news, wired the raise chart, fixed the etch until Safari stopped lying about the canvas, and left auto-deploy off. The OS stays theirs. The Start app is mine to break and rebuild.
+
+ISO still downloads from omarchy.org. Plugins still live at omarchyplugins.com. This repo is the site rewrite as of September 3, 2026.
+`;
+
+const OMNUXGPU_COVER =
+  "/blog/omnux-gpu-mit-clean-room-m3-siege/cover.png";
+
+const OMNUXGPU_CONTENT = `![OMNUX-GPU — MIT clean-room siege for M3 pixels](/blog/omnux-gpu-mit-clean-room-m3-siege/cover.png)
+
+![Honest state — scaffold only; no working driver](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/honest-state.png)
+
+## Who
+
+I am the person who already said the quiet part on the Omnux umbrella post: M3 installs today, software-rendered, and software rendering is not a desktop.
+
+This piece is for a narrower room.
+
+M3 owners who will lend a machine for m1n1 proxyclient captures. Reverse engineers who already know Asahi’s AGX story on M1/M2 and want the T603x/T8122 delta wall documented without contamination. DRM and Mesa people who treat “working” as render nodes plus glmark on metal, not a README adjective. License hawks who care that MIT stays clean before \`src/\` fills. Agent operators grinding capture loops under the same agent-army mandate that sits in Omnux GOAL.
+
+If you need an install one-liner or a diagnostics tarball, that is the sibling posts. If you need the GPU long pole named as a project with acceptance criteria, that is this room.
+
+## What
+
+I stood up **omnux-gpu** — a standalone MIT repo whose entire value proposition is honesty about what is missing.
+
+It is an attempt at a clean-room GPU driver for Apple M3-series silicon. License: MIT. Upstream may take everything; that is the point. The repository holds scaffolding, a research roadmap, tooling stubs, and eventually driver code. It does **not** yet contain a working driver. Nothing here claims otherwise until pixels appear on a physical M3.
+
+![Repo layout — docs, tools, empty src, MIT LICENSE](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/repo-layout.png)
+
+Three reverse-engineering walls stand between scaffold and acceleration:
+
+1. **Command processor submission model** — how macOS userspace submits work to AGX firmware on T8122/T603x (differs from M2).
+2. **Shader ISA deltas** — M3 brought Dynamic Caching, mesh shaders, hardware ray tracing; instruction encoding moved vs M1/M2.
+3. **Firmware interface** — version negotiation, queues, faults against shipping macOS AGX firmware (issues call 14.8.3+ as the field floor).
+
+![Three RE walls — CP submission, ISA deltas, firmware interface](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/re-walls.png)
+
+Each wall is only discoverable against real hardware, using m1n1’s proxyclient tracing on a machine booted into macOS with instrumentation. Code written away from the metal is fan fiction.
+
+The method is a loop, not a vibe:
+
+1. **Capture** — target M3 into m1n1 proxyclient from a second USB host; run macOS GPU workloads under \`agx_*\` experiments adapted for newer ABI.
+2. **Diff** — compare to known M1/M2 models; land deltas in \`docs/\`.
+3. **Implement** — clean-room sources in \`src/\` from documented behavior only.
+4. **Validate** — kexec Omnux kernel with the driver; iterate until DRM render nodes exist and glmark runs.
+5. **Publish** — every milestone upstream to Asahi first.
+
+![Method loop — Capture Diff Implement Validate Upstream](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/method-loop.png)
+
+Fifteen public issues map the siege. Issues #1–#8 are the GPU spine: capture harness, submission-model docs, ISA delta docs, firmware-interface docs, DRM skeleton (probe + firmware load + first render node **without** claiming acceleration), Mesa Honeykrisp/agx bring-up for G15-class, t603x power/PMP/thermal, and a local validation harness (kexec + glmark2/vkcube → signed JSON, own metal, no hosted CI theater). Issue #9 is the license immune system: \`docs/CLEANROOM.md\`, PR source disclosure, taint procedure — before any non-scaffold code lands. Issues #10–#15 park SEP/TouchID research on the same tracker so the wall is visible; the biometrics frontier and omnux-report evidence collectors are sibling stories, not this one.
+
+\`src/\` is empty on purpose. Contaminated contribution — decompiled Apple code, NDA headers, GPL-mixed paste — poisons the MIT claim. The audit process has to exist before the directory fills.
+
+## Where
+
+It lives where M3 metal and a second USB host can sit on the same desk.
+
+Repo: [michaelmonetized/omnux-gpu](https://github.com/michaelmonetized/omnux-gpu). Parent umbrella wires it as \`gpu/\` under [michaelmonetized/omnux](https://github.com/michaelmonetized/omnux). Diagnostics sibling: [omnux-report](https://github.com/michaelmonetized/omnux-report) — logs, sysinfo, ADT helper, SEP collectors with redaction; useful for evidence, not a substitute for AGX traces.
+
+SoCs in scope: T603x / T8122 class. Capture target: shipping macOS firmware on those chips. Validation target: Omnux kernel kexec’d from m1n1 until \`/dev/dri/renderD*\` appears and the acceptance harness stops lying.
+
+If you have hardware to lend, the README says open an issue — that is the bottleneck, full stop.
+
+## When
+
+**2026-08-24.** Single scaffold commit \`a3b7f74\`: MIT LICENSE, honest README, \`docs/NOTES.md\` placeholder, empty \`src/\`, stub \`tools/\`. Created the repo the day before the Omnux umbrella monorepo week. One commit. That is still the commit graph.
+
+**2026-08-25.** Siege map lands as public issues #1 through #9 while Omnux M0 is getting wired. Capture harness called the critical path. Clean-room audit filed as blocking-by-convention and cheap — do it before code, not after a lawsuit hypothetical.
+
+**2026-08-26 → 2026-08-27.** Issues #10–#15 add the SEP/TouchID research program to this tracker (T1 community win, T2 bridge, omnux-report SEP section, apstrand frontier notes). Useful adjacency. Still zero GPU capture artifacts under \`docs/captures/\`. Still no DRM skeleton. The calendar moved; the metal bottleneck did not.
+
+**2026-09-08.** This pack. Still scaffold. Still fifteen open issues. Still waiting on an M3-class machine in the harness loop.
+
+![Issue map — GPU #1–#8, clean-room #9, SEP adjacency #10–#15](/blog/omnux-gpu-mit-clean-room-m3-siege/screenshots/issue-map.png)
+
+## Why
+
+Omnux can already tell the truth about M3 installs. Truth without a GPU project is a permanent software-render sentence dressed up as roadmap poetry.
+
+I wanted a repo whose license Asahi can absorb without a negotiation. I wanted “working” defined as pixels and scores on metal, not a press sentence. I wanted the three RE walls named so contributors argue about captures instead of vibes. I wanted the clean-room gate written before the first real C file, because MIT is easy to claim and hard to un-poison.
+
+The ask is not stars. The ask is hardware in the capture loop — and issue checkboxes that turn green only when the acceptance criteria say so.
+`;
+
+const HURLEYUS_COVER =
+  "/blog/hurleyus-omarchy-catppuccin-rally-theme/cover.png";
+
+const HURLEYUS_CONTENT = `![Hurleyus hero — desktop preview beside Plymouth unlock](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/hero-desktop-unlock.png)
+
+## Who
+
+I run Omarchy as the daily desk. Catppuccin Mocha is already the right palette — soft contrast, blue accent, pink errors, the whole mocha set.
+
+Stock Mocha still looks like everybody else’s laptop.
+
+Hurleyus is for the Omarchy operator who wants Mocha without anonymity. For the Hurley / quattro / rally-art orbit who want the desk to match the brand. For Asahi Mac people who care that the unlock screen and the compiled-in U-Boot splash say the same name as the bar. For theme authors who already learned that shipping Foot or Ghostty palette files inside a theme is how you get a black terminal.
+
+If your Style menu is full of fine defaults and none of them feel like yours — that is the room.
+
+## What
+
+I built an Omarchy **theme package**. Id folder \`hurleyus\`. Display name **Hurleyus**. MIT. Public repo. Branch \`main\`.
+
+![Desktop preview — Mocha chrome over rally wall](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/desktop-preview.png)
+
+**Palette.** \`colors.toml\` is the source of truth. Background \`#1e1e2e\`. Accent \`#89b4fa\`. Omarchy expands that into Foot, Ghostty, Kitty, Alacritty, btop, Chromium, shell chrome. README is blunt: do not ship terminal palette files in the theme. Those files block the templates. You get a black terminal. I have no interest in that support thread.
+
+**Window chrome.** \`hyprland.lua\` — 20px rounding, 20px gaps in and out, Mocha active/inactive borders. Editors: \`neovim.lua\` points LazyVim at Catppuccin; \`vscode.json\` names the Catppuccin Mocha extension. Icons: Yaru-purple.
+
+![Repo layout — colors, lua, walls, branding, unlock](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/repo-structure.png)
+
+**Walls.** Seven 4K JPEGs, 3840×2160, pre-darkened so the bar and terminals stay readable. Titles in the gallery: Canyon run, Hairpin, The jump, Donuts, Tunnel blast, Service park, Last light. Cycle with \`omarchy theme bg next\` or Style → Background.
+
+![Seven pre-darkened 4K Hurleyus walls](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/walls-gallery.png)
+
+**Boot.** \`unlock.png\` for Plymouth / SDDM — set with \`omarchy plymouth set by theme hurleyus\` (same path Lumon uses). Branding ASCII for about + screensaver. Logo PNG. And the Asahi-specific piece: \`branding/install-uboot-logo.sh\` finds the 160×160 8-bit BMP slot inside \`/usr/lib/asahi-boot/u-boot-nodtb.bin\`, writes a patched copy under cache, runs \`update-m1n1\`. The splash that ships in U-Boot becomes Hurleyus.
+
+**Install.** Origin README still shows \`omarchy theme install <url>\`. Pack-day local note (not pushed yet): Omarchy 4.0.2+ treats a nested \`.git\` directory as a stranger theme and drops \`hyprland.lua\` on install. Keep the Lua by cloning into \`~/.local/share/themes/hurleyus\`, symlinking into \`~/.config/omarchy/themes/hurleyus\`, then \`omarchy theme set hurleyus\`. A symlink counts as yours. A submodule’s \`.git\` *file* also keeps the Lua.
+
+![Install path that keeps hyprland.lua on Omarchy 4.0.2+](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/install-path.png)
+
+## Where
+
+It lives where Omarchy themes live — \`~/.config/omarchy/themes/hurleyus\` on the machine I actually use. Same tree is the git checkout of [michaelmonetized/omarchy-hurleyus-theme](https://github.com/michaelmonetized/omarchy-hurleyus-theme).
+
+Boot path is Plymouth / SDDM for unlock, and Asahi’s \`u-boot-nodtb.bin\` for the early splash. No Pages marketing site. No GitHub Release tag. Linguist is mostly the U-Boot install shell plus a little Lua; the walls are the byte mass.
+
+Audience sits next to Omarchy, Catppuccin, Asahi / Omnux Mac desks, and the quattro / Hurley brand lane — people who already know Style → Theme, not people who need a tutorial on what a wallpaper is.
+
+![Boot unlock preview](/blog/hurleyus-omarchy-catppuccin-rally-theme/screenshots/unlock-preview.png)
+
+## When
+
+**2026-08-21, 7:57 PM Eastern.** First commit. \`Fork stock Omarchy Catppuccin into Hurleyus.\` Twenty files. Mocha \`colors.toml\`, hyprland/neovim/vscode/icons, six PNG walls, branding ASCII, preview, MIT, README.
+
+**Same night, 8:09 PM Eastern.** Twelve minutes later. \`Add Hurleyus unlock screen and Asahi U-Boot splash.\` Unlock assets, BMPs, \`install-uboot-logo.sh\`.
+
+**2026-08-22, 6:36 AM Eastern.** \`init\` — wall refresh, bigger about/screensaver ASCII, hyprland tweak.
+
+**2026-08-26, 5:58 AM Eastern.** \`Package for distribution: 4K JPEG walls, README gallery, cleanup.\` PNG walls out. Seven JPEGs in. Gallery in the README. Fat binaries gone so \`theme install\` is not a joke.
+
+Four commits. Still. Last push \`65f4da3\`. Zero stars. Local README has an unpushed install-path rewrite for the 4.0.2+ Lua drop — pack day tells that truth instead of pretending origin already has it.
+
+## Why
+
+Because Mocha was correct and still felt rental.
+
+Because I want one \`colors.toml\` driving the terminals and the rally art carrying the identity — not a fork of every emulator config.
+
+Because on an Asahi Mac the splash in U-Boot is part of the machine’s face, and patching a 160×160 slot is a real receipt, not a settings-app wallpaper picker.
+
+Because Omarchy’s theme system rewards packages that respect templates, and I refuse to relearn the black-terminal lesson.
+
+Fork Thursday night. Unlock and U-Boot twelve minutes later. Slim JPEG distribution five mornings after that. That is the clock.
+`;
+
+const REAFERAL_COVER =
+  "/blog/reaferral-agent-referral-platform/cover.png";
+
+const REAFERAL_CONTENT = `![Reaferral Inman-style landing — BREAKING referral tracking hero](/blog/reaferral-agent-referral-platform/screenshots/home.png)
+
+## Who
+
+I watch real estate agents make a quarter to a third of their income on referrals and still track those deals in spreadsheets, group texts, and vibes.
+
+That is not a CRM problem. That is a **referral accountability** problem. Who sent it. What fee was agreed. What stage the deal is in. Whether the check showed up when it closed.
+
+Reaferral is for licensed agents who are tired of losing money to ambiguity. Solo producers who want a link in the email signature that actually attributes. Team leads who need roles and a shared pipeline. Builders who already speak Next.js, Convex, and Clerk and want the vertical product without another Electron tray.
+
+If your week includes “did that referral ever close” and a half-finished Google Sheet — that is the room.
+
+## What
+
+I built **Reaferral**: an agent-to-agent real estate referral platform.
+
+Stack on the wire: **Next.js 16.1.6** (App Router, Turbopack), **Convex** for the reactive backend, **Clerk** for auth, Tailwind v4, Radix/shadcn-style UI, Recharts, PostHog, Sentry configs, Resend, Stripe Connect routes. Bun monorepo. Workspaces: \`web\` (\`reaferral-web\` 0.1.0) and \`mobile\` (Expo \`reaferral-app\` 1.0.0). Hosted at [reaferral.vercel.app](https://reaferral.vercel.app). GitHub repo private under HurleyUS.
+
+![Features page — product surfaces and mockups](/blog/reaferral-agent-referral-platform/screenshots/features.png)
+
+What ships in the product surface:
+
+**Referral tracking** — create, send, receive; fee percent or flat; status through the deal.
+
+**Trackable links** — short codes under \`/r/[code]\`, click analytics, campaign names.
+
+**Pipeline** — lead → active → under contract → closed (and payout adjacency in schema).
+
+**Teams** — slugs, invites, roles (owner/admin/financial/assistant/member), pending joins that survive signup.
+
+**Messaging** — per-referral threads in Convex.
+
+**Twelve dashboard themes** — neumorphism, gradient-wave, dark-pro, inman-style, minimal-light, plus brokerage-inspired skins (Keller Williams, RE/MAX, Zillow, eXp, Trulia), Raycast, Brutalist.
+
+**Content engine** — **423** MDX files under \`web/content/stories/\`. Linguist says MDX is ~76% of the repo by bytes. The landing still says “66+ Expert Articles.” The filesystem disagrees in the agent’s favor.
+
+![Stories journal index](/blog/reaferral-agent-referral-platform/screenshots/stories.png)
+
+![Example story — 47-second setup](/blog/reaferral-agent-referral-platform/screenshots/story-47.png)
+
+Public GTM pages: Inman-style editorial landing (orange LIVE strip, green REA**FERRAL** wordmark, navy stats band), Features, Stories, Investors. Auth: Clerk sign-in/up → \`/dashboard\`.
+
+![Clerk sign-up](/blog/reaferral-agent-referral-platform/screenshots/sign-up.png)
+
+![Investors page](/blog/reaferral-agent-referral-platform/screenshots/investors.png)
+
+Positioning in the ProductHunt/HN drafts on disk: core tracking **free forever**; premium later (follow-ups, agreements, payment tracking). I am not pretending the Stripe Connect routes mean the billing story is finished.
+
+![Illustrative pipeline mock — not a live authenticated dashboard](/blog/reaferral-agent-referral-platform/screenshots/pipeline-mock.png)
+
+## Where
+
+It runs on Vercel at **reaferral.vercel.app**. Clerk on the live deploy is still a **dev** instance (\`pk_test_…\`) — the marketing pages render signed-out; the dashboard sits behind auth.
+
+Repo: [HurleyUS/reaferral](https://github.com/HurleyUS/reaferral). Private. Branch \`main\`. HEAD at pack time \`8ba157a\`. **501** commits. Zero GitHub Releases. MIT license file present (copyright line dated 2021).
+
+![Monorepo map](/blog/reaferral-agent-referral-platform/screenshots/repo-structure.png)
+
+The audience sits next to agent networks, Inman-shaped media, and the same Convex/Clerk/Vercel family I use elsewhere — not next to “what is a referral fee” explainers.
+
+Chrome extension lives in a **sibling** repo (\`michaelmonetized/reaferral-chrome-extension\`). Not this pack.
+
+## When
+
+**2024-08-07.** \`init\`.
+
+**2026-01-08.** Docs snap into focus: OPPORTUNITIES, PLAN, README — this is a real-estate referral platform, not a vague hustle.
+
+**2026-02-04.** The real ship week. \`feat: complete Convex backend and core web app\`. GitHub repo created. Landing design variants. Vercel monorepo wiring. Clerk → Convex user sync.
+
+**2026-02-05–06.** Theme system expands. Features + Stories infrastructure. Investors, privacy, terms. Shared chrome. Mobile-friendly dashboard.
+
+**Late February through April.** The content firehose. Hundreds of \`content: add new story\` commits. 413 of them by pack count. Journal becomes the bulk of the tree.
+
+**2026-02-27 onward.** Security passes — auth checks on mutations, collect bounds, Svix verification on Clerk webhooks, console cleanup for production.
+
+**2026-05–06.** CI thrash (Blacksmith) then removal; promo banner overlap fix; nightly commits.
+
+**2026-08-08, morning Eastern.** X-Robots-Tag set to \`index, follow\`, then three unblock fixes so production deploy stops choking. Last push. That is the clock stop for this pack.
+
+**2026-09-08.** Pack day. Site up. \`og-image.png\` 404s. Draft only — no blog publish, no social blast, no git push from this task.
+
+## Why
+
+Because referral income is real and the tooling agents use for it is mostly improvisation.
+
+Because I already had the Convex/Clerk/Next pattern and the missing piece was the vertical: links, fees, stages, teams, and a journal that attracts the people who feel the spreadsheet tax.
+
+Because shipping 423 MDX stories into a private monorepo is a weird flex and also a concrete SEO loop — even when the hero still says 66+.
+
+Because the badge of honesty here is the timeline: February MVP, spring content factory, August robots unblock — still private, still free-forever core, still no tagged release.
+
+What dashboard or sheet are you still using to remember who owes whom on a referral?`;
+
+const BESTJEEP_COVER =
+  "/blog/best-jeep-decals-convex-stripe-storefront/cover.png";
+
+const BESTJEEP_CONTENT = `![Best Jeep Decals — Upgrade Your Off-Road Identity](/blog/best-jeep-decals-convex-stripe-storefront/screenshots/landing.png)
+
+## Who
+
+I kept seeing Jeep owners treat identity like an afterthought — a random sticker from a gas-station rack, peeling after one summer on a Wrangler hood.
+
+The people I built for already know their JL from their JK, their Gladiator JT from an XJ Cherokee. They want hood blackouts, “rated” fender badges, side graphics that look like they belong on the trail, not clip art. They want USA vinyl that lasts 5–7 years outdoors, air-release installs, and a checkout that does not feel like 2014 Magento.
+
+If you ship MarTech, Convex + Clerk + Stripe stacks, or local-commerce sites that have to take real money, you are in the room. This is a private HurleyUS storefront — Best Jeep Decals — not a theme demo.
+
+## What
+
+I shipped a dark-first e-commerce site at [bestjeepdecals.com](https://www.bestjeepdecals.com). Orange accent. Italic wordmark. Hero that says the quiet part: **Upgrade Your Off-Road Identity.** Made in the USA badge. Shop All Decals / Browse Wrangler.
+
+![Shop filters — vehicle fitment and price range](/blog/best-jeep-decals-convex-stripe-storefront/screenshots/shop.png)
+
+Stack facts, not pitch deck: **Next.js 16.2.6** (Turbopack) on Vercel, **React 19**, **Convex** for products/categories/carts/orders/reviews/wishlists/discounts/subscriptions, **Clerk** for auth, **Stripe** for checkout, webhooks, portal, and promo codes, **Resend** from \`orders@bestjeepdecals.com\`, **Sentry** + **PostHog** (+ GA). Tailwind 4, Phosphor icons, Zustand cart with persist + promo, Zod + React Hook Form on checkout/admin/newsletter. Package **0.1.0**. Private repo.
+
+Seeded catalog: **30** SKUs at **$29.99** across Hood Decals, Fender Decals, Side Graphics — Compass/Tread/Explorer/Star hood blackouts, Beach/Trail/Squatch/Rescue rated badges, Renegade mountain set, Zombie Outbreak Response Team badge, Since 1941 left/right, and the rest under \`public/products/png\`. Shop filters cover category, $0–$200 price range, and fitment checkboxes for Wrangler JL/JK/TJ, Gladiator JT, Cherokee XJ, Grand Cherokee, Renegade, Compass.
+
+![Empty cart — trust path still on-brand](/blog/best-jeep-decals-convex-stripe-storefront/screenshots/cart.png)
+
+Admin lives under \`(private)/admin\` with \`requireAdmin\` — product CRUD (soft delete), orders, CSV export. Wishlist hearts persist in Convex. Reviews attach to products. Related products on PDPs. Billing defs include a **Decal of the Month Club** at **$14.99/mo** plus gift-card and rush-production add-ons. ROADMAP marks the Zod/RHF, Stripe+Resend, and Zustand modernization pass complete.
+
+![Catalog collage from seeded PNGs](/blog/best-jeep-decals-convex-stripe-storefront/screenshots/catalog-grid.png)
+
+## Where
+
+The storefront lives on the open web: [www.bestjeepdecals.com](https://www.bestjeepdecals.com) (apex redirects to www). GitHub homepage still lists the Vercel alias \`bestjeepdecalscom.vercel.app\`. Code: private [HurleyUS/bestjeepdecals.com](https://github.com/HurleyUS/bestjeepdecals.com).
+
+Public routes: shop, product, category, cart, checkout, wishlist. Auth under Clerk catch-alls. Robots.txt allows shop/product/category and blocks admin/api/sign-in/sign-up. Aug 8 added \`X-Robots-Tag: index, follow\` on Vercel so the deploy stops whispering “please ignore me.”
+
+Audience sits next to Jeep forums, jamborees, and every Instagram wrap account that still cannot take a Stripe payment without a third-party form.
+
+## When
+
+**2024-12-16.** Create Next App. Next day: shadcn init. Dec 27: a “ghostty released” commit. Three commits. Then silence through 2025.
+
+**2026-01-08.** The product actually starts. OPPORTUNITIES.md. Homepage pass. Migrate to convex-nextfaster. **Build MVP e-commerce storefront.** Seed script and \`.env.example\` for production readiness.
+
+**2026-02.** Superadmin email gate — then security move to a server component. Stripe webhook signature verification. Admin auth on product mutations. Cart wired with localStorage session and honest success toasts. Checkout rate limiting. Error and loading boundaries. Next.js thrash: bump to 16.1.6 for a CVE, temporary downgrade to 15.5.12 for middleware, Tailwind v3→v4, dark-first production audit.
+
+**2026-03-09–17.** Next 15→16 for real. Delete deprecated \`middleware.ts\`. Restore Clerk on \`proxy.ts\`. Trust signals on cart. Sentry 10 for Next 16. Revenue unlock doc. Google Analytics. robots + next-sitemap. Stripe webhook + order payment flow. Admin dashboard for products and orders. Soft delete. Edit product. CSV export. Promo codes. Shop filters with category, price, Jeep model (#26). Reviews. Wishlists. Related products. Missing catalog images filled in.
+
+**2026-05-14–15.** Blacksmith CI gates on repeat until they stick. Convex URL and Clerk key fallbacks so CI builds do not cry. Deploy health check targets fixed.
+
+**2026-05-22–26.** Redesign commits. Package update PR #28. Sentry instrumentation. dx-maxxing PR #29. Broken images chased. UX passes. **Real catalog seeded** (\`24758dd\`).
+
+**2026-08-08.** Four commits to finish the clock: force \`X-Robots-Tag: index, follow\`, unblock that deploy in \`next.config.ts\`, pin Stripe to package default API version for build compatibility. HEAD \`fd105bd\`. **Ninety-nine commits** from empty Next scaffold to an indexable commerce deploy.
+
+On 2026-09-08 the live \`/\` sometimes hit the error boundary during capture while \`/shop\` and \`/cart\` still painted the dark chrome — Convex/runtime weather, not a rewrite of the journey.
+
+## Why
+
+A Jeep without identity graphics is fine. A checkout that cannot take money, moderate reviews, or keep a wishlist is not a store — it is a mood board.
+
+I wanted the full path: seeded catalog, model fitment filters, Zustand cart with promos, Stripe webhooks that create orders, Resend that tells you it shipped, admin that can soft-delete a SKU and export CSV, CI that builds without secret theater, and a robots header that admits the site wants to be found.
+
+So I kept shipping until the redesign matched the trail aesthetic and the seed matched the PNG drawer. It is still 0.1.0. Decal Club and gift-card add-ons sit in billing defs waiting for the live Stripe dial. That is fine. The document model already holds products, carts, orders, reviews, wishlists, and subscriptions in one Convex project.
+
+If your current Jeep sticker supplier cannot show Wrangler vs Gladiator fitment without a phone call, you already know the hole I was staring at.
+
+What would you put on a Wrangler hood first — a compass blackout, a tread pattern, or a beach-rated badge that starts arguments at the trailhead?
+`;
+
+const SONNY_COVER =
+  "/blog/sonnys-shining-rubber-hose-beat-em-up/cover.png";
+
+const SONNY_CONTENT = `![The Shining Gazette landing composite](/blog/sonnys-shining-rubber-hose-beat-em-up/screenshots/landing.png)
+
+## Who
+
+I kept catching myself wanting a beat-em-up that felt like Max Fleischer had a bad New Year's Eve and a bowling league problem.
+
+Not another Unity template with a purple capsule for a hero. Not a pitch deck that says "Cuphead vibes" and then ships nothing you can read. I wanted the cast, the fatalities, the alley transitions, and the joke about Lucy's heart following the leaderboard — on disk — before I pretended an engine folder meant progress.
+
+Sonny's Shining is for people who will sit with a Game Design Document. Indie animation nerds. Silent-film weirdos. Operators who think a Stripe Checkout and a refund policy are part of pre-production, not a later surprise. If you build MarTech by day and still care whether Bertie the bartender gets stuffed in a trash can, you are in the room.
+
+## What
+
+I wrote the IP as a stack of plain Markdown and a marketing site that looks like a 1935 newspaper.
+
+The story: New Year's Eve. Bertie's Bustling Bubbles. Sonny — lanky hound dog man, Sonny Tufts energy, ball-shining towel in the back pocket — holds Lucy, a red fox with Lucille Ball danger in the smile. The bartender whispers. She leaves. Kewpie's bowling-pin limo peels out. Eight levels of Kewpie's payroll stand between a tournament bowler and a girl whose heart tracks the standings.
+
+![Eight bosses / levels](/blog/sonnys-shining-rubber-hose-beat-em-up/screenshots/bosses.png)
+
+Combat is bowling-native. Towel catch-and-return. Barehand bottle returns when the timing is honest. Later, a modified ball-return device becomes an over-the-shoulder launcher. Bosses are silent-film and vaudeville ghosts wearing animal suits: Bert Williams behind the bar, Chaplin as a mouse puppeteering a Fabio crab, Desi on the fire escape, Tippi in the dance school, Bessie on the decks, Snub Pollard in the hangar, Ivy Lee on the docks, Kewpie Morgan as the pig kingpin with a shipboard alley that sways on purpose.
+
+Art bible is rubber hose / Fleischer / Roger Rabbit — noodle limbs, pie-cut eyes, four-finger gloves, springy idle. GDD.md is ~1,250 lines. NOVEL.md ~1,600. SCRIPT.md ~800. PLAY.md stages it as a tragedy in three acts. PLAN.md still says engine TBD (Unity or Godot). That sentence is accurate. There is no \`.unity\` or Godot project in this repo yet.
+
+The web half is real software. Next.js 16.2.6, React 19, Tailwind 4, Bun lockfile, package **0.1.0**. Landing is "The Shining Gazette" — ticker tape, masthead, drop caps, classified boxes. \`PreorderButton\` collects email, hits \`POST /api/checkout\`, opens Stripe Checkout for **$8.00** (\`unit_amount: 800\`) with metadata \`sonnys-shining-preorder\` and expected release **Christmas 2026**. Privacy, terms, refunds, and success routes shipped with that checkout.
+
+![Preorder / Stripe surface](/blog/sonnys-shining-rubber-hose-beat-em-up/screenshots/preorder.png)
+
+## Where
+
+Marketing lives at [sonnysshining.com](https://sonnysshining.com). Code at [github.com/michaelmonetized/Sonny-s-Shining](https://github.com/michaelmonetized/Sonny-s-Shining). Public. Empty GitHub description. Empty topics. Zero stars. That is fine — the README and the Gazette carry the pitch.
+
+The audience sits next to every thread that wants Cuphead's lineage without Cuphead's budget, and next to every builder who knows a preorder page without a refund policy is a future apology.
+
+## When
+
+**2025-12-27.** Four commits in one afternoon. \`init\`. Web submodule and last names stripped from the celebrity inspo list. Novel pass. "initalize marketing website for the novel" — yes, that typo is in the commit message. Next 16.1.1 scaffold era.
+
+**2026-01-31.** \`chore: sync all changes\` — one big dump, +1,640 / −79. Writing and early web catching up with each other.
+
+**2026-03-17.** The money day. Privacy, terms, refunds, success. Stripe checkout route. PreorderButton. Newspaper redesign of \`page.tsx\`. PLAN.md lands. ROADMAP.md also lands — and it is wrong. It talks about a cleaning/detailing client site. I am not going to launder that into a feature. It is a stale stub sitting in the tree.
+
+**2026-06-22.** Two \`nightly\` commits. GDD, Stripe cursor rules, fallow review hooks, dependency bump to Next 16.2.6 and \`stripe\` ^22. HEAD \`d6ae3ac\`. Still no engine.
+
+**2026-08-16.** GitHub \`pushed_at\` moves. Main still ends at the June nightly. Eight commits on the ledger. Pack day is September 8, 2026.
+
+That is the journey from empty repo to a design-complete tragedy with a live preorder path and an honest hole where the engine should be.
+
+## Why
+
+I did not want to lie to myself with a blank game project named after a feeling.
+
+So I wrote the characters until Sonny's ears twitched in idle. I wrote the levels until the alley between Bertie and Charlie was a cut, not a load screen pitch. I put $8 and Christmas 2026 on a Stripe session so the promise had a price and a date. I left Unity/Godot as a checkbox in PLAN.md because checking a box is not the same as shipping a towel mechanic.
+
+It is still web 0.1.0. The newsletter form on the lander is a client-side smile, not a list backend. ROADMAP.md needs to be deleted or rewritten. The game does not run. The bible does.
+
+If your current "game idea" folder has a repo and no GDD, or a GDD and no way for someone to give you eight dollars, you already know which hole I was staring at.
+
+Would you lock the Christmas 2026 preorder first — or open the engine folder and refuse to write another fatality until Bertie's bottle timing feels true?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:best-jeep-decals-convex-stripe-storefront",
+    title: "Best Jeep Decals: I shipped a dark-first vinyl storefront for Jeep identity",
+    slug: "best-jeep-decals-convex-stripe-storefront",
+    excerpt:
+      "Private Next.js 16 Jeep vinyl e-commerce \u2014 Convex catalog, Clerk auth, Stripe checkout, wishlist, reviews. Ninety-nine commits from Create Next App to X-Robots-Tag.",
+    content: BESTJEEP_CONTENT,
+    coverImage: BESTJEEP_COVER,
+    tags: [
+      "best-jeep-decals",
+      "nextjs",
+      "convex",
+      "clerk",
+      "stripe",
+      "ecommerce",
+      "jeep",
+      "vinyl-decals",
+      "martech",
+      "hustle-launch",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-08T23:50:00Z"),
+    readingTime: 6,
+  },
+  {
+    _id: "static:sonnys-shining-rubber-hose-beat-em-up",
+    title: "Sonny's Shining: I wrote a rubber-hose beat-em-up tragedy before I picked an engine",
+    slug: "sonnys-shining-rubber-hose-beat-em-up",
+    excerpt:
+      "I shipped Sonny's Shining as a Fleischer-noir beat-em-up bible \u2014 GDD, novel, screenplay \u2014 plus a Next.js 16 newspaper site with an $8 Stripe preorder aimed at Christmas 2026.",
+    content: SONNY_CONTENT,
+    coverImage: SONNY_COVER,
+    tags: [
+      "sonnys-shining",
+      "indie-game",
+      "beat-em-up",
+      "rubber-hose",
+      "noir",
+      "nextjs",
+      "stripe",
+      "gdd",
+      "fleischer",
+      "martech",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-08T23:40:00Z"),
+    readingTime: 5,
+  },
+  {
+    _id: "static:reaferral-agent-referral-platform",
+    title: "reaferral: I built a free referral tracker so agents stop bleeding commissions into spreadsheets",
+    slug: "reaferral-agent-referral-platform",
+    excerpt:
+      "I built Reaferral \u2014 a Next.js 16 + Convex + Clerk platform for agent-to-agent real estate referrals: trackable links, pipeline, teams, 12 dashboard themes, and a 423-article MDX journal. Live on Vercel. Repo private. Core pitched free forever.",
+    content: REAFERAL_CONTENT,
+    coverImage: REAFERAL_COVER,
+    tags: [
+      "reaferral",
+      "real-estate",
+      "referrals",
+      "convex",
+      "clerk",
+      "nextjs",
+      "martech",
+      "vercel",
+      "mdx",
+      "saas",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-08T23:30:00Z"),
+    readingTime: 5,
+  },
+{
+    _id: "static:uncap-us-repo-native-social-layer",
+    title: "uncap.us: I rebuilt the social layer around the repo",
+    slug: "uncap-us-repo-native-social-layer",
+    excerpt:
+      "I spent eight months turning a file-cabinet Git host into a repo-native work hub \u2014 Lens, origin sync, CLI/UnGit, TanStack Start. Live at uncap.us.",
+    content: UNCAP_CONTENT,
+    coverImage: UNCAP_COVER,
+    tags: [
+      "uncap",
+      "devtools",
+      "tanstack",
+      "convex",
+      "clerk",
+      "git",
+      "cli",
+      "martech",
+      "opensource",
+      "vercel",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-08T23:00:00Z"),
+    readingTime: 5,
+  },
+  {
+    _id: "static:omarchy-site-tanstack-start-rebuild",
+    title: "I rebuilt the Omarchy site in TanStack Start in three days",
+    slug: "omarchy-site-tanstack-start-rebuild",
+    excerpt:
+      "I ported the Omarchy marketing site and full manual into TanStack Start \u2014 52 chapters, 16 news posts, Quattro hero etch, Vercel URL. Not the OS. The site.",
+    content: OMARCHYSITE_CONTENT,
+    coverImage: OMARCHYSITE_COVER,
+    tags: [
+      "omarchy",
+      "tanstack-start",
+      "tanstack-router",
+      "typescript",
+      "vercel",
+      "hyprland",
+      "quickshell",
+      "dhh",
+      "linux",
+      "martech",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-08T22:00:00Z"),
+    readingTime: 3,
+  },
+  {
+    _id: "static:omnux-gpu-mit-clean-room-m3-siege",
+    title: "omnux-gpu: I opened an MIT siege for M3 pixels and refused to call it a driver",
+    slug: "omnux-gpu-mit-clean-room-m3-siege",
+    excerpt:
+      "omnux-gpu is the clean-room MIT attempt at Apple M3 AGX \u2014 scaffold, fifteen public issues, capture-first method. No working driver. Hardware is the bottleneck.",
+    content: OMNUXGPU_CONTENT,
+    coverImage: OMNUXGPU_COVER,
+    tags: [
+      "omnux-gpu",
+      "omnux",
+      "asahi",
+      "apple-silicon",
+      "m3",
+      "gpu",
+      "agx",
+      "clean-room",
+      "mit",
+      "linux",
+      "reverse-engineering",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-08T21:00:00Z"),
+    readingTime: 6,
+  },
+  {
+    _id: "static:hurleyus-omarchy-catppuccin-rally-theme",
+    title: "Hurleyus: I put Catppuccin Mocha in Hurley rally livery on Omarchy",
+    slug: "hurleyus-omarchy-catppuccin-rally-theme",
+    excerpt:
+      "I forked stock Omarchy Catppuccin into Hurleyus \u2014 Mocha palette, seven pre-darkened 4K quattro walls, Plymouth unlock, and an Asahi U-Boot splash patch. colors.toml owns the terminals. The art owns the room.",
+    content: HURLEYUS_CONTENT,
+    coverImage: HURLEYUS_COVER,
+    tags: [
+      "hurleyus",
+      "omarchy",
+      "catppuccin",
+      "mocha",
+      "theme",
+      "hyprland",
+      "asahi",
+      "u-boot",
+      "plymouth",
+      "linux",
+      "quattro",
+      "wallpaper",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-08T20:30:00Z"),
+    readingTime: 5,
+  },
   {
     _id: "static:getat-me-relationship-first-link-in-bio",
     title: "GetAt.Me: I replaced the link list with a relationship console",
