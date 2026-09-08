@@ -3935,19 +3935,19 @@ const SHIPPREP_COVER =
 
 const SHIPPREP_CONTENT = `## Who
 
-I got tired of re-typing the same Biome/tsgo/Blacksmith/Vercel-off checklist into every Next/Bun root — so the checklist became a CLI that **applies by default**.
+I got tired of re-typing the same Biome/tsgo/Blacksmith/Vercel-off checklist into every Next/Bun root, so the checklist became a CLI that **applies by default**.
 
 For operators who want Vercel Git auto-deploy **off** on main/master and Blacksmith owning \`vercel deploy --prebuilt\`.
 
 ## What
 
-I built **shipprep** — private https://github.com/michaelmonetized/shipprep. HEAD \`c35a9d8\`. **6** commits. **0** stars. Version **0.1.0**. No README.
+I built **shipprep**, private https://github.com/michaelmonetized/shipprep. HEAD \`c35a9d8\`. **6** commits. **0** stars. Version **0.1.0**. No README.
 
-\`bin/shipprep.mts\` (**403** LOC). Shebang Bun. \`parseArgs\` defaults \`apply: true\`. \`--audit\` / \`--check\` flips read-only. Accepts em-dash \`—pwd\` from chat typography.
+\`bin/shipprep.mts\` (**403** LOC). Shebang Bun. \`parseArgs\` defaults \`apply: true\`. \`--audit\` / \`--check\` flips read-only. Accepts \`--pwd\` even when chat clients paste U+2014 in place of ASCII hyphens.
 
 ![APPLY report](/blog/shipprep-default-apply-biome-tsgo-blacksmith-vercel-off/screenshots/apply-report.png)
 
-**APPLY** writes package scripts (\`tsc\`/\`typecheck\` → \`tsgo --noEmit\`, \`lint\` → biome-lint), tsconfig bun+node + \`**/*.mts\`, \`scripts/dev-localhost*.mjs\`, \`scripts/ship.mts\`, freview \`pre-push\`, \`.github/workflows/ship.yml\` on \`blacksmith-4vcpu-ubuntu-2404\`, and \`vercel.json\` with \`git.deploymentEnabled.main/master = false\`.
+**APPLY** writes package scripts (\`tsc\`/\`typecheck\` to \`tsgo --noEmit\`, \`lint\` to biome-lint), tsconfig bun+node + \`**/*.mts\`, \`scripts/dev-localhost*.mjs\`, \`scripts/ship.mts\`, freview \`pre-push\`, \`.github/workflows/ship.yml\` on \`blacksmith-4vcpu-ubuntu-2404\`, and \`vercel.json\` with \`git.deploymentEnabled.main/master = false\`.
 
 ![Vercel git off](/blog/shipprep-default-apply-biome-tsgo-blacksmith-vercel-off/screenshots/vercel-git-off.png)
 
@@ -3957,9 +3957,11 @@ I built **shipprep** — private https://github.com/michaelmonetized/shipprep. H
 
 Required roots for validRoot: \`package.json\`, \`bun.lock\`, \`.vercel\`, \`.next\`. Tests in \`test/shipprep.test.ts\` (**122** LOC).
 
+Sibling tooling in the org: shipthing is a contacts CRM named for carrier rates; bundx-init is Caddy \`.localhost\` only. This CLI is the shipping-standard migrator.
+
 ## Where
 
-Code only: [github.com/michaelmonetized/shipprep](https://github.com/michaelmonetized/shipprep) — **private**. No live site.
+Code only: [github.com/michaelmonetized/shipprep](https://github.com/michaelmonetized/shipprep), **private**. No live site.
 
 \`\`\`bash
 bun bin/shipprep.mts --pwd ~/Projects/app
@@ -3968,17 +3970,23 @@ bun bin/shipprep.mts --audit --json
 
 ## When
 
-**2026-05-13 14:08→14:54** — audit → false positives → APPLY default → Vercel git off.  
-**2026-06-22** — nightly ×2 → \`.uncap\` → HEAD \`c35a9d8\`.
+**2026-05-13 14:08 ET.** \`d234692\` audit executable.
+
+**14:17 ET.** \`811a0ac\` false positives.
+
+**14:30 ET.** \`6cf4af4\` APPLY migrations; default flips to apply.
+
+**14:54 ET.** \`cf6928a\` disable Vercel git deploys.
+
+**2026-06-22.** nightly ×2, \`.uncap\`, HEAD \`c35a9d8\`.
 
 ![Commit arc](/blog/shipprep-default-apply-biome-tsgo-blacksmith-vercel-off/screenshots/commit-arc.png)
 
 ## Why
 
-Because audit-only tools leave you copy-pasting. Because Blacksmith prebuilt + Vercel git disabled is a **gate**, not a README hope. Because this is not shipthing (contacts CRM) and not bundx-init (\`.localhost\` only).
+Audit-only tools leave you copy-pasting. Blacksmith prebuilt plus Vercel git disabled is a **gate**, not a README hope. Default APPLY is the point of the tool; \`--audit\` stays opt-in.
 
 **Engagement Q:** Keep APPLY as the default, or flip to \`--audit\` default so a typo cannot rewrite twelve package scripts?
-
 `;
 
 const IPRO_COVER =
@@ -4185,24 +4193,24 @@ const HUSTLECONVERT_CONTENT = `![Home hero](/blog/hustleconvert-com-eight-dollar
 
 I keep a private GitHub org full of product shells. Some are real apps. Some are landers that talk like apps.
 
-For operators who need the honest split between a **$8/mo popup marketing site** and a claimed \`app.\` / CDN product that is not in this repo — and who should not mix this up with the email or helpdesk \`$8\` landers in the same org.
+For operators who need the honest split between an **$8/mo popup marketing site** and a claimed \`app.\` / CDN product that is not in this repo. Same org also holds email and helpdesk \`$8\` landers; this one is the popup lane.
 
 ## What
 
-I built **hustleconvert-com** — private \`https://github.com/michaelmonetized/hustleconvert-com\`. Next.js marketing shell. HEAD \`a5d3f13\`. **3** commits. 0 stars. package name \`hustleconvert.com@0.1.0\`. README is stock create-next-app.
+I built **hustleconvert-com**, private https://github.com/michaelmonetized/hustleconvert-com. Next.js marketing shell. HEAD \`a5d3f13\`. **3** commits. 0 stars. package name \`hustleconvert.com@0.1.0\`. README is stock create-next-app.
 
-Stack facts from \`package.json\`: Next **16.2.6**, React **19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there — no Clerk, no Convex, no Stripe package, no popup runtime SDK.
+Stack facts from \`package.json\`: Next **16.2.6**, React **19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there: no Clerk, no Convex, no Stripe package, no popup runtime SDK.
 
 What the UI claims:
 
-- Hero: “Popups that **don’t annoy**.” Badge: **Now with A/B testing.** CTAs to \`https://app.hustleconvert.com/signup\` and \`/templates\`.
+- Hero: Popups that **don't annoy**. Badge: **Now with A/B testing.** CTAs to \`https://app.hustleconvert.com/signup\` and \`/templates\`.
 - Trial strip: **14-day free trial · No credit card required**.
 - Features: visual builder, smart triggers (exit-intent / scroll / time / click), display rules, A/B, analytics, **50+** templates.
-- Competitor table: OptinMonster \`$20+/mo\`, Sumo \`$49+/mo\`, HustleConvert **\`$8/mo\`** with “Unlimited Popups” + “No Branding” checked.
+- Competitor table: OptinMonster \`$20+/mo\`, Sumo \`$49+/mo\`, HustleConvert **\`$8/mo\`** with Unlimited Popups + No Branding checked.
 - Pricing: **Free** (1 campaign / 1,000 impressions), **Pro $8/mo**, **Team $24/mo**. Annual Pro copy: **$80/year**.
-- FAQ text says Stripe (+ Team invoicing) — still no Stripe in deps.
+- FAQ text says Stripe (+ Team invoicing); still no Stripe in deps.
 - Brand: Tailwind \`brand.500 = #0ea5e9\`, \`accent.500 = #8b5cf6\`.
-- Docs “Quick Install” snippet points at \`https://cdn.hustleconvert.com/v1/hc.min.js\`.
+- Docs Quick Install snippet points at \`https://cdn.hustleconvert.com/v1/hc.min.js\`.
 
 ![Pricing plans](/blog/hustleconvert-com-eight-dollar-popup-lander-nxdomain/screenshots/pricing-plans.png)
 
@@ -4210,39 +4218,41 @@ What the UI claims:
 
 Real \`page.tsx\` routes: \`/\`, \`/pricing\`, \`/templates\`, \`/docs\`.
 
-Linked but **missing**: footer \`/blog\`, \`/help\`, \`/about\`, \`/contact\`, \`/privacy\`, \`/terms\`, \`/docs/changelog\`, \`/docs/api\`, and the docs children (\`/docs/quickstart\`, \`/docs/exit-intent\`, \`/docs/api/campaigns\`, …). \`/docs\` is an index of cards pointing at pages that do not exist. Auth is externalized to **\`app.hustleconvert.com\`** — not a local \`/signup\` route.
+Linked but **missing**: footer \`/blog\`, \`/help\`, \`/about\`, \`/contact\`, \`/privacy\`, \`/terms\`, \`/docs/changelog\`, \`/docs/api\`, and the docs children (\`/docs/quickstart\`, \`/docs/exit-intent\`, \`/docs/api/campaigns\`, …). \`/docs\` is an index of cards pointing at pages that do not exist. Auth is externalized to **\`app.hustleconvert.com\`** (not a local \`/signup\` route).
 
 ![Docs dead links](/blog/hustleconvert-com-eight-dollar-popup-lander-nxdomain/screenshots/docs-dead-links.png)
 
 ![Missing routes](/blog/hustleconvert-com-eight-dollar-popup-lander-nxdomain/screenshots/missing-routes.png)
 
-This is **not** \`hustlemail-com\` (email marketing vs ConvertKit) and **not** \`hustledesk-com\` (helpdesk). Same \`$8\` lander family. Different category.
+Sibling \`$8\` landers in the same org: hustlemail-com (email), hustledesk-com (helpdesk), hustleforms-com (forms).
 
 ## Where
 
-Code: [github.com/michaelmonetized/hustleconvert-com](https://github.com/michaelmonetized/hustleconvert-com) — private.
+Code: [github.com/michaelmonetized/hustleconvert-com](https://github.com/michaelmonetized/hustleconvert-com), private.
 
 Live probes at pack time:
 
-- \`hustleconvert-com.vercel.app\` / \`hustleconvert.vercel.app\` → **404** \`DEPLOYMENT_NOT_FOUND\`
-- \`hustleconvert.com\` → **NXDOMAIN** (no A/AAAA)
-- \`app.hustleconvert.com\` → **NXDOMAIN**
+- \`hustleconvert-com.vercel.app\` / \`hustleconvert.vercel.app\`: **404** \`DEPLOYMENT_NOT_FOUND\`
+- \`hustleconvert.com\`: **NXDOMAIN** (no A/AAAA)
+- \`app.hustleconvert.com\`: **NXDOMAIN**
 
 Local inspect clone: \`/tmp/cf-inspect/hustleconvert-com\` @ \`a5d3f13\`.
 
 ## When
 
-**2026-02-18 07:57 ET** — \`691b4b4\` feat: initial hustleconvert.com marketing site (+2526 / 24 files).  
-**2026-06-22 17:13 ET** — \`e97591f\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).  
-**2026-06-22 18:11 ET** — \`a5d3f13\` nightly empty tip (HEAD).
+**2026-02-18 07:57 ET.** \`691b4b4\` feat: initial hustleconvert.com marketing site (+2526 / 24 files).
+
+**2026-06-22 17:13 ET.** \`e97591f\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).
+
+**2026-06-22 18:11 ET.** \`a5d3f13\` nightly empty tip (HEAD).
 
 ![Commit arc](/blog/hustleconvert-com-eight-dollar-popup-lander-nxdomain/screenshots/commit-arc.png)
 
 ## Why
 
-Because a lander that prices against OptinMonster still needs a resolvable product surface before it is a product story. Because \`app.\` and \`cdn.\` strings in JSX are not a shipped runtime. Because NXDOMAIN is a cleaner failure mode than a parked WordPress front page — and still not a launch.
+A lander that prices against OptinMonster still needs a resolvable product surface before it is a product story. \`app.\` and \`cdn.\` strings in JSX are marketing copy, not a shipped runtime. NXDOMAIN is a cleaner failure mode than a parked WordPress front page; it is still not a launch.
 
-**Engagement Q:** How many of your “$8/mo SaaS” repos are four marketing pages pointing at an NXDOMAIN \`app.\` subdomain?
+**Engagement Q:** How many of your $8/mo SaaS repos are four marketing pages pointing at an NXDOMAIN \`app.\` subdomain?
 `;
 
 const HUSTLECRM_COVER =
@@ -4327,25 +4337,25 @@ const HUSTLEFORMS_CONTENT = `![Home hero](/blog/hustleforms-com-eight-dollar-crm
 
 I keep a private GitHub org full of product shells. Some are real apps. Some are landers that talk like apps.
 
-For operators who need the honest split between a **$8/mo form-builder marketing site** and a claimed CRM/embed product that is not in this repo — and who should not mix this up with the popup, email, or helpdesk \`$8\` landers in the same org.
+For operators who need the honest split between an **$8/mo form-builder marketing site** and a claimed CRM/embed product that is not in this repo. Same org also holds popup, email, and helpdesk \`$8\` landers; this one is the forms lane.
 
 ## What
 
-I built **hustleforms-com** — private \`https://github.com/michaelmonetized/hustleforms-com\`. Next.js marketing shell. HEAD \`80c54f4\`. **3** commits. 0 stars. package name \`hustleforms.com@0.1.0\`. README is stock create-next-app.
+I built **hustleforms-com**, private https://github.com/michaelmonetized/hustleforms-com. Next.js marketing shell. HEAD \`80c54f4\`. **3** commits. 0 stars. package name \`hustleforms.com@0.1.0\`. README is stock create-next-app.
 
-Stack facts from \`package.json\`: Next **16.2.6**, React **19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there — no Clerk, no Convex, no Stripe package, no form runtime SDK, no HubSpot/Salesforce client.
+Stack facts from \`package.json\`: Next **16.2.6**, React **19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there: no Clerk, no Convex, no Stripe package, no form runtime SDK, no HubSpot/Salesforce client.
 
 What the UI claims:
 
-- Hero: “Forms that feed **your CRM**.” Badge: **Now with AI-powered form suggestions.** CTAs to \`/signup\` and \`/templates\`.
-- Strip: **No credit card required • Free plan available**.
+- Hero: Forms that feed **your CRM**. Badge: **Now with AI-powered form suggestions.** CTAs to \`/signup\` and \`/templates\`.
+- Strip: **No credit card required · Free plan available**.
 - Features: drag-and-drop builder, conditional logic, file uploads, embed anywhere, webhooks, **Direct CRM Sync** (HubSpot / Salesforce / Pipedrive).
-- Home competitor cards: Typeform \`$29+\`, Jotform \`$34+\`, Wufoo \`$19+\`, HustleForms **\`$8\`** “BEST VALUE”.
+- Home competitor cards: Typeform \`$29+\`, Jotform \`$34+\`, Wufoo \`$19+\`, HustleForms **\`$8\`** BEST VALUE.
 - Pricing table: Unlimited forms / 10,000 submissions / CRM / remove branding at **$8/mo** vs Typeform \`$29\` / Jotform \`$34\`.
-- Pricing plans: **Free** (3 forms / 100 submissions), **Pro $8/mo**, **Business $24/mo** (SSO/SAML, API, custom domains). Annual FAQ: **20% off** → \`$6.40\` / \`$19.20\`.
-- FAQ text claims HubSpot/Salesforce/Pipedrive/Zoho + webhooks + 14-day trial — still no CRM or Stripe packages.
+- Pricing plans: **Free** (3 forms / 100 submissions), **Pro $8/mo**, **Business $24/mo** (SSO/SAML, API, custom domains). Annual FAQ: **20% off** = \`$6.40\` / \`$19.20\`.
+- FAQ text claims HubSpot/Salesforce/Pipedrive/Zoho + webhooks + 14-day trial; still no CRM or Stripe packages.
 - Brand: Tailwind \`brand.500 = #0ea5e9\`, \`accent.500 = #8b5cf6\` (same sky+violet tokens as hustleconvert-com).
-- Docs embed snippet: \`\` <script src="https://hustleforms.com/embed/YOUR_FORM_ID.js"></script> \`\`.
+- Docs embed snippet: \`<script src="https://hustleforms.com/embed/YOUR_FORM_ID.js"></script>\`.
 
 ![Pricing plans](/blog/hustleforms-com-eight-dollar-crm-form-lander-nxdomain/screenshots/pricing-plans.png)
 
@@ -4353,39 +4363,41 @@ What the UI claims:
 
 Real \`page.tsx\` routes: \`/\`, \`/pricing\`, \`/templates\`, \`/docs\`.
 
-Linked but **missing**: \`/signup\`, \`/login\`, \`/contact\`, and footer \`#\` stubs (Integrations, Blog, Changelog, About, Privacy, Terms, API Reference). \`/docs\` is a single page of **hash-anchor** cards — not separate child routes — plus resource links that are literally \`href="#"\`. Auth is **not** externalized to \`app.hustleforms.com\` (that subdomain is also NXDOMAIN); it is simply a local route that was never added.
+Linked but **missing**: \`/signup\`, \`/login\`, \`/contact\`, and footer \`#\` stubs (Integrations, Blog, Changelog, About, Privacy, Terms, API Reference). \`/docs\` is a single page of **hash-anchor** cards (not separate child routes) plus resource links that are literally \`href="#"\`. Auth is a local route that was never added; \`app.hustleforms.com\` is also NXDOMAIN.
 
 ![Docs hash anchors](/blog/hustleforms-com-eight-dollar-crm-form-lander-nxdomain/screenshots/docs-hash-anchors.png)
 
 ![Missing routes](/blog/hustleforms-com-eight-dollar-crm-form-lander-nxdomain/screenshots/missing-routes.png)
 
-This is **not** \`hustleconvert-com\` (popups vs OptinMonster), **not** \`hustlemail-com\` (email), and **not** \`hustledesk-com\` (helpdesk). Same \`$8\` lander family. Different category.
+Sibling \`$8\` landers in the same org: hustleconvert-com (popups), hustlemail-com (email), hustledesk-com (helpdesk).
 
 ## Where
 
-Code: [github.com/michaelmonetized/hustleforms-com](https://github.com/michaelmonetized/hustleforms-com) — private.
+Code: [github.com/michaelmonetized/hustleforms-com](https://github.com/michaelmonetized/hustleforms-com), private.
 
 Live probes at pack time:
 
-- \`hustleforms-com.vercel.app\` / \`hustleforms.vercel.app\` → **404** \`DEPLOYMENT_NOT_FOUND\`
-- \`hustleforms.com\` → **NXDOMAIN** (no A/AAAA)
-- \`www.hustleforms.com\` / \`app.hustleforms.com\` / \`cdn.hustleforms.com\` → **NXDOMAIN**
+- \`hustleforms-com.vercel.app\` / \`hustleforms.vercel.app\`: **404** \`DEPLOYMENT_NOT_FOUND\`
+- \`hustleforms.com\`: **NXDOMAIN** (no A/AAAA)
+- \`www.hustleforms.com\` / \`app.hustleforms.com\` / \`cdn.hustleforms.com\`: **NXDOMAIN**
 
 Local inspect clone: \`/tmp/cf-inspect/hustleforms-com\` @ \`80c54f4\`.
 
 ## When
 
-**2026-02-18 07:53 ET** — \`a516ca1\` feat: initial hustleforms.com marketing site (+2486 / 24 files).  
-**2026-06-22 17:11 ET** — \`7b5aeb9\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).  
-**2026-06-22 18:10 ET** — \`80c54f4\` nightly empty tip (HEAD).
+**2026-02-18 07:53 ET.** \`a516ca1\` feat: initial hustleforms.com marketing site (+2486 / 24 files).
+
+**2026-06-22 17:11 ET.** \`7b5aeb9\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).
+
+**2026-06-22 18:10 ET.** \`80c54f4\` nightly empty tip (HEAD).
 
 ![Commit arc](/blog/hustleforms-com-eight-dollar-crm-form-lander-nxdomain/screenshots/commit-arc.png)
 
 ## Why
 
-Because a lander that prices against Typeform still needs a resolvable product surface before it is a product story. Because HubSpot/Salesforce strings in JSX and an embed script on an NXDOMAIN apex are not a shipped runtime. Because relative \`/signup\` with no \`page.tsx\` is a quieter failure mode than an \`app.\` subdomain — and still not a launch.
+A lander that prices against Typeform still needs a resolvable product surface before it is a product story. HubSpot/Salesforce strings in JSX and an embed script on an NXDOMAIN apex are marketing copy, not a shipped runtime. Relative \`/signup\` with no \`page.tsx\` is a quieter failure mode than an \`app.\` subdomain; it is still not a launch.
 
-**Engagement Q:** How many of your “forms that feed your CRM” repos are four marketing pages where Start Free points at a route that does not exist?
+**Engagement Q:** How many of your forms-that-feed-your-CRM repos are four marketing pages where Start Free points at a route that does not exist?
 `;
 
 const NEOVIM_IDE_COVER =
@@ -5109,13 +5121,13 @@ const CONNECTEDIN_COVER =
 
 const CONNECTEDIN_CONTENT = `## Who
 
-I still hit LinkedIn people-search pages where the work is repetitive Connect clicks — and I still want the delay, the stop button, and the weekly ceiling visible before the loop runs away.
+I still hit LinkedIn people-search pages where the work is repetitive Connect clicks, and I still want the delay, the stop button, and the weekly ceiling visible before the loop runs away.
 
 For operators who load-unpacked a tiny MV3 tool on their own account, not a SaaS growth bot.
 
 ## What
 
-I shipped **ConnectedIn** — public https://github.com/michaelmonetized/ConnectedIn. HEAD \`a6236fa\`. **2** commits. Version **1.0.0**. Manifest V3 popup + \`content.js\` clicker.
+I shipped **ConnectedIn**, public https://github.com/michaelmonetized/ConnectedIn. HEAD \`a6236fa\`. **2** commits. Version **1.0.0**. Manifest V3 popup + \`content.js\` clicker.
 
 ![Content loop](/blog/connectedin-mv3-linkedin-auto-connect-chrome-extension/screenshots/content-loop.png)
 
@@ -5123,31 +5135,35 @@ Popup: delay input (100–5000ms, default 500), Start/Stop, clicked/remaining st
 
 ![Manifest gaps](/blog/connectedin-mv3-linkedin-auto-connect-chrome-extension/screenshots/manifest-gaps.png)
 
-Honest gaps on day one: manifest declares icons under \`images/\` but **no images directory**; **no \`content_scripts\` entry** so \`content.js\` is not auto-injected — popup \`sendMessage\` has nothing to talk to unless something else injects the file. \`scripting\` permission is unused.
+Honest gaps on day one: manifest declares icons under \`images/\` but **no images directory**; **no \`content_scripts\` entry** so \`content.js\` is not auto-injected; popup \`sendMessage\` has nothing to talk to unless something else injects the file. \`scripting\` permission is unused.
 
 ![Rate limit](/blog/connectedin-mv3-linkedin-auto-connect-chrome-extension/screenshots/rate-limit.png)
 
-README + INSTALL.md document LinkedIn’s weekly ceiling, delay bands, and that automation sits awkwardly against LinkedIn ToS — personal-use framing only.
+README + INSTALL.md document LinkedIn’s weekly ceiling, delay bands, and that automation sits awkwardly against LinkedIn ToS (personal-use framing only).
 
 ## Where
 
-Code: [github.com/michaelmonetized/ConnectedIn](https://github.com/michaelmonetized/ConnectedIn) — public MIT.
+Code: [github.com/michaelmonetized/ConnectedIn](https://github.com/michaelmonetized/ConnectedIn), public MIT.
 
 \`\`\`bash
 git clone https://github.com/michaelmonetized/ConnectedIn.git
-# chrome://extensions → Developer mode → Load unpacked → select folder
-# open linkedin.com people search → click extension → Start Clicking
+# chrome://extensions: Developer mode, Load unpacked, select folder
+# open linkedin.com people search, click extension, Start Clicking
 \`\`\`
 
 ## When
 
-**2026-03-21 15:30 ET** — init (+548, 7 files). **15:31 ET** — INSTALL.md (+147) → HEAD a6236fa. Queue \`pushed_at\` **2026-03-21T19:31:06Z**.
+**2026-03-21 15:30 ET.** init (+548, 7 files).
+
+**15:31 ET.** INSTALL.md (+147). HEAD \`a6236fa\`.
+
+Queue \`pushed_at\` **2026-03-21T19:31:06Z**.
 
 ![Commit arc](/blog/connectedin-mv3-linkedin-auto-connect-chrome-extension/screenshots/commit-arc.png)
 
 ## Why
 
-A Connect clicker is only useful if the delay and the weekly ceiling are first-class — and if the manifest actually wires the content script.
+A Connect clicker is only useful if the delay and the weekly ceiling are first-class, and if the manifest actually wires the content script.
 
 **Engagement Q:** Fix \`content_scripts\` + icons first, or rewrite the selector against today’s LinkedIn DOM?
 `;
@@ -6548,7 +6564,7 @@ export const staticPosts: StaticPost[] = [
     title: "ConnectedIn: MV3 LinkedIn auto-connect Chrome extension",
     slug: "connectedin-mv3-linkedin-auto-connect-chrome-extension",
     excerpt:
-      "Public michaelmonetized/ConnectedIn is a Manifest V3 Chrome extension that auto-clicks LinkedIn Connect buttons with configurable 100\u20135000ms delays, popup stats, chrome.storage.sync persistence, and a ~1,100 connects/week rate-limit warning. Same-afternoon 2-commit ship (init + INSTALL.md). HEAD a6236fa. Honest gaps: no content_scripts registration, missing images/icons. Not reaferral-chrome-extension scaffold, not buffer-cli.",
+      "Public michaelmonetized/ConnectedIn is a Manifest V3 Chrome extension that auto-clicks LinkedIn Connect buttons with configurable 100-5000ms delays, popup stats, chrome.storage.sync persistence, and a ~1,100 connects/week rate-limit warning. Same-afternoon 2-commit ship (init + INSTALL.md). HEAD a6236fa. Gaps: no content_scripts registration, missing images/icons.",
     content: CONNECTEDIN_CONTENT,
     coverImage: CONNECTEDIN_COVER,
     tags: [
@@ -7063,7 +7079,7 @@ export const staticPosts: StaticPost[] = [
     title: "hustleforms.com: $8/mo CRM form lander, Typeform table, NXDOMAIN",
     slug: "hustleforms-com-eight-dollar-crm-form-lander-nxdomain",
     excerpt:
-      "Private Next 16 marketing shell for HustleForms \u2014 Free / $8 Pro / $24 Business, Typeform/Jotform/Wufoo comparison, FormBuilderPreview mock, templates gallery, docs hash-anchor index. CTAs to local /signup|/login|/contact (no pages). Claimed domain NXDOMAIN; vercel.app DEPLOYMENT_NOT_FOUND. Stock create-next-app README. 3 commits. HEAD 80c54f4. Not a live form product.",
+      "Private michaelmonetized/hustleforms-com is a Next 16 marketing shell (Free / $8 Pro / $24 Business, Typeform/Jotform/Wufoo table, docs hash-anchor index). CTAs hit local /signup|/login|/contact with no pages; hustleforms.com NXDOMAIN; vercel.app DEPLOYMENT_NOT_FOUND. Stock create-next-app README. 3 commits. HEAD 80c54f4.",
     content: HUSTLEFORMS_CONTENT,
     coverImage: HUSTLEFORMS_COVER,
     tags: [
@@ -7179,7 +7195,7 @@ export const staticPosts: StaticPost[] = [
     title: "hustleconvert.com: $8/mo popup lander, OptinMonster table, NXDOMAIN",
     slug: "hustleconvert-com-eight-dollar-popup-lander-nxdomain",
     excerpt:
-      "Private Next 16 marketing shell for HustleConvert \u2014 Free / $8 Pro / $24 Team, OptinMonster vs Sumo comparison, templates gallery, docs index of dead child links. Auth CTAs point at app.hustleconvert.com; claimed domain NXDOMAIN; vercel.app DEPLOYMENT_NOT_FOUND. Stock create-next-app README. 3 commits. HEAD a5d3f13. Not a live popup product.",
+      "Private michaelmonetized/hustleconvert-com is a Next 16 popup marketing shell (Free / $8 Pro / $24 Team, OptinMonster vs Sumo table, docs index of dead child links). Auth CTAs point at app.hustleconvert.com; claimed domain NXDOMAIN; vercel.app DEPLOYMENT_NOT_FOUND. Stock create-next-app README. 3 commits. HEAD a5d3f13.",
     content: HUSTLECONVERT_CONTENT,
     coverImage: HUSTLECONVERT_COVER,
     tags: [
