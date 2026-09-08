@@ -2130,7 +2130,422 @@ Which world would you open first after the instrument — brutalist, neon, or ze
 `;
 
 
+const DJSIDETHREE_COVER =
+  "/blog/djsidethree-wnc-wedding-dj-funnel-after-clerk-cut/cover.png";
+
+const DJSIDETHREE_CONTENT = `![DJ Side Three homepage hero](/blog/djsidethree-wnc-wedding-dj-funnel-after-clerk-cut/screenshots/home.png)
+
+## Who
+
+I wanted a wedding DJ site for Western North Carolina that did not hide the price behind “request a quote” theater.
+
+Couples in Asheville, Boone, and Highlands still get Instagram DMs and PDF menus. I wanted a one-pager: soundtrack promise up top, three packages with numbers, availability form at the bottom, admin board for whoever answers the phone.
+
+This is for engaged couples shopping entertainment, for venues that need a link that is not a Linktree, and for operators who will ship Convex inquiries before they cosplay a full SaaS auth stack.
+
+If you build local-service Next apps and have watched Clerk + CAPTCHA + Sentry take down a marketing page with a 500, you are in the room.
+
+## What
+
+Live at [djsidethree.com](https://www.djsidethree.com/). Private repo [HurleyUS/djsidethree.com](https://github.com/HurleyUS/djsidethree.com). Package **djsideThree** **0.1.0**, Bun, Next.js **16.2.6**, React 19, Tailwind 4, purple/pink on black.
+
+Lockfile reality: Convex, Resend, PostHog, Stripe, Phosphor, Zod, React Hook Form, next-themes. README still lists Clerk/Sentry/Radix from the scaffold era — those got cut or never shipped in the live tree.
+
+![Services — ceremony, reception, lighting](/blog/djsidethree-wnc-wedding-dj-funnel-after-clerk-cut/screenshots/services.png)
+
+What the page actually sells:
+
+- **Ceremony** from **$500** — sound, two wireless mics, prelude/processional/recessional, officiant coordination
+- **Reception** from **$1,200** (Most Popular) — four-hour DJ, lighting, MC, requests, cocktail hour, backup gear
+- **Full Day** from **$1,500** — ceremony + reception, up to eight hours, upgraded lighting, rehearsal/timeline help
+
+![Wedding packages $500 / $1200 / $1500](/blog/djsidethree-wnc-wedding-dj-funnel-after-clerk-cut/screenshots/packages.png)
+
+Inquiry path: \`#contact\` form → Zod client validation → Convex \`inquiries.create\` (future date check, normalize email, **3/email/hour** server rate limit, Resend notification schedule). Client also throttles resubmits to 60 seconds. Testimonials pull approved Convex rows or fall back to three static couple quotes. \`/admin\` shows New / Contacted / Booked / Total — on 2026-09-08 capture: all zeros and skeleton rows (no live inquiry data in that session).
+
+![Check Availability inquiry form](/blog/djsidethree-wnc-wedding-dj-funnel-after-clerk-cut/screenshots/contact.png)
+
+Honesty: hero claims **200+** weddings / **5.0** / **10+** years are marketing copy. Footer phone is \`(828) 555-0123\`. Stripe is a dependency and a Cursor rule, not a deposit checkout on the page. Clerk identity checks remain in Convex admin functions after the Clerk provider was removed — the admin board is not “secure by UI hope.”
+
+## Where
+
+Public product: [www.djsidethree.com](https://www.djsidethree.com/) (apex 307s to www). Vercel alias \`djsidethree-com.vercel.app\`. Routes: \`/\`, \`/admin\`. Single-page anchors: \`#services\` \`#packages\` \`#testimonials\` \`#contact\`.
+
+Code stays private under HurleyUS. Host Vercel; Blacksmith/prebuilt CI path in May; HEAD sets \`X-Robots-Tag: index, follow\`.
+
+## When
+
+**2026-01-08.** Scaffold Next + Convex + Tailwind. Same day: OPPORTUNITIES/PLAN, then **complete DJ landing MVP** — hero, services, packages, testimonials, contact — plus seed script, Resend path, and admin dashboard. That is the product surface.
+
+**2026-02-06–13.** Next 16 / React 19, Tailwind v4 CSS import fix, Convex generated types, dark mode defaults, build/design-rule cleanup.
+
+**2026-02-21–22.** Hardening week: inquiry auth checks + validation, focus rings, label associations, mobile hamburger, skeletons, Phosphor instead of lucide, Zod + rate limiting, Turnstile CAPTCHA, Server Component extract for static sections, Clerk middleware on \`/admin\`.
+
+**2026-02-27.** The plot twist: **\`fix: remove Clerk, Turnstile, and Sentry — fix production 500 error\`** (\`be461fc\`). Auth/CAPTCHA/error-tracking chrome was cheaper to delete than to keep misconfigured in prod.
+
+**Late Feb → early March.** P1 security follow-ups, inquiry rate limit **3/email/hour**, env validation fail-fast.
+
+**May.** Seven “Standardize Blacksmith CI gates” commits plus deploy URL verification — CI theater, little marketing surface change.
+
+**2026-08-08.** HEAD \`2c804ad\` — robots index/follow header. Forty-three commits on the clock.
+
+## Why
+
+A wedding DJ site that hides price and inquiry behind “book a call” is a brochure. I wanted packages and a form in production first.
+
+When Clerk + Turnstile + Sentry 500’d the marketing page, I cut them. Zod, rate limits, Phosphor, and the Convex inquiry shape stayed. Deposits and real admin auth can earn their way back — the soundtrack page should not die for missing keys.
+
+Would you keep an unprotected \`/admin\` board after ripping Clerk, or is a single shared secret / Convex auth identity the next Saturday morning?
+`;
+
+const EVERYTHINGMONETIZED_COVER =
+  "/blog/everythingmonetized-parody-lms-course-bros/cover.png";
+
+const EVERYTHINGMONETIZED_CONTENT = `![EverythingMonetized live hero — Cohort 04 parody LMS academy redesign](/blog/everythingmonetized-parody-lms-course-bros/screenshots/home-live.png)
+
+## Who
+
+I build products in public for operators who can smell a funnel from across the room. The course economy already sells the same promise on a loop: buy a course about making money by selling courses about making money. Fans of that bit — and builders who want the satire to have a real schema — are who this is for.
+
+If you already read the MerchWinner pack (POD course marketplace, empty catalog) or iLeague (golf creator Stripe), this is a different lane. EverythingMonetized is intentional parody of the guru machine, not a commerce vertical wearing a joke title.
+
+## What
+
+I shipped a parody LMS under \`HurleyUS/everythingmonetized.com\`.
+
+README one-liner: **Parody site where AI generated course bros sell course bro courses to aspiring course bros.** Live metadata: **Where Course Bros Monetize Everything.** The May 22 redesign hero is blunter: **The parody LMS for learning how the course economy sells itself.**
+
+Stack on the box: **Next.js 16.2.6**, React 19.2.6, **Convex**, Tailwind v4, Phosphor, Framer Motion, Radix, next-themes (dark default), PostHog, Sentry, Resend. Bun. Package **everythingmonetized** **0.1.0**. Private HurleyUS repo. Public site at [www.everythingmonetized.com](https://www.everythingmonetized.com).
+
+![Illustrative course catalog — 9 of 10 seeded absurd titles](/blog/everythingmonetized-parody-lms-course-bros/screenshots/courses.png)
+
+Convex schema is the product spine:
+
+- \`courseBros\` — name, slug, tagline, bio, catchphrases, specialties, socialProof, featured
+- \`courses\` — absurd titles, inflated \`originalPrice\`, modules/lessons, category, search index
+- \`testimonials\` — always-verified parody outcomes
+- \`subscribers\` — newsletter with email dedupe + source
+- \`purchases\` — pending/completed/refunded; paymentMethod includes **exposure**
+- \`rateLimits\` — newsletter + purchase mutations
+
+Seed ships **5** AI gurus (Chad Hustlemax, Brandon Scale, Tiffany Funnel, Derek Dropship, Maximilian Leverage) and **10** courses from $2,997 to $8,997 — titles like *How to Find Your First Course Idea (By Buying This Course)* and *Mindset Mastery: Think Rich, Stay Poor (Until You Buy This)*. Avatars and thumbs are Pollinations prompt URLs.
+
+Admin is a full CRUD plane: bros, courses, testimonials, subscribers. Auth is a **password cookie** (\`ADMIN_PASSWORD\`, fail-secure after Feb 15). \`@clerk/nextjs\` sits in package.json; public Clerk billing is README fiction — TODO from Feb 13 says no Clerk auth.
+
+Purchase success copy is the thesis: congratulations, course bro — **no actual course will be delivered**. Commitment to the bit is the product.
+
+![Illustrative course detail — High-Ticket Alchemy parody checkout](/blog/everythingmonetized-parody-lms-course-bros/screenshots/course-detail.png)
+
+What is also true on pack day: the live \`/courses\` page says **Showing 0 of 0 courses**. Seed exists. Production Convex is empty or unconfigured. TODO still blocks on GitHub issue #1 — Convex env vars on Vercel. sitrep.md still claims PROTOTYPE / last commit Jan 31 / LOW priority. README still says Next 15.5.6. That drift is the story, not a footnote.
+
+## Where
+
+It runs on Vercel. Apex \`everythingmonetized.com\` 307s to www. Alias \`everythingmonetized-com.vercel.app\` also 200. \`vercel.json\` disables git auto-deploy on main/master and, as of Aug 8, sends \`X-Robots-Tag: index, follow\`.
+
+Surfaces that matter:
+
+- Public lander — teal academy hero, learning-dashboard.tsx card, featured tracks, faculty, learner outcomes, weekly lab newsletter
+- Catalog — search / category / price / sort / pagination
+- Bro profiles — \`/bros/[slug]\`
+- Course detail — modules + parody purchase form
+- About — mission + core values (Hustle Over Health, etc.)
+- Admin — password gate via \`proxy.ts\`
+
+Audience sits with satire builders, MarTech operators, and anyone comparing a seeded Convex backend to a live empty catalog.
+
+![Live courses page — Showing 0 of 0](/blog/everythingmonetized-parody-lms-course-bros/screenshots/courses-live.png)
+
+## When
+
+**2026-01-08.** Initial Next.js + Convex + Tailwind. OPPORTUNITIES.md and PLAN.md the same day — the bit was named early.
+
+**January 31.** Chore sync.
+
+**February 6.** Next.js 16 + React 19. Tailwind v4 \`@import\` fix.
+
+**February 8.** The product day. Admin panel, tests, search/filter/SEO, edit pages — CHANGELOG **0.1.0** lists five tables, parody purchase, Pollinations images, 48 unit tests, Playwright config, PostHog, Sentry, rate limits.
+
+**February 13.** Production readiness: BUILDING.md button compliance, dark mode via next-themes, \`proxy.ts\` naming for Next 16.
+
+**February 15.** Security: remove hardcoded admin password + fallback. Fail closed if \`ADMIN_PASSWORD\` missing.
+
+**February 21.** lucide → \`@phosphor-icons/react\`.
+
+**April 6.** ESLint / vitest chore.
+
+**May 13–15.** shipprep + Blacksmith CI gate spam, then deploy health URL fixes. Same CI noise pattern as sibling HurleyUS templates — but this repo already had the Feb product pass underneath.
+
+**May 22.** **redesign.** Teal/slate academy UI on home, cards, header/footer, newsletter. Orange hustle-gradient brand in DESIGN.md becomes the light-theme leftover; dark default is the live look.
+
+**August 8, 6:54 AM ET.** HEAD \`e7c6a61\` — \`X-Robots-Tag: index, follow\`. Thirty-one commits on \`main\`.
+
+**September 8 pack day.** Live lander matches redesign. Catalog still 0/0. Draft only.
+
+![Illustrative faculty row — five AI course-bro operators](/blog/everythingmonetized-parody-lms-course-bros/screenshots/bros.png)
+
+## Why
+
+Satire of the course economy fails when it is only a landing meme. It needs personas, a catalog, an admin plane, and a checkout that confesses the joke. I wanted that spine in Convex — not a static joke page.
+
+I also refused to pretend production was seeded. Robots say index,follow. Courses say 0 of 0. Seed.ts says ten high-ticket absurdities. Those three sentences together are the operator note.
+
+If you ship a parody LMS next, what do you fix first — seed Convex so the bit has inventory, or leave Showing 0 of 0 as the meta punchline?
+`;
+
+const CRAVEES_COVER =
+  "/blog/cravees-catering-martech-agency-site/cover.png";
+
+const CRAVEES_CONTENT = `![Cravees home — Turn hungry searches into booked tables](/blog/cravees-catering-martech-agency-site/screenshots/home.png)
+
+## Who
+
+I got tired of watching catering businesses buy generic agency retainers that treat a wedding buffet like a SaaS landing page.
+
+Catering is feast-or-famine. Wedding season starts when venues book. Corporate lunch messaging is not private-event messaging. Deposit timing matters. A Google Business profile can become tasting appointments — or a photo graveyard.
+
+Cravees is for caterers and restaurant catering arms who need demand this month: inquiry lift, reorder lists, review velocity. Operators who want a vertical agency site on a real stack — Next, Convex, Clerk, Stripe — with lead status enums that survive a failed Resend delivery. Builders who will admit the public pricing cards and the Stripe \`planSlug\` ladder are not the same numbers yet.
+
+If you have ever explained to a marketing generalist why plated service and buffet are different offers, you are in the room.
+
+## What
+
+I built **Cravees** — package name \`cravees\`, version **0.1.0**, private under **HurleyUS/cravees.com**. Metadata line: *Marketing Agency for the Catering Industry*. Hero line: **Turn hungry searches into booked tables, events, and repeat orders.**
+
+Stack facts from the lockfile and tree, not the stale sitrep: **Next.js 16.2.6**, **React 19.2.6**, **Tailwind 4.3**, Bun, **Convex** schema + mutations, **Clerk** auth surfaces, **Stripe** checkout/portal/webhook, Catppuccin Mocha with peach primary, Resend/Sentry/PostHog/GA wired. Seventy-three commits. HEAD \`ab0c4cb\`.
+
+![Pricing — Starter Growth Premium](/blog/cravees-catering-martech-agency-site/screenshots/pricing.png)
+
+Surfaces that exist in \`app/\`: \`/\` marketing with demand cockpit + case studies + testimonials + FAQ + ROI embed, \`/about\`, \`/pricing\` with comparison table, \`/blog\` + three SEO posts, \`/contact\` enhanced form (business type + service interests), \`/book\` Calendly, \`/roi-calculator\`, four \`/services/*\` landings, Clerk catch-alls, private \`/dashboard\` (+ messages, assets), newsletter + Stripe API routes.
+
+Convex tables: \`leads\`, \`subscribers\`, \`clients\`, \`subscriptions\`, \`addOnPurchases\`. Lead pipeline: **new → contacted → qualified → proposal → won | lost**. Public packages: Starter **$299**, Growth **$599**, Premium **$999**. Stripe definitions in \`lib/billing.ts\`: Bronze **$499**, Silver **$999**, Gold **$1,999** (+ annual labels). Add-ons: extra social post $49, rush design $199, additional listing $99.
+
+That dual ladder is not a typo in this write-up. It is the product honesty.
+
+![ROI calculator](/blog/cravees-catering-martech-agency-site/screenshots/roi-calculator.png)
+
+## Where
+
+Code lives at [github.com/HurleyUS/cravees.com](https://github.com/HurleyUS/cravees.com) — **private**. GitHub homepage points at [cravees-com.vercel.app](https://cravees-com.vercel.app). Custom domain [www.cravees.com](https://www.cravees.com) also **200** at pack time. Apex redirects to www. Auth-gated \`/dashboard\` and \`/sign-in\` returned **500** without living Clerk keys — marketing stays up because May commits taught the app to tolerate missing auth/env.
+
+Audience sits next to restaurant marketing shops, with a catering-only pitch: inquiry funnels, seasonal search pages, winback email for lapsed brunch guests. Sibling operator furniture is present — \`.hustlemc\`, Blacksmith ship workflow, Vitest/Playwright, Stripe type-safe webhooks.
+
+![About — catering-only positioning](/blog/cravees-catering-martech-agency-site/screenshots/about.png)
+
+## When
+
+**2026-01-08.** \`8b80d36\` Initial commit: Next.js, Convex, Tailwind. Same morning OPPORTUNITIES. Afternoon PLAN. Market thesis lands day one: ~12k dedicated caterers, $60B+ industry framing, Starter/Growth/Premium sketch.
+
+**2026-01-31 / 2026-02-05.** Sync. Prod build ready. Tailwind v4 globals \`@import\` fix.
+
+**2026-02-13.** Catppuccin Mocha default. Routes, contact, pricing, about. Four service landing pages. Replace a real business name with fictional **Copper Kettle Catering** — quiet ethics commit.
+
+**2026-02-21–24.** The agency week. Zod schemas shared across form + API. XSS sanitize on contact HTML email. Clerk middleware. Convex lead storage. FAQ. Testimonials. Pricing comparison table. Blog section. Calendly booking. PostHog. ROI calculator page. Portfolio/case-study cards. Newsletter + Resend double opt-in. Protected client portal scaffold.
+
+**2026-03.** SEO robots/sitemap/GA. Stripe type-safety and event guards. Enhanced contact form. Interactive ROI on the homepage.
+
+**2026-05-14–22.** Blacksmith CI and deploy verification. Keep public site up without auth env; disable Clerk UI for dummy keys; tolerate invalid Resend sender. Redesign commits. Merge blacksmith migration PR #64.
+
+**2026-08-08, 06:54 ET.** \`ab0c4cb\` set X-Robots-Tag to index, follow on Vercel. HEAD. Seventy-three commits total.
+
+**Pack day 2026-09-08.** Draft and assets only. Live marketing 200 on vercel + www. \`sitrep.md\` still claims purpose unclear and last commit February 5 — treat it as drift, not truth.
+
+![Blog index — three catering posts](/blog/cravees-catering-martech-agency-site/screenshots/blog.png)
+
+## Why
+
+I did not want another hospitality brochure with stock plate photography and a contact form that emails into the void.
+
+I wanted lead status enums next to subscription sync. I wanted an ROI calculator that routes into the same contact pipeline as the pricing CTA. I wanted newsletter double opt-in and a client portal sidebar even while \`/dashboard\` still 500s without Clerk. I wanted the public $299/$599/$999 story and the Stripe bronze/silver/gold amounts to be visible in the same repo so nobody pretends they already match.
+
+So the February issue board became the agency: close FAQ, social proof, pricing table, blog, book, analytics, ROI, newsletter, portal. March hardened SEO and Stripe. May made the public site survive missing secrets. August flipped robots headers on a site that actually answers.
+
+If your catering marketing pitch promises “full-service growth” and your \`leads\` table cannot say \`qualified\`, you already know the hole I was staring at.
+
+Would you ship the public Starter/Growth/Premium ladder first, or make the Stripe bronze/silver/gold amounts match the pricing page before the next catering discovery call?
+`;
+
+const COORDINATORAPP_COVER =
+  "/blog/coordinatorapp-api-queue-control-plane/cover.png";
+
+const COORDINATORAPP_CONTENT = `![Coordinator home — Reliable queues for the APIs your product depends on](/blog/coordinatorapp-api-queue-control-plane/screenshots/home.png)
+
+## Who
+
+I got tired of watching production workers invent their own Stripe and GitHub throttles.
+
+Every SaaS eventually grows a Friday-night 429 story. Someone hard-codes a sleep. Someone else adds a Redis queue “just for this provider.” Zapier looks fine until flood protection is the product and connector count is the brochure.
+
+Coordinator is for operators who want a **hosted control plane** for rate limits, retries, backoff, and replay — before they pretend the SDK already ships. Production teams who need queue depth and provider health readable in one zinc panel. Builders comparing Zapier / Make / n8n on backpressure instead of logo walls.
+
+If you have ever paused a HubSpot sync because the provider blinked, you are in the room.
+
+## What
+
+I built **Coordinator** — package name \`coordinatorapp\`, version **0.1.0**, private under **HurleyUS/coordinatorapp.com**. Metadata: *Smart API Queueing & Rate Limiting*. Tagline energy: **Connect. Queue. Execute.** Hero: **Reliable queues for the APIs your product depends on.**
+
+Stack facts from the lockfile and tree, not the stale sitrep: **Next.js 16.2.6**, **React 19.2.6**, **Tailwind 4.3**, Bun, **Convex**, **Clerk**, **Stripe** checkout/portal/webhook with dynamic \`price_data\`, Sentry, PostHog, GA. Fifty-two commits. HEAD \`b7e9b3b\`.
+
+![Live pricing — Free / $29 / $79](/blog/coordinatorapp-api-queue-control-plane/screenshots/pricing.png)
+
+Surfaces that exist: \`/\` zinc lander with DashboardPreview (24,891 queued / 1,204 429s prevented / 2.4s retry; Stripe / GitHub / HubSpot rows), \`/pricing\`, \`/docs\` (every guide card says Coming soon), \`/privacy\`, \`/terms\`, \`/sign-in\`, \`/sign-up\`, \`/events/[eventId]\`, Stripe API routes under \`app/api/stripe/\`.
+
+Convex tables: \`waitlist\`, \`events\`, \`attendees\`, \`users\`, \`subscriptions\`, \`addOnPurchases\`. Waitlist mutation + \`WaitlistForm\` exist — **not wired into the May redesign homepage**. Event RSVP (Mar 20 #31) tracks capacity, dietary notes, confirmed/tentative/cancelled.
+
+![Billing drift — pricing page vs lib/billing.ts](/blog/coordinatorapp-api-queue-control-plane/screenshots/billing-drift.png)
+
+Money path split brain: **live pricing page** sells Starter Free / Pro **$29**/user/mo / Business **$79**/user/mo. **\`lib/billing.ts\`** (what checkout reads) prices Starter **$19**, Pro **$49**, Business **$149**, plus Extra Executions **$19** and Priority Support **$99**. OPPORTUNITIES still promises an **n8n** backend. There is **no n8n** in the tree. Homepage teases \`coordinator.queue(...)\` — the SDK is marketing, not a package.
+
+## Where
+
+Code: [github.com/HurleyUS/coordinatorapp.com](https://github.com/HurleyUS/coordinatorapp.com) — **private**. Live: [www.coordinatorapp.com](https://www.coordinatorapp.com) (**HTTP 200**, apex 307→www). GitHub homepage: [coordinatorapp-com.vercel.app](https://coordinatorapp-com.vercel.app) (same prerender etag). \`X-Robots-Tag: index, follow\` from the Aug 8 \`vercel.json\` fix.
+
+![Docs — Coming soon](/blog/coordinatorapp-api-queue-control-plane/screenshots/docs.png)
+
+Audience sits next to Zapier / Make / n8n / Tray — flood protection and retry observability as the wedge. Sibling operator furniture: Blacksmith ship gates, Biome, Stripe snake_case webhook casting, Enterprise mailto \`michael@hustlelaunch.com\`.
+
+![Sign-in — Clerk keys required](/blog/coordinatorapp-api-queue-control-plane/screenshots/sign-in.png)
+
+## When
+
+**2026-01-08.** \`ae06d85\` init Next/Convex/Tailwind. Same day OPPORTUNITIES + PLAN — Zapier competitors, flood protection, n8n-powered claim on day one.
+
+**2026-02-06.** \`2b54644\` ship landing page: Next 16, dark theme, queue visualization.
+
+**2026-02-13–22.** Stub pages, Clerk middleware + env validation, strip unverified SOC 2 claim, Navbar/Footer, Sentry, PostHog, site config, error/loading/not-found.
+
+**2026-03-17–18.** www / Clerk middleware 500 debug cascade (aliases, middleware off, vercel.json thrash). robots, sitemap, GA, next-themes. Waitlist + Convex backend.
+
+**2026-03-20–22.** Event signup form + attendee management (#31). Stripe standardization + webhook type casting.
+
+**2026-05-13–15.** shipprep + Blacksmith CI / deploy verification burst.
+
+**2026-05-22, 06:09 ET.** \`3eec7ae\` **redesign** — the live zinc control-plane lander.
+
+**2026-08-08, 06:54 ET.** \`b7e9b3b\` set X-Robots-Tag to index, follow. HEAD. Fifty-two commits.
+
+**Pack day 2026-09-08.** Live Chromium shots. www 200. Sign-in: **Clerk keys required**. \`sitrep.md\` still says prototype / no auth / Feb 6 — treat as drift.
+
+![SDK teaser on the lander](/blog/coordinatorapp-api-queue-control-plane/screenshots/sdk-snippet.png)
+
+## Why
+
+I did not want another automation brochure with a fake connector grid and no backoff story.
+
+I wanted a control plane face — queued requests, 429s prevented, retry delay — before the worker existed. I wanted Stripe subscription sync and Convex waitlist/events on disk even while docs say Coming soon and the homepage SDK call is a \`<pre>\`.
+
+So January named the category. February shipped the face. March fought www 500s, captured waitlist emails, bolted on event RSVP, and hardened Stripe. May redesign locked the zinc hero. August flipped robots on a live site that still needs Clerk env vars.
+
+If your integration platform README promises n8n power and your repo has zero n8n, you already know the hole I was staring at.
+
+Would you fix the pricing page to match \`billing.ts\`, or ship Clerk keys to www before anyone can Start with GitHub?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:djsidethree-wnc-wedding-dj-funnel-after-clerk-cut",
+    title: "DJ Side Three: WNC wedding DJ funnel after cutting Clerk",
+    slug: "djsidethree-wnc-wedding-dj-funnel-after-clerk-cut",
+    excerpt:
+      "I shipped djsidethree.com as a purple Next.js wedding-DJ landing — $500/$1,200/$1,500 packages, Convex inquiry + admin — then ripped Clerk, Turnstile, and Sentry to kill a production 500. Zod, rate limits, and Phosphor stayed.",
+    content: DJSIDETHREE_CONTENT,
+    coverImage: DJSIDETHREE_COVER,
+    tags: [
+      "djsidethree",
+      "wedding-dj",
+      "western-north-carolina",
+      "asheville",
+      "local-service",
+      "nextjs",
+      "convex",
+      "inquiry-form",
+      "phosphor",
+      "vercel",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:50:00Z"),
+    readingTime: 3,
+  },
+  {
+    _id: "static:everythingmonetized-parody-lms-course-bros",
+    title: "EverythingMonetized: I built a parody LMS where course bros sell courses about selling courses",
+    slug: "everythingmonetized-parody-lms-course-bros",
+    excerpt:
+      "I shipped EverythingMonetized.com — a Next.js 16 + Convex parody LMS with 5 AI course-bro personas, 10 absurd courses, admin CRUD, and a purchase flow that admits nothing ships — then left the live catalog at Showing 0 of 0 because Convex never got seeded on Vercel.",
+    content: EVERYTHINGMONETIZED_CONTENT,
+    coverImage: EVERYTHINGMONETIZED_COVER,
+    tags: [
+      "everythingmonetized",
+      "parody",
+      "satire",
+      "course-bro",
+      "lms",
+      "nextjs",
+      "convex",
+      "tailwind",
+      "martech",
+      "creator-economy",
+      "hurleyus",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:40:00Z"),
+    readingTime: 4,
+  },
+  {
+    _id: "static:cravees-catering-martech-agency-site",
+    title: "Cravees: I built a catering martech agency site with dual pricing honesty",
+    slug: "cravees-catering-martech-agency-site",
+    excerpt:
+      "I built Cravees — a Next.js 16 + Convex + Clerk catering marketing agency site — with $299–$999 packages on the pricing page, Stripe bronze/silver/gold plan slugs in code, an ROI calculator lead magnet, lead CRM, newsletter double opt-in, and a client portal before sitrep still claimed purpose unclear.",
+    content: CRAVEES_CONTENT,
+    coverImage: CRAVEES_COVER,
+    tags: [
+      "cravees",
+      "catering",
+      "martech",
+      "marketing-agency",
+      "nextjs",
+      "convex",
+      "clerk",
+      "stripe",
+      "roi-calculator",
+      "hospitality",
+      "local-seo",
+      "catppuccin",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:30:00Z"),
+    readingTime: 4,
+  },
+  {
+    _id: "static:coordinatorapp-api-queue-control-plane",
+    title: "Coordinator: I shipped an API queue control plane before the queue worker existed",
+    slug: "coordinatorapp-api-queue-control-plane",
+    excerpt:
+      "I built Coordinator — Next.js 16 + Convex + Clerk + Stripe — as a zinc API rate-limit control plane lander with waitlist, event RSVP, and dual price books, then left Clerk keys off the live www deploy.",
+    content: COORDINATORAPP_CONTENT,
+    coverImage: COORDINATORAPP_COVER,
+    tags: [
+      "coordinator",
+      "coordinatorapp",
+      "api-queue",
+      "rate-limiting",
+      "nextjs",
+      "convex",
+      "clerk",
+      "stripe",
+      "zapier",
+      "backpressure",
+      "hurleyus",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:20:00Z"),
+    readingTime: 4,
+  },
+
   {
     _id: "static:hurleyus-com-membership-growth-parent-site",
     title: "hurleyus.com: I shipped the parent site as a performance-pay membership lander",
