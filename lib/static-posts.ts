@@ -3943,7 +3943,86 @@ Because a Zendesk-price lander still needs an auth surface that is not a WordPre
 **Engagement Q:** How many of your SaaS domains currently serve a default WordPress “Make extra income” front page while the Next lander never shipped?
 `;
 
+const SHIPPREP_COVER =
+  "/blog/shipprep-default-apply-biome-tsgo-blacksmith-vercel-off/cover.png";
+
+const SHIPPREP_CONTENT = `## Who
+
+I got tired of re-typing the same Biome/tsgo/Blacksmith/Vercel-off checklist into every Next/Bun root — so the checklist became a CLI that **applies by default**.
+
+For operators who want Vercel Git auto-deploy **off** on main/master and Blacksmith owning \`vercel deploy --prebuilt\`.
+
+## What
+
+I built **shipprep** — private https://github.com/michaelmonetized/shipprep. HEAD \`c35a9d8\`. **6** commits. **0** stars. Version **0.1.0**. No README.
+
+\`bin/shipprep.mts\` (**403** LOC). Shebang Bun. \`parseArgs\` defaults \`apply: true\`. \`--audit\` / \`--check\` flips read-only. Accepts em-dash \`—pwd\` from chat typography.
+
+![APPLY report](/blog/shipprep-default-apply-biome-tsgo-blacksmith-vercel-off/screenshots/apply-report.png)
+
+**APPLY** writes package scripts (\`tsc\`/\`typecheck\` → \`tsgo --noEmit\`, \`lint\` → biome-lint), tsconfig bun+node + \`**/*.mts\`, \`scripts/dev-localhost*.mjs\`, \`scripts/ship.mts\`, freview \`pre-push\`, \`.github/workflows/ship.yml\` on \`blacksmith-4vcpu-ubuntu-2404\`, and \`vercel.json\` with \`git.deploymentEnabled.main/master = false\`.
+
+![Vercel git off](/blog/shipprep-default-apply-biome-tsgo-blacksmith-vercel-off/screenshots/vercel-git-off.png)
+
+![Blacksmith ship.yml](/blog/shipprep-default-apply-biome-tsgo-blacksmith-vercel-off/screenshots/blacksmith-ship-yml.png)
+
+![Audit checks](/blog/shipprep-default-apply-biome-tsgo-blacksmith-vercel-off/screenshots/audit-checks.png)
+
+Required roots for validRoot: \`package.json\`, \`bun.lock\`, \`.vercel\`, \`.next\`. Tests in \`test/shipprep.test.ts\` (**122** LOC).
+
+## Where
+
+Code only: [github.com/michaelmonetized/shipprep](https://github.com/michaelmonetized/shipprep) — **private**. No live site.
+
+\`\`\`bash
+bun bin/shipprep.mts --pwd ~/Projects/app
+bun bin/shipprep.mts --audit --json
+\`\`\`
+
+## When
+
+**2026-05-13 14:08→14:54** — audit → false positives → APPLY default → Vercel git off.  
+**2026-06-22** — nightly ×2 → \`.uncap\` → HEAD \`c35a9d8\`.
+
+![Commit arc](/blog/shipprep-default-apply-biome-tsgo-blacksmith-vercel-off/screenshots/commit-arc.png)
+
+## Why
+
+Because audit-only tools leave you copy-pasting. Because Blacksmith prebuilt + Vercel git disabled is a **gate**, not a README hope. Because this is not shipthing (contacts CRM) and not bundx-init (\`.localhost\` only).
+
+**Engagement Q:** Keep APPLY as the default, or flip to \`--audit\` default so a typo cannot rewrite twelve package scripts?
+
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:shipprep-default-apply-biome-tsgo-blacksmith-vercel-off",
+    title: "shipprep: default APPLY for the HurleyUS JS shipping standard",
+    slug: "shipprep-default-apply-biome-tsgo-blacksmith-vercel-off",
+    excerpt:
+      "Private Bun CLI (403-line bin/shipprep.mts) that migrates a Next/Bun project root onto Biome+tsgo scripts, Caddy localhost helpers, freview pre-push, Blacksmith ship.yml, and vercel.json with Git auto-deploys disabled on main/master. --audit is opt-in. 6 commits. HEAD c35a9d8.",
+    content: SHIPPREP_CONTENT,
+    coverImage: SHIPPREP_COVER,
+    tags: [
+      "shipprep",
+      "bun",
+      "cli",
+      "biome",
+      "tsgo",
+      "blacksmith",
+      "vercel",
+      "freview",
+      "shipping-standard",
+      "dev-tooling",
+      "caddy",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T07:20:00Z"),
+    readingTime: 1,
+  },
+
   {
     _id: "static:redactthing-streamer-pii-mv3-jquery-ghost-iframe-gap",
     title: "redactthing: streamer PII Chrome extension that still ships unused jQuery and a 404 lander",
