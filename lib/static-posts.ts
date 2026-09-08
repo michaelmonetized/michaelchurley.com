@@ -3103,13 +3103,13 @@ const ASCII_COMMIT_GRAPH_CONTENT = `![Terminal heatmap](/blog/ascii-commit-graph
 
 ## Who
 
-I wanted GitHub's contribution calendar without leaving the shell — and on every \`cd\` via zoxide, not only when I opened a browser tab.
+I wanted GitHub's contribution calendar without leaving the shell, and on every \`cd\` via zoxide, not only when I opened a browser tab.
 
 For operators who hang visual git context off directory changes, and who will delete an alias the moment it gets slow.
 
 ## What
 
-I built **ascii-commit-graph** — public \`https://github.com/michaelmonetized/ascii-commit-graph\`. README **V1.0.4**. Script \`ascii-commit-graph.sh\`, 209 lines. HEAD \`9221b76\`. 13 commits. 1 star. CLI only.
+I built **ascii-commit-graph**, public \`https://github.com/michaelmonetized/ascii-commit-graph\`. README **V1.0.4**. Script \`ascii-commit-graph.sh\`, 209 lines. HEAD \`9221b76\`. 13 commits. 1 star. CLI only.
 
 Paints a GitHub-style week grid (Nerd Font glyph, ANSI greens). \`GRID_ROWS=6\`, \`GRID_COLS=51\` sliding weeks. Buckets 0/1/2/3+.
 
@@ -3121,26 +3121,29 @@ v1.0.4 local path: one \`git log\` pass, O(1) bumps, GNU+BSD dates. \`--author\`
 
 ![Fast path](/blog/ascii-commit-graph-terminal-heatmap-cd-hook-fastpath/screenshots/fastpath-rewrite.png)
 
-README zoxide \`zcd\` runs \`--full-width --show-issues --show-todos\` on every cd — that habit forced the Jul 2026 rewrite. ROADMAP still unchecked: Create a release for 1.0.4. Install snippet still references \`michael-k/\`.
+README zoxide \`zcd\` runs \`--full-width --show-issues --show-todos\` on every cd. That habit forced the Jul 2026 rewrite. ROADMAP still unchecked: Create a release for 1.0.4. Install snippet still references \`michael-k/\`.
 
 ## Where
 
-Code: [github.com/michaelmonetized/ascii-commit-graph](https://github.com/michaelmonetized/ascii-commit-graph) — public. No live web app. Clone + chmod + symlink.
+Code: [github.com/michaelmonetized/ascii-commit-graph](https://github.com/michaelmonetized/ascii-commit-graph), public. No live web app. Clone + chmod + symlink.
 
 ![zoxide hook](/blog/ascii-commit-graph-terminal-heatmap-cd-hook-fastpath/screenshots/zoxide-cd-hook.png)
 
 ## When
 
-**2024-06-06** — rc + docs + PNGs + PR #1.
-**2024-06-08** — customization; v1.0.3-rc prep.
-**2026-06-03** — compatibility.
-**2026-07-31** — HEAD \`9221b76\`: Speed up heatmap: single git pass and one GraphQL author fetch.
+**2024-06-06.** rc + docs + PNGs + PR #1.
+
+**2024-06-08.** customization; v1.0.3-rc prep.
+
+**2026-06-03.** compatibility.
+
+**2026-07-31.** HEAD \`9221b76\`: Speed up heatmap: single git pass and one GraphQL author fetch.
 
 ![Commit arc](/blog/ascii-commit-graph-terminal-heatmap-cd-hook-fastpath/screenshots/commit-arc.png)
 
 ## Why
 
-Because browser greens are a context switch. Because a cd-hook heatmap makes latency a product bug. Because one git pass + one GraphQL call is the honest fix — and an unchecked release checkbox beats a fake tag.
+Browser greens are a context switch. A cd-hook heatmap makes latency a product bug. One git pass plus one GraphQL call is the honest fix, and an unchecked release checkbox beats a fake tag.
 
 **Engagement Q:** If your cd alias paints a heatmap, what latency makes you delete the alias?
 `;
@@ -3355,11 +3358,11 @@ const BUNDX_INIT_CONTENT = `![Install flow](/blog/bundx-init-nextjs-unique-local
 
 I run a lot of Next.js apps side by side. Shared \`http://localhost:3000\` fights Clerk cookies, callback URLs, and \`allowedDevOrigins\` the second a second app boots.
 
-For operators who need **stable HTTPS origins per repo** on a laptop — without hand-writing a Caddyfile every time.
+For operators who need **stable HTTPS origins per repo** on a laptop without hand-writing a Caddyfile every time.
 
 ## What
 
-I built **bundx-init** — public \`https://github.com/michaelmonetized/bundx-init\`. Shell CLI. HEAD \`c8b59ad\`. **3** commits. 0 stars. No tagged release.
+I built **bundx-init**, public \`https://github.com/michaelmonetized/bundx-init\`. Shell CLI. HEAD \`c8b59ad\`. **3** commits. 0 stars. No tagged release.
 
 \`bin/bundx-init\` is **379** lines. \`install.sh\` curls it into \`~/.local/bin\` (\`BUNDX_INIT_RAW_URL\` override). Target must be a Next project (\`package.json\` with \`next\`).
 
@@ -3372,7 +3375,7 @@ What it does (README + script):
 - rewires \`package.json\` so \`dev\` runs the HTTPS flow (\`dev:raw\` keeps the old script; \`dev:info\` dumps JSON)
 - patches \`next.config.*\` with \`allowedDevOrigins: ["<host>", "*.localhost"]\` when it can
 
-Slug = basename lowercased. Host = \`<slug>.localhost\`. Port = \`3300 + (hash(slug) % 5000)\`. Fixture \`basic-next\` → port **6422**; README \`my-next-app\` → **6996**.
+Slug = basename lowercased. Host = \`<slug>.localhost\`. Port = \`3300 + (hash(slug) % 5000)\`. Fixture \`basic-next\` maps to port **6422**; README \`my-next-app\` maps to **6996**.
 
 ![Hostname / port map](/blog/bundx-init-nextjs-unique-localhost-https-caddy/screenshots/hostname-port-map.png)
 
@@ -3380,32 +3383,34 @@ Next still binds an internal high port. Caddy owns \`:443\` and reverse-proxies.
 
 ![Architecture](/blog/bundx-init-nextjs-unique-localhost-https-caddy/screenshots/architecture.png)
 
-Fixture after init shows the patch contract: Next **16.2.1** / React **19.2.0**, \`dev\` → localhost script, \`allowedDevOrigins\` for \`basic-next.localhost\` + \`*.localhost\`.
+Fixture after init shows the patch contract: Next **16.2.1** / React **19.2.0**, \`dev\` runs the localhost script, \`allowedDevOrigins\` for \`basic-next.localhost\` + \`*.localhost\`.
 
 ![Repo patches](/blog/bundx-init-nextjs-unique-localhost-https-caddy/screenshots/repo-patches.png)
 
 ## Where
 
-Code: [github.com/michaelmonetized/bundx-init](https://github.com/michaelmonetized/bundx-init) — public. No live web app.
+Code: [github.com/michaelmonetized/bundx-init](https://github.com/michaelmonetized/bundx-init), public. No live web app.
 
 \`\`\`bash
 curl -fsSL https://raw.githubusercontent.com/michaelmonetized/bundx-init/main/install.sh | bash
 bundx-init ~/Projects/my-next-app
 cd ~/Projects/my-next-app && bun install && bun run dev
-# → https://my-next-app.localhost
+# https://my-next-app.localhost
 \`\`\`
 
 ## When
 
-**2026-03-30** — \`3d4b752\` Initialize bundx-init (589 insertions: CLI, install, README, fixture).  
-**2026-06-22** — \`f356360\` nightly adds \`.uncap/config.json\`.  
-**2026-06-22** — \`c8b59ad\` nightly empty tip (HEAD).
+**2026-03-30.** \`3d4b752\` Initialize bundx-init (589 insertions: CLI, install, README, fixture).
+
+**2026-06-22.** \`f356360\` nightly adds \`.uncap/config.json\`.
+
+**2026-06-22.** \`c8b59ad\` nightly empty tip (HEAD).
 
 ![Commit arc](/blog/bundx-init-nextjs-unique-localhost-https-caddy/screenshots/commit-arc.png)
 
 ## Why
 
-Because parallel Next apps on one port are a lie. Because Clerk and friends want real HTTPS origins in local. Because a hashed port + a Caddy snippet + \`allowedDevOrigins\` is the boring fix — and shipping it as a curl-install CLI beats copy-pasting the same five files forever.
+Parallel Next apps on one port break auth providers. Clerk and friends want real HTTPS origins in local. A hashed port, a Caddy snippet, and \`allowedDevOrigins\` is the boring fix; shipping it as a curl-install CLI beats copy-pasting the same five files forever.
 
 **Engagement Q:** How many Next apps do you run locally before \`localhost:3000\` starts lying to your auth provider?
 `;
@@ -3769,19 +3774,19 @@ const BASHFORMER_CONTENT = `![Ink Flappy frame](/blog/bashformer-ink-flappy-afte
 
 ## Who
 
-I wanted Flappy Bird that lives in the TTY — not a browser tab — and I kept a pure-bash platformer under the same repo name because the first instinct was bash + former, not Ink clone.
+I wanted Flappy Bird that lives in the TTY, and I kept a pure-bash platformer under the same repo name because the first instinct was bash + former, then an Ink clone later.
 
 For people who install Bun and still respect a 300-line bash game that only needs Nerd Fonts.
 
 ## What
 
-I built **bashformer** — public https://github.com/michaelmonetized/bashformer. HEAD \`541d2bc\`. **21** commits. **0** stars. Default **master**. Version **Unreleased**. CLI/TTY only.
+I built **bashformer**, public https://github.com/michaelmonetized/bashformer. HEAD \`541d2bc\`. **21** commits. **0** stars. Default **master**. Version **Unreleased**. CLI/TTY only.
 
 **Product A (README):** \`index.tsx\` (~263 LOC). Bun + React 19 + Ink 7. CONFIG: FPS 30, GRAVITY 0.32, FLAP_VY -1.7, PIPE_SPEED 3.1, PIPE_GAP 8. Space flaps/restarts; Q quits. Pipe.scored prevents double-count (\`d1fa8d0\`, #7). Terminal <40x10 exits (\`6678fda\`).
 
 ![CONFIG + scored](/blog/bashformer-ink-flappy-after-c-sdl-cleanup/screenshots/config-scored-fix.png)
 
-**Product B (in-tree):** \`bashformer.sh\` (~314 LOC). Pure bash Nerd Font side-scroller — coins/spikes/goal, camera follow. A/D move, W/Space jump, Q quit.
+**Product B (in-tree):** \`bashformer.sh\` (~314 LOC). Pure bash Nerd Font side-scroller with coins/spikes/goal and camera follow. A/D move, W/Space jump, Q quit.
 
 ![Bash platformer HUD](/blog/bashformer-ink-flappy-after-c-sdl-cleanup/screenshots/bash-platformer-hud.png)
 
@@ -3793,7 +3798,7 @@ Residue: PLAN still lists deleted C experiments; sitrep says Unknown tool / PROT
 
 ## Where
 
-Code: [github.com/michaelmonetized/bashformer](https://github.com/michaelmonetized/bashformer) — public. No live web app.
+Code: [github.com/michaelmonetized/bashformer](https://github.com/michaelmonetized/bashformer), public. No live web app.
 
 \`\`\`bash
 bun install && bun run index.tsx
@@ -3805,16 +3810,19 @@ bun install && bun run index.tsx
 
 ## When
 
-**2025-12-21 -> 12-27** — init, kong/baddies/tools, zoom/png, story cleanup.
-**2026-01-31** — chore sync.
-**2026-02-21** — CONFIG -> tests -> delete C/SDL -> scored flag -> term size.
-**2026-06-22** — nightly x2 -> HEAD \`541d2bc\`.
+**2025-12-21 to 12-27.** init, kong/baddies/tools, zoom/png, story cleanup.
+
+**2026-01-31.** chore sync.
+
+**2026-02-21.** CONFIG to tests to delete C/SDL to scored flag to term size.
+
+**2026-06-22.** nightly x2 to HEAD \`541d2bc\`.
 
 ![Commit arc](/blog/bashformer-ink-flappy-after-c-sdl-cleanup/screenshots/commit-arc.png)
 
 ## Why
 
-Because deleting the C/SDL pile is a product decision. Because Pipe.scored is more honest than score feels off. Because Unreleased with empty Phase 1 checkboxes beats inventing a 1.0 tag.
+Deleting the C/SDL pile was a product decision. Pipe.scored is more honest than "score feels off." Unreleased with empty Phase 1 checkboxes beats inventing a 1.0 tag.
 
 **Engagement Q:** Keep the pure-bash platformer beside Ink Flappy, or split so the README stops lying by omission?
 `;
@@ -5588,13 +5596,13 @@ const AGENT_OS_COVER =
 
 const AGENT_OS_CONTENT = `## Who
 
-I still run multi-agent days where the bottleneck is not the model — it is the shell context, the task queue, and whether each agent can see my real \`~/.zshrc\` aliases instead of a sandboxed stub.
+I still run multi-agent days where the bottleneck is the shell context, the task queue, and whether each agent can see my real \`~/.zshrc\` aliases instead of a sandboxed stub.
 
-For operators wiring local agent pools against a Mission Control ship list, not a hosted SaaS dashboard.
+For operators wiring local agent pools against a Mission Control ship list on their own machine.
 
 ## What
 
-I shipped **HurleyUS Agent OS** — public https://github.com/michaelmonetized/agent-os. HEAD \`f66fffa\`. **2** commits. package **hurleyus-agent-os@1.0.0**.
+I shipped **HurleyUS Agent OS**, public https://github.com/michaelmonetized/agent-os. HEAD \`f66fffa\`. **2** commits. package **hurleyus-agent-os@1.0.0**.
 
 ![Ink UI](/blog/agent-os-bun-ink-websocket-zsh-orchestrator/screenshots/ink-ui.png)
 
@@ -5606,15 +5614,17 @@ I shipped **HurleyUS Agent OS** — public https://github.com/michaelmonetized/a
 
 ![Mission Control seed](/blog/agent-os-bun-ink-websocket-zsh-orchestrator/screenshots/mc-seed.png)
 
-\`mission-control-tasks.ts\` seeds **seven Phase 1 tasks** aimed at \`hurley-mission-control\` — Convex backend, web layout, architecture review, message wiring, polling, Vercel deploy, QA smoke. \`cli.ts load-mission-control\` / \`start.sh\` load that list.
+\`mission-control-tasks.ts\` seeds **seven Phase 1 tasks** aimed at \`hurley-mission-control\`: Convex backend, web layout, architecture review, message wiring, polling, Vercel deploy, QA smoke. \`cli.ts load-mission-control\` / \`start.sh\` load that list.
 
 ![Dual path gaps](/blog/agent-os-bun-ink-websocket-zsh-orchestrator/screenshots/dual-path-gaps.png)
 
-Same tree also has \`core.ts\`: four personas (Codex Dev, SR Designer, SR Architect, QA Auditor) on \`claude-opus-4-6\` via Anthropic Messages API, with dependency-aware priority queue. Honest gaps: \`@anthropic-ai/sdk\` is imported but **not** in \`package.json\`; \`.env\` with \`ANTHROPIC_API_KEY\` is **still tracked** after the \`.gitignore\` commit (gitignore only covers \`node_modules/\`, \`*.log\`, \`.DS_Store\`). OpenClaw relay to \`ws://192.168.1.134:18789\` is stubbed. \`agent-runner.sh\` is a file inbox/outbox fallback, not live WS.
+Same tree also has \`core.ts\`: four personas (Codex Dev, SR Designer, SR Architect, QA Auditor) on \`claude-opus-4-6\` via Anthropic Messages API, with a dependency-aware priority queue. Honest gaps: \`@anthropic-ai/sdk\` is imported but **missing** from \`package.json\`; \`.env\` with \`ANTHROPIC_API_KEY\` is **still tracked** after the \`.gitignore\` commit (gitignore only covers \`node_modules/\`, \`*.log\`, \`.DS_Store\`). OpenClaw relay to \`ws://192.168.1.134:18789\` is stubbed. \`agent-runner.sh\` is a file inbox/outbox fallback, not live WS.
+
+Sibling tools in the same shop: orclawstrator's OpenClaw \`:3377\` gateway, the Go p10k \`mission-control\` portfolio TUI, the Convex human|agent \`hurley-mission-control\` web plane, and \`shagent\`'s MCP/OpenRouter loop. Agent OS is the Ink/WS/zsh control plane with a Mission Control Phase 1 seed.
 
 ## Where
 
-Code: [github.com/michaelmonetized/agent-os](https://github.com/michaelmonetized/agent-os) — public, no LICENSE file (README: internal HurleyUS).
+Code: [github.com/michaelmonetized/agent-os](https://github.com/michaelmonetized/agent-os), public, no LICENSE file (README: internal HurleyUS).
 
 \`\`\`bash
 git clone https://github.com/michaelmonetized/agent-os.git
@@ -5634,15 +5644,13 @@ Local only: orchestrator \`ws://localhost:9999\`. Optional env \`OPENCLAW_GATEWA
 
 ## When
 
-Created on GitHub **2026-03-20**. First commit **11:13 AM ET** same day — full v2 surface (Ink + WS + zsh + CLI + Mission Control seed). Second commit **10:25 PM ET** — \`.gitignore\` only. GitHub \`pushed_at\` **2026-03-21T02:25:13Z**. Pack prepared **2026-09-08 ~5:17 PM ET**. Draft + assets only.
+Created on GitHub **2026-03-20**. First commit **11:13 AM ET** same day: full v2 surface (Ink + WS + zsh + CLI + Mission Control seed). Second commit **10:25 PM ET**: \`.gitignore\` only. GitHub \`pushed_at\` **2026-03-21T02:25:13Z**. Pack prepared **2026-09-08 ~5:17 PM ET**. Draft + assets only.
 
 ## Why
 
-I needed a shell-native control plane that treats agents like terminals with jobs — not another chat UI. Ink for the operator view, WebSocket for fan-out, real zsh so aliases and git muscle memory stay intact, and a Mission Control Phase 1 seed so the queue is not empty on day one. The Anthropic \`core.ts\` path is the API-side twin when you want model output without a shell; the gaps (missing SDK dep, tracked \`.env\`) are the honest day-one scars.
+I needed a shell-native control plane that treats agents like terminals with jobs. Ink for the operator view, WebSocket for fan-out, real zsh so aliases and git muscle memory stay intact, and a Mission Control Phase 1 seed so the queue is not empty on day one. The Anthropic \`core.ts\` path is the API-side twin when you want model output without a shell; the gaps (missing SDK dep, tracked \`.env\`) are the honest day-one scars.
 
-This is not orclawstrator's OpenClaw \`:3377\` gateway, not the Go p10k \`mission-control\` portfolio TUI, not the Convex human|agent \`hurley-mission-control\` web plane, and not \`shagent\`'s MCP/OpenRouter loop.
-
-How would you unify the Ink/WS/zsh path and the Anthropic \`core.ts\` path — one CLI surface, or keep them as two intentional modes?
+**Engagement Q:** How would you unify the Ink/WS/zsh path and the Anthropic \`core.ts\` path: one CLI surface, or keep them as two intentional modes?
 `;
 
 const LAUNCHPAD_COVER =
@@ -6410,7 +6418,7 @@ export const staticPosts: StaticPost[] = [
     title: "Agent OS: Bun + Ink + WebSocket shell-native orchestrator",
     slug: "agent-os-bun-ink-websocket-zsh-orchestrator",
     excerpt:
-      "Public michaelmonetized/agent-os is HurleyUS Agent OS v2 \u2014 Bun TypeScript orchestrator with Ink terminal UI, WebSocket agents on ws://localhost:9999, interactive zsh execution (~/.zshrc + ~/.hurleyus/GOALS|TASKS), session transcripts under ~/.hurleyus/agent-os/sessions/, and a Mission Control Phase 1 task seed (7 tasks). Dual path: orchestrator.ts WS/zsh vs core.ts Anthropic Messages API (SDK imported but missing from package.json). Tracked .env with ANTHROPIC_API_KEY. 2 commits. HEAD f66fffa. Not orclawstrator, not mission-control, not hurley-mission-control, not shagent.",
+      "HurleyUS Agent OS is a public Ink + WebSocket + interactive-zsh orchestrator (HEAD f66fffa, 2 commits) with a Mission Control Phase 1 seed and a separate Anthropic core.ts persona queue. Local only on ws://localhost:9999; SDK dep missing and .env still tracked.",
     content: AGENT_OS_CONTENT,
     coverImage: AGENT_OS_COVER,
     tags: [
@@ -7384,7 +7392,7 @@ export const staticPosts: StaticPost[] = [
     title: "bashformer: terminal Flappy Bird in Ink \u2014 after I deleted the C/SDL pile",
     slug: "bashformer-ink-flappy-after-c-sdl-cleanup",
     excerpt:
-      "Public michaelmonetized/bashformer: Bun + React/Ink 30 FPS Flappy Bird in the terminal, plus a pure-bash Nerd Font platformer still in-tree. Feb 21 deleted vex_sdl/C games, extracted CONFIG, added bun tests, fixed Pipe.scored (#7). 21 commits. HEAD 541d2bc. Unreleased; Phase 1 polish still unchecked.",
+      "bashformer is a public dual-stack TTY game: Ink Flappy in index.tsx (~263 LOC) and a pure-bash Nerd Font platformer in bashformer.sh (~314 LOC). HEAD 541d2bc, 21 commits, Unreleased; Feb 21 deleted the C/SDL pile and fixed Pipe.scored.",
     content: BASHFORMER_CONTENT,
     coverImage: BASHFORMER_COVER,
     tags: [
@@ -7528,7 +7536,7 @@ export const staticPosts: StaticPost[] = [
     title: "bundx-init: every Next.js repo gets https://<repo>.localhost via Caddy",
     slug: "bundx-init-nextjs-unique-localhost-https-caddy",
     excerpt:
-      "A 379-line bash CLI that installs Caddy, writes per-repo .localhost HTTPS snippets, patches package.json + next.config allowedDevOrigins, and routes bun run dev through a hashed high port. Built for Clerk-friendly multi-repo local work. 3 commits. HEAD c8b59ad.",
+      "bundx-init is a public curl-install shell CLI (HEAD c8b59ad, 3 commits) that gives each Next repo a hashed *.localhost HTTPS origin via Caddy and allowedDevOrigins. Fixture basic-next lands on port 6422; no live web app.",
     content: BUNDX_INIT_CONTENT,
     coverImage: BUNDX_INIT_COVER,
     tags: [
@@ -7586,7 +7594,7 @@ export const staticPosts: StaticPost[] = [
     title: "ascii-commit-graph: GitHub's heatmap in my terminal \u2014 then I made the cd hook fast",
     slug: "ascii-commit-graph-terminal-heatmap-cd-hook-fastpath",
     excerpt:
-      "A 209-line bash CLI that paints a GitHub-style contribution calendar as ASCII in the terminal, wired into zoxide/cd. v1.0.4 rewrote local mode to one git log pass and --author to one GraphQL call so the hook stays responsive. 13 commits. HEAD 9221b76. Release still unchecked.",
+      "ascii-commit-graph is a public 209-line shell heatmap (README V1.0.4, HEAD 9221b76) with a zoxide cd hook and a Jul 2026 single-git log / one-GraphQL fast path. ROADMAP release checkbox still open; install snippet still mentions michael-k/.",
     content: ASCII_COMMIT_GRAPH_CONTENT,
     coverImage: ASCII_COMMIT_GRAPH_COVER,
     tags: [
