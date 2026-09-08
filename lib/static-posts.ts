@@ -3994,7 +3994,384 @@ Because audit-only tools leave you copy-pasting. Because Blacksmith prebuilt + V
 
 `;
 
+const IPRO_COVER =
+  "/blog/ipro-golf-agency-lander-ecosystem-hub/cover.png";
+
+const IPRO_CONTENT = `![iPro.golf agency homepage mock — hero, ecosystem chips, services](/blog/ipro-golf-agency-lander-ecosystem-hub/screenshots/home.png)
+
+## Who
+
+I ship golf products that look like one brand family and are three different businesses. [iLeague.golf](https://ileague.golf) is the creator platform — scorecards, subscriptions, tips, fifteen percent fee. That pack already exists: \`ileague-golf-patreon-meets-18birdies\`. [iTour.golf](https://www.itour.golf) is the national creator-tour lander — sponsors, host bids, season schema — packed as \`itour-golf-tour-lander-ahead-of-deploy\`.
+
+iPro.golf is the **agency**. Country clubs, courses, resorts. Retainers. Case-study theater. A brochure that also hubs the ecosystem.
+
+If you care about multi-domain Vercel rewrites, agency landers that declare Stripe/Clerk/Convex and never wire them, or how not to steal the creator-SaaS story when the URL says “Pro”: this is the field notes.
+
+## What
+
+I keep the live marketing site for the agency under \`HurleyUS/iPro-main-web\`.
+
+README one-liner: connective tissue between influencers and golf courses, country clubs, resorts, and growing golf communities. Layout title that also wins on curl: **iPro.golf | Golf Course & Resort Marketing Agency**. Badge on the hero: the same phrase. H1: **iPro.golf**.
+
+Stack on the box: **Next.js 16.2**, **React 19**, Tailwind v4, Geist, a full shadcn/Radix tree, Bun lockfile, Vercel. Package name **web**, version **0.1.0**. Repo private. Site public at [www.ipro.golf](https://www.ipro.golf) (apex 308s to www). Ten commits. HEAD \`b8dfdba\`.
+
+![Retainer pricing mock — Starter / Growth / Premium](/blog/ipro-golf-agency-lander-ecosystem-hub/screenshots/services-pricing.png)
+
+This is **not** the creator billing product and **not** the tour season product.
+
+Money on the home page is blunt agency retainers:
+
+1. **Starter** — $1,997/mo (refresh, social setup, GBP, reporting)  
+2. **Growth** — $4,997/mo (most popular — full social, email, content, paid, strategy)  
+3. **Premium** — $9,997+/mo (video, influencer campaigns, events, member acquisition, dedicated team)
+
+Services grid: Brand Design, Web Development, Social Media, Local SEO, Email Marketing, Video Production. CTAs go to \`/contact\` and \`/case-studies\`.
+
+What is also true on pack day:
+
+- **Live www title matches HEAD** — unlike the iTour pack where production still serves a fake 2026 season shell.  
+- \`layout.tsx\` points Open Graph at \`/og-image.png\`. That file is **not** in \`public/\`. curl → **404**.  
+- Contact \`handleSubmit\` is a one-second \`setTimeout\` with a TODO for Resend. Phone is **(555) GOLF-PRO**. Email \`hello@ipro.golf\`.  
+- Case studies (Highland Links, Coastal Resort & Spa, Valley Municipal) are fiction. Feb 9 AUTOPSY said the quiet part out loud; home metrics later sit at 50+ / 35% / 2.5x / $1.8M instead of the autopsy’s 120+ / 47% / $2.4M.  
+- \`package.json\` still lists Clerk, Stripe, Convex, PostHog, Resend, react-email. Fallow REVIEW: unused. No \`convex/\` tree. No \`app/api\`. Layout has no Clerk provider.  
+- \`/ileague\`, \`/itour\`, \`/iconf\` on this repo are **Coming Soon / waitlist shells**. The real products are separate repos and separate packs.  
+- Agency \`/itour\` copy still says **National Amateur Golf Tour** and a 2026 regional event grid — that fights the packed iTour creator-tour / May 2027 story. Call the conflict; do not merge the posts.  
+- Private vault \`michaelmonetized/iPro\` is already **SKIP** — logos, planning markdown, gitlink into this app. Do not retell it here.
+
+![Ecosystem differentiation — agency vs creator SaaS vs tour vs summit](/blog/ipro-golf-agency-lander-ecosystem-hub/screenshots/ecosystem-diff.png)
+
+## Where
+
+It runs on Vercel as a prerendered marketing site (\`x-nextjs-prerender: 1\` on the 2026-09-08 probe). Dark theme, fixed header, footer with Services / Ecosystem / Company columns.
+
+Surfaces that matter:
+
+- Public agency pages — home, about, services, case studies, contact, blog listing, privacy, terms  
+- Ecosystem brochure pages — \`/ileague\` Coming Soon, \`/itour\` Coming 2026, \`/iconf\` Fall 2026  
+- \`proxy.ts\` — if host is \`iconference.golf\` or \`www.iconference.golf\` and path is \`/\`, rewrite to \`/iconf\`. Live iconference.golf returns **200** with \`x-matched-path: /iconf\`  
+- shadcn kit under \`components/ui/*\` — mostly unused; used pieces are Button, Sheet, form controls on contact  
+
+Live HTML on pack day did **not** need Clerk keys to render. There is no auth wall on the agency brochure.
+
+![Honesty board — live wins vs remaining gaps](/blog/ipro-golf-agency-lander-ecosystem-hub/screenshots/honesty-board.png)
+
+Related domains: **iPro.golf** (emerald agency — this pack), **iLeague.golf** (creator platform — packed), **iTour.golf** (tour — packed), **iConference.golf** (summit shell rewritten onto this project). Vault sibling SKIPPED.
+
+## When
+
+**November 24, 2025.** Create Next App. Init thrash. Empty license. Another init. The repo exists before the golf pitch is real.
+
+**February 5, 2026.** \`chore: prod deploy\` — first push toward something live.
+
+**February 9.** The meaningful day. \`feat: Complete site rebuild with pages, navigation, and proper structure\` — the App Router surface that still matches www. Same day: AUTOPSY updated with GoDaddy DNS instructions and a brutal inventory of placeholders. DNS later got fixed; the autopsy file did not get a matching rewrite.
+
+**May 21.** \`Fix iConference domain deployment\` — CHANGELOG: production routing for iconference.golf onto the iPro Vercel project + UI compatibility so the Next production build passes. \`proxy.ts\` is the host rewrite.
+
+**June 22.** Two \`nightly\` commits. HEAD \`b8dfdba\`. Package deps float forward; the brochure story does not.
+
+## Why
+
+Because the ecosystem needs a front door that sells **services to properties** without pretending it is the creator SaaS or the tour.
+
+Because operators reading three golf posts in a row deserve a clean split: agency retainers here, Patreon×18Birdies there, sponsor/host season over there.
+
+Because a domain rewrite for iconference.golf onto \`/iconf\` is a real ops story — and a Coming Soon waitlist is not the same as shipping iConference.
+
+Because the vault repo will keep tempting people to package logos as a product. It is not. This app is.
+
+**Engagement question:** When the agency lander links to Coming Soon ecosystem shells that already have live product domains elsewhere — do you keep the hub honest as a brochure, or do you outbound-link straight to the real products and delete the shells?
+
+---
+
+*Draft + assets only. Do not publish from this pack.*
+`;
+
+const ASSESSMENT_TOOLBAR_COVER =
+  "/blog/assessment-toolbar-chrome-mv3-lighthouse-missing-double-inject/cover.png";
+
+const ASSESSMENT_TOOLBAR_CONTENT = `![Pink marketing assessments bar](/blog/assessment-toolbar-chrome-mv3-lighthouse-missing-double-inject/screenshots/bar-mock.png)
+
+## Who
+
+I run marketing assessments. Every client tab needs the same SEO stack against the live URL — without hunting bookmarklets.
+
+## What
+
+Public **michaelmonetized/Assessment-Toolbar** · Chrome MV3 · name **Marketing Assessments** · v**1.0** · HEAD \`9652620\` · **6** commits. Pink #ffc9dd top strip: SpyFu, SiteLiner, Rich Results, Schema, Mobile-Friendly, WAVE, Wayback, Whois + FB/NAP prompts + missing-alt highlighter + title clipboard + Ctrl+Alt+M. GPL-3.0. No package.json. Manifest+README promise **google lighthouse** — content.js has **zero** Lighthouse/PageSpeed link. background.js admits it never knew what the file is for and re-runs content.js while declarative content scripts already load it. Perms: activeTab+scripting only. Rich Results / Mobile-Friendly get location.hostname. Five tools are static. hustlelaunch.com/assessment-toolbar **404**.
+
+![Lighthouse gap](/blog/assessment-toolbar-chrome-mv3-lighthouse-missing-double-inject/screenshots/lighthouse-gap.png)
+
+![Dual load](/blog/assessment-toolbar-chrome-mv3-lighthouse-missing-double-inject/screenshots/double-inject.png)
+
+![URL bugs](/blog/assessment-toolbar-chrome-mv3-lighthouse-missing-double-inject/screenshots/url-bugs.png)
+
+## Where
+
+github.com/michaelmonetized/Assessment-Toolbar (public). Unpacked root. No CWS. No demo host. hustlelaunch.com root live; product paths not.
+
+![Commit arc](/blog/assessment-toolbar-chrome-mv3-lighthouse-missing-double-inject/screenshots/commit-arc.png)
+
+## When
+
+2024-08-16 init + pre-flight · 2024-08-22 ready · 2026-01-31 STRIPE.md sync · 2026-06-22 nightly metadata · empty nightly HEAD \`9652620\` same day.
+
+## Why
+
+Assessment strip that advertises Lighthouse without shipping it, and a SW that dual-loads while admitting it does not know its job.
+
+**Engagement Q:** Add PageSpeed/Lighthouse and drop the dual-load SW tonight — or leave v1.0 lying in its own description?
+`;
+
+const FREVIEW_COVER =
+  "/blog/freview-five-reviews-six-sections-observability-gate/cover.png";
+
+const FREVIEW_CONTENT = `![Five marketed reviews vs six REVIEW.md sections](/blog/freview-five-reviews-six-sections-observability-gate/screenshots/six-sections.png)
+
+## Who
+
+I got tired of “we’ll catch it in CI” turning into a Slack autopsy after \`main\` already moved. Pre-push should hurt a little when the tree is sketchy and stay quiet when it is clean.
+
+For JS/TS teams (and anyone whose public symbols need docstrings across TS/Swift/Rust/Python/shell) who want one command, one durable \`REVIEW.md\`, and the same gate locally and on Blacksmith.
+
+## What
+
+I built **freview** — public [\`HurleyUS/freview\`](https://github.com/HurleyUS/freview). Package \`@hurleyus/freview\` **0.1.0**. MIT. zsh. \`bin/freview\` is **404** lines; bundled \`bin/scribe\` is **555**. HEAD \`23237d9\`. **22** commits. 0 stars. CLI / package only.
+
+![CLI / section pipeline](/blog/freview-five-reviews-six-sections-observability-gate/screenshots/six-sections.png)
+
+The README and \`TWITTER-RELEASE-THREAD.md\` still sell **“One command. Five reviews.”** The orchestrator always appends **six** sections into root \`REVIEW.md\`:
+
+1. **OBSERVABILITY** — embedded Python: detect Next / React Native-Expo / Electron / Swift; require Sentry + PostHog deps, init, and env-signal strings; if \`.vercel/project.json\` exists, \`vercel env ls production\` must show the DSN/key/host set. Library/tooling repos with no platform → pass.
+2. **HEALTH** — \`bunx --bun fallow … health --complexity\` (soft-pass when exit≠0 but no fail glyphs)
+3. **AUDIT** — \`fallow audit\`
+4. **DEAD** — \`fallow dead-code\`
+5. **DUPLICATION** — \`fallow dupes\`
+6. **DOCSTRINGS** — bundled \`scribe\` (not Michael’s old \`~/bin/scribe\`)
+
+Before any of that: \`fallow init\` + \`fallow setup-hooks\`, then freview rewrites the Claude \`fallow-gate.sh\` matcher from \`git commit|push\` → **\`git push\` only** so local commits stay unblocked.
+
+Flags you actually use: \`--root\`, \`--format\`, \`--quiet\`, \`--explain\`, \`--summary\`, \`--ci\` (SARIF + quiet + fail-on-issues), \`--fail-on-issues\`. Clean runs write the file and shut up. Dirty runs print the report and exit 1. Empty SARIF result sets do not fail CI mode.
+
+![Observability platforms](/blog/freview-five-reviews-six-sections-observability-gate/screenshots/observability-platforms.png)
+
+Install paths: curl both bins into \`~/bin\`, clone + symlink, or \`bunx github:HurleyUS/freview\` / \`bun link\`. Pre-push snippet in the README only fires on protected \`main\`/\`master\` refs.
+
+Residue / irony: shell-only package — \`scripts.lint\` and \`scripts.check\` are literally \`true\` — yet \`.github/workflows/ci.yml\` still installs zsh and runs \`bunx --bun github:HurleyUS/freview --ci\` on \`blacksmith-4vcpu-ubuntu-2404\`. May 14 is seven commits all titled **“Standardize Blacksmith CI gates.”** May 14 also briefly committed generated Claude hooks, deleted them seventeen minutes later, then re-tracked them a week later. Second June 22 nightly (\`23237d9\`) shares the exact tree with the \`.uncap\` nightly — empty HEAD.
+
+![Blacksmith CI self-review](/blog/freview-five-reviews-six-sections-observability-gate/screenshots/ci-blacksmith.png)
+
+## Where
+
+Code: [github.com/HurleyUS/freview](https://github.com/HurleyUS/freview) — public, branch \`main\`. No homepage. No live web demo. Sibling tooling surface: Fallow + Claude Code hooks + Blacksmith runners.
+
+## When
+
+**2026-05-13, 1:41–1:51 PM Eastern.** Init (150-line freview) → Twitter thread → bundle scribe + package.json.
+
+**2026-05-13, 7:23–8:06 PM Eastern.** Observability gate → platform-aware rewrite (Next/RN/Electron/Swift + Vercel env).
+
+**2026-05-14 afternoon Eastern.** Blacksmith CI standardization spam → empty SARIF handling → avoid oxlint on shell-only → hook churn → prettier CI commit.
+
+**2026-05-21 morning Eastern.** Empty health soft-pass (PR #1) → track fallow Claude hook → push-only gate + freview rewriter.
+
+**2026-06-22, 5:20 PM Eastern.** \`8fd392a\` nightly — \`.uncap/config.json\`.
+
+**2026-06-22, 6:12 PM Eastern.** \`23237d9\` nightly — empty tree. HEAD.
+
+![Commit arc](/blog/freview-five-reviews-six-sections-observability-gate/screenshots/commit-arc.png)
+
+## Why
+
+Because terminal scrollback is a graveyard and \`REVIEW.md\` is not. Because “five reviews” was the pitch and observability became the sixth section the docs never renumbered. Because a pre-push hook that also rewrites your Claude gate to push-only is the kind of boring guardrail I actually leave installed.
+
+**Engagement Q:** If your pre-push suite marketed five checks, which sixth gate would you sneak in first — observability, license, or “did CI prettier already fight you”?
+`;
+
+const HUSTLECONVERT_COVER =
+  "/blog/hustleconvert-com-eight-dollar-popup-lander-nxdomain/cover.png";
+
+const HUSTLECONVERT_CONTENT = `![Home hero](/blog/hustleconvert-com-eight-dollar-popup-lander-nxdomain/screenshots/home-hero.png)
+
+## Who
+
+I keep a private GitHub org full of product shells. Some are real apps. Some are landers that talk like apps.
+
+For operators who need the honest split between a **$8/mo popup marketing site** and a claimed \`app.\` / CDN product that is not in this repo — and who should not mix this up with the email or helpdesk \`$8\` landers in the same org.
+
+## What
+
+I built **hustleconvert-com** — private \`https://github.com/michaelmonetized/hustleconvert-com\`. Next.js marketing shell. HEAD \`a5d3f13\`. **3** commits. 0 stars. package name \`hustleconvert.com@0.1.0\`. README is stock create-next-app.
+
+Stack facts from \`package.json\`: Next **16.2.6**, React **19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there — no Clerk, no Convex, no Stripe package, no popup runtime SDK.
+
+What the UI claims:
+
+- Hero: “Popups that **don’t annoy**.” Badge: **Now with A/B testing.** CTAs to \`https://app.hustleconvert.com/signup\` and \`/templates\`.
+- Trial strip: **14-day free trial · No credit card required**.
+- Features: visual builder, smart triggers (exit-intent / scroll / time / click), display rules, A/B, analytics, **50+** templates.
+- Competitor table: OptinMonster \`$20+/mo\`, Sumo \`$49+/mo\`, HustleConvert **\`$8/mo\`** with “Unlimited Popups” + “No Branding” checked.
+- Pricing: **Free** (1 campaign / 1,000 impressions), **Pro $8/mo**, **Team $24/mo**. Annual Pro copy: **$80/year**.
+- FAQ text says Stripe (+ Team invoicing) — still no Stripe in deps.
+- Brand: Tailwind \`brand.500 = #0ea5e9\`, \`accent.500 = #8b5cf6\`.
+- Docs “Quick Install” snippet points at \`https://cdn.hustleconvert.com/v1/hc.min.js\`.
+
+![Pricing plans](/blog/hustleconvert-com-eight-dollar-popup-lander-nxdomain/screenshots/pricing-plans.png)
+
+![Competitor table](/blog/hustleconvert-com-eight-dollar-popup-lander-nxdomain/screenshots/competitor-table.png)
+
+Real \`page.tsx\` routes: \`/\`, \`/pricing\`, \`/templates\`, \`/docs\`.
+
+Linked but **missing**: footer \`/blog\`, \`/help\`, \`/about\`, \`/contact\`, \`/privacy\`, \`/terms\`, \`/docs/changelog\`, \`/docs/api\`, and the docs children (\`/docs/quickstart\`, \`/docs/exit-intent\`, \`/docs/api/campaigns\`, …). \`/docs\` is an index of cards pointing at pages that do not exist. Auth is externalized to **\`app.hustleconvert.com\`** — not a local \`/signup\` route.
+
+![Docs dead links](/blog/hustleconvert-com-eight-dollar-popup-lander-nxdomain/screenshots/docs-dead-links.png)
+
+![Missing routes](/blog/hustleconvert-com-eight-dollar-popup-lander-nxdomain/screenshots/missing-routes.png)
+
+This is **not** \`hustlemail-com\` (email marketing vs ConvertKit) and **not** \`hustledesk-com\` (helpdesk). Same \`$8\` lander family. Different category.
+
+## Where
+
+Code: [github.com/michaelmonetized/hustleconvert-com](https://github.com/michaelmonetized/hustleconvert-com) — private.
+
+Live probes at pack time:
+
+- \`hustleconvert-com.vercel.app\` / \`hustleconvert.vercel.app\` → **404** \`DEPLOYMENT_NOT_FOUND\`
+- \`hustleconvert.com\` → **NXDOMAIN** (no A/AAAA)
+- \`app.hustleconvert.com\` → **NXDOMAIN**
+
+Local inspect clone: \`/tmp/cf-inspect/hustleconvert-com\` @ \`a5d3f13\`.
+
+## When
+
+**2026-02-18 07:57 ET** — \`691b4b4\` feat: initial hustleconvert.com marketing site (+2526 / 24 files).  
+**2026-06-22 17:13 ET** — \`e97591f\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).  
+**2026-06-22 18:11 ET** — \`a5d3f13\` nightly empty tip (HEAD).
+
+![Commit arc](/blog/hustleconvert-com-eight-dollar-popup-lander-nxdomain/screenshots/commit-arc.png)
+
+## Why
+
+Because a lander that prices against OptinMonster still needs a resolvable product surface before it is a product story. Because \`app.\` and \`cdn.\` strings in JSX are not a shipped runtime. Because NXDOMAIN is a cleaner failure mode than a parked WordPress front page — and still not a launch.
+
+**Engagement Q:** How many of your “$8/mo SaaS” repos are four marketing pages pointing at an NXDOMAIN \`app.\` subdomain?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:ipro-golf-agency-lander-ecosystem-hub",
+    title: "iPro.golf: the golf course & resort marketing agency lander \u2014 not iLeague, not iTour",
+    slug: "ipro-golf-agency-lander-ecosystem-hub",
+    excerpt:
+      "HurleyUS/iPro-main-web is the live agency site for courses and resorts (ipro.golf): Next 16 pages, retainers $1,997\u2013$9,997+, ecosystem Coming Soon shells, iconference.golf \u2192 /iconf. Sibling vault michaelmonetized/iPro was SKIP. Distinct from ileague creator SaaS and itour season lander. 10 commits, HEAD b8dfdba.",
+    content: IPRO_CONTENT,
+    coverImage: IPRO_COVER,
+    tags: [
+      "ipro",
+      "ipro-golf",
+      "golf-marketing",
+      "agency",
+      "golf-course",
+      "resort",
+      "country-club",
+      "ecosystem-hub",
+      "ileague",
+      "itour",
+      "iconference",
+      "nextjs",
+      "vercel",
+      "shadcn",
+      "hurleyus",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T08:00:00Z"),
+    readingTime: 5,
+  },
+
+  {
+    _id: "static:assessment-toolbar-chrome-mv3-lighthouse-missing-double-inject",
+    title: "Assessment-Toolbar: pink SEO chrome bar that promises Lighthouse and double-injects itself",
+    slug: "assessment-toolbar-chrome-mv3-lighthouse-missing-double-inject",
+    excerpt:
+      "Public michaelmonetized/Assessment-Toolbar is a Manifest V3 Chrome extension named Marketing Assessments: a #ffc9dd top strip that launches SpyFu, SiteLiner, Rich Results, Schema, Mobile-Friendly, WAVE, Wayback, Whois, plus FB/NAP prompts and a missing-alt highlighter. HEAD 9652620. 6 commits. Manifest+README promise google lighthouse \u2014 content.js has zero Lighthouse/PageSpeed link. background.js opens with never known what to do with this file and re-executes content.js on tab lifecycle while content_scripts already injects it. Permissions: activeTab+scripting only \u2014 no tabs, no host_permissions. Rich Results / Mobile-Friendly get location.hostname not an encoded URL. BrightLocal/Keyword Density/Keyword Planner/Moz/Word Count are static. Empty second nightly is HEAD. hustlelaunch.com/assessment-toolbar 404.",
+    content: ASSESSMENT_TOOLBAR_CONTENT,
+    coverImage: ASSESSMENT_TOOLBAR_COVER,
+    tags: [
+      "assessment-toolbar",
+      "marketing-assessments",
+      "chrome-extension",
+      "manifest-v3",
+      "seo",
+      "spyfu",
+      "wave",
+      "lighthouse",
+      "content-scripts",
+      "hustlelaunch",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T07:50:00Z"),
+    readingTime: 1,
+  },
+
+  {
+    _id: "static:freview-five-reviews-six-sections-observability-gate",
+    title: "freview: README says five reviews \u2014 REVIEW.md actually stitches six",
+    slug: "freview-five-reviews-six-sections-observability-gate",
+    excerpt:
+      "Public HurleyUS/freview is a zsh pre-push harness: Fallow health/audit/dead/dupes + bundled Scribe into REVIEW.md, plus a platform-aware Sentry/PostHog observability gate the marketing still calls five reviews. @hurleyus/freview 0.1.0. 22 commits. HEAD 23237d9 empty nightly after .uncap. Blacksmith CI runs freview --ci on a shell-only package whose lint/check are true.",
+    content: FREVIEW_CONTENT,
+    coverImage: FREVIEW_COVER,
+    tags: [
+      "freview",
+      "fallow",
+      "scribe",
+      "pre-push",
+      "review",
+      "observability",
+      "sentry",
+      "posthog",
+      "blacksmith",
+      "zsh",
+      "bun",
+      "hurleyus",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T07:40:00Z"),
+    readingTime: 3,
+  },
+
+  {
+    _id: "static:hustleconvert-com-eight-dollar-popup-lander-nxdomain",
+    title: "hustleconvert.com: $8/mo popup lander, OptinMonster table, NXDOMAIN",
+    slug: "hustleconvert-com-eight-dollar-popup-lander-nxdomain",
+    excerpt:
+      "Private Next 16 marketing shell for HustleConvert \u2014 Free / $8 Pro / $24 Team, OptinMonster vs Sumo comparison, templates gallery, docs index of dead child links. Auth CTAs point at app.hustleconvert.com; claimed domain NXDOMAIN; vercel.app DEPLOYMENT_NOT_FOUND. Stock create-next-app README. 3 commits. HEAD a5d3f13. Not a live popup product.",
+    content: HUSTLECONVERT_CONTENT,
+    coverImage: HUSTLECONVERT_COVER,
+    tags: [
+      "hustleconvert-com",
+      "hustleconvert",
+      "popups",
+      "exit-intent",
+      "conversion",
+      "optinmonster",
+      "sumo",
+      "marketing-site",
+      "nextjs",
+      "tailwind",
+      "pricing",
+      "lander",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T07:30:00Z"),
+    readingTime: 2,
+  },
+
   {
     _id: "static:shipprep-default-apply-biome-tsgo-blacksmith-vercel-off",
     title: "shipprep: default APPLY for the HurleyUS JS shipping standard",
