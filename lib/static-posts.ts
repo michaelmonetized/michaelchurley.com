@@ -3524,40 +3524,41 @@ Guest rows without a claim bridge orphan purchases at signup. Auth-agnostic mean
 const KITCHEN_COVER =
   "/blog/kitchen-cloud-native-project-store/cover.png";
 
-const KITCHEN_CONTENT = `![Kitchen home — cloud-native project store](/blog/kitchen-cloud-native-project-store/screenshots/home.png)
+const KITCHEN_CONTENT = `![Kitchen home: cloud-native project store](/blog/kitchen-cloud-native-project-store/screenshots/home.png)
 
 ## Who
 
 I got tired of treating Editor, disk, git, and remote hosting as four different systems for the same daily loop.
 
-Kitchen is for operators who want live sync and a real editor — nvim, VS Code, Zed — without renaming the product a cloud IDE. It is for people who will say “no git” and mean no add/commit/push/pull/rebase, while history and human merge stay.
+Kitchen is for operators who want live sync and a real editor (nvim, VS Code, Zed) without renaming the product a cloud IDE. It is for people who will say "no git" and mean no add/commit/push/pull/rebase, while history and human merge stay.
 
-If you have ever saved a file and still had a ceremony left before another machine could see it, you are in the room.
+If you have ever saved a file and still had a ceremony left before another machine could see it, this is for you.
+
 ## What
 
-I built Kitchen (michaelmonetized/kitchen, web 0.1.0). Codename. Next 16.2.9 + Convex + Clerk + Mirror. HEAD 97bec56. 34 commits.
+I built Kitchen (michaelmonetized/kitchen, web 0.1.0). Codename. Next 16.2.9 + Convex + Clerk + Mirror. HEAD \`97bec56\`. 34 commits.
 
 ![Pricing](/blog/kitchen-cloud-native-project-store/screenshots/pricing.png)
 
 ## Where
 
-Live https://kitchen-gilt-nine.vercel.app — home/pricing/docs/sign-in 200; discover 404; vision/mission 404 (untracked WT). Web is tree/diff/blame — not a textarea editor.
+Live https://kitchen-gilt-nine.vercel.app. Home/pricing/docs/sign-in return 200; discover returns 404; vision/mission return 404 (untracked working tree). Web is tree/diff/blame in the browser; local editors stay native.
 
 ![Docs](/blog/kitchen-cloud-native-project-store/screenshots/docs.png)
 
 ## When
 
-June 18 2026: public log opens at fork-merge; same day org-admin, collab-relay, landing, Vercel ship, recovery loops, then Mirror client, launch-gate, diff/blame, agent kit, offline queue. June 21 lakebed parity. June 22 nightly HEAD 97bec56. Pack day 2026-09-08 draft-only; WT dirty not pushed.
+June 18 2026: public log opens at fork-merge; same day org-admin, collab-relay, landing, Vercel ship, recovery loops, then Mirror client, launch-gate, diff/blame, agent kit, offline queue. June 21 lakebed parity. June 22 nightly HEAD \`97bec56\`. Pack day 2026-09-08 draft-only; working tree dirty, not pushed.
 
 ![Sign-in](/blog/kitchen-cloud-native-project-store/screenshots/sign-in.png)
 
 ## Why
 
-Honest codename. Launch gate blocks PH/HN until Mirror demo is true. Dual honesty: marketing 200 vs discover 404 and WT docs drift. No git means no ceremony verbs — Versions and Pierre merge stay.
+Honest codename. Launch gate blocks PH/HN until Mirror demo is true. Dual honesty: marketing routes return 200 while discover returns 404 and docs drift in the working tree. "No git" means no ceremony verbs; Versions and Pierre merge stay.
 
 ![Four layers](/blog/kitchen-cloud-native-project-store/screenshots/four-layers.png)
 
-If your editor already saves to disk, what would have to be true before you deleted git add — live Versions on another machine, or a merge UI you trust more than conflict markers?
+**Engagement Q:** If your editor already saves to disk, what would have to be true before you deleted \`git add\`: live Versions on another machine, or a merge UI you trust more than conflict markers?
 `;
 
 const HUSTLEMAIL_COVER =
@@ -4086,11 +4087,13 @@ const ASSESSMENT_TOOLBAR_CONTENT = `![Pink marketing assessments bar](/blog/asse
 
 ## Who
 
-I run marketing assessments. Every client tab needs the same SEO stack against the live URL — without hunting bookmarklets.
+I run marketing assessments. Every client tab needs the same SEO stack against the live URL, without hunting bookmarklets.
 
 ## What
 
-Public **michaelmonetized/Assessment-Toolbar** · Chrome MV3 · name **Marketing Assessments** · v**1.0** · HEAD \`9652620\` · **6** commits. Pink #ffc9dd top strip: SpyFu, SiteLiner, Rich Results, Schema, Mobile-Friendly, WAVE, Wayback, Whois + FB/NAP prompts + missing-alt highlighter + title clipboard + Ctrl+Alt+M. GPL-3.0. No package.json. Manifest+README promise **google lighthouse** — content.js has **zero** Lighthouse/PageSpeed link. background.js admits it never knew what the file is for and re-runs content.js while declarative content scripts already load it. Perms: activeTab+scripting only. Rich Results / Mobile-Friendly get location.hostname. Five tools are static. hustlelaunch.com/assessment-toolbar **404**.
+Public **michaelmonetized/Assessment-Toolbar**. Chrome MV3. Name **Marketing Assessments**. v**1.0**. HEAD \`9652620\`. **6** commits. Pink #ffc9dd top strip: SpyFu, SiteLiner, Rich Results, Schema, Mobile-Friendly, WAVE, Wayback, Whois, plus FB/NAP prompts, missing-alt highlighter, title clipboard, and Ctrl+Alt+M. GPL-3.0. No package.json.
+
+Manifest + README promise **google lighthouse**. \`content.js\` has **zero** Lighthouse/PageSpeed link. \`background.js\` admits it never knew what the file is for and re-runs \`content.js\` while declarative content scripts already load it. Perms: activeTab + scripting only. Rich Results / Mobile-Friendly get \`location.hostname\`. Five tools are static. hustlelaunch.com/assessment-toolbar returns **404**.
 
 ![Lighthouse gap](/blog/assessment-toolbar-chrome-mv3-lighthouse-missing-double-inject/screenshots/lighthouse-gap.png)
 
@@ -4100,19 +4103,25 @@ Public **michaelmonetized/Assessment-Toolbar** · Chrome MV3 · name **Marketing
 
 ## Where
 
-github.com/michaelmonetized/Assessment-Toolbar (public). Unpacked root. No CWS. No demo host. hustlelaunch.com root live; product paths not.
+github.com/michaelmonetized/Assessment-Toolbar (public). Unpacked root. No CWS. No demo host. hustlelaunch.com root is live; product paths are not.
 
 ![Commit arc](/blog/assessment-toolbar-chrome-mv3-lighthouse-missing-double-inject/screenshots/commit-arc.png)
 
 ## When
 
-2024-08-16 init + pre-flight · 2024-08-22 ready · 2026-01-31 STRIPE.md sync · 2026-06-22 nightly metadata · empty nightly HEAD \`9652620\` same day.
+**2024-08-16.** init + pre-flight.
+
+**2024-08-22.** ready.
+
+**2026-01-31.** STRIPE.md sync.
+
+**2026-06-22.** nightly metadata; empty nightly HEAD \`9652620\` same day.
 
 ## Why
 
-Assessment strip that advertises Lighthouse without shipping it, and a SW that dual-loads while admitting it does not know its job.
+Assessment strip that advertises Lighthouse without shipping it, and a service worker that dual-loads while admitting it does not know its job.
 
-**Engagement Q:** Add PageSpeed/Lighthouse and drop the dual-load SW tonight — or leave v1.0 lying in its own description?
+**Engagement Q:** Add PageSpeed/Lighthouse and drop the dual-load SW tonight, or leave v1.0 lying in its own description?
 `;
 
 const FREVIEW_COVER =
@@ -4590,13 +4599,15 @@ Draft + assets only until Michael publishes.
 const BUFFER_CLI_COVER =
   "/blog/buffer-cli-wpzinc-parity-agent-oauth-no-scrape/cover.png";
 
-const BUFFER_CLI_CONTENT = `I wanted Buffer scheduling without WordPress and without cookie-scraping CLIs.
+const BUFFER_CLI_CONTENT = `## Who
+
+I wanted Buffer scheduling without WordPress and without cookie-scraping CLIs.
 
 For people who already know WPZinc wp-to-buffer-pro and want the same OAuth + config shape outside PHP.
 
 ## What
 
-I built **buffer-cli** — public https://github.com/michaelmonetized/buffer-cli. HEAD \`778ecaf\`. **3** commits. **0** stars. Default **main**. Version **0.1.0** (CHANGELOG still **[Unreleased]**). CLI only.
+I built **buffer-cli**, public https://github.com/michaelmonetized/buffer-cli. HEAD \`778ecaf\`. **3** commits. **0** stars. Default **main**. Version **0.1.0** (CHANGELOG still **[Unreleased]**). CLI only.
 
 **Shipped (~1892 LOC):** auth, profiles, post, config, tags, info. Bun + commander.
 
@@ -4604,32 +4615,38 @@ I built **buffer-cli** — public https://github.com/michaelmonetized/buffer-cli
 
 ![OAuth WPZinc flow](/blog/buffer-cli-wpzinc-parity-agent-oauth-no-scrape/screenshots/oauth-wpzinc-flow.png)
 
-**Gateway:** Buffer -> wpzinc OAuth -> localhost:9876 -> ~/.buffer-cli. X-Forwarded-Host www.hustlelaunch.com.
+**Gateway:** Buffer to wpzinc OAuth to localhost:9876 to \`~/.buffer-cli\`. X-Forwarded-Host www.hustlelaunch.com.
 
-**Parity:** types/config match wp-to-buffer-pro; template tags {title} {url} {excerpt}.
+**Parity:** types/config match wp-to-buffer-pro; template tags \`{title}\` \`{url}\` \`{excerpt}\`.
 
 ![Docs vs shipped](/blog/buffer-cli-wpzinc-parity-agent-oauth-no-scrape/screenshots/readme-parity-gap.png)
 
-**Gaps:** no queue.ts; no --from; token refresh TODO; PLAN mostly unchecked; FALLOW postCommand CRAP 1190.
+**Gaps:** no queue.ts; no \`--from\`; token refresh TODO; PLAN mostly unchecked; FALLOW postCommand CRAP 1190.
 
 ![Architecture](/blog/buffer-cli-wpzinc-parity-agent-oauth-no-scrape/screenshots/architecture-stack.png)
 
 ## Where
 
-Code: https://github.com/michaelmonetized/buffer-cli — public. No live web app.
+Code: https://github.com/michaelmonetized/buffer-cli, public. No live web app.
 
-Run: bun install && bun run src/index.ts
+\`\`\`bash
+bun install && bun run src/index.ts
+\`\`\`
 
 ## When
 
-**2026-02-16** — 9b53095 feat: initial implementation (+3097 LOC).
-**2026-06-22** — 95fe1c3 nightly: fallow-gate + REVIEW.md.
-**2026-06-22** — 778ecaf nightly -> HEAD.
-## Why
+**2026-02-16.** \`9b53095\` feat: initial implementation (+3097 LOC).
+
+**2026-06-22.** \`95fe1c3\` nightly: fallow-gate + REVIEW.md.
+
+**2026-06-22.** \`778ecaf\` nightly to HEAD.
 
 ![Commit arc](/blog/buffer-cli-wpzinc-parity-agent-oauth-no-scrape/screenshots/commit-arc.png)
 
-Because Buffer own CLI is gone and scraping gets you banned.
+## Why
+
+Buffer's own CLI is gone, and scraping gets you banned. This keeps the WPZinc OAuth + config shape in Bun so agents can schedule without PHP or cookie jars.
+
 **Engagement Q:** Cut README to match HEAD, or finish queue.ts first?
 `;
 
@@ -6028,69 +6045,69 @@ When you migrate a referral-driven local business off WordPress, do you keep the
 const APPESTATESALES_COVER =
   "/blog/appestatesales-elementor-to-next-wnc-liquidation/cover.png";
 
-const APPESTATESALES_CONTENT = `![Appalachian Estate Sales homepage — live capture](/blog/appestatesales-elementor-to-next-wnc-liquidation/screenshots/home.png)
+const APPESTATESALES_CONTENT = `![Appalachian Estate Sales homepage, live capture](/blog/appestatesales-elementor-to-next-wnc-liquidation/screenshots/home.png)
 
 ## Who
 
-I build local sites for operators who already have customers and an Elementor habit. Appalachian Estate Sales is Rene' Rickman Ballard's liquidation and downsizing practice in Waynesville — Haywood through Henderson Counties, phone on the header, Facebook already running the sale calendar.
+I build local sites for operators who already have customers and an Elementor habit. Appalachian Estate Sales is Rene' Rickman Ballard's liquidation and downsizing practice in Waynesville: Haywood through Henderson Counties, phone on the header, Facebook already running the sale calendar.
 
-The audience for the business is families mid-transition: bereavement, assisted living moves, divorce. The audience for this write-up is anyone shipping an Elementor → App Router rebuild who still needs lead capture to work on day two.
+The audience for the business is families mid-transition: bereavement, assisted living moves, divorce. The audience for this write-up is anyone shipping an Elementor-to-App-Router rebuild who still needs lead capture to work on day two.
 
 ## What
 
 I rebuilt the marketing site as **Next.js 16.1.7** (App Router), React 19, Tailwind v4, Bun, shadcn/ui, under private \`Hustle-Launch/appestatesales-com\`. Package.json still names the app \`web\` at **0.1.0**.
 
-![Convex schema — leads and subscribers](/blog/appestatesales-elementor-to-next-wnc-liquidation/screenshots/schema.png)
+![Convex schema: leads and subscribers](/blog/appestatesales-elementor-to-next-wnc-liquidation/screenshots/schema.png)
 
 What exists in code and on the live host:
 
 - Seven routes: home, about-rene, estate-sale-services, estate-sales-process, previous-estate-sales, upcoming-estate-sales, contact-us
 - Layout stack: Header (logo + porch swing + phone), cyan Sidebar nav, Footer contact form, floating mobile bar
-- Design tokens pulled from the Elementor screenshots — cream ground, cyan nav, coral subscribe/CTA
+- Design tokens pulled from the Elementor screenshots: cream ground, cyan nav, coral subscribe/CTA
 - Markdown under \`content/\` as the copy source of truth
 - Schema.org LocalBusiness + FAQ JSON-LD (\`app/schema.ts\`) pointing at \`https://appestatesales.com\`
 - Convex tables \`leads\` and \`subscribers\` with email indexes
-- \`/api/contact\` and \`/api/subscribe\` writing Convex + Resend (notify@uncap.us → AES Gmail + a michaelmonetized lead alias)
+- \`/api/contact\` and \`/api/subscribe\` writing Convex + Resend (notify@uncap.us to AES Gmail + a michaelmonetized lead alias)
 - Sentry project \`appestatesales\`, PostHog provider slot, Blacksmith \`ship.yml\` prebuilt deploy
 - Estate Sale Liquidator Pros badge on the home article
 
-What is still a stand-in: Previous and Upcoming pages embed the Facebook Page plugin for \`estate.tag.sales.wnc\`. There is no Convex-backed sales gallery yet. README migration checklist still marks Convex and Resend as “coming soon” even though both paths are in the tree.
+What is still a stand-in: Previous and Upcoming pages embed the Facebook Page plugin for \`estate.tag.sales.wnc\`. There is no Convex-backed sales gallery yet. README migration checklist still marks Convex and Resend as "coming soon" even though both paths are in the tree.
 
 ![Shipped pages vs Facebook-embed gap](/blog/appestatesales-elementor-to-next-wnc-liquidation/screenshots/stack-gap.png)
 
 ## Where
 
-Live: [www.appestatesales.com](https://www.appestatesales.com/) — HTTP 200 on pack day, \`X-Robots-Tag: index, follow\`. Apex redirects 307 to www. Vercel alias \`appestatesalescom.vercel.app\` serves the same prerender.
+Live: [www.appestatesales.com](https://www.appestatesales.com/). HTTP 200 on pack day, \`X-Robots-Tag: index, follow\`. Apex redirects 307 to www. Vercel alias \`appestatesalescom.vercel.app\` serves the same prerender.
 
 \`vercel.json\` turns **off** git auto-deploy for \`main\`/\`master\`; production moves through Blacksmith + \`vercel deploy --prebuilt\`.
 
 Geography in schema and copy: Waynesville NC 28786, serving Haywood, Buncombe, Jackson, Macon, Swain, Henderson. Social sameAs: Facebook + Instagram.
 
-This is not BestWNC (multi-business directory) and not WNC History Tours (booking marketplace shell). It is one liquidator’s marketing site.
+One liquidator's marketing site for Appalachian Estate Sales.
 
 ## When
 
 **2026-03-17.** Init (\`916df66\`). Same afternoon: images + Resend contact wiring, Convex and Vercel link, test deploy, styling/logo pass, standards.css + shadcn forms, Schema.org LocalBusiness + FAQ. Densest product day.
 
-**2026-03-18.** viewTransition typing fix, sidebar styles, styling cleanup, Convex wiring cleanup, mobile bar “needs work”, polish, Resend audience-id fix, build optimizations.
+**2026-03-18.** viewTransition typing fix, sidebar styles, styling cleanup, Convex wiring cleanup, mobile bar "needs work", polish, Resend audience-id fix, build optimizations.
 
-**2026-03-19 10:08 AM ET.** \`669a106\` — Facebook embed done. Upcoming/previous now lean on the social feed.
+**2026-03-19 10:08 AM ET.** \`669a106\`: Facebook embed done. Upcoming/previous now lean on the social feed.
 
 **May 13–15.** shipprep standards install (twice) then revert (twice). Churn, not product.
 
 **2026-05-21.** Apply shipprep observability and Blacksmith deploys; harden Sentry runtime (env-driven DSN, no default PII).
 
-**2026-08-08 6:54 AM ET.** \`7a87d72\` — set \`X-Robots-Tag\` to \`index, follow\` on Vercel. HEAD. Twenty-four commits on \`main\`.
+**2026-08-08 6:54 AM ET.** \`7a87d72\`: set \`X-Robots-Tag\` to \`index, follow\` on Vercel. HEAD. Twenty-four commits on \`main\`.
 
 ![Commit journey March through August](/blog/appestatesales-elementor-to-next-wnc-liquidation/screenshots/journey.png)
 
 ## Why
 
-Elementor migrations fail two ways: pixel-perfect CSS with a dead contact form, or a modern stack with a blank homepage. I aimed at the honest middle — familiar cream/cyan layout clients recognize, seven pages of real copy, and lead capture that actually posts to Convex and Resend.
+Elementor migrations fail two ways: pixel-perfect CSS with a dead contact form, or a modern stack with a blank homepage. I aimed at the honest middle: familiar cream/cyan layout clients recognize, seven pages of real copy, and lead capture that actually posts to Convex and Resend.
 
 The sales calendar still lives on Facebook. The robots header asks Google to index a site whose previous-sales gallery is an iframe. That gap is the field note.
 
-If you run estate sales in Western North Carolina, would you trust a Next rebuild that still embeds your Facebook page for the calendar — or do you refuse to ship until Convex owns upcoming and previous sales?
+**Engagement Q:** If you run estate sales in Western North Carolina, would you trust a Next rebuild that still embeds your Facebook page for the calendar, or do you refuse to ship until Convex owns upcoming and previous sales?
 `;
 
 const JENNINGSCUSTOMHOMES_COVER =
@@ -6223,7 +6240,7 @@ export const staticPosts: StaticPost[] = [
     title: "Appalachian Estate Sales: I rebuilt the Elementor site in Next before the gallery existed",
     slug: "appestatesales-elementor-to-next-wnc-liquidation",
     excerpt:
-      "Hustle-Launch/appestatesales-com is Appalachian Estate Sales — Rene' Rickman Ballard's WNC estate liquidation site. Elementor → Next.js 16 with cream/cyan/coral tokens, seven pages, Schema.org, Convex leads/subscribers, and Resend contact. Live at www.appestatesales.com. Previous/upcoming sales still lean on a Facebook page embed. HEAD 7a87d72.",
+      "Appalachian Estate Sales is a private Next.js 16.1.7 + Convex + Resend rebuild (HEAD 7a87d72, 24 commits) with seven routes and live lead capture on www.appestatesales.com. Previous/Upcoming still embed Facebook; README still says Convex/Resend are coming soon.",
     content: APPESTATESALES_CONTENT,
     coverImage: APPESTATESALES_COVER,
     tags: [
@@ -6967,7 +6984,7 @@ export const staticPosts: StaticPost[] = [
     title: "buffer-cli: wp-to-buffer-pro parity in the terminal \u2014 OAuth, no scrape",
     slug: "buffer-cli-wpzinc-parity-agent-oauth-no-scrape",
     excerpt:
-      "Public michaelmonetized/buffer-cli: Bun/TS CLI that ports WPZinc wp-to-buffer-pro Buffer OAuth + config schema to the terminal. Official API via WPZinc gateway (X-Forwarded-Host: www.hustlelaunch.com). README still lists queue.ts/--from never shipped; token refresh TODO; CHANGELOG Unreleased vs package 0.1.0. 3 commits. HEAD 778ecaf.",
+      "buffer-cli is a public Bun + commander CLI (HEAD 778ecaf, 3 commits, ~1892 LOC) with WPZinc-shaped OAuth via localhost:9876 into ~/.buffer-cli. Gaps: no queue.ts, no --from, token refresh TODO, CHANGELOG still Unreleased.",
     content: BUFFER_CLI_CONTENT,
     coverImage: BUFFER_CLI_COVER,
     tags: [
@@ -7113,7 +7130,7 @@ export const staticPosts: StaticPost[] = [
     title: "Assessment-Toolbar: pink SEO chrome bar that promises Lighthouse and double-injects itself",
     slug: "assessment-toolbar-chrome-mv3-lighthouse-missing-double-inject",
     excerpt:
-      "Public michaelmonetized/Assessment-Toolbar is a Manifest V3 Chrome extension named Marketing Assessments: a #ffc9dd top strip that launches SpyFu, SiteLiner, Rich Results, Schema, Mobile-Friendly, WAVE, Wayback, Whois, plus FB/NAP prompts and a missing-alt highlighter. HEAD 9652620. 6 commits. Manifest+README promise google lighthouse \u2014 content.js has zero Lighthouse/PageSpeed link. background.js opens with never known what to do with this file and re-executes content.js on tab lifecycle while content_scripts already injects it. Permissions: activeTab+scripting only \u2014 no tabs, no host_permissions. Rich Results / Mobile-Friendly get location.hostname not an encoded URL. BrightLocal/Keyword Density/Keyword Planner/Moz/Word Count are static. Empty second nightly is HEAD. hustlelaunch.com/assessment-toolbar 404.",
+      "Assessment-Toolbar is a public Chrome MV3 pink SEO strip (HEAD 9652620, 6 commits, GPL-3.0) that ships SpyFu through Whois helpers but zero Lighthouse links despite Manifest/README claims. background.js dual-loads content.js; hustlelaunch.com/assessment-toolbar is 404.",
     content: ASSESSMENT_TOOLBAR_CONTENT,
     coverImage: ASSESSMENT_TOOLBAR_COVER,
     tags: [
@@ -7280,7 +7297,7 @@ export const staticPosts: StaticPost[] = [
     title: "Kitchen: I built a cloud project store where files are rows and disk is a Mirror \u2014 no git",
     slug: "kitchen-cloud-native-project-store",
     excerpt:
-      "I built Kitchen \u2014 a Next.js 16 + Convex + Clerk cloud-native project store: insert-only Version rows, a Mirror daemon at $HOME/Projects, Pierre line-pick merge, and a live Vercel beta. Codename. No git ceremony.",
+      "Kitchen is a public Next 16.2.9 + Convex + Clerk + Mirror project store (HEAD 97bec56, 34 commits, web 0.1.0) aimed at live sync without git ceremony verbs. Marketing routes return 200; discover/vision/mission still 404 and the working tree is dirty.",
     content: KITCHEN_CONTENT,
     coverImage: KITCHEN_COVER,
     tags: [
