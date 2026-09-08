@@ -1568,7 +1568,501 @@ Sibling context: BestWNC is the broader WNC business directory. This repo is the
 If you run walking tours in Asheville or Cherokee, would you list on a WNC-only history board — or is Viator still the only checkout that matters?
 `;
 
+const YOURZAXBYS_COVER =
+  "/blog/yourzaxbys-franchise-management-platform/cover.png";
+
+const YOURZAXBYS_CONTENT = `![Your ZAXBYS landing hero on Vercel](/blog/yourzaxbys-franchise-management-platform/screenshots/landing.png)
+
+## Who
+
+I kept catching myself watching franchise operators bounce between a POS export, a Steritech PDF, a schedule spreadsheet, and a text thread that somehow became HR.
+
+Not another generic “restaurant dashboard” template with fake charts and a purple sidebar. Not a pitch that says multi-unit without a stores table. I wanted the above-store view and the store-level pain in the same repo family — with real auth, real email, and an honest hole where the custom domain DNS still is not answering from my network.
+
+Your ZAXBYS is for multi-unit Zaxby's owners, above-store folks, and GMs who will sit with a CAP form. Operators who think Clerk + Convex is a product decision, not a tutorial. If you run MarTech by day and still care whether a food-safety observation has a written plan, you are in the room.
+
+## What
+
+I built a franchise management platform as a Next.js app with a marketing shell and a gated dashboard.
+
+Public surface: hero lander, features, pricing, about, testimonials, blog stub, contact, privacy. Clerk sign-in / sign-up. CTAs now point at \`/signup\` — that wiring was a March 1 fix, not day-one magic. Pricing page sells **Starter $99/mo**, **Professional $199/mo**, **Enterprise Custom**, plus add-ons ($25 per extra location, analytics, integrations setup, priority support). FinalCTA still shows a placeholder \`(555) 123-ZAXBYS\`. I am not going to pretend that is a real phone bank.
+
+![Pricing lander on Vercel](/blog/yourzaxbys-franchise-management-platform/screenshots/pricing.png)
+
+Private surface: \`/dashboard\` with stores, employees, schedule, audits, reports, settings. Convex schema is the spine — \`employees\` (roles from \`franchise_owner\` down to \`team_member\`, \`eid\` like \`ZAX######\`, **\`ssnLast4\` only**), \`stores\`, \`schedules\` + \`shifts\`, \`caps\` (food safety / RER with observation → solution → plan), \`audits\` (Steritech, health department, internal, RER), \`salesData\`, \`feedback\`, \`notifications\`. Resend routes send confirmation, invite, and notification mail from \`notify@yourzaxbys.com\`. Invite copy still names **Zaxby's Waynesville, NC** — the sibling store product is not theoretical.
+
+Stack on disk: Next **16.1.6**, React 19, Convex, Clerk, Radix + Tailwind, Sentry (\`hustle-launch\` / \`shipthing\`), PostHog provider, Bun lockfile, package **\`zaxbys-franchise-management-platform\` \`1.0.0\`**. \`proxy.ts\` is the Next 16 rename of middleware. Blacksmith \`ship.yml\` pulls Vercel env and Convex deploy keys.
+
+![Illustrative dashboard composite from schema + routes](/blog/yourzaxbys-franchise-management-platform/screenshots/dashboard-composite.png)
+
+Honesty checks: the lander brags \`500+\` locations / \`25%\` cost reduction / \`99.9%\` uptime / \`4.9★\`. Those strings live in \`app/page.tsx\`. They are not a warehouse receipt. Unauthenticated \`/dashboard\` on the Vercel alias returned 404 at pack time — no logged-in screenshot. README still tells you to clone \`michaelmonetized/www.yourzaxbys.com\`; the GitHub org is **HurleyUS**. AUTOPSY.md from February roasted a missing navbar and missing SEO files; HEAD has \`manifest.ts\`, \`sitemap.ts\`, \`robots.ts\`. Treat the autopsy as a scar, not the current build report.
+
+## Where
+
+Code: [github.com/HurleyUS/www.yourzaxbys.com](https://github.com/HurleyUS/www.yourzaxbys.com). Public. Empty description. Empty topics. Zero stars.
+
+Live alias that answered HTTP 200 for this pack: [wwwyourzaxbyscom.vercel.app](https://wwwyourzaxbyscom.vercel.app). GitHub homepage field points there. Custom domain \`www.yourzaxbys.com\` did **not** resolve from the pack hosts — NXDOMAIN. Sibling store app: private [waynesville.yourzaxbys.com](https://github.com/HurleyUS/waynesville.yourzaxbys.com) with its own Vercel alias.
+
+The audience sits next to every franchise thread that wants one login for labor, audits, and CAP follow-ups, and next to every builder who knows a SaaS pricing page without a protect() boundary is cosplay.
+
+## When
+
+**2025-03-07 → 03-09.** First \`init\` commits under Michael Monetized. Fonts. Style passes. The classic “we gotta push to main to see minor changes yuck” loop. Repo created on GitHub 2025-03-08.
+
+**2025-10-02.** Another \`init\` — reboot marker on the timeline.
+
+**2025-10-15.** The YOLO pivot. Commit message literally: letting CodeRabbit and GPT5 duke out a refactor into a new project idea. Missing deps. Bun trusts. “Updated everything YOLO.” “says ready for prod :shrug:” Accessibility vibing. That afternoon is when the franchise platform stopped being a mood and became a tree.
+
+**2025-10-16.** Marketing pages land.
+
+**2025-12-29.** CVE dependency passes.
+
+**2026-01-08.** PLAN.md — multi-store dashboard, unified reporting, document library, the above-store wishlist.
+
+**2026-01-31.** Big \`chore: sync all changes\`.
+
+**2026-02-04.** \`Add complete franchise management dashboard\` — the product-shaped commit.
+
+**2026-02-06 → 02-21.** Next 16 \`proxy.ts\` rename. Security: SSN off the wire, \`ssnLast4\` in schema, encrypt-at-rest notes in changelog, email domain / EID standardization (#11, #12).
+
+**2026-02-28 → 03-09.** TypeScript fix PR. Strip thirteen console statements. Wire CTAs to \`/signup\`. Bump Next to **16.1.6** for CVEs (#21).
+
+**2026-05-14.** Blacksmith CI gates standardized across a stack of commits. Lazy-init Resend clients. Skip Convex provider when public env is missing so the marketing shell does not die without a deployment.
+
+**2026-08-08.** \`fix: set X-Robots-Tag to index, follow on Vercel\`. HEAD \`705473f\`. Forty-six commits on the ledger. Pack day is September 8, 2026.
+
+That is the journey from font fiddling to a versioned franchise ops platform with a live Vercel alias and a custom domain that still needs DNS honesty.
+
+## Why
+
+I did not want the store and the above-store to keep living in different tabs forever.
+
+So I put employees, stores, schedules, CAPs, and audits in one Convex schema. I put Clerk in front of the dashboard and Resend on the invite path. I left the marketing stats labeled as marketing. I left the Waynesville invite copy as a breadcrumb to the sibling store app. I set package **1.0.0** knowing “1.0” here means the platform shape shipped — not that every PLAN.md checkbox is green.
+
+sitrep still says WIP and HIGH client priority. ROADMAP still wants owner UAT. That is fine. The repo is not empty, not a junk stub, and not a logo dump. It is a franchise ops bet with receipts in git.
+
+If your current “franchise tool” folder has a pricing page and no \`ssnLast4\` decision, or a dashboard route and no protect middleware, you already know which hole I was staring at.
+
+Would you fix \`www.yourzaxbys.com\` DNS and run a real owner pilot next — or delete the fake 500+ lander stats before anyone quotes them as proof?
+`;
+
+const MOCKUP_GALLERY_COVER =
+  "/blog/mockup-gallery-ten-industry-cold-outreach/cover.png";
+
+const MOCKUP_GALLERY_CONTENT = `![Web Design Portfolio chrome with Prestige luxury real estate tab](/blog/mockup-gallery-ten-industry-cold-outreach/screenshots/gallery-home.png)
+
+## Who
+
+I sell web design the old way sometimes. Email. Industry angle. Proof.
+
+Prospects do not want a Figma file. They want to see what *their* kind of site could look like — real estate, HVAC, SaaS, a restaurant booker — without waiting on a custom sprint.
+
+mockup-gallery is for that motion. Local operators. SMB owners. Anyone I can send a link and a short note. Frontend people who care how a sales kit is actually built under Next 16 and Tailwind 4. Not the twelveux registry crowd. Not a single vertical client delivery.
+
+## What
+
+I built a public Next.js gallery. Package name \`design-mockups\`. Version **1.0.0**. React 19. Tailwind 4. Bun lockfile. Lucide icons.
+
+One client page. Sticky dark portfolio chrome. Ten tabs. Each tab mounts a full-page industry lander under \`app/components/mockups/\`.
+
+The brands on the tabs: **Prestige**, **Velocity Motors**, **Nexus Consulting**, **ARIA**, **ZENITH**, **HandyPro**, **Analytics Pro**, **LearnHub**, **TableHub**, **VoyageNow**.
+
+Roughly twenty-six hundred lines of mockup TSX. No per-mockup routes — tab state only. README ships a cold-outreach template (sign-off in-file still says “—Rusty”).
+
+Observability landed later: Sentry, PostHog, Fallow, Blacksmith \`ship.yml\`.
+
+![Ten industry mockup cards](/blog/mockup-gallery-ten-industry-cold-outreach/screenshots/ten-mockups-grid.png)
+
+## Where
+
+Live on Vercel: https://mockup-gallery-nu.vercel.app — at pack time \`X-Robots-Tag: index, follow\`.
+
+Repo: https://github.com/HurleyUS/mockup-gallery
+
+Contact chrome: hello@hurleyus.com · +1 (828) 593-1935
+
+![HandyPro home services mockup](/blog/mockup-gallery-ten-industry-cold-outreach/screenshots/home-services.png)
+
+## When
+
+**2026-03-28, 7:21 PM ET.** Ten mockups land. Same evening Tailwind v4 / PostCSS / Vercel CSS fight through \`61dda20\`.
+
+**2026-05-14 afternoon.** Blacksmith CI standardization + Fallow/FReview scaffolding + formatter green.
+
+**2026-08-08, 6:55 AM ET.** HEAD \`21f44ec\` — robots \`index, follow\`. Twenty commits. Package 1.0.0.
+
+## Why
+
+I needed a link for industry email without a bespoke repo per vertical. Ten tabbed landers is that link.
+
+Tailwind v4 pain is part of the truth. May CI/observability is the operator habit. August robots flip says the page is meant to be found.
+
+What industry tab would you send first?
+`;
+
+const S12IN_COVER =
+  "/blog/s12-in-url-shortener-file-hosting/cover.png";
+
+const S12IN_CONTENT = `![s12.in landing — Short links, powerful results](/blog/s12-in-url-shortener-file-hosting/screenshots/landing.png)
+
+## Who
+
+I got tired of leasing short links from tools that treat a redirect like a subscription upsell.
+
+Operators — marketers, founders, agencies, anyone pasting campaign URLs into SMS and decks — need a domain they own, a dashboard that lists what they created, and click facts that survive the redirect. Developers already on Convex and Clerk do not need a fifth SaaS login for “paste URL, get code.”
+
+s12.in is for that seat. If you live in MarTech, ship Next.js on Vercel, or just want \`s12.in/abc\` instead of a twenty-character tracking URL, you are in the room.
+
+## What
+
+I shipped a URL shortener and file host at [s12.in](https://s12.in).
+
+Stack facts, not pitch deck: **Next.js 16.1.6** (App Router, Turbopack) on Vercel, **React 19.2**, **Convex** for links/files/clicks/users plus \`_storage\` uploads, **Clerk** for auth, **Tailwind CSS v4**, Radix primitives, Resend in the lockfile, Biome + oxlint + tsgo. Package name \`s12\`, version **0.1.0**, packageManager **bun@1.3.1**. Repo is **private** under HurleyUS.
+
+![Dashboard — shorten, upload, manage](/blog/s12-in-url-shortener-file-hosting/screenshots/dashboard.png)
+
+Paste a long URL on the homepage or dashboard. Convex \`links.create\` issues a short code (optional \`customCode\` / \`password\` / \`expiresAt\` exist on the schema; the public form only sends \`url\` + optional \`userId\`). \`app/[code]/route.ts\` resolves the code, parses user-agent, reads Vercel geo headers, hashes the IP with SHA-256 + a salt (16 hex chars), fires \`recordClick\` without blocking, then **302**s. Files take the same path: viewable MIME types redirect to the Convex storage URL; others return an attachment stream.
+
+Dashboard tabs list your links and files with copy/delete. Click and download counters are denormalized on the row. \`getAnalytics\` can roll up by day/country/browser/device/referrer — charts are not on the dashboard yet.
+
+A Manifest V3 Chrome extension scaffold lives under \`extension/\` and posts to \`/api/shorten\` with CORS. Icon PNGs are still marked \`ICONS_NEEDED.md\` (SVG only in tree).
+
+Honesty, because operators smell it: the hero still prints **10M+ / 50K+ / 99.9%** as static JSX. The live Clerk publishable key I hit was **pk_test** on \`*.clerk.accounts.dev\`. README still names PostHog and Sentry; those packages were removed Feb 21. Footer GitHub still points at \`michaelmonetized/s12.in\` while the working private remote is **HurleyUS/s12.in**. Schema \`users.plan\` free|pro|team is ahead of any billing UI.
+
+![Redirect pipeline](/blog/s12-in-url-shortener-file-hosting/screenshots/redirect-pipeline.png)
+
+## Where
+
+Product: [s12.in](https://s12.in) (apex redirects toward www). Vercel project alias on the GitHub homepage field: [s12-in.vercel.app](https://s12-in.vercel.app). Routes that matter: \`/\`, \`/dashboard\`, \`/sign-in\`, \`/sign-up\`, \`/privacy\`, \`/terms\`, \`/refunds\`, \`/api/shorten\`, \`/[code]\`.
+
+Code: [github.com/HurleyUS/s12.in](https://github.com/HurleyUS/s12.in) — private, no topics, no license file, no tagged releases. Deploy path is Vercel continuous with a Blacksmith \`ship.yml\` gate. Local path: \`bun install\`, \`bunx convex dev\`, \`bun dev\`.
+
+Audience sits next to every “just use Bitly” thread and every Convex starter that never grew a redirect route.
+
+![Chrome extension scaffold](/blog/s12-in-url-shortener-file-hosting/screenshots/extension.png)
+
+## When
+
+**2026-01-08.** Initial commit: Next.js, Convex, Tailwind. Same day: OPPORTUNITIES.md and homepage improvements; PLAN.md improvement list. Early docs still daydream about a CDN — the product that shipped is the shortener + files.
+
+**2026-01-31 → 02-05.** Sync. Tailwind v4 \`@import\`. Prod build ready.
+
+**2026-02-06.** The spine. Core URL shortening. Upgrade to Next.js 16 and React 19; middleware renamed toward \`proxy.ts\` (and briefly back — Next’s naming war). Convex backend configured and deployed. Clerk auth keys landed.
+
+**2026-02-11.** Dashboard UI improvements — links/files mental model.
+
+**2026-02-15–21.** Docs say \`proxy.ts\`. Footer gets real social URLs. Unused \`posthog-js\` and \`@sentry/nextjs\` leave the lockfile.
+
+**2026-02-27.** Security headers in \`next.config.ts\`. \`sitemap.ts\` / \`robots.ts\`. Error boundaries. Auth checks on links and files mutations.
+
+**2026-03-23.** PR #23 strips \`console.error\` noise.
+
+**2026-05-14–15.** Blacksmith CI standardized. Providers tolerate missing Clerk keys so builds do not die. Deploy URL / health-check fixes.
+
+**2026-08-08.** HEAD \`d6c074f\` — \`vercel.json\` sets \`X-Robots-Tag: index, follow\`. Thirty-eight commits on the clock.
+
+## Why
+
+A short link you do not control is a tax with a dashboard skin. I wanted the domain, the Convex tables, and the redirect that writes analytics before the visitor leaves — on the same Clerk identity I already use everywhere else.
+
+So I put shortening and file hosting on \`s12.in\`, recorded clicks with geo and device fields, and kept shipping until CI and robots headers stopped being the embarrassment.
+
+It is still 0.1.0. Custom codes, password gates, plan limits, and analytics charts sit in schema or queries waiting for UI. Clerk on the observed deploy is still test-mode. That is fine to say out loud. The redirect path and the dashboard list already do the job a rented shortener charges monthly for.
+
+If your current short links cannot show you country and device without opening another product, you already know the hole I was staring at.
+
+What would you put on \`s12.in/yourcode\` first — the campaign URL, the PDF, or the deck you keep resending as a thirty-line Google Drive link?
+`;
+
+const THENATIONALNC_COVER =
+  "/blog/thenationalnc-live-rss-before-bias-ai/cover.png";
+
+const THENATIONALNC_CONTENT = `![The National NC homepage — LIVE Latest NC News](/blog/thenationalnc-live-rss-before-bias-ai/screenshots/home-live.png)
+
+## Who
+
+I got tired of opening five tabs to see how the same North Carolina story landed in Charlotte, Raleigh, and the wire services — then pretending I had “read around.”
+
+Most “balanced news” products either editorialize or hide the sausage. I wanted a pipe: aggregate first, label leanings when we can prove them, compare coverage when the model earns the pixel.
+
+The National NC is for NC locals and remote watchers who want AP, Reuters, and regional headlines in one dark UI — and for builders who will tolerate an honest placeholder where the AI comparison card still says “coming.”
+
+If you ship Next + Convex + Clerk and care about media literacy without a cable-news costume, you are in the room.
+
+## What
+
+Live at [thenationalnc.com](https://www.thenationalnc.com/). Private repo [HurleyUS/thenationalnc.com](https://github.com/HurleyUS/thenationalnc.com). Package **0.1.0**, Bun, Next.js **16.2.6**, React 19, Tailwind 4, Catppuccin Mocha by default.
+
+Stack in the lockfile: Convex, Clerk, PostHog, Sentry, Resend, Radix, lucide, next-themes, Vitest. Payments README still says N/A; freemium (ad-free / advanced comparison) is in the opportunities doc, not a Stripe catalog.
+
+![News feed — Live / Editorial](/blog/thenationalnc-live-rss-before-bias-ai/screenshots/news.png)
+
+What actually works today:
+
+- **\`GET /api/news\`** pulls Google News RSS — AP site query, Reuters site query, NC \`when:3d\` — parses items, filters with 30+ NC city/region/team keywords, dedupes by title similarity, caches **15 minutes** in process memory.
+- Homepage embeds a **LIVE** feed with source tabs (All / AP / Reuters / NC News) and refresh.
+- \`/news\` defaults to Live; Editorial tab still serves eight demo NC articles with Left / Center / Right badges.
+- \`/news/[id]\` renders demo content + related sidebar + an **AI comparison placeholder** — not a live model call.
+- Convex \`schema.ts\` defines articles, sources, comparisons, categories (optional embeddings). Deployment not initialized; demo data still wins.
+
+On 2026-09-08 the live API returned **50** NC-relevant headlines in one sample (WXII, Citizen Times, Carolina Journal, WRAL, ABC11, NYT, …). AP/Reuters tabs can show zero when those fetches abort — 8s timeout per feed, independent failure.
+
+![About — mission and L/C/R source lists](/blog/thenationalnc-live-rss-before-bias-ai/screenshots/about.png)
+
+## Where
+
+Public product: [www.thenationalnc.com](https://www.thenationalnc.com/). Vercel alias \`thenationalnc-com.vercel.app\`. Routes: \`/\`, \`/news\`, \`/news/[id]\`, \`/about\`, \`/api/news\`. Robots allow site, disallow \`/api/\`. Sitemap is thin (homepage-weighted) as of last deploy.
+
+Code stays private under HurleyUS. Host Vercel; Blacksmith/prebuilt CI path; \`vercel.json\` disables git auto-deploy on \`main\` and sets \`X-Robots-Tag: index, follow\`.
+
+## When
+
+**2026-01-08.** Scaffold Next + Convex + Tailwind. PLAN and OPPORTUNITIES spell the bias-comparison dream before a single feed parses.
+
+**2026-02-06–08.** Next 16.1.6, Tailwind v4 CSS import fix, wire dead homepage buttons, yank Clerk off the homepage when env keys are missing.
+
+**2026-02-13.** The real jump: Catppuccin dark mode, shared layout, demo news + article pages, Convex schema — and **live NC feeds** through Google News RSS (\`44dfae3\`). That is when the site stopped being a brochure.
+
+**Late February.** Clerk middleware, error boundaries, sitemap/robots, security headers, console → Sentry cleanup.
+
+**March.** Vitest smoke coverage.
+
+**May.** shipprep / Blacksmith CI standardization and deploy URL verification — lots of “Standardize Blacksmith CI gates,” little product surface change.
+
+**2026-08-08.** HEAD \`bfb6723\` — robots index/follow header on Vercel. Thirty-three commits on the clock.
+
+## Why
+
+Bias detection without articles is a slide deck. I wanted the NC headline pipe in production first — cache, filters, source badges, dark UI — so when OpenRouter (or whatever) comparison lands, it has real URLs to argue about.
+
+The gap is intentional and visible: leaning badges on demos, placeholder comparison card, Convex not live yet. Better than fake AI chrome.
+
+When the comparison model finally ships, which NC story do you want side-by-side first — legislature, weather disaster, or Carolina basketball?
+`;
+
+const ILEAGUE_COVER =
+  "/blog/ileague-golf-patreon-meets-18birdies/cover.png";
+
+const ILEAGUE_CONTENT = `![iLeague.golf homepage mock — Patreon meets 18birdies, Top 54 qualify for iTour](/blog/ileague-golf-patreon-meets-18birdies/screenshots/home.png)
+
+## Who
+
+I build products in public for operators, not for pitch decks. Golf creators already duct-tape a scorecard app to a Patreon to a tip jar. Fans already bounce between three tabs to follow a round and pay for the good stuff.
+
+iLeague.golf is for those creators and those fans — and for anyone shipping a Bun monorepo that has to hold a Next.js web app, an Expo companion, and a Convex backend without lying about what is finished.
+
+If you care about creator-economy plumbing, Stripe tier math, or how a generic “influencer” scaffold gets rebranded into a sport vertical: this is the field notes.
+
+## What
+
+I shipped a golf creator platform under \`HurleyUS/ileague.golf\`.
+
+The README line is blunt: **Patreon meets 18birdies**. The live lander says the same badge, then: **Where Golf Creators Build Empires**. Track rounds. Build a following. Get paid through subscriptions and tips. **Top 54** creators qualify for [iTour.golf](https://itour.golf). Winners aim at iConference.
+
+Stack on the box: **Next.js 15.5.9**, React 18.3.1, **Convex**, **Clerk**, **Stripe**, PostHog, Sentry, Resend, Tailwind v4, Bun workspaces, Expo 52 mobile, Phosphor icons via react-icons, Vercel. Package version **1.0.0**. Repo is private. Site is public at [ileague.golf](https://ileague.golf).
+
+![Creator profile mock — followers, subscribers, earnings, content grid](/blog/ileague-golf-patreon-meets-18birdies/screenshots/creator-profile.png)
+
+Monetization is not a slide. It is \`apps/web/src/lib/billing.ts\`:
+
+- Platform fee **15%**
+- Tip presets **$5 / $10 / $20 / $50 / $100**
+- Suggested creator tiers — Bronze $4.99, Silver $9.99, Gold $24.99 monthly (yearly suggested too)
+- Real tiers live in Convex \`subscriptionTiers\` and check out through dynamic Stripe \`price_data\` (web API + Convex actions)
+
+Content model covers video, shorts, images, links, text, and **round recaps** tied to scorecards. Visibility: public / followers / subscribers. Courses, course reviews, rounds (FIR/GIR/putts), standings, leagues, notifications — all in \`convex/schema.ts\`.
+
+What is also true: the dashboard still says **influencers**. Explore still calls \`getInfluencers\`. The README still says **Top 36** while the live hero says **Top 54**. Production HTML still loads Clerk **\`pk_test\`** from a \`*.clerk.accounts.dev\` instance. The scorecard schema is ahead of the hole-entry UI. That is the product, not a footnote.
+
+![Billing mock — Bronze / Silver / Gold + tip presets](/blog/ileague-golf-patreon-meets-18birdies/screenshots/billing-tiers.png)
+
+## Where
+
+It runs on Vercel against Convex. Auth is Clerk. Money is Stripe. Mail is Resend. Errors go to Sentry. Product events go to PostHog. Mobile is Expo with EAS configs and placeholder Apple submit IDs.
+
+Surfaces that matter:
+
+- Public lander — emerald/slate hero, feature grid, creator/fan columns, ecosystem footer
+- Auth + onboarding — Clerk sign-in/up, role/profile setup
+- App shell — dashboard, explore, leagues, notifications
+- Creator profile — \`/creator/[id]\` with hero, featured courses, content grid
+- Payments — \`/api/stripe/checkout\`, portal, webhook; Convex \`/stripe-webhook\`
+
+Audience sits with golf creators, golf fans, and builders watching a sport vertical on a creator-economy stack. Sibling properties: iTour.golf and iConference.golf under the HurleyUS lane.
+
+![Scorecard / schema mock — hole-by-hole model vs missing UI](/blog/ileague-golf-patreon-meets-18birdies/screenshots/scorecard.png)
+
+## When
+
+**2026-01-09.** Initial monorepo — web + mobile. Convex stubs. React 19 downgraded to 18 for Clerk/Convex. Vercel monorepo config. First production deploy on a hustle-launch Vercel URL. CHANGELOG also remembers the earlier \`michaelmonetized/ileague-app\` GitHub link.
+
+**January 31.** Chore sync.
+
+**February 4.** Mobile leagues pushed toward Convex. EAS config. Roadmap honesty about hardcoded mobile screens.
+
+**February 11.** HurleyUS repo created. Golf schema and plan. Golf-focused homepage, header, footer, Convex functions. This is the rebrand day — influencer scaffold becomes iLeague.golf.
+
+**February 12–28.** Stripe API version bump. Search indexes. Metadata rewritten for golf. Golf category. lucide → react-icons. Root \`/convex\` consolidation. CI experiments. Mobile TypeScript cleanup. Vercel as the only CI/CD.
+
+**March.** Security headers. Middleware runtime fights. **www vs apex redirect loop** — normalize middleware, dual aliases, then disable middleware so Vercel stops bouncing. robots.txt, sitemap, trending creators carousel. Stripe checkout patterns standardized. **Creator profile page** ships. Dashboard starts showing real follower/subscriber/earnings stats. Convex package versions aligned.
+
+**May 14–15.** Blacksmith CI gate spam, then removed.
+
+**May 21.** Production Convex crash fix. Missing creator queries for the lander and profile pages. Stripe/Resend factories so deploy analysis does not need live keys. CSP \`worker-src\`. CHANGELOG **1.0.4**.
+
+**June 22.** Nightly commits.
+
+**August 8, 6:55 AM ET.** HEAD \`508df8e\` — set \`X-Robots-Tag\` to \`index, follow\` on Vercel. Fifty-four commits on \`main\`.
+
+**September 8 pack day.** Live site returns 200. Robots tag present. Clerk still on test keys. Draft only.
+
+![Ecosystem mock — iLeague → iTour → iConference](/blog/ileague-golf-patreon-meets-18birdies/screenshots/ecosystem.png)
+
+## When (clock)
+
+Fifty-four commits. January 9 to August 8. HEAD \`508df8e\`. Private monorepo. Public emerald lander.
+
+## Why
+
+Creator tools fail in two directions: beautiful landers with no money path, or Stripe dashboards with no sport-specific object model. I wanted both — scorecards that can become content, tiers that can become iTour qualification, tips that are not a third-party link-in-bio.
+
+I also refused to pretend the rebrand was complete. Influencer function names, Top 36 vs Top 54, and \`pk_test\` on a real domain are operator signals. They tell you where the product still is.
+
+The ecosystem bet is explicit: iLeague feeds iTour feeds iConference. This pack is only the first node.
+
+If you create golf content today, what would you rather ship next on iLeague — a real hole-by-hole entry flow, or flipping Clerk to live keys so the first paying subscriber is not on test mode?
+`;
+
 export const staticPosts: StaticPost[] = [
+  {
+    _id: "static:yourzaxbys-franchise-management-platform",
+    title: "Your ZAXBYS: I built a franchise ops platform so the store and the above-store stop living in different spreadsheets",
+    slug: "yourzaxbys-franchise-management-platform",
+    excerpt:
+      "I shipped Your ZAXBYS as a Next.js 16 + Convex + Clerk franchise management platform — employees, stores, schedules, CAPs, audits — with a public marketing lander and a private dashboard, package 1.0.0, 46 commits, HEAD 705473f.",
+    content: YOURZAXBYS_CONTENT,
+    coverImage: YOURZAXBYS_COVER,
+    tags: [
+      "yourzaxbys",
+      "zaxbys",
+      "franchise",
+      "nextjs",
+      "convex",
+      "clerk",
+      "resend",
+      "sentry",
+      "martech",
+      "ops",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T01:40:00Z"),
+    readingTime: 5,
+  },
+  {
+    _id: "static:mockup-gallery-ten-industry-cold-outreach",
+    title: "mockup-gallery: I shipped 10 industry mockups as a cold-outreach portfolio",
+    slug: "mockup-gallery-ten-industry-cold-outreach",
+    excerpt:
+      "I stood up mockup-gallery — ten conversion-focused industry landers in one tabbed Next.js 16 gallery for HurleyUS cold outreach. Live on Vercel. Tailwind v4 fight, then Blacksmith/Fallow/Sentry/PostHog, then index,follow.",
+    content: MOCKUP_GALLERY_CONTENT,
+    coverImage: MOCKUP_GALLERY_COVER,
+    tags: [
+      "mockup-gallery",
+      "hurleyus",
+      "cold-outreach",
+      "web-design",
+      "nextjs",
+      "tailwind",
+      "vercel",
+      "portfolio",
+      "martech",
+      "conversion",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T01:30:00Z"),
+    readingTime: 2,
+  },
+  {
+    _id: "static:s12-in-url-shortener-file-hosting",
+    title: "s12.in: I shipped a short domain that tracks clicks and hosts files",
+    slug: "s12-in-url-shortener-file-hosting",
+    excerpt:
+      "I built s12.in — Next.js 16 + Convex + Clerk — so a four-character domain can shorten URLs, host files, and record click analytics without renting another Bitly seat.",
+    content: S12IN_CONTENT,
+    coverImage: S12IN_COVER,
+    tags: [
+      "s12.in",
+      "url-shortener",
+      "file-hosting",
+      "convex",
+      "clerk",
+      "nextjs",
+      "analytics",
+      "vercel",
+      "chrome-extension",
+      "martech",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T01:20:00Z"),
+    readingTime: 4,
+  },
+  {
+    _id: "static:thenationalnc-live-rss-before-bias-ai",
+    title: "The National NC: live NC news feeds before the bias AI ships",
+    slug: "thenationalnc-live-rss-before-bias-ai",
+    excerpt:
+      "I shipped The National NC as a Catppuccin dark Next.js aggregator — Google News RSS for AP/Reuters/NC, 15-minute cache, leaning badges on editorial demos. Comparison AI and Convex still ahead.",
+    content: THENATIONALNC_CONTENT,
+    coverImage: THENATIONALNC_COVER,
+    tags: [
+      "thenationalnc",
+      "north-carolina",
+      "news-aggregator",
+      "media-bias",
+      "rss",
+      "nextjs",
+      "convex",
+      "clerk",
+      "catppuccin",
+      "martech",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T01:10:00Z"),
+    readingTime: 3,
+  },
+  {
+    _id: "static:ileague-golf-patreon-meets-18birdies",
+    title: "iLeague.golf: I built Patreon meets 18Birdies for golf creators — and left Clerk on pk_test",
+    slug: "ileague-golf-patreon-meets-18birdies",
+    excerpt:
+      "iLeague.golf is my golf creator economy — Next.js 15, Convex, Clerk, Stripe, Expo. Scorecards, creator tiers, tips, Top 54 → iTour. Live domain, private HurleyUS monorepo, 54 commits, production still on Clerk test keys.",
+    content: ILEAGUE_CONTENT,
+    coverImage: ILEAGUE_COVER,
+    tags: [
+      "ileague",
+      "ileague-golf",
+      "golf",
+      "creator-economy",
+      "patreon",
+      "18birdies",
+      "stripe",
+      "convex",
+      "clerk",
+      "nextjs",
+      "expo",
+      "itour",
+      "hurleyus",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T01:00:00Z"),
+    readingTime: 4,
+  },
+
   {
     _id: "static:getfarmin-farm-equipment-marketplace-scaffold",
     title: "GetFarmin: I scaffolded a farm equipment marketplace with escrow math first",
