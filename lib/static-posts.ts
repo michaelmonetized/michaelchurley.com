@@ -6190,6 +6190,38 @@ Mismatched LICENSE copyright is a trust and compliance scar. One narrative cover
 Would you audit remaining private repos next, or leave LICENSE sweeps for the next pack day?
 `;
 
+const EMPTY_README_FILLS_FLEET_FOLLOWUP_COVER =
+  "/blog/empty-readme-fills-fleet/cover.png";
+
+const EMPTY_README_FILLS_FLEET_FOLLOWUP_CONTENT = `![Empty READMEs filled with real usage](/blog/fab-analytics-same-day-php-js-ga-drop-in-json-disk/cover.png)
+
+## Who
+
+Operators who cloned michaelmonetized demos and found empty README stubs after packs flagged content-factory gaps.
+
+## What
+
+Closed six empty-README issues across three repos with real usage docs (no fake stars or metrics):
+
+- animated-gradient-border-on-transparent-background #1+#2 via PR #3 - CSS mask border demo; install/run from package.json
+- fab-analytics #1+#2 via PR #3 - PHP/JS disk analytics; honest usage
+- shagent #3+#6 via PR #7 - Bun + OpenRouter + MCP CLI docs
+
+## Where
+
+Public michaelmonetized repos above. Paperwork in git README files, not deploys.
+
+## When
+
+September 8, 2026 evening ET: the three PRs merged and closed the six issues.
+
+## Why
+
+An empty README is a dead handoff. Real install/run copy is the minimum bar for a public demo repo.
+
+Would you keep README fills in the next pack day sweep, or require a usage section before a repo goes public?
+`;
+
 const COMING_SOON_HONESTY_FLEET_FOLLOWUP_COVER =
   "/blog/coming-soon-waitlist-honesty-fleet/cover.png";
 
@@ -6882,6 +6914,27 @@ export const staticPosts: StaticPost[] = [
     featured: true,
     published: true,
     publishedAt: Date.parse("2026-09-09T02:25:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:empty-readme-fills-fleet",
+    title: "Empty READMEs filled with real usage across three repos",
+    slug: "empty-readme-fills-fleet",
+    excerpt:
+      "Follow-up: six content-factory-gap empty README issues closed via three PRs. animated-gradient-border, fab-analytics, and shagent now document real install/run usage. No fake stars or metrics.",
+    content: EMPTY_README_FILLS_FLEET_FOLLOWUP_CONTENT,
+    coverImage: EMPTY_README_FILLS_FLEET_FOLLOWUP_COVER,
+    tags: [
+      "follow-up",
+      "readme",
+      "content-factory",
+      "michaelmonetized",
+      "portfolio",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:30:00Z"),
     readingTime: 2,
   },
 
