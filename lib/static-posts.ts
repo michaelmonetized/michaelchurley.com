@@ -6051,6 +6051,101 @@ Pending Clerk sessions that render as signed-out train operators to re-auth loop
 
 Would you rotate VERCEL_TOKEN first, or smoke AgencyGate against a preview deploy before touching prod?`;
 
+const HUSTLE_SUITE_VERCEL_FOLLOWUP_COVER =
+  "/blog/hustle-suite-vercel-app-restores/cover.png";
+
+const HUSTLE_SUITE_VERCEL_FOLLOWUP_CONTENT = `![hustle suite vercel.app landers restored](/blog/hustledesk-com-eight-dollar-helpdesk-lander-wordpress-domain/cover.png)
+
+## Who
+
+Operators who opened Hustle Launch product landers after packs flagged DEPLOYMENT_NOT_FOUND and found no live Vercel host.
+
+## What
+
+Closed the restore batch across the hustle* suite and put *.vercel.app hosts back online:
+
+- hustledesk-com#1 - https://hustledesk-com.vercel.app
+- hustlecrm-com#1 - https://hustlecrm-com.vercel.app
+- hustleconvert-com#1 - https://hustleconvert-com.vercel.app
+- hustlechat-com#1 - https://hustlechat-com.vercel.app
+- hustleforms-com#1 - https://hustleforms-com.vercel.app
+- hustlemail-com#2 - PostCSS @tailwindcss/postcss fix plus https://hustlemail-com.vercel.app
+
+Git-linked Vercel prod and Ship wiring where needed. Custom DNS stays a separate overnight park.
+
+## Where
+
+Repos under the hustle* product set. Live review surfaces are the vercel.app hosts above.
+
+## When
+
+September 8, 2026 evening ET: restore issues closed; packs that read DEPLOYMENT_NOT_FOUND now resolve.
+
+## Why
+
+A lander with no deploy is a dead demo. vercel.app hosts unblock review while custom DNS waits.
+
+Would you point custom DNS next, or smoke each vercel.app host against the pack checklist first?
+`;
+
+const HMS_VERCEL_FOLLOWUP_COVER =
+  "/blog/hms-cyan-six-vercel-live/cover.png";
+
+const HMS_VERCEL_FOLLOWUP_CONTENT = `![hms live on hms-cyan-six.vercel.app](/blog/hms-hustle-management-system-live-editor/cover.png)
+
+## Who
+
+Operators who opened the Hustle Management System after packs flagged a missing Vercel deploy and found no live host to review.
+
+## What
+
+Closed hms#1. The public review host https://hms-cyan-six.vercel.app is up again after the pack read DEPLOYMENT_NOT_FOUND. Git-linked Vercel prod and Ship wiring restored the cyan-six preview.
+
+## Where
+
+Repo under the hms / Hustle Management System product set. Live review surface: https://hms-cyan-six.vercel.app. Prior field notes: [/blog/hms-hustle-management-system-live-editor](/blog/hms-hustle-management-system-live-editor).
+
+## When
+
+September 8, 2026 evening ET: hms#1 closed; cyan-six vercel.app host resolves.
+
+## Why
+
+A management system with no deploy is a dead demo. The cyan-six host unblocks review while custom DNS stays a separate park.
+
+Would you smoke the live editor against the pack checklist next, or point custom DNS once cyan-six looks clean?
+`;
+
+const CODEFOLIO_DEPLOY_MD_FOLLOWUP_COVER =
+  "/blog/codefolio-deploy-md-no-live-url/cover.png";
+
+const CODEFOLIO_DEPLOY_MD_FOLLOWUP_CONTENT = `![codefolio DEPLOY.md landed, no live URL yet](/blog/codefolio-spec-first-github-portfolio-saas/cover.png)
+
+## Who
+
+Operators who expected a live codefolio host after packs flagged a missing deploy, and anyone tracking codefolio#1 as the ship gate for a public URL.
+
+## What
+
+Closed codefolio#1 with docs only. DEPLOY.md landed so the restore path is written down. There is still no vercel.app URL and no production host. Convex env vars and codefolio.dev stay parked until those secrets exist.
+
+This is an honest docs-only close, not a live restore.
+
+## Where
+
+Repo under the codefolio product set. Docs: DEPLOY.md in-tree. Prior field notes: [/blog/codefolio-spec-first-github-portfolio-saas](/blog/codefolio-spec-first-github-portfolio-saas). No live review URL yet.
+
+## When
+
+September 8, 2026 evening ET: codefolio#1 closed on DEPLOY.md alone; Convex env and custom DNS still open.
+
+## Why
+
+Shipping a deploy guide without Convex env still leaves a dead demo. Documenting the path closes the pack item without pretending a host exists.
+
+Would you fill Convex env and cut a vercel.app preview next, or keep codefolio.dev parked until the full auth stack is ready?
+`;
+
 const MONARCHMOUNTAINFOUNDATIONS_COVER =
   "/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/cover.png";
 
@@ -6593,6 +6688,70 @@ export const staticPosts: StaticPost[] = [
     featured: true,
     published: true,
     publishedAt: Date.parse("2026-09-09T02:05:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:hustle-suite-vercel-app-restores",
+    title: "hustle* suite: DEPLOYMENT_NOT_FOUND cleared on *.vercel.app landers",
+    slug: "hustle-suite-vercel-app-restores",
+    excerpt:
+      "Follow-up: hustledesk/crm/convert/chat/forms #1 and hustlemail #2 closed. Packs that showed DEPLOYMENT_NOT_FOUND now resolve on *.vercel.app hosts for desk, crm, convert, chat, forms, and mail. hustlemail also needed a PostCSS @tailwindcss/postcss fix. Custom DNS still parked overnight.",
+    content: HUSTLE_SUITE_VERCEL_FOLLOWUP_CONTENT,
+    coverImage: HUSTLE_SUITE_VERCEL_FOLLOWUP_COVER,
+    tags: [
+      "hustle",
+      "vercel",
+      "deployment",
+      "landers",
+      "follow-up",
+      "hustlemail",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:15:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:hms-cyan-six-vercel-live",
+    title: "hms: live again on hms-cyan-six.vercel.app",
+    slug: "hms-cyan-six-vercel-live",
+    excerpt:
+      "Follow-up: hms#1 closed. Live host https://hms-cyan-six.vercel.app is up after packs flagged a missing deploy.",
+    content: HMS_VERCEL_FOLLOWUP_CONTENT,
+    coverImage: HMS_VERCEL_FOLLOWUP_COVER,
+    tags: [
+      "hms",
+      "vercel",
+      "deployment",
+      "follow-up",
+      "hustle-management-system",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:15:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:codefolio-deploy-md-no-live-url",
+    title: "codefolio: DEPLOY.md landed, live URL still needs Convex env",
+    slug: "codefolio-deploy-md-no-live-url",
+    excerpt:
+      "Follow-up: codefolio#1 closed with DEPLOY.md only. No live URL yet; Convex env and codefolio.dev remain parked.",
+    content: CODEFOLIO_DEPLOY_MD_FOLLOWUP_CONTENT,
+    coverImage: CODEFOLIO_DEPLOY_MD_FOLLOWUP_COVER,
+    tags: [
+      "codefolio",
+      "deploy",
+      "convex",
+      "docs",
+      "follow-up",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:15:00Z"),
     readingTime: 2,
   },
 
