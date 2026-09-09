@@ -6190,6 +6190,46 @@ Mismatched LICENSE copyright is a trust and compliance scar. One narrative cover
 Would you audit remaining private repos next, or leave LICENSE sweeps for the next pack day?
 `;
 
+const COMING_SOON_HONESTY_FLEET_FOLLOWUP_COVER =
+  "/blog/coming-soon-waitlist-honesty-fleet/cover.png";
+
+const COMING_SOON_HONESTY_FLEET_FOLLOWUP_CONTENT = `![Coming Soon shells replaced with honest status landers](/blog/coming-soon-waitlist-honesty-fleet/cover.png)
+
+## Who
+
+Visitors and operators who hit waitlist Coming Soon shells, Notify me forms, or Planned SSO stubs that still read as live product instead of honest status.
+
+## What
+
+Closed the Coming Soon honesty fleet across six shipped surfaces and logged one parked gap.
+
+Shipped:
+
+- michaelmonetized/hustledesk-com issues #6 and #4 via PR #7: SSO labeled Planned/not shipped
+- michaelmonetized/kitchen issues #4 and #2 via PR #5: Team Coming soon / Notify replaced with Not available yet / Use beta
+- HurleyUS/merchwinner.com issues #65 and #64 via PR #66: settings stub swapped for honest status
+- HurleyUS/coordinatorapp.com issues #37 and #36 via PR #38: real /docs status, example-only metrics, waitlist form removed
+- HurleyUS/iPro-main-web issues #9 and #7 via PR #11: /ileague /itour /iconf waitlist shells became honest status landers
+- michaelmonetized/omnux issues #12 and #10: STATUS close only (research/docs; lander stays on asahi Pages)
+
+Parked gap:
+
+- HurleyUS/ileague-app issues #8 and #5: lander PR #10 merged, but www.ileague.app still shows Coming Soon until Vercel/DNS points at apps/web
+
+## Where
+
+Across hustledesk, kitchen, merchwinner, coordinatorapp, iPro-main-web, omnux, and the ileague.app park. Truth lives in the merged PRs and the live landers those PRs ship.
+
+## When
+
+September 8, 2026 evening ET: the honesty fleet closed in one pass after packs flagged waitlist shells that still overclaimed readiness.
+
+## Why
+
+Coming Soon and Notify forms that cannot fulfill a waitlist are product lies. Honest Planned/not shipped and Not available yet copy protects trust until the real surface ships. ileague.app stays open until DNS and Vercel catch the lander.
+
+Would you wire www.ileague.app to apps/web next, or leave the park until the next DNS window?`;
+
 const MONARCHMOUNTAINFOUNDATIONS_COVER =
   "/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/cover.png";
 
@@ -6819,6 +6859,29 @@ export const staticPosts: StaticPost[] = [
     featured: true,
     published: true,
     publishedAt: Date.parse("2026-09-09T02:20:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:coming-soon-waitlist-honesty-fleet",
+    title: "Coming Soon shells replaced with honest status landers",
+    slug: "coming-soon-waitlist-honesty-fleet",
+    excerpt:
+      "Follow-up: waitlist Coming Soon shells closed across hustledesk, kitchen, merchwinner, coordinatorapp, iPro-main-web, and omnux. Planned SSO and Notify forms now say Planned/not shipped or Not available yet. ileague.app still Coming Soon after lander PR (Vercel/DNS park).",
+    content: COMING_SOON_HONESTY_FLEET_FOLLOWUP_CONTENT,
+    coverImage: COMING_SOON_HONESTY_FLEET_FOLLOWUP_COVER,
+    tags: [
+      "follow-up",
+      "coming-soon",
+      "waitlist",
+      "honesty",
+      "landers",
+      "HurleyUS",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:25:00Z"),
     readingTime: 2,
   },
 
