@@ -149,7 +149,17 @@ What would you put in the first \`.oma\` file if you sat down on a fresh Omarchy
 const NAARCHY_04_COVER =
   "/blog/naarchy-0-4-preferences-privacy/cover.png";
 
-const NAARCHY_04_CONTENT = `After the [Sep 3 island post](https://www.michaelchurley.com/blog/naarchy-linux-dynamic-island), I hardened Naarchy locally to **0.4.0**: native Preferences, \`naarchy doctor\`, atomic stores, travel opt-in, IPC cleanup. Validated on three machines. **Not pushed / not tagged yet.** GitHub tip remains **v0.3.3**.
+const NAARCHY_04_CONTENT = `## Update — 2026-09-09
+
+**0.4.0 is tagged.** [v0.4.0](https://github.com/michaelmonetized/naarchy/releases/tag/v0.4.0) is the Latest GitHub release. Commit \`f95ce49\`.
+
+Packages: \`naarchy-aarch64-unknown-linux-gnu.tar.gz\` (built on \`m1pro16\`), \`naarchy-x86_64-unknown-linux-gnu.tar.gz\` (built on \`hpeliteclient\`), source tarball, \`SHA256SUMS\`. GitHub Actions is still billing-locked, so the binaries were built on those two boxes and uploaded by hand, same as 0.3.3.
+
+Extract a package and run \`bash scripts/install.sh\`.
+
+Everything below is the 0.4 overhaul as I wrote it before the push. The "not tagged yet" lines were true on September 8.
+
+After the [Sep 3 island post](https://www.michaelchurley.com/blog/naarchy-linux-dynamic-island), I hardened Naarchy locally to **0.4.0**: native Preferences, \`naarchy doctor\`, atomic stores, travel opt-in, IPC cleanup. Validated on three machines. **Not pushed / not tagged yet.** GitHub tip remains **v0.3.3**.
 
 ![Naarchy 0.4 Home: Focus Timer and Now Playing, gear for Preferences](/blog/naarchy-0-4-preferences-privacy/screenshots/home.png)
 
@@ -9335,7 +9345,7 @@ export const staticPosts: StaticPost[] = [
     title: "Naarchy 0.4.0: Preferences, doctor, and the privacy pass",
     slug: "naarchy-0-4-preferences-privacy",
     excerpt:
-      "Naarchy local tip is 0.4.0 (Preferences, naarchy doctor, atomic stores, travel opt-in, IPC cleanup, 86 tests) validated on three machines; GitHub tip remains v0.3.3 / ef9cf87 until push + tag. EXTEND after the Sep 3 island post.",
+      "Update 2026-09-09: Naarchy 0.4.0 is tagged on GitHub (v0.4.0 / f95ce49). Preferences, naarchy doctor, atomic stores, travel opt-in, IPC cleanup, 86 tests. EXTEND after the Sep 3 island post.",
     content: NAARCHY_04_CONTENT,
     coverImage: NAARCHY_04_COVER,
     tags: [
