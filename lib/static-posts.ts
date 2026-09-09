@@ -3162,48 +3162,48 @@ const NIRI_MACOS_CONTENT = `![niri-macos scrollable column strip concept](/blog/
 
 I wanted niri's scrollable tiling on the Mac without living inside Hammerspoon.
 
-YaLTeR's [niri](https://github.com/YaLTeR/niri) is a Wayland compositor: windows live in columns on an **infinite horizontal strip**; you scroll the strip like a document; opening a window does not crush the ones you already have. PaperWM.spoon already brings that idea to macOS — in Lua, on Hammerspoon. I wanted the same paradigm as a **native Swift daemon** with Accessibility APIs, spring animations, and a yabai-shaped IPC CLI so skhd can drive it.
+YaLTeR's [niri](https://github.com/YaLTeR/niri) is a Wayland compositor: windows live in columns on an **infinite horizontal strip**; you scroll the strip like a document; opening a window does not crush the ones you already have. PaperWM.spoon already brings that idea to macOS in Lua on Hammerspoon. I wanted the same paradigm as a **native Swift daemon** with Accessibility APIs, spring animations, and a yabai-shaped IPC CLI so skhd can drive it.
 
-If you have ever rewritten a compositor concept as a weekend Accessibility prototype and then left an autopsy in the repo for future-you — this is that diary.
+If you have ever rewritten a compositor concept as a weekend Accessibility prototype and then left an autopsy in the repo for future-you, this is that diary.
 
 ## What
 
-I built **niri-macos** — SPM package \`niri-macos\`, version **0.1.0** (\`niri-macos --version\`), public under **michaelmonetized/niri-macos**. Platforms: **macOS 13+**. Zero external Swift packages. Products: library **NiriCore**, daemon **niri-macos**, CLI **niri-msg**.
+I built **niri-macos**, SPM package \`niri-macos\`, version **0.1.0** (\`niri-macos --version\`), public under **michaelmonetized/niri-macos**. Platforms: **macOS 13+**. Zero external Swift packages. Products: library **NiriCore**, daemon **niri-macos**, CLI **niri-msg**.
 
-Stack from the tree: AppKit + CoreGraphics + QuartzCore, \`AXObserver\` / \`AXUIElement\` for event-driven window tracking, \`CGWindowList\` enumeration, \`CVDisplayLink\` 60fps spring animation, \`CGEventTap\` gestures, Unix socket IPC at \`/tmp/niri-macos.sock\` with JSON commands. Config is JSON via \`ConfigManager\` at \`~/.config/niri-macos/config.json\` (gaps, outer gaps, preset widths, spring params, scroll thresholds, windowRules Codable). Hotkeys stay external — **skhd** bindings documented in README and \`HOTKEYS.md\`. Gestures: **Cmd+Shift+scroll** (focus window), **Cmd+scroll** (workspace), **3-finger swipe** (free scroll with momentum).
+Stack from the tree: AppKit + CoreGraphics + QuartzCore, \`AXObserver\` / \`AXUIElement\` for event-driven window tracking, \`CGWindowList\` enumeration, \`CVDisplayLink\` 60fps spring animation, \`CGEventTap\` gestures, Unix socket IPC at \`/tmp/niri-macos.sock\` with JSON commands. Config is JSON via \`ConfigManager\` at \`~/.config/niri-macos/config.json\` (gaps, outer gaps, preset widths, spring params, scroll thresholds, windowRules Codable). Hotkeys stay external: **skhd** bindings documented in README and \`HOTKEYS.md\`. Gestures: **Cmd+Shift+scroll** (focus window), **Cmd+scroll** (workspace), **3-finger swipe** (free scroll with momentum).
 
-![Architecture — NiriCore, daemon, niri-msg, skhd](/blog/niri-macos-scrollable-tiling-swift-ax-port/screenshots/architecture-ipc.png)
+![Architecture: NiriCore, daemon, niri-msg, skhd](/blog/niri-macos-scrollable-tiling-swift-ax-port/screenshots/architecture-ipc.png)
 
-Surfaces that exist: horizontal layout engine (\`LayoutEngine.swift\` ~44KB), consume/expel column stacking, center/maximize/preset widths (33/50/66/100%), dynamic workspaces (up/down/create above/below), split groups (horizontal/vertical/quad), multi-monitor isolation (active monitor follows mouse), menubar operations, \`niri-msg status\` / \`list-windows\` / \`quit\`. Tests: **112** \`func test*\` under \`NiriCoreTests\` (layout, types, IPC). CI: GitHub Actions on \`macos-14\` — build, test, release build. HEAD \`d21a739\`. **Four** commits. ~226KB of Swift.
+Surfaces that exist: horizontal layout engine (\`LayoutEngine.swift\` ~44KB), consume/expel column stacking, center/maximize/preset widths (33/50/66/100%), dynamic workspaces (up/down/create above/below), split groups (horizontal/vertical/quad), multi-monitor isolation (active monitor follows mouse), menubar operations, \`niri-msg status\` / \`list-windows\` / \`quit\`. Tests: **112** \`func test*\` under \`NiriCoreTests\` (layout, types, IPC). CI: GitHub Actions on \`macos-14\` (build, test, release build). HEAD \`d21a739\`. **Four** commits. ~226KB of Swift.
 
-README still marks Planned: focus ring overlay, window-rule **enforcement** (structs parse; sitrep says not applied), overview mode, sketchybar integration, Homebrew formula, launchd plist. PLAN.md still dreams of KDL like upstream niri — the shipped parser is JSON.
+README still marks Planned: focus ring overlay, window-rule **enforcement** (structs parse; sitrep says not applied), overview mode, sketchybar integration, Homebrew formula, launchd plist. PLAN.md still dreams of KDL like upstream niri; the shipped parser is JSON.
 
 ![AUTOPSY.md roast vs sitrep FUNCTIONAL](/blog/niri-macos-scrollable-tiling-swift-ax-port/screenshots/autopsy-vs-sitrep.png)
 
-\`AUTOPSY.md\` (dated 2026-02-09) is the scar: it calls the early tree a 3,672-line prototype with **two** commits, **zero** tests, seven singletons, hardcoded gaps, and a README that was “aspirational fiction.” It also credits real spring physics, a thoughtful IPC command set, and clean \`ColumnWidth\` modeling. \`sitrep.md\` at the same era (updated for the refactor) says **FUNCTIONAL** — 112 passing tests, JSON config, protocol-based DI, main-thread layout serialization. The June 22 \`nightly\` commits are where that contradiction resolves in git history.
+\`AUTOPSY.md\` (dated 2026-02-09) is the scar: it calls the early tree a 3,672-line prototype with **two** commits, **zero** tests, seven singletons, hardcoded gaps, and a README that was aspirational fiction. It also credits real spring physics, a thoughtful IPC command set, and clean \`ColumnWidth\` modeling. \`sitrep.md\` at the same era (updated for the refactor) says **FUNCTIONAL**: 112 passing tests, JSON config, protocol-based DI, main-thread layout serialization. The June 22 \`nightly\` commits are where that contradiction resolves in git history.
 
 ## Where
 
-Code: [github.com/michaelmonetized/niri-macos](https://github.com/michaelmonetized/niri-macos) — **public**. No hosted demo. Run locally: \`swift build -c release\`, put \`niri-macos\` on your PATH, grant **Accessibility**, start the daemon, drive it with \`niri-msg\` / skhd. Socket default \`/tmp/niri-macos.sock\`. Log default \`/tmp/niri-macos.log\`.
+Code: [github.com/michaelmonetized/niri-macos](https://github.com/michaelmonetized/niri-macos), **public**. No hosted demo. Run locally: \`swift build -c release\`, put \`niri-macos\` on your PATH, grant **Accessibility**, start the daemon, drive it with \`niri-msg\` / skhd. Socket default \`/tmp/niri-macos.sock\`. Log default \`/tmp/niri-macos.log\`.
 
 ## When
 
-- **2026-02-06** — \`640d314\` feat: implement niri scrolling layout paradigm for macOS (initial README/PLAN + core sources).
-- **2026-02-08** — \`37f34ad\` “fix” that is really a sequel: multi-monitor isolation, discrete scroll, workspace creation, split groups, animation/gestures/AX observer (+2391/−132). AUTOPSY calls the message an undersell.
-- **2026-02-09** — AUTOPSY.md examination date; sitrep claims FUNCTIONAL + 112 tests (landed in tree with the later nightly push).
-- **2026-06-22** — GitHub repo \`created_at\`; two \`nightly\` commits (\`f3b1d77\`, HEAD \`d21a739\`) ship NiriCore extraction, ConfigManager, full test suite, workflow, AUTOPSY in-tree, hustlemc/uncap crumbs. Last push \`2026-06-22T22:20:39Z\`.
+- **2026-02-06.** \`640d314\` feat: implement niri scrolling layout paradigm for macOS (initial README/PLAN + core sources).
+- **2026-02-08.** \`37f34ad\` fix that is really a sequel: multi-monitor isolation, discrete scroll, workspace creation, split groups, animation/gestures/AX observer (+2391/−132). AUTOPSY calls the message an undersell.
+- **2026-02-09.** AUTOPSY.md examination date; sitrep claims FUNCTIONAL + 112 tests (landed in tree with the later nightly push).
+- **2026-06-22.** GitHub repo \`created_at\`; two \`nightly\` commits (\`f3b1d77\`, HEAD \`d21a739\`) ship NiriCore extraction, ConfigManager, full test suite, workflow, AUTOPSY in-tree, hustlemc/uncap crumbs. Last push \`2026-06-22T22:20:39Z\`.
 
 ![Four-commit arc](/blog/niri-macos-scrollable-tiling-swift-ax-port/screenshots/commit-arc.png)
 
 ## Why
 
-Because I use macOS and I still want niri's rule: **new windows append; existing frames stay**; scroll the strip; isolate per monitor. Hammerspoon is fine. I wanted direct APIs, spring physics I own, and \`niri-msg\` that feels like talking to yabai while the layout model is niri's.
+I use macOS and I still want niri's rule: **new windows append; existing frames stay**; scroll the strip; isolate per monitor. Hammerspoon is fine. I wanted direct APIs, spring physics I own, and \`niri-msg\` that feels like talking to yabai while the layout model is niri's.
 
 I also wanted the honesty layer. Shipping AUTOPSY.md next to a polished README is the point: document the Jenga tower, then answer it with tests and a library boundary instead of deleting the roast.
 
 ## Engagement Q
 
-Would you rather run scrollable tiling as **native Swift + Accessibility + skhd**, or stay on **PaperWM.spoon** and keep the Lua runtime — and what would make you trust a 0.1.0 WM with four commits and 112 tests?
+Would you rather run scrollable tiling as **native Swift + Accessibility + skhd**, or stay on **PaperWM.spoon** and keep the Lua runtime, and what would make you trust a 0.1.0 WM with four commits and 112 tests?
 `;
 
 const CODEFOLIO_COVER =
@@ -3567,17 +3567,17 @@ For operators who need the honest split between a **$8/mo email-marketing market
 
 ## What
 
-I built **hustlemail-com** — private \`https://github.com/michaelmonetized/hustlemail-com\`. Next.js marketing shell. HEAD \`ab984f2\`. **3** commits. 0 stars. package name \`hustlemail.com@0.1.0\`. **No README.md**.
+I built **hustlemail-com**, private https://github.com/michaelmonetized/hustlemail-com. Next.js marketing shell. HEAD \`ab984f2\`. **3** commits. 0 stars. package name \`hustlemail.com@0.1.0\`. **No README.md**.
 
-Stack facts from \`package.json\`: Next **^16.2.6**, React **^19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there — no Clerk, no Convex, no Stripe package, no Resend.
+Stack facts from \`package.json\`: Next **^16.2.6**, React **^19.2.6**, Tailwind **^4.3.0**, Bun lockfile. Dependencies stop there: no Clerk, no Convex, no Stripe package, no Resend.
 
 What the UI claims:
 
-- Hero: “Email marketing, **minus the bloat**.” CTAs to \`/signup\` and \`/docs\`.
-- Social proof strip: **10K+ Active Users** / **50M+ Emails Sent** — no backend in this tree to back that.
+- Hero: Email marketing, **minus the bloat**. CTAs to \`/signup\` and \`/docs\`.
+- Social proof strip: **10K+ Active Users** / **50M+ Emails Sent** (no backend in this tree to back that).
 - Competitor cards: Mailchimp \`$20+/mo\`, ConvertKit \`$29+/mo\`, HustleMail **\`$8/mo\`**.
 - Pricing: **Starter Free** (500 subs / 1,000 emails), **Pro $8/mo** (5,000 subs, unlimited emails, sequences, A/B, custom branding), **Business $24/mo** (25,000, dedicated IP, API, phone). Annual Pro copy: **$80/year**.
-- FAQ text says Stripe + PayPal, 14-day trial, 30-day refund — still no Stripe in deps.
+- FAQ text says Stripe + PayPal, 14-day trial, 30-day refund (still no Stripe in deps).
 - Brand red: Tailwind \`brand.500 = #ef4444\`.
 
 ![Pricing plans](/blog/hustlemail-com-eight-dollar-lander-missing-signup/screenshots/pricing-plans.png)
@@ -3592,32 +3592,34 @@ Linked but **missing**: \`/signup\`, \`/login\`, \`/about\`, \`/blog\`, \`/conta
 
 ![Missing routes](/blog/hustlemail-com-eight-dollar-lander-missing-signup/screenshots/missing-routes.png)
 
-This is **not** \`michaelmonetized/hustlemail\` — that sibling is a Resend+Convex keyboard-first mail client for \`notify@uncap.us\`. Different repo. Different job.
+Sibling in the same org: \`michaelmonetized/hustlemail\` is a Resend+Convex keyboard-first mail client for \`notify@uncap.us\`. Different repo. Different job.
 
 ## Where
 
-Code: [github.com/michaelmonetized/hustlemail-com](https://github.com/michaelmonetized/hustlemail-com) — private.
+Code: [github.com/michaelmonetized/hustlemail-com](https://github.com/michaelmonetized/hustlemail-com), private.
 
 Live probes at pack time:
 
-- \`hustlemail-com.vercel.app\` / \`hustlemail.vercel.app\` → **404** \`DEPLOYMENT_NOT_FOUND\`
-- \`hustlemail.com\` DNS A → **54.243.117.197** (AWS); HTTPS TLS → **UNEXPECTED_EOF** (not this Next app)
+- \`hustlemail-com.vercel.app\` / \`hustlemail.vercel.app\`: **404** \`DEPLOYMENT_NOT_FOUND\`
+- \`hustlemail.com\` DNS A: **54.243.117.197** (AWS); HTTPS TLS: **UNEXPECTED_EOF** (not this Next app)
 
 Local inspect clone: \`/tmp/cf-inspect/hustlemail-com\` @ \`ab984f2\`.
 
 ## When
 
-**2026-02-18** — \`286bef3\` feat: initial hustlemail.com marketing site (+1469 / 15 files).  
-**2026-06-22 17:38 ET** — \`e96ceb6\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).  
-**2026-06-22 18:16 ET** — \`ab984f2\` nightly empty tip (HEAD).
+**2026-02-18.** \`286bef3\` feat: initial hustlemail.com marketing site (+1469 / 15 files).
+
+**2026-06-22 17:38 ET.** \`e96ceb6\` nightly (Fallow hooks, AGENTS.md, REVIEW.md, \`.uncap\`, dep bumps).
+
+**2026-06-22 18:16 ET.** \`ab984f2\` nightly empty tip (HEAD).
 
 ![Commit arc](/blog/hustlemail-com-eight-dollar-lander-missing-signup/screenshots/commit-arc.png)
 
 ## Why
 
-Because a lander that prices against ConvertKit still needs a \`/signup\` route before it is a product story. Because 10K+/50M+ on a four-page private repo is copy, not telemetry. Because the real mail work in this org lives in the Resend client — and this pack refuses to merge those narratives.
+A lander that prices against ConvertKit still needs a \`/signup\` route before it is a product story. 10K+/50M+ on a four-page private repo is copy, not telemetry. The real mail work in this org lives in the Resend client; this pack keeps those narratives apart.
 
-**Engagement Q:** How many of your “$8/mo SaaS” repos are four marketing pages with a missing \`/signup\`?
+**Engagement Q:** How many of your $8/mo SaaS repos are four marketing pages with a missing \`/signup\`?
 `;
 
 const NVIBE_COVER =
@@ -3704,13 +3706,13 @@ const COMPARE_CONTENT = `![Git-isolated A/B workflow](/blog/compare-git-isolated
 
 ## Who
 
-I kept running \`time cmd-a; time cmd-b\` and then arguing with myself about whether the second one won because it was faster — or because the first one warmed the cache and the tree had drifted.
+I kept running \`time cmd-a; time cmd-b\` and then arguing with myself about whether the second one won because it was faster, or because the first one warmed the cache and the tree had drifted.
 
 For operators comparing formatters and linters who refuse that lie. Especially anyone already typing \`vp exec biome format --write\` next to \`vp exec oxlint\` and wanting the median, not the vibes.
 
 ## What
 
-I built **compare** — public [\`michaelmonetized/compare\`](https://github.com/michaelmonetized/compare). Bash. \`VERSION="0.1.0"\`. \`bin/compare\` is **825** lines at HEAD (468 on init). \`install.sh\` drops it in \`/usr/local/bin\` (or \`$PREFIX\`). HEAD \`c5dbcd6\`. **3** commits. 0 stars. CLI only. No LICENSE. No release tag.
+I built **compare**, public [michaelmonetized/compare](https://github.com/michaelmonetized/compare). Bash. \`VERSION="0.1.0"\`. \`bin/compare\` is **825** lines at HEAD (468 on init). \`install.sh\` drops it in \`/usr/local/bin\` (or \`$PREFIX\`). HEAD \`c5dbcd6\`. **3** commits. 0 stars. CLI only. No LICENSE. No release tag.
 
 ![CLI help surface](/blog/compare-git-isolated-command-benchmarker/screenshots/cli-help.png)
 
@@ -3719,7 +3721,7 @@ The product is git isolation for shell A/B:
 1. If the working tree is dirty, commit \`compare: snapshot before benchmark\` (with \`--no-verify\`).
 2. Force-create \`compare/<slug-a>\` and \`compare/<slug-b>\` from that shared SHA.
 3. Checkout A, run command A \`-n\` times with \`TIMEFORMAT\`, append to the log; blank line; same for B.
-4. Restore the original branch. Leave the snapshot and \`compare/*\` branches for inspection — delete them yourself.
+4. Restore the original branch. Leave the snapshot and \`compare/*\` branches for inspection; delete them yourself.
 
 Log lines look like POSIX \`time\`:
 
@@ -3728,37 +3730,37 @@ vp exec biome lint --write  1.36s user 0.36s system 151% cpu 1.134 total
 vp exec oxlint --write  0.21s user 0.18s system 73% cpu 0.528 total
 \`\`\`
 
-Default path: \`../tests/compare-<cwd>-<c1>-<c2>-<UTCstamp>.log\`. Flags: \`-n\`, \`-c\`, \`-o\`, \`-g/--graph\`, \`--md\`. Subcommands: \`compare graph <log>\`, \`compare report <log>\`. Graphs: user / system / CPU% / total — blue A, yellow B. \`--md\` writes tables + mermaid and opens [mdr](https://github.com/CleverCloud/mdr) (else \`open\` / \`xdg-open\`). Commands go through \`eval\` — trusted only.
+Default path: \`../tests/compare-<cwd>-<c1>-<c2>-<UTCstamp>.log\`. Flags: \`-n\`, \`-c\`, \`-o\`, \`-g/--graph\`, \`--md\`. Subcommands: \`compare graph <log>\`, \`compare report <log>\`. Graphs: user / system / CPU% / total (blue A, yellow B). \`--md\` writes tables + mermaid and opens [mdr](https://github.com/CleverCloud/mdr) (else \`open\` / \`xdg-open\`). Commands go through \`eval\` (trusted only).
 
 ![Sample log + terminal charts](/blog/compare-git-isolated-command-benchmarker/screenshots/sample-log-graph.png)
 
-Smoke on the pack box: \`compare "sleep 0.05" "sleep 0.12" -n 3\` → totals ~0.051 vs ~0.121, branches \`compare/sleep-0-05\` and \`compare/sleep-0-12\` left behind. README caveats remain honest: no CPU pinning, mutating commands can diverge branches, one intentional variable is on you.
+Smoke on the pack box: \`compare "sleep 0.05" "sleep 0.12" -n 3\` totals ~0.051 vs ~0.121, branches \`compare/sleep-0-05\` and \`compare/sleep-0-12\` left behind. README caveats remain honest: no CPU pinning, mutating commands can diverge branches, one intentional variable is on you.
 
-Residue: \`plans/README.md\` still says the repo had **no commits and no source code** — docs-only improve plans. Those four plans are marked DONE. \`compare report\` is in \`--help\` and code; it is not in the README Contents. Second nightly (\`c5dbcd6\`) shares the exact tree with the first nightly — empty HEAD commit.
+Residue: \`plans/README.md\` still says the repo had **no commits and no source code** (docs-only improve plans). Those four plans are marked DONE. \`compare report\` is in \`--help\` and code; it is not in the README Contents. Second nightly (\`c5dbcd6\`) shares the exact tree with the first nightly (empty HEAD commit).
 
 ![plans irony](/blog/compare-git-isolated-command-benchmarker/screenshots/plans-irony.png)
 
 ## Where
 
-Code: [github.com/michaelmonetized/compare](https://github.com/michaelmonetized/compare) — public, branch \`main\`. No homepage. No live web demo. Clone + \`./install.sh\` (or \`PREFIX=$HOME/.local ./install.sh\`).
+Code: [github.com/michaelmonetized/compare](https://github.com/michaelmonetized/compare), public, branch \`main\`. No homepage. No live web demo. Clone + \`./install.sh\` (or \`PREFIX=$HOME/.local ./install.sh\`).
 
 Audience sits next to biome, oxlint, Vite Plus, and anyone who already treats \`time\` output as courtroom evidence.
 
 ## When
 
-**2026-06-17, 6:57 AM Eastern.** \`217d4ac\` init — README, 468-line CLI, install script, four docs plans.
+**2026-06-17, 6:57 AM Eastern.** \`217d4ac\` init: README, 468-line CLI, install script, four docs plans.
 
-**2026-06-22, 5:40 PM Eastern.** \`b4fea7b\` nightly — CLI grows to 825 lines; README gains \`--md\` / mdr / CPU chart.
+**2026-06-22, 5:40 PM Eastern.** \`b4fea7b\` nightly: CLI grows to 825 lines; README gains \`--md\` / mdr / CPU chart.
 
-**2026-06-22, 6:17 PM Eastern.** \`c5dbcd6\` nightly — same tree as \`b4fea7b\`. HEAD. Empty.
+**2026-06-22, 6:17 PM Eastern.** \`c5dbcd6\` nightly: same tree as \`b4fea7b\`. HEAD. Empty.
 
 ![Commit arc](/blog/compare-git-isolated-command-benchmarker/screenshots/commit-arc.png)
 
 ## Why
 
-Because back-to-back \`time\` is a shared-state measurement pretending to be a tool measurement. Because a snapshot commit plus two named branches is the smallest honest isolator I would actually run. Because biome-vs-oxlint needs a log file outside the working tree, not another Slack debate.
+Back-to-back \`time\` is a shared-state measurement pretending to be a tool measurement. A snapshot commit plus two named branches is the smallest honest isolator I would actually run. biome-vs-oxlint needs a log file outside the working tree, not another Slack debate.
 
-**Engagement Q:** When you A/B two CLIs, what is the one variable you pretend you controlled — and which dirty-tree / warm-cache factor actually won?
+**Engagement Q:** When you A/B two CLIs, what is the one variable you pretend you controlled, and which dirty-tree / warm-cache factor actually won?
 `;
 
 const BASHFORMER_COVER =
@@ -5293,19 +5295,19 @@ const SVGANIMATOR_CONTENT = `![Migrate arc](/blog/svganimator-electron-to-canave
 
 ## Who
 
-I wanted an SVG keyframe studio under my own roof — first as an Electron app with Svgator inspiration docs, then as a product surface living inside the Canaveral Bun monorepo.
+I wanted an SVG keyframe studio under my own roof: first as an Electron app with Svgator inspiration docs, then as a product surface inside the Canaveral Bun monorepo.
 
 For operators who care about the honest rename tax: GitHub says **svganimator**, \`package.json\` says **canaveral**, \`appConfig\` and the UI eyebrow say **SVG Animator**.
 
 ## What
 
-I built **svganimator** — public \`https://github.com/HurleyUS/svganimator\`. HEAD \`86bb4a2\`. **13** commits. **0** stars. Default **main**. Root package name **\`canaveral\`** **0.1.0**.
+I built **svganimator**, public https://github.com/HurleyUS/svganimator. HEAD \`86bb4a2\`. **13** commits. **0** stars. Default **main**. Root package name **\`canaveral\`** **0.1.0**.
 
 **At HEAD (Bun / TanStack / workspaces):**
 
-- \`@canaveral/svg\` — **963** LOC Zod schemas for elements, keyframes, collaborators, projects; export formats **\`svg\` | \`lottie\` | \`gif\` | \`mkv\`**; \`serializeStandaloneSvg\`, \`serializeLottie\`, \`applySvgAnimations\`, \`createStarterSvgProject\`
-- \`web/src/routes/index.tsx\` (~378) — SVG Animator studio: projects sidebar, canvas scrubber, invite form, export grid
-- \`web/src/lib/export-renderer.ts\` (~160) — GIF/MKV via Resvg frame raster (\`fps 30\`, \`880×720\`)
+- \`@canaveral/svg\`: **963** LOC Zod schemas for elements, keyframes, collaborators, projects; export formats **\`svg\` | \`lottie\` | \`gif\` | \`mkv\`**; \`serializeStandaloneSvg\`, \`serializeLottie\`, \`applySvgAnimations\`, \`createStarterSvgProject\`
+- \`web/src/routes/index.tsx\` (~378): SVG Animator studio with projects sidebar, canvas scrubber, invite form, export grid
+- \`web/src/lib/export-renderer.ts\` (~160): GIF/MKV via Resvg frame raster (\`fps 30\`, \`880×720\`)
 - Zustand \`useSvgWorkspaceStore\` in \`shared/state\`
 - Electron \`desktop/\` loads \`appConfig.url\` with title **SVG Animator**
 - Expo \`mobile/app/index.tsx\` shows starter project element/keyframe counts
@@ -5317,13 +5319,13 @@ I built **svganimator** — public \`https://github.com/HurleyUS/svganimator\`. 
 
 ![Export formats](/blog/svganimator-electron-to-canaveral-keyframe-export-studio/screenshots/export-formats.png)
 
-**Honesty gaps:** README + \`pub/\` + \`.env.example\` still market **Canaveral**. Seven same-afternoon commits titled “Standardize Blacksmith CI gates”. \`REVIEW.md\` is a large fallow dump. No public demo URL.
+**Honesty gaps:** README + \`pub/\` + \`.env.example\` still market **Canaveral**. Seven same-afternoon commits titled Standardize Blacksmith CI gates. \`REVIEW.md\` is a large fallow dump. No public demo URL.
 
-This is **not** private \`HurleyUS/canaveral\` (generic launch pad already packed). **Not** the local no-git \`~/Projects/svganimator\` Bun path draw-on app. **Not** \`tsxsvg\` (SKIP / plan-only).
+Sibling surfaces to keep straight: private \`HurleyUS/canaveral\` (generic launch pad, already packed); local no-git \`~/Projects/svganimator\` Bun path draw-on app; \`tsxsvg\` (SKIP / plan-only). This public repo is the SVG Animator product identity on a canaveral-named scaffold.
 
 ## Where
 
-Code: [github.com/HurleyUS/svganimator](https://github.com/HurleyUS/svganimator) — public.
+Code: [github.com/HurleyUS/svganimator](https://github.com/HurleyUS/svganimator), public.
 
 Run (facts from README/scripts): \`bun install\`, \`cp .env.example .env\`, \`bun run env:check\`, \`bun run dev\` (Caddy) or \`bun run dev:raw\` (Vite).
 
@@ -5331,21 +5333,17 @@ No live product URL. No claimed domain.
 
 ## When
 
-- **2026-05-03** — \`0965ad7\` needs work: Electron + Svgator inspiration-docs (~94 files)
-- **2026-05-04** — \`3e38809\` exports: timeline/properties/exporter panels + tests
-- **2026-05-04** — \`f2f6023\` migrate svganimator to canaveral monorepo
-- **2026-05-14 afternoon ET** — Blacksmith CI ×7 + FReview observability + formatter → HEAD \`86bb4a2\`
-- Pack prepared **2026-09-08 ~5:06 PM ET** — draft + assets only
+- **2026-05-03.** \`0965ad7\` needs work: Electron + Svgator inspiration-docs (~94 files)
+- **2026-05-04.** \`3e38809\` exports: timeline/properties/exporter panels + tests
+- **2026-05-04.** \`f2f6023\` migrate svganimator to canaveral monorepo
+- **2026-05-14 afternoon ET.** Blacksmith CI ×7 + FReview observability + formatter; HEAD \`86bb4a2\`
+- Pack prepared **2026-09-08 ~5:06 PM ET** (draft + assets only)
 
 ## Why
 
-I needed the SVG animator product to sit on the same Bun/TanStack/Caddy rails as the rest of the launch pad — shared Zod contracts, web studio, Electron shell, Expo card — without pretending the GitHub repo name and the root package name agree.
+I needed the SVG animator product on the same Bun/TanStack/Caddy rails as the rest of the launch pad: shared Zod contracts, web studio, Electron shell, Expo card. The GitHub repo name and the root package name still disagree; the UI sells SVG Animator anyway.
 
 **Engagement:** how many public product repos keep README saying the scaffold name while \`appConfig\` and the UI sell a different product?
-
----
-
-*Draft + assets only. Do not publish. Do not git push. No SendToUser.*
 `;
 
 const DEVHOST_COVER =
@@ -6647,7 +6645,7 @@ export const staticPosts: StaticPost[] = [
     title: "svganimator: Electron Svgator clone \u2192 Canaveral monorepo SVG keyframe studio",
     slug: "svganimator-electron-to-canaveral-keyframe-export-studio",
     excerpt:
-      "Public HurleyUS/svganimator: May 3 Electron Svgator-inspired animator + inspiration scrape; May 4 exports + migrate to Bun Canaveral monorepo. HEAD keeps package name canaveral but product identity SVG Animator \u2014 @canaveral/svg (963 LOC Zod schemas, svg/lottie/gif/mkv), TanStack web studio, Electron shell, Expo card. 13 commits. HEAD 86bb4a2. Not private HurleyUS/canaveral launch pad; not local draw-on Bun SVGanimator; not tsxsvg.",
+      "Public HurleyUS/svganimator: May 3 Electron Svgator-inspired animator + inspiration scrape; May 4 exports + migrate to Bun Canaveral monorepo. HEAD keeps package name canaveral but product identity SVG Animator; @canaveral/svg (963 LOC Zod schemas, svg/lottie/gif/mkv), TanStack web studio, Electron shell, Expo card. 13 commits. HEAD 86bb4a2. Sibling surfaces: private HurleyUS/canaveral launch pad; local draw-on Bun SVGanimator; tsxsvg plan-only.",
     content: SVGANIMATOR_CONTENT,
     coverImage: SVGANIMATOR_COVER,
     tags: [
@@ -7335,7 +7333,7 @@ export const staticPosts: StaticPost[] = [
     title: "hustlemail.com: $8/mo email-marketing lander with missing /signup",
     slug: "hustlemail-com-eight-dollar-lander-missing-signup",
     excerpt:
-      "Private Next 16 marketing shell for HustleMail \u2014 Free / $8 Pro / $24 Business, Mailchimp vs ConvertKit comparison table, docs index full of dead child links, CTAs to /signup and /login that do not exist. No README. 3 commits. HEAD ab984f2. Not the Resend+Convex hustlemail mail client.",
+      "Private Next 16 marketing shell for HustleMail (Free / $8 Pro / $24 Business, Mailchimp vs ConvertKit comparison table, docs index full of dead child links, CTAs to /signup and /login that do not exist). No README. 3 commits. HEAD ab984f2. Sibling Resend+Convex hustlemail mail client is a different repo.",
     content: HUSTLEMAIL_CONTENT,
     coverImage: HUSTLEMAIL_COVER,
     tags: [
@@ -7649,7 +7647,7 @@ export const staticPosts: StaticPost[] = [
     title: "niri-macos: I ported niri's scrollable tiling to macOS, then wrote an autopsy on my own Swift",
     slug: "niri-macos-scrollable-tiling-swift-ax-port",
     excerpt:
-      "Native Swift 0.1.0 port of YaLTeR/niri's infinite horizontal strip to macOS via Accessibility APIs \u2014 four commits, ~226KB Swift, AUTOPSY.md roasting the early prototype, then nightly commits that answered it with 112 tests, ConfigManager, and a NiriCore library split.",
+      "Native Swift 0.1.0 port of YaLTeR/niri's infinite horizontal strip to macOS via Accessibility APIs: four commits, ~226KB Swift, AUTOPSY.md roasting the early prototype, then nightly commits that answered it with 112 tests, ConfigManager, and a NiriCore library split. HEAD d21a739.",
     content: NIRI_MACOS_CONTENT,
     coverImage: NIRI_MACOS_COVER,
     tags: [
