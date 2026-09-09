@@ -5942,6 +5942,115 @@ The key that was in git history is not magically clean. Rotate it at Salespromis
 Would you rotate the old Salespromis key first, or confirm File Manager is gone from the production host copy before the next lead form test?
 `;
 
+const SIMPLE_FIREBASE_FOLLOWUP_COVER =
+  "/blog/simple-firebase-env-only-sa-wiped/cover.png";
+
+const SIMPLE_FIREBASE_FOLLOWUP_CONTENT = `![Firebase residue cleared from simple starter](/blog/simple-nextjs-firebase-auth-social-keep-decision/screenshots/residue-gaps.png)
+
+## Who
+
+Operators who cloned **michaelmonetized/simple** after the keep-Firebase decision and still had a hardcoded client config or a local service-account file sitting next to the tree.
+
+If the prior post left Issue #7 open on firebase leftovers, this is the close.
+
+## What
+
+On **michaelmonetized/simple**, PR **#12** closed Issue **#7**.
+
+Client Firebase is env-only now and fails closed when the env is missing. It does not log config values. serviceAccount / admin credential patterns are gitignored. A leftover local SA file was wiped from the working tree (it was never committed).
+
+Pack had flagged hardcoded firebase leftovers. Those are gone from the tree.
+
+## Where
+
+Repo: **https://github.com/michaelmonetized/simple**  
+PR: **https://github.com/michaelmonetized/simple/pull/12**  
+Prior field notes: [/blog/simple-nextjs-firebase-auth-social-keep-decision](/blog/simple-nextjs-firebase-auth-social-keep-decision).
+
+## When
+
+**March 23, 2026:** keep-Firebase decision landed; residue (hardcoded config) still on the checklist.
+
+**September 8, 2026 evening ET:** PR #12 merges. Issue #7 CLOSED.
+
+## Why
+
+A written keep-Firebase decision is not the same as a clean tree. Env-only client config and ignoring admin credential patterns close the security chapter the pack still listed.
+
+Would you rotate any Firebase web keys that ever lived in git history, or redeploy simple-ivory next now that the residue is gone?`;
+
+const LAUNCHPAD_PROVIDERS_FOLLOWUP_COVER =
+  "/blog/launchpad-clerk-convex-posthog-wired/cover.png";
+
+const LAUNCHPAD_PROVIDERS_FOLLOWUP_CONTENT = `![Providers now mounted in launchpad layout](/blog/launchpad-nye2024-boilerplate-providers-unwired/screenshots/providers-unwired.png)
+
+## Who
+
+Anyone who cloned **michaelmonetized/launchpad** after the NYE 2024 boilerplate claim and found \`providers/{clerk,convex,posthog}.tsx\` written but never imported.
+
+If the prior post was about unwired providers, this is the wire-up close.
+
+## What
+
+On **michaelmonetized/launchpad**, PR **#7** closed Issue **#3**.
+
+Root layout mounts **Clerk, then Convex, then PostHog**. Convex uses \`@clerk/nextjs\` \`useAuth\` so it matches \`clerkMiddleware\`. Soft-guards keep the app from exploding when env vars are unset.
+
+Deps were advertised for months. They finally mount.
+
+## Where
+
+Repo: **https://github.com/michaelmonetized/launchpad**  
+PR: **https://github.com/michaelmonetized/launchpad/pull/7**  
+Prior field notes: [/blog/launchpad-nye2024-boilerplate-providers-unwired](/blog/launchpad-nye2024-boilerplate-providers-unwired).
+
+## When
+
+**December 31, 2024:** providers written, never imported.
+
+**September 8, 2026 evening ET:** PR #7 merges. Issue #3 CLOSED.
+
+## Why
+
+A README that lists Clerk, Convex, and PostHog is marketing until \`layout.tsx\` mounts them. Soft-guards mean local clones without secrets still boot.
+
+Would you point launchpad.hustlelaunch.com at this tree next, or keep the starter private until DNS matches the stack?`;
+
+const MISSION_CONTROL_OS_AUTH_FOLLOWUP_COVER =
+  "/blog/mission-control-os-pending-auth-agency-timeout/cover.png";
+
+const MISSION_CONTROL_OS_AUTH_FOLLOWUP_CONTENT = `![mission-control-os auth gates after pending-session fix](/blog/hurley-mission-control-human-agent-comms/screenshots/dashboard-threads.png)
+
+## Who
+
+Operators hitting **Hustle-Launch/mission-control-os** after Google OAuth who saw AgencyGate / PortalGate / cockpit flash signed-out while Clerk was still pending, or sat on infinite Working during agency create/select.
+
+This is the mission-control-os web product, not the Go p10k TUI and not hurley-mission-control.
+
+## What
+
+On **Hustle-Launch/mission-control-os**, PR **#64** merged as \`d09322c\` and closed Issues **#50** and **#51**.
+
+Shared auth hooks keep pending sessions from looking signed-out on AgencyGate, PortalGate, and cockpit. Agency org create/select now has a hard timeout and surfaces an error instead of infinite Working. PortalGate pending shows a setup CTA.
+
+PR CI was green. **Prod redeploy is still blocked on an invalid VERCEL_TOKEN secret** (infra, separate from this code fix).
+
+## Where
+
+Repo: **https://github.com/Hustle-Launch/mission-control-os**  
+PR: **https://github.com/Hustle-Launch/mission-control-os/pull/64**  
+Sibling names to keep straight: [/blog/mission-control-go-tui-p10k-portfolio-ops](/blog/mission-control-go-tui-p10k-portfolio-ops) (Go TUI) and [/blog/hurley-mission-control-human-agent-comms](/blog/hurley-mission-control-human-agent-comms) (Convex comms plane).
+
+## When
+
+**September 8, 2026 evening ET:** PR #64 lands (\`d09322c\`). Issues #50 and #51 CLOSED. Prod token rotation still open.
+
+## Why
+
+Pending Clerk sessions that render as signed-out train operators to re-auth loops. Infinite Working on agency create hides real failures. The code path is fixed; the Vercel token is the remaining ship gate.
+
+Would you rotate VERCEL_TOKEN first, or smoke AgencyGate against a preview deploy before touching prod?`;
+
 const MONARCHMOUNTAINFOUNDATIONS_COVER =
   "/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/cover.png";
 
@@ -6417,6 +6526,73 @@ export const staticPosts: StaticPost[] = [
     featured: true,
     published: true,
     publishedAt: Date.parse("2026-09-09T01:41:28Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:simple-firebase-env-only-sa-wiped",
+    title: "simple: Firebase config env-only, service account wiped",
+    slug: "simple-firebase-env-only-sa-wiped",
+    excerpt:
+      "Follow-up: michaelmonetized/simple PR #12 closed Issue #7. Client Firebase is env-only and fails closed without logging values; serviceAccount/admin credential patterns gitignored; leftover local SA file wiped. Prior keep-Firebase notes still stand.",
+    content: SIMPLE_FIREBASE_FOLLOWUP_CONTENT,
+    coverImage: SIMPLE_FIREBASE_FOLLOWUP_COVER,
+    tags: [
+      "simple",
+      "firebase",
+      "secrets",
+      "security",
+      "follow-up",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:05:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:launchpad-clerk-convex-posthog-wired",
+    title: "launchpad: Clerk, Convex, and PostHog finally mount in layout",
+    slug: "launchpad-clerk-convex-posthog-wired",
+    excerpt:
+      "Follow-up: michaelmonetized/launchpad PR #7 closed Issue #3. Root layout mounts Clerk then Convex then PostHog; Convex uses @clerk/nextjs useAuth matching clerkMiddleware. Soft-guards when env is unset. Providers are no longer orphan files.",
+    content: LAUNCHPAD_PROVIDERS_FOLLOWUP_CONTENT,
+    coverImage: LAUNCHPAD_PROVIDERS_FOLLOWUP_COVER,
+    tags: [
+      "launchpad",
+      "clerk",
+      "convex",
+      "posthog",
+      "nextjs",
+      "follow-up",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:05:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:mission-control-os-pending-auth-agency-timeout",
+    title: "mission-control-os: pending Clerk auth and agency create timeout",
+    slug: "mission-control-os-pending-auth-agency-timeout",
+    excerpt:
+      "Follow-up: Hustle-Launch/mission-control-os PR #64 (d09322c) closed Issues #50 and #51. Shared auth hooks keep pending sessions from looking signed-out on AgencyGate/PortalGate/cockpit; agency org create/select gets a hard timeout plus error instead of infinite Working. Prod redeploy still blocked on bad VERCEL_TOKEN (infra).",
+    content: MISSION_CONTROL_OS_AUTH_FOLLOWUP_CONTENT,
+    coverImage: MISSION_CONTROL_OS_AUTH_FOLLOWUP_COVER,
+    tags: [
+      "mission-control-os",
+      "clerk",
+      "auth",
+      "agency",
+      "hustle-launch",
+      "follow-up",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:05:00Z"),
     readingTime: 2,
   },
 
