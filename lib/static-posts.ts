@@ -5898,6 +5898,50 @@ Deleting the probe while leaving WP File Manager and a hardcoded API key means t
 Would you rotate the hardcoded SalesPromis API key first, or uninstall WP File Manager before the next launch-week checklist?
 `;
 
+const MYBATHROOM_SECURITY_FOLLOWUP_COVER =
+  "/blog/mybathroomconversion-wp-file-manager-gone-key-to-env/cover.png";
+
+const MYBATHROOM_SECURITY_FOLLOWUP_CONTENT = `![Security residue removed from WordPress tree](/blog/mybathroomconversion-elementor-salespromis-xdebug-purge/screenshots/security-composite.png)
+
+## Who
+
+Operators who inherit WP Engine content+plugins dumps. SalesPromis / Hustle Launch folks who still run Opt In into api.salespromis.com. Anyone who left Issue #4 and #5 open after the February xdebug delete.
+
+If the February post left you staring at WP File Manager 7.2.9 and a hardcoded intake key, this is the close of that chapter.
+
+## What
+
+On **HurleyUS/www.mybathroomconversion.com**, PR **#7** merged as \`928819d\` and closed Issues **#4** and **#5**.
+
+Removed the vendored **WP File Manager 7.2.9** tree under \`wp-content/plugins/wp-file-manager\` (pack had flagged ~906 files). That plugin is gone from main.
+
+Moved the Salespromis Opt In intake off a hardcoded API key. Child theme now reads \`SALESPROMIS_API_KEY\` from the environment (or a \`SALESPROMIS_API_KEY\` constant in untracked \`wp-config.php\`). If unset, intake skips and logs instead of posting with a secret baked into git.
+
+Also added \`.env.example\` (empty placeholder) and extended \`.gitignore\` for \`.env.*\` and \`.log/\`.
+
+## Where
+
+Repo: **https://github.com/HurleyUS/www.mybathroomconversion.com**  
+PR: **https://github.com/HurleyUS/www.mybathroomconversion.com/pull/7**  
+Live product still **https://www.mybathroomconversion.com**. Prior field notes: [/blog/mybathroomconversion-elementor-salespromis-xdebug-purge](/blog/mybathroomconversion-elementor-salespromis-xdebug-purge).
+
+## When
+
+**February 27, 2026:** PR #2 deleted webroot \`xdebug_info()\` and left File Manager + the key on the open checklist.
+
+**September 8, 2026:** pack day still listed both as remaining residue.
+
+**September 8, 2026 evening ET (merge \`2026-09-09T01:41:28Z\` UTC):** PR #7 lands. Issues #4 and #5 CLOSED.
+
+## Why
+
+Deleting a one-line xdebug probe is a chapter. Shipping a bathroom Opt In lander with a file-manager plugin and a key in the child theme is still an open security story.
+
+The key that was in git history is not magically clean. Rotate it at Salespromis if it is still active. Set \`SALESPROMIS_API_KEY\` on the host before Opt In leads will post again.
+
+Would you rotate the old Salespromis key first, or confirm File Manager is gone from the production host copy before the next lead form test?
+`;
+
 const MONARCHMOUNTAINFOUNDATIONS_COVER =
   "/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/cover.png";
 
@@ -6349,6 +6393,30 @@ export const staticPosts: StaticPost[] = [
     featured: true,
     published: true,
     publishedAt: Date.parse("2026-02-27T10:18:18Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:mybathroomconversion-wp-file-manager-gone-key-to-env",
+    title: "MyBathroomConversion: WP File Manager gone, Salespromis key moved to env",
+    slug: "mybathroomconversion-wp-file-manager-gone-key-to-env",
+    excerpt:
+      "Follow-up: HurleyUS/www.mybathroomconversion.com PR #7 (928819d) closed Issues #4 and #5. Removed vendored WP File Manager 7.2.9 (~906 files) and moved Salespromis Opt In onto SALESPROMIS_API_KEY env/constant. Rotate the old key; set env before leads post again.",
+    content: MYBATHROOM_SECURITY_FOLLOWUP_CONTENT,
+    coverImage: MYBATHROOM_SECURITY_FOLLOWUP_COVER,
+    tags: [
+      "mybathroomconversion",
+      "wordpress",
+      "security",
+      "wp-file-manager",
+      "salespromis",
+      "secrets",
+      "follow-up",
+      "hustle-launch",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T01:41:28Z"),
     readingTime: 2,
   },
 
