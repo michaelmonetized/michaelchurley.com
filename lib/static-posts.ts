@@ -6222,6 +6222,40 @@ An empty README is a dead handoff. Real install/run copy is the minimum bar for 
 Would you keep README fills in the next pack day sweep, or require a usage section before a repo goes public?
 `;
 
+const VANITY_PHONE_METRICS_FLEET_FOLLOWUP_COVER =
+  "/blog/vanity-phone-metrics-honesty-fleet/cover.png";
+
+const VANITY_PHONE_METRICS_FLEET_FOLLOWUP_CONTENT = `![Vanity phones and fake metrics scrubbed across five repos](/blog/vanity-phone-metrics-honesty-fleet/cover.png)
+
+## Who
+
+Operators and visitors hitting HurleyUS public sites who still saw 555 vanity phone numbers or inflated hero metrics that did not match reality.
+
+## What
+
+Closed ten vanity-phone and fake-metrics issues across five repos:
+
+- HurleyUS/www.yourzaxbys.com #24+#23 via PR #25 - (555) ZAXBYS to mailto:support@yourzaxbys.com; fake team phones dropped
+- HurleyUS/iPro-main-web #10+#8 via PR #12 - (555) GOLF-PRO removed; kept hello@ipro.golf
+- HurleyUS/freview #3+#2 - false positive (no phone in repo); STATUS close
+- HurleyUS/s12.in #33+#30 via PR #36 - hero 10M+/50K+/99.9% to honest capability copy
+- HurleyUS/ileague-app #7+#4 - already fixed on main via prior PR #10; closed; DNS/Coming Soon still parked
+
+## Where
+
+Public HurleyUS repos above. Copy and contact truth in git, not a new product launch.
+
+## When
+
+September 8, 2026 evening ET: the fleet closed after packs flagged vanity phones and fake hero stats.
+
+## Why
+
+Vanity 555 numbers and inflated metrics are trust scars. Honest mailto and capability copy is the minimum bar for public portfolio sites.
+
+Would you keep vanity-phone and fake-metrics sweeps in the next pack day, or require contact/metrics review before a site goes live?
+`;
+
 const COMING_SOON_HONESTY_FLEET_FOLLOWUP_COVER =
   "/blog/coming-soon-waitlist-honesty-fleet/cover.png";
 
@@ -6935,6 +6969,28 @@ export const staticPosts: StaticPost[] = [
     featured: true,
     published: true,
     publishedAt: Date.parse("2026-09-09T02:30:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:vanity-phone-metrics-honesty-fleet",
+    title: "Vanity phones and fake metrics scrubbed across five repos",
+    slug: "vanity-phone-metrics-honesty-fleet",
+    excerpt:
+      "Follow-up: ten vanity-phone and fake-metrics issues closed. yourzaxbys and iPro dropped 555 vanity numbers; s12.in hero stats became honest capability copy; freview was a false positive; ileague metrics already fixed on main.",
+    content: VANITY_PHONE_METRICS_FLEET_FOLLOWUP_CONTENT,
+    coverImage: VANITY_PHONE_METRICS_FLEET_FOLLOWUP_COVER,
+    tags: [
+      "follow-up",
+      "vanity-phone",
+      "fake-metrics",
+      "honesty",
+      "HurleyUS",
+      "portfolio",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:45:00Z"),
     readingTime: 2,
   },
 
