@@ -6146,6 +6146,50 @@ Shipping a deploy guide without Convex env still leaves a dead demo. Documenting
 Would you fill Convex env and cut a vercel.app preview next, or keep codefolio.dev parked until the full auth stack is ready?
 `;
 
+
+const LICENSE_COPYRIGHT_FLEET_FOLLOWUP_COVER =
+  "/blog/license-copyright-alignment-fleet/cover.png";
+
+const LICENSE_COPYRIGHT_FLEET_FOLLOWUP_CONTENT = `![LICENSE copyright alignment across the portfolio](/blog/license-copyright-alignment-fleet/cover.png)
+
+## Who
+
+Operators and forks reading LICENSE files across the Michael Hurley / HurleyUS / michaelmonetized portfolio who still saw mismatched copyright lines or missing MIT text.
+
+## What
+
+Closed a 20-issue LICENSE copyright mismatch fleet across **10 repos**. Copyright lines now name Michael Hurley / the owning org. MIT was added where a license file was missing.
+
+Repos:
+
+- stripe-convex
+- slopops
+- orclawstrator
+- nvibe
+- compare
+- agent-os
+- agent-computer-use
+- WhisperCPPonEverything
+- s12.in
+- ileague-app
+
+Sample merges: https://github.com/michaelmonetized/stripe-convex/pull/18 and https://github.com/HurleyUS/s12.in/pull/35. All squash-merged.
+
+## Where
+
+Across michaelmonetized and HurleyUS public repos listed above. This is paperwork truth in git, not a product deploy story.
+
+## When
+
+September 8, 2026 evening ET: the fleet closed in one pass after packs flagged copyright drift.
+
+## Why
+
+Mismatched LICENSE copyright is a trust and compliance scar. One narrative covers the batch so the catalog does not grow ten near-duplicate posts.
+
+Would you audit remaining private repos next, or leave LICENSE sweeps for the next pack day?
+`;
+
 const MONARCHMOUNTAINFOUNDATIONS_COVER =
   "/blog/monarch-mountain-foundations-wordpress-to-next-dns-still-php/cover.png";
 
@@ -6752,6 +6796,29 @@ export const staticPosts: StaticPost[] = [
     featured: true,
     published: true,
     publishedAt: Date.parse("2026-09-09T02:15:00Z"),
+    readingTime: 2,
+  },
+
+  {
+    _id: "static:license-copyright-alignment-fleet",
+    title: "LICENSE copyright aligned across ten repos",
+    slug: "license-copyright-alignment-fleet",
+    excerpt:
+      "Follow-up: 20 issues across 10 repos closed. LICENSE copyright aligned to Michael Hurley / owning org on stripe-convex, slopops, orclawstrator, nvibe, compare, agent-os, agent-computer-use, WhisperCPPonEverything, s12.in, and ileague-app; MIT added where missing. Sample PRs stripe-convex#18 and s12.in#35.",
+    content: LICENSE_COPYRIGHT_FLEET_FOLLOWUP_CONTENT,
+    coverImage: LICENSE_COPYRIGHT_FLEET_FOLLOWUP_COVER,
+    tags: [
+      "license",
+      "copyright",
+      "mit",
+      "follow-up",
+      "portfolio",
+      "HurleyUS",
+      "michaelmonetized",
+    ],
+    featured: true,
+    published: true,
+    publishedAt: Date.parse("2026-09-09T02:20:00Z"),
     readingTime: 2,
   },
 
