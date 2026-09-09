@@ -1494,23 +1494,23 @@ The Omnux story splits cleanly across three repos: the umbrella ships the instal
 const WNC_TOURS_COVER =
   "/blog/wnc-history-tours-booking-shell-before-detail-pages/cover.png";
 
-const WNC_TOURS_CONTENT = `![WNC History Tours homepage mock — Discover the Rich History of Western North Carolina](/blog/wnc-history-tours-booking-shell-before-detail-pages/screenshots/home.png)
+const WNC_TOURS_CONTENT = `![WNC History Tours homepage mock: Discover the Rich History of Western North Carolina](/blog/wnc-history-tours-booking-shell-before-detail-pages/screenshots/home.png)
 
 ## Who
 
 I live in the Blue Ridge ops lane. Visitors want a walking tour, a ghost walk, a cemetery afternoon, or a Cherokee heritage day without bouncing between five operator websites and a generic Viator card. Guides want a place to list and take a booking without building their own Next app.
 
-WNC History Tours is for people hunting history experiences from Asheville to Cherokee — and for the small companies that run those walks.
+WNC History Tours is for people hunting history experiences from Asheville to Cherokee, and for the small companies that run those walks.
 
-If you build MarTech, local directories, or Stripe-backed booking surfaces: this post is the field notes on what shipped and what did not.
+If you build MarTech, local directories, or Stripe-backed booking surfaces, this post is the field notes on what shipped and what did not.
 
 ## What
 
 I built a tour booking platform shell for Western North Carolina history tours.
 
-Stack on the box: **Next.js 16.2.6**, React 19, **Convex**, **Clerk**, Stripe (dependency + env slots), PostHog, Sentry, Resend, Tailwind v4, Bun, Vitest, Vercel config. Repo is private under \`HurleyUS/wnchistorytours.com\`. Package version **0.1.0**. README still says Next 15.5.6 — the lockfile moved on.
+Stack on the box: **Next.js 16.2.6**, React 19, **Convex**, **Clerk**, Stripe (dependency + env slots), PostHog, Sentry, Resend, Tailwind v4, Bun, Vitest, Vercel config. Repo is private under \`HurleyUS/wnchistorytours.com\`. Package version **0.1.0**. README still says Next 15.5.6; the lockfile moved on.
 
-![Convex schema — companies, tours, bookings, reviews](/blog/wnc-history-tours-booking-shell-before-detail-pages/screenshots/schema.png)
+![Convex schema: companies, tours, bookings, reviews](/blog/wnc-history-tours-booking-shell-before-detail-pages/screenshots/schema.png)
 
 What exists in code:
 
@@ -1523,13 +1523,13 @@ What exists in code:
 
 What does **not** exist as \`app/\` routes despite the nav and cards linking to them: \`/tours\`, \`/companies\`, \`/city/*\`, \`/category/*\`, \`/search\`, \`/tour/[company]/[tour]\`, \`/list-your-business\`, booking checkout. No \`components/\` folder. No Stripe checkout route.
 
-Homepage falls back to hardcoded demo tours when Convex queries are still loading or empty. Category counts (24 walking, 12 ghost, …) are UI constants. The seed script drifts from the schema — \`rating\` vs \`averageRating\`, duration type, missing required company fields — so “production readiness” in that commit message is aspirational.
+Homepage falls back to hardcoded demo tours when Convex queries are still loading or empty. Category counts (24 walking, 12 ghost, …) are UI constants. The seed script drifts from the schema (\`rating\` vs \`averageRating\`, duration type, missing required company fields), so production readiness in that commit message is aspirational.
 
 ![Declared stack vs actual app tree](/blog/wnc-history-tours-booking-shell-before-detail-pages/screenshots/stack-gap.png)
 
 ## Where
 
-Intended host: [wnchistorytours.com](https://wnchistorytours.com). Layout OG, sitemap, and robots all point there. On pack day the domain returned **Cloudflare 526** (origin TLS/unreachable). \`vercel.json\` also sets \`deploymentEnabled\` for \`main\`/\`master\` to **false** — auto-deploy from those branches is off.
+Intended host: [wnchistorytours.com](https://wnchistorytours.com). Layout OG, sitemap, and robots all point there. On pack day the domain returned **Cloudflare 526** (origin TLS/unreachable). \`vercel.json\` also sets \`deploymentEnabled\` for \`main\`/\`master\` to **false**; auto-deploy from those branches is off.
 
 Auth path is Clerk. Money path is declared Stripe in \`.env.example\`. Mail is Resend. Errors go to Sentry. Product events go to PostHog. Maps key slot exists for meeting points later.
 
@@ -1543,11 +1543,11 @@ Audience sits in Western North Carolina heritage tourism and with builders shipp
 
 **February.** Upgrade to Next.js 16 and React 19. Tailwind v4 CSS-first. Clerk middleware and \`cn()\`. Strict TypeScript. Error boundaries. Sitemap and robots. Security headers. Auth check on \`bookings.updateStatus\`. Query \`.take(100)\` bounds. TypeScript fix PRs.
 
-**March.** Vitest smoke coverage. More TS cleanup. Remove GitHub Actions — Vercel called out as CI. ESLint flat config.
+**March.** Vitest smoke coverage. More TS cleanup. Remove GitHub Actions; Vercel called out as CI. ESLint flat config.
 
 **May.** Densest month (15 commits). shipprep standards, Blacksmith CI gate standardization (many near-duplicate gate commits), local preflight, deploy URL and health-check fixes. Platform reliability work while detail pages stay unbuilt.
 
-**2026-08-08 6:55 AM ET.** \`c298e54\` — set \`X-Robots-Tag\` to \`index, follow\` on Vercel. HEAD. Thirty-seven commits on \`main\`.
+**2026-08-08 6:55 AM ET.** \`c298e54\` set \`X-Robots-Tag\` to \`index, follow\` on Vercel. HEAD. Thirty-seven commits on \`main\`.
 
 That is the clock from empty repo to a hardened shell with an unfinished booking funnel.
 
@@ -1555,13 +1555,13 @@ That is the clock from empty repo to a hardened shell with an unfinished booking
 
 ## Why
 
-Directories and booking marketplaces fail two ways: vapor landers with no schema, or beautiful CI with no product routes. I did the honest middle — real Convex models and a real lander — then spent spring on Next 16, Clerk, SEO, and Blacksmith while the tour detail and Stripe checkout pages stayed on PLAN.md.
+Directories and booking marketplaces fail two ways: vapor landers with no schema, or beautiful CI with no product routes. I did the honest middle (real Convex models and a real lander), then spent spring on Next 16, Clerk, SEO, and Blacksmith while the tour detail and Stripe checkout pages stayed on PLAN.md.
 
 The domain is named. The robots header asks to be indexed. The origin was 526 when I checked. That gap is part of the story.
 
-Sibling context: BestWNC is the broader WNC business directory. This repo is the narrower history-tour vertical. Same region, different job.
+Sibling context: BestWNC is the wider WNC business directory. This repo is the narrower history-tour vertical. Same region, different job.
 
-If you run walking tours in Asheville or Cherokee, would you list on a WNC-only history board — or is Viator still the only checkout that matters?
+If you run walking tours in Asheville or Cherokee, would you list on a WNC-only history board, or is Viator still the only checkout that matters?
 `;
 
 const YOURZAXBYS_COVER =
@@ -2062,7 +2062,7 @@ Would you point real DNS at this alias and run a week of live shift entry next, 
 const MODERN_DESIGN_PLAYGROUND_COVER =
   "/blog/modern-design-playground-afk-webgl-nine-worlds/cover.png";
 
-const MODERN_DESIGN_PLAYGROUND_CONTENT = `![Modern Design Playground — WebGL home instrument](/blog/modern-design-playground-afk-webgl-nine-worlds/screenshots/home.png)
+const MODERN_DESIGN_PLAYGROUND_CONTENT = `![Modern Design Playground: WebGL home instrument](/blog/modern-design-playground-afk-webgl-nine-worlds/screenshots/home.png)
 
 ## Who
 
@@ -2070,41 +2070,41 @@ I do not want another marketing landing that scrolls like a PDF with bounce.
 
 I want an instrument. Pointer gravity. Camera dolly. A stage that listens when you strike it.
 
-modern-design-playground is for operators who already live in Max type, Catppuccin surfaces, and shadcn primitives — and who have watched a WebGL canvas go black after an HDRI 404 and refused to ship the apology screenshot.
+modern-design-playground is for operators who already live in Max type, Catppuccin surfaces, and shadcn primitives, and who have watched a WebGL canvas go black after an HDRI 404 and refused to ship the apology screenshot.
 
 It is also for anyone curious what happens when you leave agents AFK with a Playwright density score and a mandate to polish the weakest PNG.
 
 ## What
 
-I built **Modern Design Playground** — Vite 8, React 19, TanStack Router, Three.js + R3F, GSAP, Lenis, Motion, Tailwind 4, shadcn base-nova, Max fonts. Private package, unversioned. Nine commits. HEAD \`d16a7e3\`.
+I built **Modern Design Playground**: Vite 8, React 19, TanStack Router, Three.js + R3F, GSAP, Lenis, Motion, Tailwind 4, shadcn base-nova, Max fonts. Private package, unversioned. Nine commits. HEAD \`d16a7e3\`.
 
 Home \`/\` is one continuous WebGL field. Liquid core. Cosmic backdrop. Helix of archive plates that becomes a tunnel. Strike the field. Hold to resonate. Glass / metal / matte. Case study sheet. \`Stage.tsx\` ~1k lines. \`Chapters.tsx\` ~1.4k.
 
-![Landing gallery — nine instruments, zero templates](/blog/modern-design-playground-afk-webgl-nine-worlds/screenshots/landings-gallery.png)
+![Landing gallery: nine instruments, zero templates](/blog/modern-design-playground-afk-webgl-nine-worlds/screenshots/landings-gallery.png)
 
 \`/landings\` is nine worlds, not nine templates: editorial, brutalist, noir, zen, neon, paper, atlas, pulse, prism. \`pages.tsx\` is **10,682 lines** of CSS micro-theaters. Immersive routes hide the site chrome.
 
-The honest middle of the story: on July 12 the homepage WebGL died. Remote HDRI Environment suspended the scene. CDN 404s. Postprocessing wiped alpha to zero. I did not hand-paint a hero. I left a marathon — iterate-loop, marathon-forever, smoke-interact — screenshot every surface, score by PNG density, upgrade the weakest, repeat for ~10 hours while I was AFK. STATUS-MARATHON.md is the log. Opaque clear \`#11111b\`. Local lights. No EffectComposer on the home stage. Liquid core came back.
+The honest middle of the story: on July 12 the homepage WebGL died. Remote HDRI Environment suspended the scene. CDN 404s. Postprocessing wiped alpha to zero. I did not hand-paint a hero. I left a marathon (iterate-loop, marathon-forever, smoke-interact): screenshot every surface, score by PNG density, upgrade the weakest, repeat for ~10 hours while I was AFK. STATUS-MARATHON.md is the log. Opaque clear \`#11111b\`. Local lights. No EffectComposer on the home stage. Liquid core came back.
 
-![Brutalist world — paint floor instrument](/blog/modern-design-playground-afk-webgl-nine-worlds/screenshots/landing-brutalist.png)
+![Brutalist world: paint floor instrument](/blog/modern-design-playground-afk-webgl-nine-worlds/screenshots/landing-brutalist.png)
 
 July 14 I shoved it onto Vercel as a static SPA, ripped Clerk, stripped Convex/PostHog providers for performance. August 8 I set \`X-Robots-Tag: index, follow\`. Live host: **https://mdp-seven.vercel.app**.
 
+Sibling surfaces to keep straight: twelveux (hosted shadcn registry + Glass), HMS (live-edit CMS). Helix stills share energy with uncap; different product surface.
+
 ## Where
 
-Live on Vercel: https://mdp-seven.vercel.app — home instrument, \`/landings\`, \`/landings/{slug}\`.
+Live on Vercel: https://mdp-seven.vercel.app (home instrument, \`/landings\`, \`/landings/{slug}\`).
 
 Repo: https://github.com/michaelmonetized/modern-design-playground
-
-This is not twelveux (hosted shadcn registry + Glass). Not HMS (live-edit CMS). Sibling energy to uncap stills in the helix — different product surface.
 
 ## When
 
 **2026-07-12, 10:39 ET.** \`baa3c67\` init.
 
-**That afternoon into night.** Marathon AFK ~12:00 → ~23:00 ET. Passes A–I. WebGL repaired. Nine worlds densified. Commit \`06d6555\` next morning: *speechless, requires a full case study and log analysis*.
+**That afternoon into night.** Marathon AFK ~12:00 to ~23:00 ET. Passes A through I. WebGL repaired. Nine worlds densified. Commit \`06d6555\` next morning: *speechless, requires a full case study and log analysis*.
 
-**2026-07-14.** Push fixes. \`.debug-screenshots\` gitignored. Deploy to Vercel. SSR → static SPA. Clerk out. Performance strip.
+**2026-07-14.** Push fixes. \`.debug-screenshots\` gitignored. Deploy to Vercel. SSR to static SPA. Clerk out. Performance strip.
 
 **2026-08-08, 06:55 ET.** \`d16a7e3\` robots index/follow. HEAD. Nine commits total.
 
@@ -2114,9 +2114,9 @@ I wanted proof that scroll can be an instrument and that an agent loop with scre
 
 So the pack is the playground plus the marathon scar. The live URL is the proof. The STATUS log is the receipt.
 
-If your hero is still a paused MP4 pretending to be 3D, you already know the hole I was staring at.
+If your hero is still a paused MP4 pretending to be 3D, you already know the blank canvas I was staring at.
 
-Which world would you open first after the instrument — brutalist, neon, or zen?
+Which world would you open first after the instrument: brutalist, neon, or zen?
 `;
 
 
@@ -4771,25 +4771,25 @@ const SHAGENT_CONTENT = `![OG / zsh to bun](/blog/shagent-bun-mcp-openrouter-aft
 
 ## Who
 
-I wanted a shell-native agent that already knew my Zsh profile — then I tore that harness out and put a Bun MCP controller in its place.
+I wanted a shell-native agent that already knew my Zsh profile. Then I tore that harness out and put a Bun MCP controller in its place.
 
 For operators who care about the honest split between a **deleted Zsh THOUGHT/COMMAND loop** and the **HEAD Bun + OpenRouter + filesystem MCP** stack under the same public repo name.
 
 ## What
 
-I built **shagent** — public \`https://github.com/michaelmonetized/shagent\`. HEAD \`61ecd7d\`. **3** commits. **0** stars. Default **main**. \`package.json\` **1.0.0**. README is **0 bytes**.
+I built **shagent**, public https://github.com/michaelmonetized/shagent. HEAD \`61ecd7d\`. **3** commits. **0** stars. Default **main**. \`package.json\` **1.0.0**. README is **0 bytes**.
 
 **At HEAD (Bun / TypeScript):**
 
-- Entry \`./shagent\` (\`#!/usr/bin/env bun\`) — requires \`OPENROUTER_API_KEY\`; model \`SHAGENT_MODEL\` or **\`openrouter/free\`**
-- \`Shagent\` in \`src/controller/shagent.ts\` (~79 LOC): MCP \`Client\` + \`StdioClientTransport\` → \`npx -y @modelcontextprotocol/server-filesystem\` on \`process.cwd()\`
+- Entry \`./shagent\` (\`#!/usr/bin/env bun\`): requires \`OPENROUTER_API_KEY\`; model \`SHAGENT_MODEL\` or **\`openrouter/free\`**
+- \`Shagent\` in \`src/controller/shagent.ts\` (~79 LOC): MCP \`Client\` + \`StdioClientTransport\` running \`npx -y @modelcontextprotocol/server-filesystem\` on \`process.cwd()\`
 - OpenRouter \`https://openrouter.ai/api/v1/chat/completions\` loop, **max 15** turns
-- System prompt forces JSON: \`{"action":"tool_name","args":{...}}\` or \`{"message":"..."}\`; regex scrape \`/\\{.*?\\}/gs\`; \`client.callTool\`
-- Sibling probe \`src/controller/index.ts\` lists tools from \`npx -y chrome-devtools-mcp\` — **not** what the CLI entry wires
+- System prompt forces JSON: \`{"action":"tool_name","args":{...}}\` or \`{"message":"..."}\`; regex scrape \`/\{.*?\}/gs\`; \`client.callTool\`
+- Sibling probe \`src/controller/index.ts\` lists tools from \`npx -y chrome-devtools-mcp\`; that probe is **not** what the CLI entry wires
 
 ![Agent loop](/blog/shagent-bun-mcp-openrouter-after-zsh-harness-delete/screenshots/agent-loop.png)
 
-**Deleted on the Jun 22 rewrite (\`2ecb32f\`):** \`src/shagent.sh\` — **258** lines of Zsh.
+**Deleted on the Jun 22 rewrite (\`2ecb32f\`):** \`src/shagent.sh\`, **258** lines of Zsh.
 
 What that harness did (still recoverable from \`0729083\`):
 
@@ -4802,17 +4802,17 @@ What that harness did (still recoverable from \`0729083\`):
 
 ![Deleted Zsh harness](/blog/shagent-bun-mcp-openrouter-after-zsh-harness-delete/screenshots/zsh-harness.png)
 
-**Fiction still in-tree:** \`index.html\` sells “Launch, scale, and monitor autonomous AI agents” with CTA to \`github.com/shagent/getting-started\` and footer **Rusty P. Shackelford**. Not a deploy. Not wired to \`./shagent\`.
+**Fiction still in-tree:** \`index.html\` sells Launch, scale, and monitor autonomous AI agents with CTA to \`github.com/shagent/getting-started\` and footer **Rusty P. Shackelford**. Fiction only; no deploy; unwired to \`./shagent\`.
 
 ![Fiction lander](/blog/shagent-bun-mcp-openrouter-after-zsh-harness-delete/screenshots/fiction-lander.png)
 
 **Residue:** \`stdout-test.txt\` (~116KB) is a shell-era OpenRouter request dump that still narrates Zsh + mcp-cli + qmd. Second nightly \`61ecd7d\` is an **empty** commit (message only).
 
-This is **not** \`orclawstrator\` (OpenClaw Swift→Go command center). **Not** \`mission-control\` / \`hurley-mission-control\`. Local Bun + npx MCP or it does not run.
+Sibling surfaces to keep straight: \`orclawstrator\` (OpenClaw Swift/Go command center), \`mission-control\` / \`hurley-mission-control\`. This public repo is local Bun + npx MCP or it does not run.
 
 ## Where
 
-Code: [github.com/michaelmonetized/shagent](https://github.com/michaelmonetized/shagent) — public.
+Code: [github.com/michaelmonetized/shagent](https://github.com/michaelmonetized/shagent), public.
 
 Run (facts from entry): set \`OPENROUTER_API_KEY\`, optional \`SHAGENT_MODEL\`, then \`./shagent 'task description'\` with Bun available. \`bun.lock\` present; no scripts block in \`package.json\`.
 
@@ -4820,18 +4820,16 @@ No live product URL. No claimed domain.
 
 ## When
 
-- **2026-05-26** — \`0729083\` init: empty README + Zsh harness
-- **2026-06-22 16:50 ET** — \`2ecb32f\` nightly: delete \`src/shagent.sh\`; add Bun controller, fiction HTML, stdout dump, uncap
-- **2026-06-22 17:56 ET** — \`61ecd7d\` nightly: empty tree diff; HEAD
-- Pack prepared **2026-09-08 ~4:55 PM ET** — draft + assets only
+- **2026-05-26.** \`0729083\` init: empty README + Zsh harness
+- **2026-06-22 16:50 ET.** \`2ecb32f\` nightly: delete \`src/shagent.sh\`; add Bun controller, fiction HTML, stdout dump, uncap
+- **2026-06-22 17:56 ET.** \`61ecd7d\` nightly: empty tree diff; HEAD
+- Pack prepared **2026-09-08 ~4:55 PM ET** (draft + assets only)
 
 ## Why
 
 I needed a minimal OpenRouter agent that could call tools. The Zsh version lived inside my shell profile. The Bun version talks MCP over stdio to a filesystem server and keeps the model choice on OpenRouter free by default. The marketing HTML and the empty README are the honesty tax sitting next to that loop.
 
 **Engagement:** how many public agent repos still ship a fiction lander and a 0-byte README after deleting the shell harness that \`stdout-test.txt\` still describes?
-
----
 `;
 
 const MKPROJECT_COVER =
@@ -5450,17 +5448,17 @@ const FAB_ANALYTICS_COVER =
 
 const FAB_ANALYTICS_CONTENT = `## Who
 
-I still get Elementor client sites where the ask is "just put something on the page that tells me who called, who emailed, and whether the form died halfway" — without paying Google for a dashboard I will not open.
+I still get Elementor client sites where the ask is a drop-in that records who called, who emailed, and whether the form died halfway, without paying Google for a dashboard I will not open.
 
 For operators who will accept JSON files on a PHP host as the source of truth.
 
 ## What
 
-I shipped **fab-analytics** — public https://github.com/michaelmonetized/fab-analytics. HEAD \`8218088\`. **31** commits. Version **0.1.3-rc**.
+I shipped **fab-analytics**, public https://github.com/michaelmonetized/fab-analytics. HEAD \`8218088\`. **31** commits. Version **0.1.3-rc**.
 
 ![Client pipeline](/blog/fab-analytics-same-day-php-js-ga-drop-in-json-disk/client-pipeline.png)
 
-\`fab-analytics.js\` (273 LOC) builds a visit object (domain, session token, viewport, UA, referrer, language, timezone, screen), hits ipify for IP, POSTs to a hardcoded \`hustlelaunch.com/.../api/post/visit/\` endpoint. Tracks pageview start/exit, \`mailto:\` / \`tel:\` clicks as conversions, form submit as conversion, and a noisy set of abandonment/"presave" events. Session lives in localStorage (+20 minutes) plus a cookie.
+\`fab-analytics.js\` (273 LOC) builds a visit object (domain, session token, viewport, UA, referrer, language, timezone, screen), hits ipify for IP, POSTs to a hardcoded \`hustlelaunch.com/.../api/post/visit/\` endpoint. Tracks pageview start/exit, \`mailto:\` / \`tel:\` clicks as conversions, form submit as conversion, and a noisy set of abandonment and presave events. Session lives in localStorage (+20 minutes) plus a cookie.
 
 ![PHP JSON ingest](/blog/fab-analytics-same-day-php-js-ga-drop-in-json-disk/php-json-ingest.png)
 
@@ -5468,33 +5466,35 @@ PHP \`api/post/visit/index.php\` validates \`domain\` + \`session_token\`, write
 
 ![Test harness](/blog/fab-analytics-same-day-php-js-ga-drop-in-json-disk/test-harness.png)
 
-\`test.html\` is a Tailwind CDN harness with tel, mailto, and a required name/phone/email form — script tag still points at \`/fab.js?v=0.1.3-b-36\` while the tracked file is \`fab-analytics.js\`.
+\`test.html\` is a Tailwind CDN harness with tel, mailto, and a required name/phone/email form. Script tag still points at \`/fab.js?v=0.1.3-b-36\` while the tracked file is \`fab-analytics.js\`.
 
 ![Gaps honesty](/blog/fab-analytics-same-day-php-js-ga-drop-in-json-disk/gaps-honesty.png)
 
-Honest gaps: README/CHANGELOG/LICENCE.md are empty (GPL only in headers). Header @todo claims restore form fields from localStorage on return — **no restore loop in the JS**. \`JSON.stringify(new FormData(form))\` is not a revive path. Abandonment listeners include blur/focus/mouseleave/touchmove. Endpoint echoes file path + payload (debug leftovers). CORS \`*\`.
+Honest gaps: README/CHANGELOG/LICENCE.md are empty (GPL only in headers). Header @todo claims restore form fields from localStorage on return; **no restore loop in the JS**. \`JSON.stringify(new FormData(form))\` is not a revive path. Abandonment listeners include blur/focus/mouseleave/touchmove. Endpoint echoes file path + payload (debug leftovers). CORS \`*\`.
+
+Sibling surface to keep straight: BestWNC's 2026 null-honesty directory analytics is a different product. This repo is the PHP+JS GA drop-in that writes JSON under hustlelaunch.com.
 
 ## Where
 
-Code: [github.com/michaelmonetized/fab-analytics](https://github.com/michaelmonetized/fab-analytics) — public.
+Code: [github.com/michaelmonetized/fab-analytics](https://github.com/michaelmonetized/fab-analytics), public.
 
 \`\`\`bash
 git clone https://github.com/michaelmonetized/fab-analytics.git
 # drop fab-analytics.js on the page; PHP tree expects logs/ writable beside api/
-# client endpoint constant points at hustlelaunch.com — change before self-host
+# client endpoint constant points at hustlelaunch.com; change before self-host
 \`\`\`
 
 ## When
 
-**2024-07-09 07:14 ET** — empty init. Midday — base JS + endpoints + test. Evening — Tailwind thrash, trailing-slash facepalm, cache-busting, PHP error handling. **22:30 ET** — \`tests passed - first production run\`. **2024-07-10 09:07 ET** — cleanup → HEAD 8218088. Queue \`pushed_at\` **2026-01-31T10:35:32Z** (no newer commits).
+**2024-07-09 07:14 ET.** Empty init. Midday: base JS + endpoints + test. Evening: Tailwind thrash, trailing-slash facepalm, cache-busting, PHP error handling. **22:30 ET:** \`tests passed - first production run\`. **2024-07-10 09:07 ET:** cleanup, HEAD \`8218088\`. Queue \`pushed_at\` **2026-01-31T10:35:32Z** (no newer commits).
 
 ![Commit arc](/blog/fab-analytics-same-day-php-js-ga-drop-in-json-disk/commit-arc.png)
 
 ## Why
 
-A GA drop-in only earns its keep if conversions and abandonments land somewhere you own — even if that somewhere is a folder of JSON files.
+A first-party GA drop-in only earns its keep if conversions and abandonments land somewhere you own, even when that somewhere is a folder of JSON files.
 
-**Engagement Q:** Fix the empty docs + fab.js rename + FormData revive path first, or rip the abandonment spam down to submit + intentional blur only?
+**Engagement Q:** Fix the empty docs, fab.js rename, and FormData revive path first, or rip the abandonment spam down to submit plus intentional blur only?
 `;
 
 const BOILERPLATE_COVER =
@@ -6425,7 +6425,7 @@ export const staticPosts: StaticPost[] = [
     title: "fab-analytics: same-day PHP+JS GA drop-in that writes JSON to disk",
     slug: "fab-analytics-same-day-php-js-ga-drop-in-json-disk",
     excerpt:
-      "Public michaelmonetized/fab-analytics is a 0.1.3-rc first-party Google Analytics drop-in: fab-analytics.js posts pageviews, mailto/tel clicks, and form submit/abandonment to a PHP endpoint that writes logs/{domain}/*.json under hustlelaunch.com. 31 commits in one July 2024 day to first production run; HEAD 8218088 cleanup. Empty README/LICENCE. Not BestWNC's 2026 null-honesty directory analytics.",
+      "Public michaelmonetized/fab-analytics is a 0.1.3-rc first-party Google Analytics drop-in: fab-analytics.js posts pageviews, mailto/tel clicks, and form submit/abandonment to a PHP endpoint that writes logs/{domain}/*.json under hustlelaunch.com. 31 commits in one July 2024 day to first production run; HEAD 8218088 cleanup. Empty README/LICENCE. Sibling BestWNC 2026 directory analytics is a different product.",
     content: FAB_ANALYTICS_CONTENT,
     coverImage: FAB_ANALYTICS_COVER,
     tags: [
@@ -6921,10 +6921,10 @@ export const staticPosts: StaticPost[] = [
 
   {
     _id: "static:shagent-bun-mcp-openrouter-after-zsh-harness-delete",
-    title: "shagent: Bun MCP + OpenRouter free loop \u2014 after I deleted the Zsh shell harness",
+    title: "shagent: Bun MCP + OpenRouter free loop after I deleted the Zsh shell harness",
     slug: "shagent-bun-mcp-openrouter-after-zsh-harness-delete",
     excerpt:
-      "Public michaelmonetized/shagent: May init was a 258-line Zsh THOUGHT/COMMAND OpenRouter harness (rg/fd/eza/bat, mcp-cli, qmd). Jun 22 nightly deleted src/shagent.sh and shipped Bun CLI + MCP filesystem client + OpenRouter JSON tool loop (max 15 turns, default openrouter/free). Empty README. Marketing index.html is fiction (Rusty P. Shackelford). 3 commits. HEAD 61ecd7d. Not orclawstrator.",
+      "Public michaelmonetized/shagent: May init was a 258-line Zsh THOUGHT/COMMAND OpenRouter harness (rg/fd/eza/bat, mcp-cli, qmd). Jun 22 nightly deleted src/shagent.sh and shipped Bun CLI + MCP filesystem client + OpenRouter JSON tool loop (max 15 turns, default openrouter/free). Empty README. Marketing index.html is fiction (Rusty P. Shackelford). 3 commits. HEAD 61ecd7d. Sibling orclawstrator is a different repo.",
     content: SHAGENT_CONTENT,
     coverImage: SHAGENT_COVER,
     tags: [
@@ -8118,7 +8118,7 @@ export const staticPosts: StaticPost[] = [
   },
   {
     _id: "static:waynesville-zaxbys-single-store-ops-portal",
-    title: "Waynesville Zaxby's: I built the single-store ops portal so Russ Avenue does not run on group texts",
+    title: "modern-design-playground: I left agents running for ten hours and they rebuilt nine worlds",
     slug: "waynesville-zaxbys-single-store-ops-portal",
     excerpt:
       "I shipped waynesville.yourzaxbys.com as a Next.js 16 + Convex + Clerk single-store portal for 424 Russ Ave: public events/careers/community out front, live shift metrics, Steritech CAPs, hiring, training, and attendance behind the door. Package 0.1.0, 235 commits, HEAD c9f97b7. Not the franchise SaaS sibling.",
@@ -8147,7 +8147,7 @@ export const staticPosts: StaticPost[] = [
     title: "modern-design-playground: I left agents running for ten hours and they rebuilt nine worlds",
     slug: "modern-design-playground-afk-webgl-nine-worlds",
     excerpt:
-      "I shipped a WebGL instrument homepage and nine landing worlds \u2014 then left a marathon agent loop overnight after WebGL went blank. Live on mdp-seven.vercel.app.",
+      "I shipped a WebGL instrument homepage and nine landing worlds, then left a marathon agent loop overnight after WebGL went blank. Live on mdp-seven.vercel.app.",
     content: MODERN_DESIGN_PLAYGROUND_CONTENT,
     coverImage: MODERN_DESIGN_PLAYGROUND_COVER,
     tags: [
@@ -8351,7 +8351,7 @@ export const staticPosts: StaticPost[] = [
   },
   {
     _id: "static:omnux-report-one-command-diagnostics-redaction",
-    title: "omnux-report: I shipped one-command diagnostics that refuse to scoop your secrets",
+    title: "WNC History Tours: I shipped the booking shell before the tour pages existed",
     slug: "omnux-report-one-command-diagnostics-redaction",
     excerpt:
       "omnux-report is an offline MIT Shell diagnostics tool (HEAD f9729a6) that ships a consenting redacted .tar.zst + SHA256 for Omnux on Apple Silicon, with SEP structure only. Validated on a real M1 Pro Omarchy box plus a ten-check fixture harness; mx-mac packaging and owner release still open.",
@@ -8380,7 +8380,7 @@ export const staticPosts: StaticPost[] = [
     title: "WNC History Tours: I shipped the booking shell before the tour pages existed",
     slug: "wnc-history-tours-booking-shell-before-detail-pages",
     excerpt:
-      "WNC History Tours is my Western North Carolina history-tour directory — Next.js 16, Convex, Clerk, Stripe deps. Homepage + schema + Blacksmith CI shipped; tour detail and checkout still missing. Domain answers Cloudflare 526.",
+      "WNC History Tours is my Western North Carolina history-tour directory (Next.js 16, Convex, Clerk, Stripe deps). Homepage + schema + Blacksmith CI shipped; tour detail and checkout still missing. Domain answers Cloudflare 526.",
     content: WNC_TOURS_CONTENT,
     coverImage: WNC_TOURS_COVER,
     tags: [
