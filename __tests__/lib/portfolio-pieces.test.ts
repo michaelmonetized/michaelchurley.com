@@ -18,10 +18,13 @@ describe("portfolio catalog", () => {
     expect(macks?.title).toBe("Mack's BBQ Shack");
     expect(macks?.href).toBe("https://www.macksbbqshack.com");
     expect(macks?.category).toBe("sites");
-    const terre = pieces.find((p) => p.id === "art-delaterre");
+    const terre = pieces.find((p) => p.id === "web-delaterrestore");
     expect(terre?.title).toBe("de la Terre");
     expect(terre?.href).toBe("https://www.delaterrestore.com");
-    expect(terre?.category).toBe("marks");
+    expect(terre?.category).toBe("sites");
+    const terreMark = pieces.find((p) => p.id === "art-delaterre");
+    expect(terreMark?.title).toBe("de la Terre");
+    expect(terreMark?.category).toBe("marks");
   });
 
   test("parseKind only accepts catalog filters", () => {
