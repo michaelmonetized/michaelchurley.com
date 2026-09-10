@@ -34,11 +34,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Fetch published blog posts and portfolio items from Convex
-  const [blogPosts, portfolioItems] = await Promise.all([
-    fetchQuery(api.blog.list, { onlyPublished: true }).catch(() => []),
-    fetchQuery(api.portfolio.list, { onlyPublished: true }).catch(() => []),
-  ]);
+  const blogPosts = await fetchQuery(api.blog.list, {
+    onlyPublished: true,
+  }).catch(() => []);
 
   const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
@@ -47,12 +45,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const portfolioRoutes: MetadataRoute.Sitemap = portfolioItems.map((item) => ({
-    url: `${BASE_URL}/portfolio/${item.slug}`,
-    lastModified: item.publishedAt ? new Date(item.publishedAt) : new Date(item._creationTime),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
-
-  return [...staticRoutes, ...blogRoutes, ...portfolioRoutes];
+  return [...staticRoutes, ...blogRoutes];
 }
