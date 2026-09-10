@@ -23,7 +23,8 @@ function Media({
 }) {
   const host = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [load, setLoad] = useState(eager);
+  const isVideo = piece.src.endsWith(".mp4");
+  const [load, setLoad] = useState(eager || !isVideo);
   const [inView, setInView] = useState(eager);
 
   useLayoutEffect(() => {
@@ -63,7 +64,7 @@ function Media({
       className={cn("relative w-full overflow-hidden bg-muted", className)}
       style={{ aspectRatio: String(piece.aspect) }}
     >
-      {load ? (
+      {load && piece.src.endsWith(".mp4") ? (
         <video
           ref={videoRef}
           src={piece.src}
@@ -76,6 +77,18 @@ function Media({
           playsInline
           autoPlay={playing}
           preload={eager ? "auto" : "metadata"}
+        />
+      ) : load ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        // biome-ignore lint/performance/noImgElement: local work stills
+        <img
+          src={piece.src}
+          alt=""
+          className={cn(
+            "absolute inset-0 h-full w-full",
+            piece.category === "marks" || fit === "contain" ? "object-contain" : "object-cover",
+          )}
+          loading={eager ? "eager" : "lazy"}
         />
       ) : null}
     </div>

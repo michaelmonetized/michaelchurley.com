@@ -5,8 +5,8 @@ describe("portfolio catalog", () => {
   test("is a static list of motion files under /work", () => {
     const pieces = listPieces();
     expect(pieces.length).toBeGreaterThan(0);
+    expect(pieces.some((p) => p.category === "marks")).toBe(true);
     for (const piece of pieces) {
-      expect(piece.file.endsWith(".mp4")).toBe(true);
       expect(piece.src).toBe(`/work/${piece.file}`);
       expect(piece.title.length).toBeGreaterThan(0);
     }
@@ -18,6 +18,10 @@ describe("portfolio catalog", () => {
     expect(macks?.title).toBe("Mack's BBQ Shack");
     expect(macks?.href).toBe("https://www.macksbbqshack.com");
     expect(macks?.category).toBe("sites");
+    const terre = pieces.find((p) => p.id === "art-delaterre");
+    expect(terre?.title).toBe("de la Terre");
+    expect(terre?.href).toBe("https://www.delaterrestore.com");
+    expect(terre?.category).toBe("marks");
   });
 
   test("parseKind only accepts catalog filters", () => {

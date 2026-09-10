@@ -11,23 +11,33 @@ export type Piece = {
 };
 
 export const CATEGORIES: { id: Category; label: string }[] = [
+  { id: "marks", label: "Marks" },
   { id: "sites", label: "Sites" },
   { id: "interfaces", label: "Interfaces" },
-  { id: "marks", label: "Marks" },
 ];
 
 const FILES = [
+  "art-barbquewagon.png",
+  "art-delaterre.png",
   "art-bestwnc-icon-alive.mp4",
   "art-bestwnc-logo-alive.mp4",
   "art-hurley-shield-alive.mp4",
+  "art-hurleyus-badge.png",
   "art-hustle-launch-palette-alive.mp4",
+  "art-hustle-launch-script.webp",
   "art-hustle-launch-star-alive.mp4",
   "art-kings-lion-alive.mp4",
   "art-kings-logo-alive.mp4",
+  "art-macks-brisket.jpg",
   "art-macks-pig-alive.mp4",
+  "art-macks-sides.jpg",
   "art-macks-tape-alive.mp4",
   "art-michaelchurley-logo-alive.mp4",
   "art-monarch-logo-alive.mp4",
+  "art-omadesign.png",
+  "art-salespromis.png",
+  "art-signsrus.png",
+  "art-vizible.png",
   "ui-glass-hero.mp4",
   "ui-hustle-launch-app-01-alive.mp4",
   "ui-hustle-launch-app-06-alive.mp4",
@@ -36,7 +46,6 @@ const FILES = [
   "web-appestatesales.mp4",
   "web-bestjeepdecals.mp4",
   "web-bestwnc.mp4",
-  "web-delaterrestore.mp4",
   "web-djsidethree.mp4",
   "web-getatme-michaelhurley.mp4",
   "web-getatme.mp4",
@@ -67,7 +76,6 @@ const LIVE: Record<string, string> = {
   "web-appestatesales": "https://www.appestatesales.com",
   "web-bestjeepdecals": "https://www.bestjeepdecals.com",
   "web-bestwnc": "https://www.bestwnc.com",
-  "web-delaterrestore": "https://www.delaterrestore.com",
   "web-djsidethree": "https://www.djsidethree.com",
   "web-getatme": "https://getat.me",
   "web-getatme-michaelhurley": "https://getat.me/michaelhurley",
@@ -94,20 +102,46 @@ const LIVE: Record<string, string> = {
   "ui-hustle-launch-app-10-alive": "https://www.hustlelaunch.com",
   "ui-hustle-launch-app-16-alive": "https://www.hustlelaunch.com",
   "webstill-Jennings-Custom-Homes-alive": "https://www.jenningscustomhomes.com",
+  "art-hustle-launch-script": "https://www.hustlelaunch.com",
+  "art-hustle-launch-star-alive": "https://www.hustlelaunch.com",
+  "art-hustle-launch-palette-alive": "https://www.hustlelaunch.com",
+  "art-hurleyus-badge": "https://www.hurleyus.com",
+  "art-hurley-shield-alive": "https://www.hurleyus.com",
+  "art-omadesign": "https://www.michaelchurley.com/omadesign",
+  "art-salespromis": "https://salespromis.com",
+  "art-vizible": "https://www.michaelchurley.com/vizible",
+  "art-barbquewagon": "https://www.barbquewagon.com",
+  "art-delaterre": "https://www.delaterrestore.com",
+  "art-macks-pig-alive": "https://www.macksbbqshack.com",
+  "art-macks-tape-alive": "https://www.macksbbqshack.com",
+  "art-kings-logo-alive": "https://kingsroofingnc.com",
+  "art-kings-lion-alive": "https://kingsroofingnc.com",
+  "art-bestwnc-logo-alive": "https://www.bestwnc.com",
+  "art-monarch-logo-alive": "https://www.monarchmountainfoundations.com",
 };
 
 const TITLES: Record<string, string> = {
+  "art-barbquewagon": "Bar-B-Que Wagon",
+  "art-delaterre": "de la Terre",
   "art-bestwnc-icon-alive": "Best of WNC Icon",
   "art-bestwnc-logo-alive": "Best of WNC Logo",
   "art-hurley-shield-alive": "Hurley Shield",
+  "art-hurleyus-badge": "Hurley US",
   "art-hustle-launch-palette-alive": "Hustle Launch Palette",
+  "art-hustle-launch-script": "Hustle Launch",
   "art-hustle-launch-star-alive": "Hustle Launch Star",
   "art-kings-lion-alive": "Kings Lion",
   "art-kings-logo-alive": "Kings Roofing Logo",
+  "art-macks-brisket": "Mack's Brisket",
   "art-macks-pig-alive": "Mack's Pig",
+  "art-macks-sides": "Mack's Sides",
   "art-macks-tape-alive": "Mack's Tape",
   "art-michaelchurley-logo-alive": "Michael C. Hurley Mark",
   "art-monarch-logo-alive": "Monarch Logo",
+  "art-omadesign": "omadesign",
+  "art-salespromis": "SalesPromis",
+  "art-signsrus": "SignsRUs",
+  "art-vizible": "Vizible",
   "ui-glass-hero": "Glass Design System",
   "ui-hustle-launch-app-01-alive": "Hustle Launch App",
   "ui-hustle-launch-app-06-alive": "Hustle Launch App",
@@ -116,7 +150,6 @@ const TITLES: Record<string, string> = {
   "web-appestatesales": "Appalachian Estate Sales",
   "web-bestjeepdecals": "Best Jeep Decals",
   "web-bestwnc": "Best of WNC",
-  "web-delaterrestore": "DeLater Restore",
   "web-djsidethree": "DJ Side Three",
   "web-getatme": "Get At Me",
   "web-getatme-michaelhurley": "Get At Me — Michael Hurley",
@@ -156,12 +189,13 @@ function categoryFor(id: string): Category {
 
 function aspectFor(id: string) {
   if (id.includes("-app-")) return 9 / 16;
+  if (id.includes("script") || id.includes("wordmark")) return 16 / 9;
   if (id.startsWith("art-")) return 1;
   return 16 / 9;
 }
 
 function fromFile(file: string): Piece {
-  const id = file.replace(/\.mp4$/i, "");
+  const id = file.replace(/\.[^.]+$/, "");
   return {
     id,
     file,
