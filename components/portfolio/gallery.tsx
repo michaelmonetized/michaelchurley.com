@@ -3,15 +3,17 @@
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Piece } from "@/lib/portfolio/pieces";
-import type { Controls } from "./gallery-canvas";
+import { emptyControls, type Controls } from "./gallery-canvas";
 
 const GalleryCanvas = dynamic(() => import("./gallery-canvas"), {
   ssr: false,
 });
 
-function posterFor(piece: Piece) {
-  if (piece.kind !== "video") return undefined;
-  return piece.src.replace(/\.(mp4|webm|mov)$/i, ".jpg");
+function stillSrc(piece: Piece) {
+  if (piece.kind === "video") {
+    return piece.src.replace(/\.(mp4|webm|mov)$/i, ".jpg");
+  }
+  return piece.src;
 }
 
 function Media({
@@ -42,7 +44,7 @@ function Media({
     return () => io.disconnect();
   }, [eager, load]);
 
-  const poster = posterFor(piece);
+  const poster = piece.kind === "video" ? stillSrc(piece) : undefined;
 
   return (
     <div
@@ -76,14 +78,9 @@ function Media({
 }
 
 export default function Gallery({ pieces }: { pieces: Piece[] }) {
-  const controls = useRef<Controls>({
-    progress: 0,
-    yaw: 0,
-    pitch: 0,
-    roll: 0,
-    focus: 0,
-  });
+  const controls = useRef<Controls>(emptyControls());
   const [picked, setPicked] = useState<Piece | null>(null);
+  const pickedAt = useRef(0);
   const [gyroOn, setGyroOn] = useState(false);
   const [webgl, setWebgl] = useState(false);
   const [wantWebgl, setWantWebgl] = useState(false);
@@ -114,36 +111,15 @@ export default function Gallery({ pieces }: { pieces: Piece[] }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, [onScroll]);
 
-  const enableGyro = async () => {
-    try {
-      const Doe = DeviceOrientationEvent as unknown as {
-        requestPermission?: () => Promise<string>;
-      };
-      if (typeof Doe.requestPermission === "function") {
-        const perm = await Doe.requestPermission();
-        if (perm !== "granted") return;
-      }
-      window.addEventListener("deviceorientation", (ev) => {
-        const beta = ev.beta ?? 0;
-        const gamma = ev.gamma ?? 0;
-        controls.current.pitch = Math.max(
-          -0.7,
-          Math.min(0.7, (beta - 50) * 0.012)
-        );
-        controls.current.roll = Math.max(-0.8, Math.min(0.8, gamma * 0.012));
-        controls.current.yaw += gamma * 0.00035;
-      });
-      setGyroOn(true);
-    } catch {
-      /* permission denied */
-    }
+  const enableGyro = () => {
+    window.dispatchEvent(new Event("portfolio-request-gyro"));
   };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setPicked(null);
-      if (e.key === "ArrowRight") controls.current.yaw += 0.12;
-      if (e.key === "ArrowLeft") controls.current.yaw -= 0.12;
+      if (e.key === "ArrowRight") controls.current.touchYaw -= 0.18;
+      if (e.key === "ArrowLeft") controls.current.touchYaw += 0.18;
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -158,6 +134,7 @@ export default function Gallery({ pieces }: { pieces: Piece[] }) {
   }
 
   const trackHeight = Math.max(pieces.length * 88, 220);
+  const still = picked ? stillSrc(picked) : null;
 
   return (
     <div className="portfolio-gallery relative bg-[#05050c] text-white">
@@ -172,7 +149,10 @@ export default function Gallery({ pieces }: { pieces: Piece[] }) {
           <button
             key={p.file}
             type="button"
-            onClick={() => setPicked(p)}
+            onClick={() => {
+              pickedAt.current = Date.now();
+              setPicked(p);
+            }}
             className="mb-4 block w-full break-inside-avoid overflow-hidden rounded-md border border-white/10 bg-black/40"
             style={{
               transform: webgl ? undefined : `rotate(${((i % 5) - 2) * 0.6}deg)`,
@@ -189,16 +169,21 @@ export default function Gallery({ pieces }: { pieces: Piece[] }) {
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: webgl ? 0 : -1,
+            zIndex: webgl ? 10 : -1,
             width: "100vw",
             height: "100dvh",
+            touchAction: "none",
           }}
         >
           <GalleryCanvas
             pieces={pieces}
             controls={controls}
-            onPick={setPicked}
+            onPick={(piece) => {
+              pickedAt.current = Date.now();
+              setPicked(piece);
+            }}
             onReady={() => setWebgl(true)}
+            onGyro={() => setGyroOn(true)}
           />
         </div>
       )}
@@ -212,9 +197,8 @@ export default function Gallery({ pieces }: { pieces: Piece[] }) {
       )}
 
       <div className="pointer-events-none fixed inset-x-0 bottom-3 z-20 flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/50">
-        <span>{webgl ? "scroll" : "look"}</span>
-        <span>{webgl ? "move" : ""}</span>
-        <span>{webgl ? "tilt" : ""}</span>
+        <span>{webgl ? "swipe" : "look"}</span>
+        <span>{webgl ? "turn" : ""}</span>
       </div>
 
       {wantWebgl && !gyroOn && (
@@ -227,33 +211,22 @@ export default function Gallery({ pieces }: { pieces: Piece[] }) {
         </button>
       )}
 
-      {picked && (
+      {picked && still && (
         <button
           type="button"
-          className="fixed inset-0 z-40 flex items-center justify-center bg-black/80 p-4"
-          onClick={() => setPicked(null)}
+          className="fixed inset-0 z-40 bg-black"
+          onClick={() => {
+            if (Date.now() - pickedAt.current < 500) return;
+            setPicked(null);
+          }}
           aria-label="Close piece"
         >
-          <div
-            className="relative max-h-[88dvh] max-w-[92vw]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Media
-              piece={picked}
-              eager
-              className="max-h-[88dvh] max-w-[92vw] rounded-lg shadow-2xl"
-            />
-            {picked.href && (
-              <a
-                href={picked.href}
-                target="_blank"
-                rel="noreferrer"
-                className="absolute -bottom-10 left-0 text-xs text-cyan-100 underline-offset-4 hover:underline"
-              >
-                {picked.href.replace(/^https?:\/\//, "")}
-              </a>
-            )}
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={still}
+            alt=""
+            className="h-full w-full object-contain"
+          />
         </button>
       )}
     </div>
