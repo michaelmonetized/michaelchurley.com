@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { mkdirSync, existsSync, readdirSync, renameSync } from "node:fs";
 import { join } from "node:path";
 
-const DEST = join(process.cwd(), "public/portfolio");
+const DEST = join(process.cwd(), "public/work");
 const RAW = "/tmp/portfolio-recordings";
 mkdirSync(DEST, { recursive: true });
 mkdirSync(RAW, { recursive: true });

@@ -80,7 +80,7 @@ export function parsePiece(file: string): Piece | null {
   return {
     id,
     file,
-    src: `/portfolio/${file}`,
+    src: `/work/${file}`,
     kind,
     aspect: aspectFor(id, kind),
     href: hrefFor(id),
@@ -88,7 +88,7 @@ export function parsePiece(file: string): Piece | null {
 }
 
 export async function listPieces(): Promise<Piece[]> {
-  const dir = path.join(process.cwd(), "public/portfolio");
+  const dir = path.join(process.cwd(), "public/work");
   let files: string[] = [];
   try {
     files = await readdir(dir);
