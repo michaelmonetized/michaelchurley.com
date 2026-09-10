@@ -9,31 +9,69 @@ const GalleryCanvas = dynamic(() => import("./gallery-canvas"), {
   ssr: false,
 });
 
+function posterFor(piece: Piece) {
+  if (piece.kind !== "video") return undefined;
+  return piece.src.replace(/\.(mp4|webm|mov)$/i, ".jpg");
+}
+
 function Media({
   piece,
   className,
+  eager = false,
 }: {
   piece: Piece;
   className?: string;
+  eager?: boolean;
 }) {
-  if (piece.kind === "video") {
-    const poster = piece.src.replace(/\.(mp4|webm|mov)$/i, ".jpg");
-    return (
-      <video
-        src={piece.src}
-        poster={poster}
-        className={className}
-        muted
-        loop
-        playsInline
-        autoPlay
-        preload="metadata"
-      />
+  const host = useRef<HTMLDivElement>(null);
+  const [load, setLoad] = useState(eager);
+
+  useEffect(() => {
+    if (eager || load) return;
+    const el = host.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        setLoad(true);
+        io.disconnect();
+      },
+      { rootMargin: "240px 0px", threshold: 0.01 }
     );
-  }
+    io.observe(el);
+    return () => io.disconnect();
+  }, [eager, load]);
+
+  const poster = posterFor(piece);
+
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={piece.src} alt="" className={className} />
+    <div
+      ref={host}
+      className={`relative w-full overflow-hidden bg-[#12121a] ${className ?? ""}`}
+      style={{ aspectRatio: String(piece.aspect) }}
+    >
+      {load && piece.kind === "video" ? (
+        <video
+          src={piece.src}
+          poster={poster}
+          className="absolute inset-0 h-full w-full object-cover"
+          muted
+          loop
+          playsInline
+          autoPlay
+          preload="none"
+        />
+      ) : load ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={piece.src}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : null}
+    </div>
   );
 }
 
@@ -52,7 +90,15 @@ export default function Gallery({ pieces }: { pieces: Piece[] }) {
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setWantWebgl(!reduce);
+    if (reduce) return;
+    let later = 0;
+    const paint = requestAnimationFrame(() => {
+      later = window.setTimeout(() => setWantWebgl(true), 80);
+    });
+    return () => {
+      cancelAnimationFrame(paint);
+      window.clearTimeout(later);
+    };
   }, []);
 
   const onScroll = useCallback(() => {
@@ -132,7 +178,7 @@ export default function Gallery({ pieces }: { pieces: Piece[] }) {
               transform: webgl ? undefined : `rotate(${((i % 5) - 2) * 0.6}deg)`,
             }}
           >
-            <Media piece={p} className="block w-full" />
+            <Media piece={p} />
           </button>
         ))}
       </div>
@@ -165,10 +211,10 @@ export default function Gallery({ pieces }: { pieces: Piece[] }) {
         />
       )}
 
-      <div className="pointer-events-none fixed inset-x-0 bottom-3 z-20 flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.22em] text-cyan-100/70">
+      <div className="pointer-events-none fixed inset-x-0 bottom-3 z-20 flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/50">
         <span>{webgl ? "scroll" : "look"}</span>
-        <span className="text-magenta-200/70">{webgl ? "drag" : ""}</span>
-        <span className="text-cyan-100/50">{webgl ? "tilt" : ""}</span>
+        <span>{webgl ? "move" : ""}</span>
+        <span>{webgl ? "tilt" : ""}</span>
       </div>
 
       {wantWebgl && !gyroOn && (
@@ -194,6 +240,7 @@ export default function Gallery({ pieces }: { pieces: Piece[] }) {
           >
             <Media
               piece={picked}
+              eager
               className="max-h-[88dvh] max-w-[92vw] rounded-lg shadow-2xl"
             />
             {picked.href && (

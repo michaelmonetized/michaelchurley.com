@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Sparkles } from "@react-three/drei";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import type { Piece } from "@/lib/portfolio/pieces";
 
@@ -21,22 +21,26 @@ function MediaPlane({
   width,
   height,
   video,
+  load,
 }: {
   src: string;
   width: number;
   height: number;
   video: boolean;
+  load: boolean;
 }) {
   const mat = useRef<THREE.MeshBasicMaterial>(null);
 
   useEffect(() => {
+    if (!load) return;
+
     if (video) {
       const el = document.createElement("video");
       el.src = src;
       el.muted = true;
       el.loop = true;
       el.playsInline = true;
-      el.preload = "metadata";
+      el.preload = "none";
       el.crossOrigin = "anonymous";
       const tex = new THREE.VideoTexture(el);
       tex.minFilter = THREE.LinearFilter;
@@ -72,7 +76,7 @@ function MediaPlane({
     return () => {
       tex?.dispose();
     };
-  }, [src, video]);
+  }, [src, video, load]);
 
   return (
     <mesh>
@@ -101,7 +105,8 @@ function PieceCard({
   onPick: (piece: Piece) => void;
 }) {
   const group = useRef<THREE.Group>(null);
-  const glow = useRef<THREE.MeshStandardMaterial>(null);
+  const [load, setLoad] = useState(false);
+  const armed = useRef(false);
   const width = piece.aspect >= 1 ? 1.72 : 1.72 * piece.aspect;
   const height = piece.aspect >= 1 ? 1.72 / piece.aspect : 1.72;
   const angle = index * 0.82;
@@ -124,9 +129,9 @@ function PieceCard({
     const near = THREE.MathUtils.smoothstep(3.2, 0.2, dist);
     const s = 1 + near * 0.42;
     g.scale.setScalar(THREE.MathUtils.damp(g.scale.x, s, 6, delta));
-    if (glow.current) {
-      glow.current.opacity = 0.12 + near * 0.55;
-      glow.current.emissiveIntensity = 0.4 + near * 1.8;
+    if (!armed.current && dist < 7) {
+      armed.current = true;
+      setLoad(true);
     }
     if (near > 0.72) controls.current.focus = index;
   });
@@ -145,24 +150,12 @@ function PieceCard({
         document.body.style.cursor = "auto";
       }}
     >
-      <mesh position={[0, 0, -0.02]}>
-        <planeGeometry args={[width + 0.08, height + 0.08]} />
-        <meshStandardMaterial
-          ref={glow}
-          color="#94e4ff"
-          emissive="#ff94bb"
-          emissiveIntensity={0.6}
-          transparent
-          opacity={0.18}
-          toneMapped={false}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
       <MediaPlane
         src={piece.src}
         width={width}
         height={height}
         video={piece.kind === "video"}
+        load={load}
       />
     </group>
   );
@@ -201,13 +194,6 @@ function Interaction({
   controls: React.MutableRefObject<Controls>;
 }) {
   const { gl } = useThree();
-  const drag = useRef<{
-    id: number | null;
-    x: number;
-    y: number;
-    yaw: number;
-    pitch: number;
-  }>({ id: null, x: 0, y: 0, yaw: 0, pitch: 0 });
 
   useEffect(() => {
     const el = gl.domElement;
@@ -217,43 +203,20 @@ function Interaction({
       window.scrollBy({ top: e.deltaY, left: e.deltaX });
     };
 
-    const onDown = (e: PointerEvent) => {
-      drag.current = {
-        id: e.pointerId,
-        x: e.clientX,
-        y: e.clientY,
-        yaw: controls.current.yaw,
-        pitch: controls.current.pitch,
-      };
-      el.setPointerCapture(e.pointerId);
-    };
-
     const onMove = (e: PointerEvent) => {
-      if (drag.current.id !== e.pointerId) return;
-      const dx = e.clientX - drag.current.x;
-      const dy = e.clientY - drag.current.y;
-      controls.current.yaw = drag.current.yaw + dx * 0.0055;
-      controls.current.pitch = Math.max(
-        -0.75,
-        Math.min(0.75, drag.current.pitch + dy * 0.0045)
-      );
-    };
-
-    const onUp = (e: PointerEvent) => {
-      if (drag.current.id === e.pointerId) drag.current.id = null;
+      const nx = e.clientX / Math.max(window.innerWidth, 1) * 2 - 1;
+      const ny = e.clientY / Math.max(window.innerHeight, 1) * 2 - 1;
+      controls.current.yaw = nx * 0.85;
+      controls.current.pitch = Math.max(-0.75, Math.min(0.75, ny * 0.5));
     };
 
     el.addEventListener("wheel", onWheel, { passive: false });
-    el.addEventListener("pointerdown", onDown);
     el.addEventListener("pointermove", onMove);
-    el.addEventListener("pointerup", onUp);
-    el.addEventListener("pointercancel", onUp);
+    window.addEventListener("pointermove", onMove);
     return () => {
       el.removeEventListener("wheel", onWheel);
-      el.removeEventListener("pointerdown", onDown);
       el.removeEventListener("pointermove", onMove);
-      el.removeEventListener("pointerup", onUp);
-      el.removeEventListener("pointercancel", onUp);
+      window.removeEventListener("pointermove", onMove);
     };
   }, [gl, controls]);
 
@@ -284,16 +247,15 @@ function Field({ length }: { length: number }) {
     <>
       <color attach="background" args={["#05050c"]} />
       <fog attach="fog" args={["#05050c", 7, 24]} />
-      <ambientLight intensity={0.35} />
-      <pointLight position={[6, length * 0.3, 8]} color="#ff94bb" intensity={18} distance={28} />
-      <pointLight position={[-6, length * 0.6, 8]} color="#94e4ff" intensity={18} distance={28} />
+      <ambientLight intensity={0.55} />
+      <pointLight position={[5, length * 0.4, 8]} color="#cdd6f4" intensity={10} distance={28} />
       <Sparkles
-        count={120}
+        count={80}
         scale={[16, Math.max(length + 8, 16), 16]}
-        size={4}
-        speed={0.28}
-        opacity={0.85}
-        color="#94e4ff"
+        size={3}
+        speed={0.2}
+        opacity={0.45}
+        color="#bac2de"
       />
     </>
   );
