@@ -72,9 +72,9 @@ const nextConfig: NextConfig = {
               "microphone=()",
               "geolocation=()",
               "interest-cohort=()",
-              "accelerometer=(self)",
-              "gyroscope=(self)",
-              "magnetometer=(self)",
+              "accelerometer=()",
+              "gyroscope=()",
+              "magnetometer=()",
             ].join(", "),
           },
           // Cross-Origin policies

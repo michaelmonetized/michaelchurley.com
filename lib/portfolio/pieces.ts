@@ -1,151 +1,178 @@
-import { readdir, stat } from "node:fs/promises";
-import path from "node:path";
-
-export type PieceKind = "video" | "image";
+export type Category = "sites" | "interfaces" | "marks";
 
 export type Piece = {
   id: string;
   file: string;
   src: string;
-  kind: PieceKind;
-  aspect: number;
+  title: string;
+  category: Category;
   href?: string;
+  aspect: number;
 };
 
-const VIDEO_EXT = new Set(["mp4", "webm", "mov"]);
-const IMAGE_EXT = new Set(["jpg", "jpeg", "png", "webp", "gif", "avif"]);
+export const CATEGORIES: { id: Category; label: string }[] = [
+  { id: "sites", label: "Sites" },
+  { id: "interfaces", label: "Interfaces" },
+  { id: "marks", label: "Marks" },
+];
+
+const FILES = [
+  "art-bestwnc-icon-alive.mp4",
+  "art-bestwnc-logo-alive.mp4",
+  "art-hurley-shield-alive.mp4",
+  "art-hustle-launch-palette-alive.mp4",
+  "art-hustle-launch-star-alive.mp4",
+  "art-kings-lion-alive.mp4",
+  "art-kings-logo-alive.mp4",
+  "art-macks-pig-alive.mp4",
+  "art-macks-tape-alive.mp4",
+  "art-michaelchurley-logo-alive.mp4",
+  "art-monarch-logo-alive.mp4",
+  "ui-glass-hero.mp4",
+  "ui-hustle-launch-app-01-alive.mp4",
+  "ui-hustle-launch-app-06-alive.mp4",
+  "ui-hustle-launch-app-10-alive.mp4",
+  "ui-hustle-launch-app-16-alive.mp4",
+  "web-appestatesales.mp4",
+  "web-bestjeepdecals.mp4",
+  "web-bestwnc.mp4",
+  "web-delaterrestore.mp4",
+  "web-djsidethree.mp4",
+  "web-getatme-michaelhurley.mp4",
+  "web-getatme.mp4",
+  "web-glass-design-system.mp4",
+  "web-hurleyus.mp4",
+  "web-hustlechat.mp4",
+  "web-hustlelaunch-showreel.mp4",
+  "web-hustlelaunch-tvads.mp4",
+  "web-hustlelaunch.mp4",
+  "web-hustlepay.mp4",
+  "web-kingsroofing.mp4",
+  "web-macksbbqshack.mp4",
+  "web-michaelchurley.mp4",
+  "web-mockup-gallery.mp4",
+  "web-modern-design-playground.mp4",
+  "web-monarch.mp4",
+  "web-santabox.mp4",
+  "web-thenationalnc.mp4",
+  "web-twelveux.mp4",
+  "web-uncap.mp4",
+  "webstill-Go-Metal-alive.mp4",
+  "webstill-Jennings-Custom-Homes-alive.mp4",
+  "webstill-Realay-alive.mp4",
+  "webstill-Sales-Promis-alive.mp4",
+] as const;
 
 const LIVE: Record<string, string> = {
-  "web-macksbbqshack": "https://www.macksbbqshack.com",
+  "web-appestatesales": "https://www.appestatesales.com",
+  "web-bestjeepdecals": "https://www.bestjeepdecals.com",
+  "web-bestwnc": "https://www.bestwnc.com",
+  "web-delaterrestore": "https://www.delaterrestore.com",
+  "web-djsidethree": "https://www.djsidethree.com",
   "web-getatme": "https://getat.me",
   "web-getatme-michaelhurley": "https://getat.me/michaelhurley",
+  "web-glass-design-system": "https://glass-design-system.vercel.app",
+  "web-hurleyus": "https://www.hurleyus.com",
+  "web-hustlechat": "https://hustlechat.com",
   "web-hustlelaunch": "https://www.hustlelaunch.com",
   "web-hustlelaunch-showreel": "https://www.hustlelaunch.com",
   "web-hustlelaunch-tvads": "https://www.hustlelaunch.com",
-  "web-bestwnc": "https://www.bestwnc.com",
-  "web-michaelchurley": "https://www.michaelchurley.com",
-  "web-glass-design-system": "https://glass-design-system.vercel.app",
-  "web-twelveux": "https://twelveux.vercel.app",
-  "web-mockup-gallery": "https://mockup-gallery-nu.vercel.app",
-  "web-kingsroofing": "https://kingsroofingnc.com",
-  "web-hurleyus": "https://www.hurleyus.com",
-  "web-djsidethree": "https://www.djsidethree.com",
-  "web-jennings": "https://www.jenningscustomhomes.com",
-  "web-monarch": "https://www.monarchmountainfoundations.com",
-  "web-bestjeepdecals": "https://www.bestjeepdecals.com",
-  "web-barbquewagon": "https://www.barbquewagon.com",
   "web-hustlepay": "https://hustlepay.com",
-  "web-hustlechat": "https://hustlechat.com",
-  "web-hustleforms": "https://hustleforms.com",
-  "web-uncap": "https://uncap.us",
-  "web-delaterrestore": "https://www.delaterrestore.com",
-  "web-appestatesales": "https://www.appestatesales.com",
-  "web-waynesville-zaxbys": "https://waynesville.yourzaxbys.com",
-  "web-mybathroomconversion": "https://www.mybathroomconversion.com",
+  "web-kingsroofing": "https://kingsroofingnc.com",
+  "web-macksbbqshack": "https://www.macksbbqshack.com",
+  "web-michaelchurley": "https://www.michaelchurley.com",
+  "web-mockup-gallery": "https://mockup-gallery-nu.vercel.app",
+  "web-modern-design-playground": "https://mdp-seven.vercel.app",
+  "web-monarch": "https://www.monarchmountainfoundations.com",
   "web-santabox": "https://www.santabox.org",
   "web-thenationalnc": "https://www.thenationalnc.com",
-  "web-modern-design-playground": "https://mdp-seven.vercel.app",
+  "web-twelveux": "https://twelveux.vercel.app",
+  "web-uncap": "https://uncap.us",
   "ui-glass-hero": "https://glass-design-system.vercel.app",
+  "ui-hustle-launch-app-01-alive": "https://www.hustlelaunch.com",
+  "ui-hustle-launch-app-06-alive": "https://www.hustlelaunch.com",
+  "ui-hustle-launch-app-10-alive": "https://www.hustlelaunch.com",
+  "ui-hustle-launch-app-16-alive": "https://www.hustlelaunch.com",
+  "webstill-Jennings-Custom-Homes-alive": "https://www.jenningscustomhomes.com",
 };
 
-function extOf(file: string) {
-  return file.split(".").pop()?.toLowerCase() ?? "";
+const TITLES: Record<string, string> = {
+  "art-bestwnc-icon-alive": "Best of WNC Icon",
+  "art-bestwnc-logo-alive": "Best of WNC Logo",
+  "art-hurley-shield-alive": "Hurley Shield",
+  "art-hustle-launch-palette-alive": "Hustle Launch Palette",
+  "art-hustle-launch-star-alive": "Hustle Launch Star",
+  "art-kings-lion-alive": "Kings Lion",
+  "art-kings-logo-alive": "Kings Roofing Logo",
+  "art-macks-pig-alive": "Mack's Pig",
+  "art-macks-tape-alive": "Mack's Tape",
+  "art-michaelchurley-logo-alive": "Michael C. Hurley Mark",
+  "art-monarch-logo-alive": "Monarch Logo",
+  "ui-glass-hero": "Glass Design System",
+  "ui-hustle-launch-app-01-alive": "Hustle Launch App",
+  "ui-hustle-launch-app-06-alive": "Hustle Launch App",
+  "ui-hustle-launch-app-10-alive": "Hustle Launch App",
+  "ui-hustle-launch-app-16-alive": "Hustle Launch App",
+  "web-appestatesales": "Appalachian Estate Sales",
+  "web-bestjeepdecals": "Best Jeep Decals",
+  "web-bestwnc": "Best of WNC",
+  "web-delaterrestore": "DeLater Restore",
+  "web-djsidethree": "DJ Side Three",
+  "web-getatme": "Get At Me",
+  "web-getatme-michaelhurley": "Get At Me — Michael Hurley",
+  "web-glass-design-system": "Glass Design System",
+  "web-hurleyus": "Hurley US",
+  "web-hustlechat": "Hustle Chat",
+  "web-hustlelaunch": "Hustle Launch",
+  "web-hustlelaunch-showreel": "Hustle Launch Showreel",
+  "web-hustlelaunch-tvads": "Hustle Launch TV Ads",
+  "web-hustlepay": "Hustle Pay",
+  "web-kingsroofing": "Kings Roofing",
+  "web-macksbbqshack": "Mack's BBQ Shack",
+  "web-michaelchurley": "michaelchurley.com",
+  "web-mockup-gallery": "Mockup Gallery",
+  "web-modern-design-playground": "Modern Design Playground",
+  "web-monarch": "Monarch Mountain Foundations",
+  "web-santabox": "SantaBox",
+  "web-thenationalnc": "The National NC",
+  "web-twelveux": "Twelve UX",
+  "web-uncap": "Uncap",
+  "webstill-Go-Metal-alive": "Go Metal",
+  "webstill-Jennings-Custom-Homes-alive": "Jennings Custom Homes",
+  "webstill-Realay-alive": "Realay",
+  "webstill-Sales-Promis-alive": "SalesPromis",
+};
+
+export function parseKind(value: string | undefined): Category | "all" {
+  if (value === "sites" || value === "interfaces" || value === "marks") return value;
+  return "all";
 }
 
-function aspectFor(id: string, kind: PieceKind) {
-  if (id.includes("app-") || id.includes("-app-")) return 9 / 16;
-  if (id.startsWith("art-") && !id.includes("bestwnc-logo") && !id.includes("hustle-launch-wordmark") && !id.includes("hustle-launch-palette")) {
-    return 1;
-  }
-  if (kind === "video") return 16 / 9;
-  if (id.startsWith("web") || id.startsWith("ui-glass") || id.startsWith("webstill")) return 16 / 9;
-  return 4 / 3;
+function categoryFor(id: string): Category {
+  if (id.startsWith("art-")) return "marks";
+  if (id.startsWith("ui-")) return "interfaces";
+  return "sites";
 }
 
-function hrefFor(id: string) {
-  if (LIVE[id]) return LIVE[id];
-  if (id.startsWith("webstill-")) return undefined;
-  return undefined;
+function aspectFor(id: string) {
+  if (id.includes("-app-")) return 9 / 16;
+  if (id.startsWith("art-")) return 1;
+  return 16 / 9;
 }
 
-export function parsePiece(file: string): Piece | null {
-  const ext = extOf(file);
-  const kind: PieceKind | null = VIDEO_EXT.has(ext)
-    ? "video"
-    : IMAGE_EXT.has(ext)
-      ? "image"
-      : null;
-  if (!kind) return null;
-  const id = file.slice(0, file.length - ext.length - 1);
+function fromFile(file: string): Piece {
+  const id = file.replace(/\.mp4$/i, "");
   return {
     id,
     file,
     src: `/work/${file}`,
-    kind,
-    aspect: aspectFor(id, kind),
-    href: hrefFor(id),
+    title: TITLES[id] ?? id,
+    category: categoryFor(id),
+    href: LIVE[id],
+    aspect: aspectFor(id),
   };
 }
 
-export async function listPieces(): Promise<Piece[]> {
-  const dir = path.join(process.cwd(), "public/work");
-  let files: string[] = [];
-  try {
-    files = await readdir(dir);
-  } catch {
-    return [];
-  }
-
-  const usable: string[] = [];
-  for (const f of files) {
-    if (f.startsWith(".")) continue;
-    try {
-      const s = await stat(path.join(dir, f));
-      if (s.size < 20_000) continue;
-      usable.push(f);
-    } catch {
-      /* skip */
-    }
-  }
-
-  const parsed = usable
-    .map(parsePiece)
-    .filter((p): p is Piece => p !== null);
-
-  const ids = new Set(parsed.map((p) => p.id));
-  const videos = new Set(
-    parsed.filter((p) => p.kind === "video").map((p) => p.id)
-  );
-
-  // Prefer a living video over its still twin; keep original marks.
-  const filtered = parsed.filter((p) => {
-    if (p.kind === "image" && videos.has(p.id)) {
-      return false;
-    }
-    if (p.id.startsWith("webstill-")) {
-      const slug = p.id.replace(/^webstill-/, "").toLowerCase();
-      for (const id of ids) {
-        if (id.startsWith("web-") && id.toLowerCase().includes(slug.slice(0, 8))) {
-          if (videos.has(id)) return false;
-        }
-      }
-    }
-    return true;
-  });
-
-  const rank = (p: Piece) => {
-    if (p.kind === "video" && p.id.endsWith("-alive")) return 0;
-    if (p.kind === "video" && p.id.startsWith("web-")) return 1;
-    if (p.id.startsWith("art-") && p.id.endsWith("-alive")) return 2;
-    if (p.id.startsWith("art-")) return 3;
-    if (p.id.startsWith("ui-")) return 4;
-    if (p.kind === "video") return 5;
-    return 6;
-  };
-
-  return filtered.sort((a, b) => {
-    const d = rank(a) - rank(b);
-    if (d !== 0) return d;
-    return a.id.localeCompare(b.id);
-  });
+export function listPieces(): Piece[] {
+  return FILES.map(fromFile);
 }
