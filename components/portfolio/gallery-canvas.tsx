@@ -91,12 +91,13 @@ function PieceCard({
   piece,
   index,
   controls,
+  length,
   onPick,
 }: {
   piece: Piece;
   index: number;
   controls: React.MutableRefObject<Controls>;
-  length?: number;
+  length: number;
   onPick: (piece: Piece) => void;
 }) {
   const group = useRef<THREE.Group>(null);
@@ -107,7 +108,7 @@ function PieceCard({
   const radius = 3.55 + (index % 5) * 0.28;
   const baseY = index * SPACING;
 
-  useFrame((state) => {
+  useFrame((state, delta) => {
     const g = group.current;
     if (!g) return;
     const t = state.clock.elapsedTime;
@@ -122,7 +123,7 @@ function PieceCard({
     const dist = Math.abs(g.position.y - camY);
     const near = THREE.MathUtils.smoothstep(3.2, 0.2, dist);
     const s = 1 + near * 0.42;
-    g.scale.setScalar(THREE.MathUtils.damp(g.scale.x, s, 6, state.delta));
+    g.scale.setScalar(THREE.MathUtils.damp(g.scale.x, s, 6, delta));
     if (glow.current) {
       glow.current.opacity = 0.12 + near * 0.55;
       glow.current.emissiveIntensity = 0.4 + near * 1.8;
@@ -265,7 +266,7 @@ function FitCanvas() {
     const fit = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
-      setSize(w, h, false);
+      setSize(w, h);
       gl.setSize(w, h, false);
       gl.domElement.style.width = "100%";
       gl.domElement.style.height = "100%";
@@ -322,7 +323,7 @@ export default function GalleryCanvas({
         gl.setClearColor("#05050c", 1);
         const w = window.innerWidth;
         const h = window.innerHeight;
-        setSize(w, h, false);
+        setSize(w, h);
         gl.setSize(w, h, false);
         gl.domElement.id = "portfolio-gl";
         gl.domElement.style.width = "100%";
@@ -342,6 +343,7 @@ export default function GalleryCanvas({
           piece={piece}
           index={i}
           controls={controls}
+          length={length}
           onPick={onPick}
         />
       ))}
