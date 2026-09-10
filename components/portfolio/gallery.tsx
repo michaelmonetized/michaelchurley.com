@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { PiCaretLeftLight, PiCaretRightLight } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
@@ -21,25 +21,45 @@ function Media({
   eager?: boolean;
   fit?: "cover" | "contain";
 }) {
+  const host = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [load, setLoad] = useState(eager);
+  const [inView, setInView] = useState(eager);
+
+  useLayoutEffect(() => {
+    const el = host.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        const visible = Boolean(entry?.isIntersecting);
+        setInView(visible);
+        if (visible) setLoad(true);
+      },
+      { rootMargin: eager ? "0px" : "240px 0px", threshold: 0.01 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [eager]);
 
   useEffect(() => {
     if (active) setLoad(true);
   }, [active]);
 
+  const playing = active || inView;
+
   useEffect(() => {
     const el = videoRef.current;
-    if (!el) return;
-    if (active) {
+    if (!el || !load) return;
+    if (playing) {
       el.play().catch(() => {});
     } else {
       el.pause();
     }
-  }, [active, load]);
+  }, [playing, load]);
 
   return (
     <div
+      ref={host}
       className={cn("relative w-full overflow-hidden bg-muted", className)}
       style={{ aspectRatio: String(piece.aspect) }}
     >
@@ -54,7 +74,7 @@ function Media({
           muted
           loop
           playsInline
-          autoPlay={active}
+          autoPlay={playing}
           preload={eager ? "auto" : "metadata"}
         />
       ) : null}
@@ -89,6 +109,17 @@ export default function Gallery({ pieces, kind }: { pieces: Piece[]; kind?: stri
       items: pieces.filter((p) => p.category === category.id),
     })).filter((section) => section.items.length > 0);
   }, [pieces, selected, visible]);
+
+  const leadIds = useMemo(
+    () =>
+      new Set(
+        sections
+          .flatMap((section) => section.items)
+          .slice(0, 4)
+          .map((piece) => piece.id),
+      ),
+    [sections],
+  );
 
   const pickedIndex = picked ? visible.findIndex((p) => p.id === picked.id) : -1;
 
@@ -198,7 +229,11 @@ export default function Gallery({ pieces, kind }: { pieces: Piece[]; kind?: stri
                   onBlur={() => setHoverId((id) => (id === piece.id ? null : id))}
                   className="group relative overflow-hidden rounded-lg border bg-card text-left transition-shadow hover:shadow-lg"
                 >
-                  <Media piece={piece} active={hoverId === piece.id} />
+                  <Media
+                    piece={piece}
+                    active={hoverId === piece.id}
+                    eager={leadIds.has(piece.id)}
+                  />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent p-4 pt-12">
                     <h3 className="font-bold text-white">{piece.title}</h3>
                     <p className="text-xs text-white/70">{piece.href ? "Live site" : "Motion"}</p>
