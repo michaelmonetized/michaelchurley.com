@@ -25,6 +25,11 @@ describe("portfolio catalog", () => {
     const terreMark = pieces.find((p) => p.id === "art-delaterre");
     expect(terreMark?.title).toBe("de la Terre");
     expect(terreMark?.category).toBe("marks");
+    expect(pieces.filter((p) => p.id.startsWith("web-getatme")).map((p) => p.id)).toEqual([
+      "web-getatme",
+    ]);
+    expect(pieces.filter((p) => p.title === "Hurley US" && p.category === "marks")).toHaveLength(1);
+    expect(pieces.some((p) => p.id === "web-hustlepay" || p.id === "web-hustlechat")).toBe(false);
   });
 
   test("parseKind only accepts catalog filters", () => {

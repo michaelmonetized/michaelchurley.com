@@ -11,7 +11,6 @@ mkdirSync(RAW, { recursive: true });
 const SITES = [
   { id: "web-macksbbqshack", url: "https://www.macksbbqshack.com" },
   { id: "web-getatme", url: "https://getat.me" },
-  { id: "web-getatme-michaelhurley", url: "https://getat.me/michaelhurley" },
   { id: "web-hustlelaunch", url: "https://www.hustlelaunch.com" },
   { id: "web-bestwnc", url: "https://www.bestwnc.com" },
   { id: "web-michaelchurley", url: "https://www.michaelchurley.com" },
@@ -25,8 +24,6 @@ const SITES = [
   { id: "web-monarch", url: "https://www.monarchmountainfoundations.com" },
   { id: "web-bestjeepdecals", url: "https://www.bestjeepdecals.com" },
   { id: "web-barbquewagon", url: "https://www.barbquewagon.com" },
-  { id: "web-hustlepay", url: "https://hustlepay.com" },
-  { id: "web-hustlechat", url: "https://hustlechat.com" },
   { id: "web-hustleforms", url: "https://hustleforms.com" },
   { id: "web-uncap", url: "https://uncap.us" },
   { id: "web-delaterrestore", url: "https://www.delaterrestore.com" },
