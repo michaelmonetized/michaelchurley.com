@@ -30,6 +30,24 @@ describe("portfolio catalog", () => {
     ]);
     expect(pieces.filter((p) => p.title === "Hurley US" && p.category === "marks")).toHaveLength(1);
     expect(pieces.some((p) => p.id === "web-hustlepay" || p.id === "web-hustlechat")).toBe(false);
+    expect(pieces.some((p) => p.category === "interfaces")).toBe(false);
+    expect(pieces.some((p) => p.id === "web-mockup-gallery")).toBe(false);
+    expect(
+      pieces.some((p) =>
+        [
+          "art-hustle-launch-palette-alive",
+          "art-kings-logo-alive",
+          "art-macks-brisket",
+          "art-macks-pig-alive",
+          "art-macks-sides",
+          "art-macks-tape-alive",
+          "art-michaelchurley-logo-alive",
+          "art-salespromis",
+          "art-signsrus",
+          "art-vizible",
+        ].includes(p.id),
+      ),
+    ).toBe(false);
   });
 
   test("parseKind only accepts catalog filters", () => {

@@ -16,7 +16,6 @@ const SITES = [
   { id: "web-michaelchurley", url: "https://www.michaelchurley.com" },
   { id: "web-glass-design-system", url: "https://glass-design-system.vercel.app" },
   { id: "web-twelveux", url: "https://twelveux.vercel.app" },
-  { id: "web-mockup-gallery", url: "https://mockup-gallery-nu.vercel.app" },
   { id: "web-kingsroofing", url: "https://kingsroofingnc.com" },
   { id: "web-hurleyus", url: "https://www.hurleyus.com" },
   { id: "web-djsidethree", url: "https://www.djsidethree.com" },
