@@ -27,6 +27,15 @@ const FILES = [
   "art-kings-lion-alive.mp4",
   "art-monarch-logo-alive.mp4",
   "art-omadesign.png",
+  "art-wicked-fresh-truck-alive.mp4",
+  "art-wicked-fresh-sign-alive.mp4",
+  "art-mountain-heritage-alive.mp4",
+  "art-lilly-linen-alive.mp4",
+  "art-m-splash-alive.mp4",
+  "art-everything-monetized-alive.mp4",
+  "ui-book-slots-alive.mp4",
+  "ui-naarchy-home-alive.mp4",
+  "ui-naarchy-clipboard-alive.mp4",
   "web-appestatesales.mp4",
   "web-bestjeepdecals.mp4",
   "web-bestwnc.mp4",
@@ -47,8 +56,8 @@ const FILES = [
   "web-thenationalnc.mp4",
   "web-twelveux.mp4",
   "web-uncap.mp4",
+  "web-jennings.mp4",
   "webstill-Go-Metal-alive.mp4",
-  "webstill-Jennings-Custom-Homes-alive.mp4",
   "webstill-Realay-alive.mp4",
   "webstill-Sales-Promis-alive.mp4",
 ] as const;
@@ -74,7 +83,7 @@ const LIVE: Record<string, string> = {
   "web-thenationalnc": "https://www.thenationalnc.com",
   "web-twelveux": "https://twelveux.vercel.app",
   "web-uncap": "https://uncap.us",
-  "webstill-Jennings-Custom-Homes-alive": "https://www.jenningscustomhomes.com",
+  "web-jennings": "https://www.jenningscustomhomes.com",
   "art-hustle-launch-script": "https://www.hustlelaunch.com",
   "art-hustle-launch-star-alive": "https://www.hustlelaunch.com",
   "art-hurley-shield-alive": "https://www.hurleyus.com",
@@ -97,6 +106,15 @@ const TITLES: Record<string, string> = {
   "art-kings-lion-alive": "Kings Lion",
   "art-monarch-logo-alive": "Monarch Logo",
   "art-omadesign": "omadesign",
+  "art-wicked-fresh-truck-alive": "Wicked Fresh Truck",
+  "art-wicked-fresh-sign-alive": "Wicked Fresh Sign",
+  "art-mountain-heritage-alive": "Mountain Heritage Builders",
+  "art-lilly-linen-alive": "Lilly & Linen",
+  "art-m-splash-alive": "M Splash",
+  "art-everything-monetized-alive": "Everything Monetized",
+  "ui-book-slots-alive": "Book Slots",
+  "ui-naarchy-home-alive": "Naarchy Home",
+  "ui-naarchy-clipboard-alive": "Naarchy Clipboard",
   "web-appestatesales": "Appalachian Estate Sales",
   "web-bestjeepdecals": "Best Jeep Decals",
   "web-bestwnc": "Best of WNC",
@@ -118,7 +136,7 @@ const TITLES: Record<string, string> = {
   "web-twelveux": "Twelve UX",
   "web-uncap": "Uncap",
   "webstill-Go-Metal-alive": "Go Metal",
-  "webstill-Jennings-Custom-Homes-alive": "Jennings Custom Homes",
+  "web-jennings": "Jennings Custom Homes",
   "webstill-Realay-alive": "Realay",
   "webstill-Sales-Promis-alive": "SalesPromis",
 };
@@ -136,7 +154,16 @@ function categoryFor(id: string): Category {
 
 function aspectFor(id: string) {
   if (id.includes("-app-")) return 9 / 16;
-  if (id.includes("script") || id.includes("wordmark")) return 16 / 9;
+  if (
+    id.includes("script") ||
+    id.includes("wordmark") ||
+    id.includes("truck") ||
+    id.includes("sign") ||
+    id.includes("monetized") ||
+    id.startsWith("ui-")
+  ) {
+    return 16 / 9;
+  }
   if (id.startsWith("art-")) return 1;
   return 16 / 9;
 }
